@@ -22,8 +22,8 @@ import { conversationFor } from './dialogue.js';
 import { installFogStart, setFogStart } from './AtmosphereFog.js';
 import { cameraFraming, isInterior } from './LevelLook.js';
 import { SHIPPED_LEVELS } from './levels.js';
-// (the CombatSystem is imported dynamically in init, on combat levels only: peaceful levels never
-// download or parse the combat code; bindings.js is a tiny import-free table)
+// (the turn-based GlaiveCombat is imported dynamically in init, on combat levels only: peaceful
+// levels never download or parse the combat code; bindings.js is a tiny import-free table)
 import { PHOTO_PAD_DEFLECT, PHOTO_PAD_QUIET } from './combat/bindings.js';
 import {
   CAMERA, TIME_SPEED, SUN_PATH, MOON_PATH, KEYFRAME_OVERRIDES, SPRITE_FILL,
@@ -38,8 +38,8 @@ import { phaseName } from '../engine/ui/HUD.js';
  * @import { Level, LevelEnvironment, LevelObject, ObjectShapeOf } from '../engine/level/types.js'
  * @import { LevelPreparation } from './campaign/LevelPreparation.js'
  * @import { NpcDef } from './Npc.js'
- * @import { CombatSystem } from './combat/CombatSystem.js'
- * @import { CombatHooks } from './combat/types.js'
+ * @import { GlaiveCombat } from './glaive/GlaiveCombat.js'
+ * @import { GlaiveHooks } from './glaive/hooks.js'
  * @import { CampaignRuntime, CampaignHooks } from './campaign/CampaignRuntime.js'
  */
 
@@ -238,7 +238,7 @@ function npcDef(obj) {
  * `subtitle`, `environment.title`), time, clock, weather and music.
  *
  * Combat (docs/contracts/COMBAT.md): a level with `enemy` objects (or `environment.combat: true`)
- * gets a `CombatSystem` (`this.combat`); every other level plays exactly as before
+ * gets a turn-based `GlaiveCombat` (`this.combat`); every other level plays exactly as before
  * (`this.combat === null`: no combat module, sheet, binding, DOM or program is created).
  *
  * Campaigns (docs/specs/CAMPAIGN_FORMAT.md): with a `campaign` (CampaignRuntime) the game plays a
@@ -291,7 +291,7 @@ export class Game {
     this._removeAudioUnlock = null;
     this._disposed = false;
     this._warmFrames = 0;
-    /** @type {CombatSystem|null} */
+    /** @type {GlaiveCombat|null} */
     this.combat = null;
     /**
      * The story runtime (docs/specs/STORY_SCRIPT.md): a campaign, or a level with events / talk
@@ -666,12 +666,12 @@ export class Game {
     // the UI's fonts and the glyphs of this level's names and of the game's own lines, before the
     // combat UI is made and the HUD laid out (docs/specs/PIXEL_UI.md §3, I18N.md §5)
     await this._fontsIn(glyphs);
-    // combat level: enemies, the player kit, FX batches, combat UI and bindings (COMBAT.md §4.5)
+    // combat level: foes, the GLAIVE rules, FX batches, combat UI and bindings (docs/specs/GLAIVE.md §8)
     if (this.combatEnabled) {
       onProgress(0.94, t('game.load.blades'));
       await wait(0);
-      const { CombatSystem } = await import('./combat/CombatSystem.js');
-      this.combat = new CombatSystem({ game: this });
+      const { GlaiveCombat } = await import('./glaive/GlaiveCombat.js');
+      this.combat = new GlaiveCombat({ game: this });
       await this.combat.load();
     }
     // warm fill on every character / critter sprite (fades down at night)
@@ -878,7 +878,7 @@ export class Game {
     this.ui.prompt.hide();
     if (this.photoMode) this.togglePhotoMode({ instant: true });
     const t0 = performance.now();
-    // (never a combat level: its CombatSystem goes with the detach; a campaign only — a world
+    // (never a combat level: its GlaiveCombat goes with the detach; a campaign only — a world
     // needs the shared light pool to be detached)
     const keepOld = keep && !this.combatEnabled && !!this.lightPool;
     const old = this._detachLevel();
@@ -1436,7 +1436,7 @@ export class Game {
    * The party's key: G (`party`) — keyboard only: every pad button is taken on a combat level (and
    * the pad opens the panel through a member's talk, *Tactics…*; PARTY.md §4.4). Bound by
    * `ensureParty` and again by every level built while a party exists (a combat level's
-   * CombatSystem puts back, when it goes, the bindings it saved at its load — from before the
+   * GlaiveCombat puts back, when it goes, the bindings it saved at its load — from before the
    * party was made, maybe).
    */
   _bindParty() {
@@ -2034,7 +2034,7 @@ export class Game {
         const q = it.lookSpan ? nearestOnSpan(it.lookSpan, this.player.position.x, this.player.position.z) : it.position;
         this.player.faceTowards(q.x, q.z);
         if (it.onInteract) {
-          // combat levels: waystones rest, chests open (set by the CombatSystem)
+          // combat levels: waystones rest, chests open (set by the GlaiveCombat)
           await it.onInteract(this, it);
         } else {
           if (it.text?.sfx && it.text.lines?.length) this.audio.playSfx(it.text.sfx, { volume: 0.6 });
@@ -2456,8 +2456,8 @@ export class Game {
    *   'zh' as the player's choice, drop `?lang=` and reload the page (unsaved play is lost; the
    *   page's own language without `?lang=`: nothing) → the language saved
    * @property {() => GameState} state  the snapshot above
-   * @property {CombatHooks} [combat]  combat levels only: the combat test hooks (§3.4, COMBAT.md
-   *   §20.1)
+   * @property {GlaiveHooks} [combat]  combat levels only: the turn-based combat's test hooks
+   *   (docs/specs/GLAIVE.md §10)
    * @property {CampaignHooks} [campaign]  campaigns only: travel, story flags, saves (§3.6)
    * @property {import('./story/StoryRunner.js').StoryHooks} [story]  a story only: values, scripts,
    *   events, the trace (§3.7)

@@ -469,6 +469,16 @@ export class CombatHUD {
   }
 
   /**
+   * Rename the vitals' bar labels (additive; default 'HP' / 'MP' / 'SP'): the turn-based combat
+   * shows spell uses and vigour in the MP and SP rows. Labels are short (about three letters).
+   * @param {{ hp?: string, mp?: string, sp?: string }} labels
+   */
+  setVitalLabels(labels) {
+    this._labels = { ...(this._labels ?? {}), ...(labels ?? {}) };
+    this._buildVitals();
+  }
+
+  /**
    * Define the skill slots (three skills + the draught), in order.
    * @param {SkillDef[]} slots keys: keycaps (e.g. 'U/1'); padKeys: e.g. 'LT+X' (defaults to keys);
    *   unlock: the level a locked slot shows on its plate (additive)
@@ -661,7 +671,7 @@ export class CombatHUD {
       const by = y + dy;
       const capTop = Math.round(by + 2 + (h - 4) / 2 - 2.5);
       const row = box(bars, x, by, null, null, `lu-vbar lu-vbar--${id}`);
-      txt(row, id.toUpperCase(), x + 22, capTop - 2, { font: 'tiny', drop: true, cls: 'lu-vbar__k' });
+      txt(row, this._labels?.[id] ?? id.toUpperCase(), x + 22, capTop - 2, { font: 'tiny', drop: true, cls: 'lu-vbar__k' });
       const tr = box(row, x + 33, by, 71, h, 'lu-vbar__track');
       const rp = RAMP[id];
       put(tr, art(71, h, (p) => bar(p, 71, h, 0, rp, { ring: k.dm1 })), x + 33, by);

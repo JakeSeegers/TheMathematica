@@ -53,9 +53,8 @@ interface Window {
   __spriteHashes?: Record<string, string>;
   /** sandbox/sprite_art.js `?mode=combat`: the combat-sheet analysis (hash diffs, contrast, timings). */
   __spriteCombat?: import('../sandbox/sprite_art.js').SpriteCombatReport;
-  /** sandbox/sprite_runtime.js and sandbox/enemy_ai.js (two pages, two different handle sets). */
-  __sb?: import('../sandbox/sprite_runtime.js').SpriteRuntimeHandle
-    | import('../sandbox/enemy_ai.js').EnemyAiHandle;
+  /** sandbox/sprite_runtime.js: the sprite runtime handles. */
+  __sb?: import('../sandbox/sprite_runtime.js').SpriteRuntimeHandle;
   /** sandbox/lighting.js: lighting, godRays, setTime(h), setView(name), sweep(), info() … */
   __lighting?: import('../sandbox/lighting.js').LightingHandle;
   /** sandbox/lighting_engine.js: engine, lighting, postfx, rig, setTime(h), shadowLag() … */
@@ -78,8 +77,6 @@ interface Window {
   __vp?: import('../sandbox/editor3d.js').VpHandle;
   /** sandbox/game_levels.js: CASES, runCase(name). */
   __levelCases?: import('../sandbox/game_levels.js').LevelCasesHandle;
-  /** sandbox/combat_play.js, while a bot runs: bot, report(), summary(), until(). */
-  __play?: import('../sandbox/combat_play.js').PlayHandle;
   /** sandbox/editor_shell.helpers.js `install()`: editor pointer / key helpers (T.drag, T.key …). */
   T?: import('../sandbox/editor_shell.helpers.js').ShellHelpers;
   /** sandbox/editor_perf.helpers.js `install()`: editor perf helpers (P.setup, P.s2d …). */

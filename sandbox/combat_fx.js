@@ -475,8 +475,8 @@ engine.addSystem({
     for (const s of sprites) s.update(dt, camera);
     // input readout
     if (input.actionPressed('attack')) mouse.attack++;
-    if (input.actionPressed('dodge')) mouse.dodge++;
-    if (input.actionPressed('lock')) mouse.lock++;
+    if (input.actionPressed(/** @type {any} */ ('dodge'))) mouse.dodge++;
+    if (input.actionPressed(/** @type {any} */ ('lock'))) mouse.lock++;
     if (input.wasReleased('Mouse0') || input.wasReleased('Mouse1') || input.wasReleased('Mouse2')) mouse.released++;
     mouse.last = input.lastDevice;
     rig.update(dt, input);
@@ -718,7 +718,7 @@ function checkInput() {
   const offCanvas = !input.isDown('Mouse0') && input.lastDevice === 'keyboard';
   pu(panel, 0, 0);
   pd(canvas, 2, 2);
-  const onCanvas = input.isDown('Mouse2') && input.wasPressed('Mouse2') && input.actionPressed('dodge') && input.lastDevice === 'mouse';
+  const onCanvas = input.isDown('Mouse2') && input.wasPressed('Mouse2') && input.actionPressed(/** @type {any} */ ('dodge')) && input.lastDevice === 'mouse';
   pu(panel, 2, 0); // released over a UI panel still releases
   const releasedAnywhere = !input.isDown('Mouse2') && input.wasReleased('Mouse2');
   pd(canvas, 0, 1);

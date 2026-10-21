@@ -147,11 +147,12 @@ export const SHIELD_AC = 2;
  * - `reach`: a melee attack needs its target within this distance — a fighter steps in to strike.
  * - `zone`: "the same zone" — a ranged attack at a foe this close has DISADV; a burst hits this radius.
  * - `rangeStep`: Rn reaches `(n + 0.5) × rangeStep`.
- * - `join`: when a fight starts, foes within this distance of the first foe (and every foe of its
- *   group) join it; party members within `partyJoin` of the player join.
+ * - `join`: when a fight starts, the first foe's group joins; another group joins whole when one
+ *   of its foes stands within this distance of a foe already in it and sees it; party members
+ *   within `partyJoin` of the player join.
  * - `flee`: the party may flee when no foe is within this distance of any of them.
  */
-export const ZONES = Object.freeze({ move: 5, reach: 1.9, zone: 3, rangeStep: 5, join: 9, partyJoin: 20, flee: 4 });
+export const ZONES = Object.freeze({ move: 5, reach: 1.9, zone: 3, rangeStep: 5, join: 6, partyJoin: 20, flee: 4 });
 
 /**
  * How far an Rn attack or spell reaches (u).

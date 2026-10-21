@@ -1,0 +1,7 @@
+/* The turn-based fight's HUD (TurnHUD.js, docs/specs/GLAIVE.md §8.4): the turn order and the roll
+   log. Pixel-kit text (.g children are placed by the layout helpers); only visibility lives here. */
+.lu-root .lu-glaive { opacity: 0; transition: opacity 0.25s steps(4); }
+.lu-root .lu-glaive.is-on { opacity: 1; }
+.lu-root .lu-hud.is-hidden .lu-glaive { opacity: 0; }
+.lu-root .lu-glaive__cur { animation: lu-glaive-cur 0.8s steps(2) infinite; }
+@keyframes lu-glaive-cur { 50% { filter: brightness(1.35); } }

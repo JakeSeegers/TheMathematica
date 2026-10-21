@@ -16,7 +16,7 @@
  */
 
 /**
- * @import { CombatSystem } from './CombatSystem.js'
+ * @import { GlaiveCombat } from '../glaive/GlaiveCombat.js'
  * @import { FxQuadParams } from '../../engine/fx/FxQuads.js'
  * @import { RNG } from '../../engine/index.js'
  */
@@ -77,7 +77,7 @@ export const PICKUP_KINDS = Object.freeze(Object.keys(LOOKS));
 const isCoin = (kind) => kind.startsWith('coin');
 
 export class Pickups {
-  /** @param {CombatSystem} sys the CombatSystem */
+  /** @param {GlaiveCombat} sys the CombatSystem */
   constructor(sys) {
     this.sys = sys;
     /** @type {LivePickup[]} the pool (CAPACITY records, reused) */

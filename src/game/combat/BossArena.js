@@ -15,7 +15,7 @@
 /**
  * @import { EnemyArena } from './types.js'
  * @import { LevelObjectOf } from '../../engine/level/types.js'
- * @import { CombatSystem } from './CombatSystem.js'
+ * @import { GlaiveCombat } from '../glaive/GlaiveCombat.js'
  */
 
 const FLAME_SPACING = 0.6;
@@ -26,7 +26,7 @@ export class BossArena {
   /**
    * @param {LevelObjectOf<'enemy'>} group the golem `enemy`
    *   object (x, z, arena, gate)
-   * @param {CombatSystem} sys the CombatSystem (groundAt, quads,
+   * @param {GlaiveCombat} sys the CombatSystem (groundAt, quads,
    *   markers, sfx)
    */
   constructor(group, sys) {

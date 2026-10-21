@@ -6,7 +6,7 @@ import { term } from '../../engine/i18n/ContentText.js';
 /**
  * @import { Interactable } from '../World.js'
  * @import { PropResult } from '../../engine/world/Props.js'
- * @import { CombatSystem } from './CombatSystem.js'
+ * @import { GlaiveCombat } from '../glaive/GlaiveCombat.js'
  * @import { LevelObject } from '../../engine/level/types.js'
  */
 
@@ -86,7 +86,7 @@ export const placeName = (cp) => (cp?.place ? t(`combat.place.${cp.place}`)
   : cp?.unnamed ? t('game.default.waystone') : term(String(cp?.name ?? '')));
 
 export class Waystones {
-  /** @param {CombatSystem} sys the CombatSystem */
+  /** @param {GlaiveCombat} sys the CombatSystem */
   constructor(sys) {
     this.sys = sys;
     const level = sys.level;
@@ -224,7 +224,7 @@ export class Waystones {
 }
 
 export class Chests {
-  /** @param {CombatSystem} sys the CombatSystem */
+  /** @param {GlaiveCombat} sys the CombatSystem */
   constructor(sys) {
     this.sys = sys;
     /** @type {Chest[]} the level's chests */

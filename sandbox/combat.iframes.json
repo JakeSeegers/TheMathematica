@@ -1,8 +1,0 @@
-[
-  { "eval": "import('/sandbox/combat_fixture.js').then((m) => m.saveCombatFixture())" },
-  { "goto": "game.html?level=local:combat-fixture&autostart=1" },
-  { "eval": "import('/sandbox/combat_fixture.js').then((m) => m.ready()).then(() => window.__luminati.loadMs)" },
-  { "wait": 1000 },
-  { "eval": "import('/sandbox/combat_fixture.js').then((m) => JSON.stringify(m.tests.iframes()))" },
-  { "shot": "iframes" }
-]

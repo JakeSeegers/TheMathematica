@@ -1,13 +1,10 @@
 import { RNG, hashString } from '../../engine/index.js';
 
-/** @import { ScaledEnemyDef, EnemyDrops } from './defs.js' */
-
 /**
- * Loot rolls (COMBAT.md §7.8). Every death rolls with its own RNG
- * `new RNG((hashString(uid) ^ Math.imul(deathCount + 1, 0x9E3779B1) ^ seed) >>> 0)` — draws in
- * the order gold, heart, mana, draught — so a kill drops the same things however the fight went,
- * and killing the same enemy again (after a rest) rolls anew. The same RNG then scatters the
- * pickups (`landing`).
+ * Loot (docs/specs/GLAIVE.md §7.3). Every death rolls with its own RNG
+ * `new RNG((hashString(uid) ^ Math.imul(deathCount + 1, 0x9E3779B1) ^ seed) >>> 0)` — the silver,
+ * then a draught (GlaiveCombat._dropLoot) — so a kill drops the same things however the fight went,
+ * and killing the same foe again (after a rest) rolls anew. The same RNG scatters the pickups.
  */
 
 /** @type {[value: number, kind: string][]} coin denominations, largest first (pickup kind) */
@@ -24,36 +21,6 @@ export const MAX_COIN_PICKUPS = 6;
  */
 export function lootRng(uid, deathCount, seed) {
   return new RNG((hashString(uid) ^ Math.imul(deathCount + 1, 0x9E3779B1) ^ seed) >>> 0);
-}
-
-/**
- * A kill's drops (`rollLoot`'s result).
- * @typedef {object} LootRoll
- * @property {number} gold
- * @property {boolean} heart
- * @property {boolean} mana
- * @property {boolean} draught
- */
-
-/**
- * Roll a kill's drops.
- * @param {ScaledEnemyDef} def scaledDef result (gold [min, max], drops,
- *   guaranteedHeart)
- * @param {RNG} rng lootRng(...)
- * @param {boolean} lowHp the player is below 30 % HP (heart chance × 2)
- * @param {LootRoll} out
- * @returns {LootRoll} `out`
- */
-export function rollLoot(def, rng, lowHp, out) {
-  const [g0, g1] = def.gold ?? [0, 0];
-  out.gold = g1 > 0 ? rng.int(Math.round(g0), Math.round(g1)) : 0;
-  /** @type {Partial<EnemyDrops>} */
-  const d = def.drops ?? {};
-  const heartChance = Math.min(1, (d.heart ?? 0) * (lowHp ? 2 : 1));
-  out.heart = rng.next() < heartChance || !!def.guaranteedHeart;
-  out.mana = rng.next() < (d.mana ?? 0);
-  out.draught = rng.next() < (d.draught ?? 0);
-  return out;
 }
 
 /**
