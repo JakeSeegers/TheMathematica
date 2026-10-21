@@ -1,0 +1,20 @@
+[
+  { "wait": 2000 },
+  { "eval": "window.S = (n, dt = 1/30) => { for (let i = 0; i < n; i++) window.__engine.step(dt, { render: false }); window.__engine.redraw(); return n; }; window.U = async (pred, max = 3000, dt = 1/30) => { for (let i = 0; i < max; i++) { if (pred()) { window.__engine.redraw(); return i; } window.__engine.step(dt, { render: false }); if (i % 50 === 49) await new Promise((r) => setTimeout(r, 0)); } window.__engine.redraw(); return -1; }; window.C = () => window.__game.combat; window.FAIL = (m) => { setTimeout(() => { throw new Error('[glaive.fight] ' + m); }); return 'FAIL ' + m; }; window.M = () => { const f = C().state().fight; return !!(f && f.needsInput && !f.busy && window.__game.ui.dialog.isChoosing); }; window.K = (code, frames = 2) => { window.dispatchEvent(new KeyboardEvent('keydown', { code, key: code, bubbles: true })); S(frames); window.dispatchEvent(new KeyboardEvent('keyup', { code, key: code, bubbles: true })); S(2); return code; }; 'ok'" },
+  { "eval": "(async () => { const r = await U(() => window.__game && C() && window.__game.state().mode === 'play', 4000); if (r < 0) return FAIL('the level never reached play'); const q = await U(() => window.__game.ui.dialog.isOpen, 120); return q >= 0 ? 'the character picker is open' : FAIL('no character picker'); })()" },
+  { "shot": "01-character-picker" },
+  { "eval": "const p = C().choose('sellsword', 'dwarf'); S(10); (p.build === 'sellsword' && p.talents.includes('rootsOfMountain') && C().state().player.chosen) ? JSON.stringify(C().state().player) : FAIL('choose() did not make the character')" },
+  { "wait": 500 },
+  { "eval": "const f = C().foes().find((x) => x.group === 'glade_goblins'); window.__game.teleport(f.x, f.z + 5); S(10); C().fight('glade_goblins', 'party'); const st = C().state(); (st.engaged && st.fight && st.fight.combatants.filter((c) => c.side === 'foe').length === 3) ? JSON.stringify(st.fight.order) : FAIL('the fight did not start with the three goblins: ' + JSON.stringify(st.fight))" },
+  { "eval": "(async () => { const r = await U(M, 3000); S(15); const o = C().state().fight?.options; return r >= 0 && o && o.move && o.action ? JSON.stringify(o) : FAIL('no turn menu'); })()" },
+  { "shot": "02-turn-menu" },
+  { "eval": "K('Space'); 'attack chosen'" },
+  { "wait": 600 },
+  { "eval": "(async () => { const r = await U(() => !!C().state().fight?.picking, 120); return r >= 0 ? 'picking ' + C().state().fight.picking : FAIL('no target picker after Attack'); })()" },
+  { "shot": "03-target-picker" },
+  { "eval": "K('Space'); (async () => { const r = await U(() => M() || !C().state().fight, 3000); const log = C().state().log; return log.some((l) => l.includes('Traveler hits') || l.includes('Traveler misses') || l.includes('critical')) ? JSON.stringify(log.slice(-5)) : FAIL('the player did not attack: ' + JSON.stringify(log)); })()" },
+  { "shot": "04-after-attack" },
+  { "eval": "C().auto(true); C().pace(5); (async () => { const r = await U(() => !C().state().fight, 6000); return r >= 0 ? 'fight over' : FAIL('the fight did not end'); })()" },
+  { "eval": "S(60); const st2 = C().state(); (st2.fights === 1 && st2.kills >= 1 && !st2.engaged) ? JSON.stringify({ player: st2.player, kills: st2.kills, log: st2.log.slice(-3) }) : FAIL('after the fight: ' + JSON.stringify(st2))" },
+  { "shot": "05-after-fight" }
+]

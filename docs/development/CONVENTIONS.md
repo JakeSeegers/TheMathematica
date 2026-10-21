@@ -193,7 +193,7 @@ contract text and the code differ they follow the code and say so):
 `TileMap` and `Viewport3D` constructors (they lack `textures` on purpose — the constructors throw
 without it, and an optional `textures` would stop flagging a caller that forgets it) and of
 `createWaterfall`; `self.postMessage(…, [transfer])` in the two `shoreWorker.js` files (the
-worker scope is typed as `Window`); a duplicate key in `sandbox/enemy_ai.js`'s `window.__sb`; the
+worker scope is typed as `Window`); the
 unknown kind `sandbox/sprite_art.js` passes on purpose to prove `createEnemySheet` throws; and
 `headless: 'new'` in `tools/check.mjs` (puppeteer 25's types dropped the value; it still runs).
 What the check does not see is listed in

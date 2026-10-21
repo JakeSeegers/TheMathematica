@@ -77,7 +77,7 @@ flowchart LR
 | `Weather` | time-of-day glides, weather blending (light, fog, wind, grade, particles, lamps, water, snow) | the 24 h palette itself (`LightingSystem`) |
 | `AudioDirector` | the ambience mix (wind, birds, crickets, fire, water) | synthesis (`AudioSystem`) |
 | `ResolutionGovernor` | pixel budget and dynamic render scale | post-processing itself |
-| `combat/CombatSystem` (combat levels only) | the combat clock, the player kit, enemies, hits, loot, checkpoints, chests, the boss arena, combat feedback, battle music, the combat HUD values, `window.__game.combat` ([§15](#15-combat-combat-levels-only)) | peaceful levels (never created there) |
+| `glaive/GlaiveCombat` (combat levels only) | turn-based GLAIVE fights, foes, loot, checkpoints, chests, the boss arena, combat feedback, battle music, the combat HUD values, `window.__game.combat` ([§15](#15-combat-combat-levels-only)) | peaceful levels (never created there) |
 
 ---
 
@@ -183,7 +183,7 @@ begins the loop. A campaign later replaces the level half with `swapLevel` ([§3
   `warmedUp` (a promise).
 - **Combat** `combatEnabled = levelHasCombat(level)` (`environment.combat === true`, or not
   `false` and the level has an `enemy` object); `combat = null` until `init` creates the
-  `CombatSystem` ([§15](#15-combat-combat-levels-only)). Peaceful levels never create it.
+  `GlaiveCombat` ([§15](#15-combat-combat-levels-only)). Peaceful levels never create it.
 
 ### 3.2 `init(onProgress)` — build order
 
@@ -230,7 +230,7 @@ Step by step (progress fractions are those shown on the loading bar):
 | — | — | `earlyCompile = _compileScene()` — the world's programs start compiling in parallel (`KHR_parallel_shader_compile`) while actors are created. |
 | 0.92 | `t('game.load.villagers')` (Waking the villagers) | `Player` (combat levels: the sword and the combat sheet, [§5](#5-player)) (added to the scene and the `SpriteManager`, `lighting.followTarget(player.sprite)`), `_ensureStandingSpawn()`, one `Npc` per `npc` object (sheets cached per preset; a failing NPC is skipped with a warning), `Critters`, the chicken "threats" list, the far-actor throttle (big levels). |
 | — | — | **The fonts** (`_fontsIn`): `await ui.fontsReady` (`loadStats.fontsWait`: what the build still waited) and, in Japanese and Chinese, the glyphs of what the level shows first (`fonts.ensure`, started with the world build by `_glyphsFor`, which looks `_shownTexts()` up inside `quietly()`: nothing is shown yet, so an untranslated text records no miss; `loadStats.glyphsWait`) — before the HUD's first layout. |
-| 0.94 | `t('game.load.blades')` (Sharpening blades) | Combat levels only: `await import('./combat/CombatSystem.js')` (dynamic: peaceful levels never download or parse the combat code — Vite puts it in its own chunk; only the import-free `combat/bindings.js` is static), `new CombatSystem({ game })`, `await combat.load()` — enemy sheets, the FX atlas, `FxQuads`, `GroundMarkers` (its height texture bakes in ≤ 6 ms slices), every enemy (and the boss's adds, hidden), the enemies' walk grid (`Nav`, ≈ 20 ms on Cinderwatch) and zones, `UI.useCombatUI(…)` + `ui.enableCombat()`, the combat bindings, `rig.stickZoom` ([§15](#15-combat-combat-levels-only)). |
+| 0.94 | `t('game.load.blades')` (Sharpening blades) | Combat levels only: `await import('./glaive/GlaiveCombat.js')` (dynamic: peaceful levels never download or parse the combat code — Vite puts it in its own chunk; only the import-free `combat/bindings.js` is static), `new GlaiveCombat({ game })`, `await combat.load()` — enemy sheets, the FX atlas, `FxQuads`, `GroundMarkers` (its height texture bakes in ≤ 6 ms slices), every foe (and the boss's bats, hidden), the walk grid (`Nav`, ≈ 20 ms on Cinderwatch) and zones, `UI.useCombatUI(…)` + `ui.enableCombat()`, the combat bindings, `rig.stickZoom` ([§15](#15-combat-combat-levels-only)). |
 | — | — | `BlobBatch` (big levels and combat levels), `registerEmissive(sprite.material, SPRITE_FILL)` on every character, critter and enemy sprite, `makeShadowOnly(shadowProxy)` on big levels and combat levels, `Weather`, `AudioDirector`. |
 | — | — | HUD (`setControls` with translated rows `{ keys, label, id }`; combat levels then `combat.setupUI()`: the combat legend, vitals and skill slots), `setLocation(..._levelPlate())` (`term(level.name)`, `loc(textKeyOf(level, 'subtitle'), subtitle)`), prompt key hint `Space`, dialog speed 55 chars/s with a `blip` on every second non-space character, `buildDebugControls(this)`, `_setupMaps()` (combat levels end it with `combat.attachMaps(map)`: enemy dots, chest markers only once discovered, the boss marker). |
 | — | — | Frame wiring ([§3.4](#34-the-frame)). |
@@ -491,7 +491,7 @@ several levels in one page. `Game` therefore has two halves:
 
 | Lives as long as the page (`init`) | Belongs to a level (`_applyLevel` + `_buildLevel`) |
 | --- | --- |
-| `Engine`, renderer, `TextureLibrary`, `LightingSystem`, `Particles` (and the burst pools), `GodRays`, `SpriteManager`, `CameraRig`, `PostFX`, `ResolutionGovernor`, `UI`, `AudioSystem`, `Weather` (its rain and snow emitters), the debug panel, the frame wiring, the fog-start patch; for a campaign one `LightPool` of 12 lights with `fixed: true` (`this.lightPool`, handed to every `World`) | camera framing and bounds, the fog start (`uFogStart`), high ground, regions, the combat flag, the title drift (`_applyLevel`); `World`, `Player`, villagers (+ their sheets), `Critters`, `CombatSystem`, `BlobBatch`, the actors' warm-fill registrations, `AudioDirector`, the HUD's location and controls, the maps (`_buildLevel`) |
+| `Engine`, renderer, `TextureLibrary`, `LightingSystem`, `Particles` (and the burst pools), `GodRays`, `SpriteManager`, `CameraRig`, `PostFX`, `ResolutionGovernor`, `UI`, `AudioSystem`, `Weather` (its rain and snow emitters), the debug panel, the frame wiring, the fog-start patch; for a campaign one `LightPool` of 12 lights with `fixed: true` (`this.lightPool`, handed to every `World`) | camera framing and bounds, the fog start (`uFogStart`), high ground, regions, the combat flag, the title drift (`_applyLevel`); `World`, `Player`, villagers (+ their sheets), `Critters`, `GlaiveCombat`, `BlobBatch`, the actors' warm-fill registrations, `AudioDirector`, the HUD's location and controls, the maps (`_buildLevel`) |
 
 `init` calls `_buildLevel` once, exactly where it built the level before (single levels are
 unchanged: same order, same programs). `swapLevel(level, { spawn, source })` — called by
@@ -1402,125 +1402,59 @@ More in [ai/KNOWN_ISSUES.md](../ai/KNOWN_ISSUES.md); measurements in [PERFORMANC
 
 ## 15. Combat (combat levels only)
 
-Binding contract: [contracts/COMBAT.md](../contracts/COMBAT.md) (rules, timings, interfaces,
-automation). A level is a combat level when `levelHasCombat(level)`: `environment.combat === true`,
-or the key is not `false` and the level has an `enemy` object (Cinderwatch Pass, the combat
-fixture, editor play-tests with enemies). Every other level creates **nothing** combat-related:
-`game.combat === null`, no combat sheet, program, binding, DOM or legend row — and the combat
-modules are not even loaded (`Game.init` imports `CombatSystem.js` dynamically). Party companions
-fight beside the player through `CombatSystem.addAlly` and `src/game/party/MemberCombat.js`
-([contracts/COMBAT.md §28](../contracts/COMBAT.md#28-party-allies), [specs/PARTY.md §5](../specs/PARTY.md#5-companions-in-combat-party-combat)):
-each enemy's update reads its target's view as `ctx.player` — the player's unless a companion drew it.
+Fights are turn-based on the GLAIVE rules: **[specs/GLAIVE.md](../specs/GLAIVE.md)** is the
+reference. The engine additions and the level data stay as in
+[contracts/COMBAT.md](../contracts/COMBAT.md). A level is a combat level when
+`levelHasCombat(level)`: `environment.combat === true`, or the key is not `false` and the level has
+an `enemy` object (Cinderwatch Pass, the Old Quarry of the Ferryman's Lantern, editor play-tests
+with enemies). Every other level creates **nothing** combat-related: `game.combat === null`, no
+combat sheet, program, binding, DOM or legend row — and the combat modules are not even loaded
+(`Game.init` imports `glaive/GlaiveCombat.js` dynamically). Party companions take part through
+`GlaiveCombat.addAlly`, which gives each member an `AllyView` ([specs/PARTY.md §5](../specs/PARTY.md#5-companions-in-combat-party-combat)).
 
-| File ([`src/game/combat/`](../../src/game/combat/)) | Role |
+| File | Role |
 | --- | --- |
-| `CombatSystem.js` | orchestration: `load()` (sheets, FX atlas, `FxQuads`, `GroundMarkers`, every enemy and the boss adds, the walk grid and the zones, `UI.useCombatUI` + `ui.enableCombat()`, the combat bindings — the engine's combat modules are imported from their own files, never through the barrel), the combat clock and sub-steps, the `CombatContext` of the enemies, hit resolution and damage, kills / XP / loot, boss signals and victory, separation, dormancy, engagement, the look, HUD values, labels, minimap dots, death and respawn, the shop (`buy`, `priceOf`, `shopOffers`), `state()`, `stats()` |
-| `Nav.js` | the enemies' walk grid (0.5 u cells with their ground height; open = walkable, not open water, clear of static colliders and the map edge, outside the boss arenas) and a bounded, allocation-free A* string-pulled into waypoints; ≤ 2 searches per combat sub-step (`beginStep` / `spend`); `warm()` at load. `build(blocked)` remembers `blocked`; `buildRect(minX, maxX, minZ, maxZ)` recomputes only the cells a change of colliders or walk surfaces inside that world rect can reach (2 cells beyond it grown by 0.2 u) — cell for cell what a full `build` gives; `CombatSystem.rebuildNav(rect)` uses it after a story presence change (KNOWN_ISSUES STORY-04). The open cells are labelled by connected part on the first search after a build: a goal in another part fails at once, without a search (STORY-14; `stats.apart`, `stats.parts`, `connected(ax, az, bx, bz)`); `buildSteps(blocked, rowsPerStep)` is `build` as a step generator (the story's own grid, built ahead in idle time, `new Nav(tm, { defer: true })`) |
-| `PlayerCombat.js` | the player kit: stats and levels, HP / MP / SP, the 3-hit combo (magnet, lunges, cancel windows), roll / backstep with i-frames and the perfect dodge, Whirl Slash / Ember Bolt / Radiant Nova, the Healing Draught, hitstun / knockdown, death |
-| `CombatInput.js`, `bindings.js` | the 10 f input buffer (keyboard, mouse buttons, pad with LT skills, virtual presses), resume / respawn guards, lock tap / hold; the combat bindings, legends and the pad hint |
-| `Targeting.js` | aim direction, soft target (auto-aim, melee magnet), lock-on inside the frustum, the lock and boss-framing camera focus |
-| `Hitboxes.js`, `Projectiles.js` | hit shapes and the "one hit per tag" registry; the projectile pool (the height model: vy aiming, terrain and collider blocking, body bands, arcs) |
-| `Pickups.js`, `Loot.js` | seeded loot rolls, coins / hearts / mana / draughts / upgrades with arcs, magnet and landing on standable ground |
-| `Waystones.js`, `BossArena.js` | checkpoints (attune, rest), chests (discovery, open); the boss arena (ember wall, barrier, player clamp) |
-| `CombatFx.js`, `Feel.js`, `CombatMusic.js` | named effects on `FxQuads`; hit-stop / shake / flash tables and the combat look; battle / boss music |
-| `rules.js`, `hooks.js` | every player number and the shop's wares (`SHOP_WARES`); `window.__game.combat` ([specs/AUTOMATION_API.md §3.4](../specs/AUTOMATION_API.md#34-window__gamecombat-combat-levels-only)) |
-| `Enemy.js`, `defs.js`, `ai/*` | the enemy actor (the shared state machine of COMBAT.md §7.4, telegraph / hazard helpers), its stats and the eight brains; the brain interface (`init`, `idle`, `engage`, `attack`, `stun`, `cancel`, `onHit`, `die`, `glow`, `update` for the boss) is the table at the top of [`ai/index.js`](../../src/game/combat/ai/index.js). Brains see only the `CombatContext` (plus pure helpers such as `aimVy`) and never import `Enemy.js`. Chasing and returning use the walk grid (`ctx.nav`, below); the old fade-and-snap home stays only as a last resort. |
+| [`glaive/GlaiveCombat.js`](../../src/game/glaive/GlaiveCombat.js) | the level shell: `load()` (enemy sheets, the FX atlas, `FxQuads`, `GroundMarkers`, every foe and the boss's bats, the walk grids, `UI.useCombatUI` + `ui.enableCombat()`, the combat binding), exploration (foes see the player, the ambush key, the boss's arena), starting and ending fights, the player's turn menus, the target picker and the ground cursor, loot and XP, character creation and level-up menus, death and respawn, the shop, campaign progress, the story's presence, `state()` |
+| [`glaive/Encounter.js`](../../src/game/glaive/Encounter.js) and the rules files | one fight, turn by turn, as pure logic that returns beats ([GLAIVE §5](../specs/GLAIVE.md#5-the-encounter)) |
+| [`glaive/Foe.js`](../../src/game/glaive/Foe.js) | a foe: idle wander in its home disc, sight, scripted walks, poses, flash, death and rout |
+| [`glaive/Stage.js`](../../src/game/glaive/Stage.js) | plays each step's beats as timed animation (walks, swings, shots, numbers, effects, markers) |
+| [`glaive/TurnHUD.js`](../../src/game/glaive/TurnHUD.js) | the turn order strip and the roll log |
+| [`glaive/hooks.js`](../../src/game/glaive/hooks.js) | `window.__game.combat` ([GLAIVE §10](../specs/GLAIVE.md#10-test-hooks)) |
+| `combat/Nav.js` | the walk grid (0.5 u cells, a bounded A*); fights walk on it, and the party and the story use it on a combat level. `buildRect` recomputes only the cells a change can reach (KNOWN_ISSUES STORY-04); parts are labelled so a goal in another part fails at once (STORY-14) |
+| `combat/Pickups.js`, `combat/Loot.js` | seeded drops (silver, draughts, upgrades) that land on standable ground and fly to the player |
+| `combat/Waystones.js`, `combat/BossArena.js` | checkpoints (attune, rest), chests (discovery, open); the boss arena (ember wall, barrier) |
+| `combat/CombatFx.js`, `combat/Feel.js`, `combat/CombatMusic.js` | named effects on `FxQuads`; the combat look (grade / DOF offsets); battle and boss music |
+| `combat/defs.js`, `combat/bindings.js`, `combat/strings.js` | the foes' presence data (size, sight, speed); the combat binding and legends; the shared combat strings (enemy names, places, the shop's wares, the death screen) |
 
-**The combat clock.** `update(dt, active)` runs `n = ceil(dt·60 − ε)` sub-steps of `dt / n`; in each:
-the input buffer, `PlayerCombat.step`, every non-dormant enemy's `update(h · enemyScale, ctx)`,
-projectiles, then hits in a fixed order (player hitboxes vs enemies, player projectiles, enemy
-hitboxes vs the player, enemy projectiles). A **hit-stop** freezes whole sub-steps (the victim's quad
-jitters ±1/16 u); slow motion scales the player's / the enemies' time (perfect dodge, death, the
-boss's death). `engine.time.timeScale` is never touched, so camera shake, particles, water, the
-clock and the UI keep running. `active` is false on the title, in dialogs, with the map open and in
-photo mode: nothing advances. The first active frame drops that frame's action edges and ignores
-still-held keys until released (the resume guard); a respawn ignores edges for 0.25 s.
+**The frame.** `update(dt, active)` does nothing while `active` is false (the title, dialogs —
+the turn menus are dialogs —, the map, photo mode). Between fights it moves the foes (wander) and
+looks for a reason to start a fight; during a fight it advances the stage and, when the stage is
+idle, asks the encounter for the next step: a foe's or a companion's choice (`step(decide())`), or
+the player's (`_playerTurn`: menus, then the picker or the cursor, then `act`). `afterPlayer`
+updates pickups, waystones and chests (between fights), the music, the HUD, the foes' bars, the
+minimap dots, and opens the character and level-up menus at the first quiet moment.
 
-**Feel.** Hits land with hit-stop (4 f, A3 7 f, skills 3 f, +2 crit, +4 kill, ≤ 10 f), camera shake,
-the enemy's white flash, knockback (by mass), a hit star or crit star, streak sparks, a damage
-number and a panned hit / crit sound; the player's hurt adds a red flash, a vignette pulse and
-knockback / knockdown. Grade and DOF offsets (`applyLook`, after `weather.update`) tighten the
-DOF while engaged, redden the vignette on hurts and desaturate at low HP, on a perfect dodge and on
-death. A perfect dodge also keeps the player invulnerable while the enemy slow motion lasts.
+**The player in a fight.** `locksPlayer` is true and `player.action` is `'fight'`: `Player.update`
+only follows the ground, and the stage walks the player's sprite (`PcActor`) along the paths the
+encounter chose. Party members' sprites are driven the same way while `member.combat.active`.
 
-**Death and respawn** (the `restUntilMorning` pattern): HP 0 → the `down` pose, slow motion, the
-music fades, enemies go home; 1.2 s later `busy`, the death screen ("Press any key to rise at …"),
-fade out, `resetEncounter()` (living enemies home, the boss reset, pickups cleared, gold −10 %,
-HP / MP / SP full, draughts ≥ 2), a teleport to the checkpoint's stand point, 2 s i-frames, fade in.
+**Death and respawn** (the `restUntilMorning` pattern): a lost fight plays the death screen, then
+`resetEncounter()` (living foes home and whole, the boss reset, pickups cleared, silver −10 %, full
+HP), a teleport to the checkpoint's stand point, fade in.
 
-**Paths and zones** (since 2026-09-28, KNOWN_ISSUES COMBAT-06 / -18 / -19). A chaser walks straight
-at the player while the way is clear on the same level (as before) and otherwise follows a path on
-the walk grid — up stairs, onto ledges, around rocks — renewed when the player moves on or the walk
-sticks; melee kinds wind up only with the player within melee height and a clear straight way
-(`Enemy.canMelee`), so none swings at a ledge edge from below. A player with no path within reach
-(`Enemy.unreachable`) makes the enemy give up at once (home, calm 6 s). The walk home follows a path
-too; the 18 f fade-and-snap stays only when there is no path home or the walk is blocked for good.
-Each group's **zone** is the first `region` containing its centre (the location plate's rule),
-grown to hold its home disc: a noticing enemy wakes others only in its zone, a player outside the
-zone + 3 u is not seen, and the leash breaks when the enemy leaves that margin or 1 s after the
-player did — a fight in one zone no longer pulls in the next zone's pack. Levels without regions
-have no zone rules.
+**The story and the campaign.** Enemy groups, chests and waystones are `LIVE_STORY_TYPES`:
+`StoryRunner.applyPresence` calls `combat.applyPresence(present)` after `World.applyStory`; a group
+taken away mid-fight leaves the fight. A campaign carries the player's GLAIVE sheet
+(`exportProgress` / `importProgress`) and remembers defeated groups per level (`defeatedGroups` /
+`markGroupsCleared`). The story's `kill`-based `cleared` events fire for killed and routed foes.
 
-**Shop** (the gold sink). An NPC with the `shopkeeper` script (Bram at the camp, Odo at the Quarry
-Waystone) sells the Healing Draught (25 gold, up to the carry cap) and three one-time wares
-(`SHOP_WARES` in `rules.js`: Whetstone ATK +2 for 120, Ironbark Tonic max HP +15 for 90, Warding
-Charm DEF +3 for 150) through a dialogue menu (§8); `combat.buy(item)` applies an upgrade at once
-(`PlayerCombat.upgrade(kind, amount)`), bought wares stay bought through death and rest, and the
-shop is shut while enemies are engaged. `state().combat.shop.purchased` lists them; the event is
-`purchase`.
+**Names on screen** ([I18N.md §4.8](../specs/I18N.md)). The data keeps the English; the display
+translates: a foe's name (`displayName`: a named group's name as a term, else the kind's name),
+the shop's wares (`shopOffers().label`), a checkpoint (`placeName`). The fight's own words are the
+`glaive` strings.
 
-**Names on screen** ([I18N.md §4.8](../specs/I18N.md)). The data keeps the English (identities: `buy`,
-`priceOf`, `state()`); the display translates. An enemy's name (`displayName(e)`, cached per enemy:
-an elite's bar, the boss bar and banner): a named group's `name` as a term, else the kind's name
-(`combat.enemy.<kind>`, a UI string; a group named as its kind reads as the kind's name where the
-tables have no term for it). The wares: `shopOffers()` adds `label` / `gainLabel` (UI strings),
-`wareLabel(item)` a ware's UI name or, for an NPC's own item, a term. A checkpoint (`placeName`,
-Waystones.js: the toasts, the death screen): the spawn's place as a UI string, a waystone's name as a
-term, an unnamed waystone (`Checkpoint.unnamed`, additive: `name` still holds 'Waystone') as
-`t('game.default.waystone')`. The results card names the level as a term.
-
-**Boss arena.** While a boss arena is closed the player is *sealed* in with its boss
-(`PlayerView.sealed`): enemies outside it neither aggro (sight, a neighbour's wake-up) nor get an
-attack token, and one that is engaged anyway walks home and stays calm for 6 s — the fight stays a
-1-on-1 with the boss and its adds (quarry archers used to shoot into the arena). The boss keeps
-the player at its hurt radius (1.2 u, not its 0.6 u move radius), and its sprite dithers to 45 %
-opacity while the player stands behind it on screen (`Sprite3D.bodyOpacity`: the quad only — its
-shadow and blob stay solid), so the player is never hidden inside it. Its death plays small,
-dim bursts beyond it (`BossArena.deathBursts`), a warm death flash, and drops its coins and core
-beyond it, so the player stays readable in the kill frames.
-
-**Readability.** Damage numbers of enemies spawn above their HP bars and stack upward when several
-land at once; a hit star on a target standing behind the player on screen moves to the target's
-head top and aside; wind-ups, the elite shimmer and the boss's hit flash tint the sprite's own
-shading through the Sprite3D **highlight** (`setHighlight`), so the wind-up pose stays readable on
-every sheet (the golem's cracks also flare); a level-up while engaged shows a smaller card
-higher up, and one granted by the boss's kill waits for the results card; skill slots cast on
-click (a click never reaches the canvas as an attack). Pickups that would give nothing (a heart at
-full HP, a mana mote at full MP, a draught at the carry cap) stay on the ground, even after the
-magnet caught them.
-
-**The story and the campaign** (2026-10-07, KNOWN_ISSUES CMP-03 / CMP-04). Enemy groups, chests
-and waystones are `LIVE_STORY_TYPES`: a level with a story loads every one whatever its `when` /
-`unless` (a campaign keeps them in the level it builds), and `StoryRunner.applyPresence` calls
-`combat.applyPresence(present)` right after `World.applyStory`. An absent group's foes are hidden
-and dormant (`_absent`, also in `_hidden` with the unspawned adds: excluded from AI, hits, the
-minimap, the counts — `state().combat.enemies.absent` — and the hooks); one taken mid-fight drops
-the lock-on, aggro, tokens, markers and projectiles, goes home at full HP, and its boss's fight
-ends; an absent boss's arena closes nothing (`BossArena.present`). A group that comes back spawns at
-home, its fallen stay fallen; the death reset, a rest and the `reset` hook keep absent groups
-away. Chests and waystones are World story groups (prop, collider, prompt, paint, marker); combat
-marks the records `absent` (no discovery, opening, attuning or rest; an opened chest that comes
-back stays offering nothing; a checkpoint that goes falls back to the spawn). A campaign remembers
-defeated groups per level (`defeatedGroups` / `markGroupsCleared`, above): no death, drop, XP or
-`kill` event on entering, a boss stays defeated.
-
-**Integration points in `Game`**: the constructor (`combatEnabled`), `init` (§3.2 rows 0.94 and
-0.96), the frame (§3.4 steps 3 and 7), `_setupMaps` (`attachMaps`), `toggleMap` (`onMapOpen`),
-`teleport` (`onTeleport`: the lock releases, the focus vectors jump), `togglePhotoMode`
-(refused while engaged), `setMusic` (`musicTrack`), `_findInteractable` (`disabled`),
-`_interact` (`onInteract`), `state()` (`combat`), `_exposeGlobal` (`combat` hooks), `dispose`
-(first). The test fixture is [`sandbox/combat_fixture.js`](../../sandbox/combat_fixture.js)
-(`sandbox/combat.*.json`); [`sandbox/combat_play.js`](../../sandbox/combat_play.js) (`combat.play.json`)
-plays all of Cinderwatch Pass with real key events — in fixed step (`&fixedstep=1`: the engine's
-`manualStep`, a virtual page clock), so a run is deterministic and comparable by its `digest`
-([TESTING_AND_VERIFICATION §8.2](../development/TESTING_AND_VERIFICATION.md#82-scripted-suites)).
+**Integration points in `Game`**: the constructor (`combatEnabled`), `init` (§3.2 row 0.94), the
+frame (§3.4), `_setupMaps` (`attachMaps`), `toggleMap` (`onMapOpen`), `teleport` (`onTeleport`),
+`togglePhotoMode` (refused while engaged), `setMusic` (`musicTrack`), `_findInteractable`
+(`disabled`), `_interact` (`onInteract`), `state()` (`combat`), `_exposeGlobal` (`combat` hooks),
+`dispose` (first).

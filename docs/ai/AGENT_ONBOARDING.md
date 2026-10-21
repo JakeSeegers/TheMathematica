@@ -86,8 +86,9 @@ the combat code at all (rule 14). It is balanced for a **party of four**: three 
 join the player's party by their talk scripts — Sister Ilse (a mystic, the healer) and Rook (a
 ranger) at the Waystone Camp, Sela (a warden) at the Crossroads Waystone
 ([specs/PARTY.md §9](../specs/PARTY.md#9-the-demo-the-companions-of-cinderwatch-pass)) — and solo
-play is hard by design ([COMBAT.md](../contracts/COMBAT.md));
-the play-through bot recruits them (`sandbox/combat_play.js`, `party: false` plays alone).
+play is hard by design. Its combat is **turn-based on the GLAIVE tabletop rules**
+([specs/GLAIVE.md](../specs/GLAIVE.md)): initiative, d20 attacks against AC, saves against a DC,
+zones turned into distances, a menu for each of the player's turns.
 
 Two **campaigns** ship — stories of several levels played in one page
 ([specs/CAMPAIGN_FORMAT.md](../specs/CAMPAIGN_FORMAT.md)). The first is *The Ferryman's Lantern*,
@@ -343,13 +344,13 @@ apply them step by step.
     `dispose()`, JSDoc on public APIs (checked — rule 15), custom shaders reference
     `globalUniforms` objects directly and include the fog chunks when they should be fogged.
 14. **Combat is opt-in per level and must stay invisible elsewhere.** `Game` creates a
-    `CombatSystem` only when `levelHasCombat(level)` (an `enemy` object, or `environment.combat:
+    `GlaiveCombat` only when `levelHasCombat(level)` (an `enemy` object, or `environment.combat:
     true`); on every other level `game.combat === null`, no combat sheet, material, burst pool,
     DOM node or binding exists and the fingerprints stay as they were (Emberfall 57 programs). The
-    combat clock is sub-stepped and its hit-stop is combat-local — never touch
-    `engine.time.timeScale`. Every combat material, batch and burst is created and warmed at load
+    fight never touches `engine.time.timeScale` (the stage animates the encounter's beats on
+    the combat clock). Every combat material, batch and burst is created and warmed at load
     (`combat.warmup`), so `stats().programs` after a full fight equals the count at load
-    (`sandbox/combat.programs.json`). Existing sprite sheets stay pixel-identical: after an
+    (`combat.programsAtLoad`; `sandbox/campaign.travel.json` checks it after `showcase()`). Existing sprite sheets stay pixel-identical: after an
     intended change to a plain sheet, re-take `sprite_art.html?mode=hashes` into
     `sandbox/sprite_art.hashes.json` in the same commit ([COMBAT.md §2](../contracts/COMBAT.md#2-must-not-change)).
 15. **The type check stays at zero.** `npm run typecheck` runs `tsc` over the JavaScript and its
@@ -601,8 +602,8 @@ verify it in its sandbox, then integrate and run the appropriate regression chec
 | Harness | [`tools/check.mjs`](../../tools/check.mjs) (usage in its header) |
 | Type check | [`tsconfig.json`](../../tsconfig.json), [`tools/tsconfig.json`](../../tools/tsconfig.json), [`tools/typecheck.mjs`](../../tools/typecheck.mjs); rules and the list of contract types: [CONVENTIONS.md §3.1](../development/CONVENTIONS.md#31-the-type-check) |
 | Contract types | level document [`level/types.d.ts`](../../src/engine/level/types.d.ts) · `PropResult` in [`world/Props.js`](../../src/engine/world/Props.js) · combat [`combat/types.d.ts`](../../src/game/combat/types.d.ts) + `EnemyDef` in [`combat/defs.js`](../../src/game/combat/defs.js) · tools `Tool` / `PointerEv` in [`editor/tools/index.js`](../../src/editor/tools/index.js) · hooks `GameHooks` / `EditorHooks` / `LuminatiHooks` and [`src/globals.d.ts`](../../src/globals.d.ts) |
-| Scripted checks | `sandbox/*.actions.json`, `sandbox/editor_shell.*.json`, `sandbox/editor3d.*.actions.json`, `sandbox/editor_perf*.json`, `sandbox/combat.*.json` (combat; the fixture level in `sandbox/combat_fixture.js`, the play-through bot in `sandbox/combat_play.js` — deterministic in fixed step, compare its `summary` / `digest`), `sandbox/combat_audio.actions.json` (the combat audio QA), `sandbox/launcher.json` (the launcher: `--page=index.html --query= --fps=0`) |
-| Combat | [`src/game/combat/`](../../src/game/combat/CombatSystem.js) (`CombatSystem`, `PlayerCombat`, `Enemy` + `ai/*`, `rules.js`, `defs.js`, `Feel.js`), contract [contracts/COMBAT.md](../contracts/COMBAT.md), overview [GAME.md §15](../architecture/GAME.md#15-combat-combat-levels-only), hooks `window.__game.combat` ([AUTOMATION_API.md](../specs/AUTOMATION_API.md)) |
+| Scripted checks | `sandbox/*.actions.json`, `sandbox/editor_shell.*.json`, `sandbox/editor3d.*.actions.json`, `sandbox/editor_perf*.json`, `sandbox/combat.*.json` (combat; `combat.glaive.fight.json` and `combat.glaive.boss.json` play turn-based fights in fixed step), `npm run glaive:test` (the GLAIVE rules in Node), `sandbox/combat_audio.actions.json` (the combat audio QA), `sandbox/launcher.json` (the launcher: `--page=index.html --query= --fps=0`) |
+| Combat | [`src/game/glaive/`](../../src/game/glaive/GlaiveCombat.js) (`GlaiveCombat`, `Encounter`, `Sheet`, `dice`, `rules`, `talents`, `spells`, `bestiary`, `Foe`, `Stage`, `TurnHUD`), the shared pieces in [`src/game/combat/`](../../src/game/combat/Waystones.js) (waystones, chests, pickups, boss arena, FX, music, `Nav`), spec [specs/GLAIVE.md](../specs/GLAIVE.md), engine additions [contracts/COMBAT.md](../contracts/COMBAT.md), overview [GAME.md §15](../architecture/GAME.md#15-combat-combat-levels-only), hooks `window.__game.combat` ([AUTOMATION_API.md](../specs/AUTOMATION_API.md)) |
 | Game automation hooks | `Game._exposeGlobal` (`window.__game`), `exposeHook` in [`src/main.js`](../../src/main.js) (`window.__luminati`) |
 
 ---

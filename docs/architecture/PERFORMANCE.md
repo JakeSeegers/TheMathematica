@@ -233,7 +233,10 @@ Measured at the combat integration (2026-09-28, reference desktop GPU, 1600 × 9
 budgets are in [COMBAT.md §18](../contracts/COMBAT.md#18-performance-budgets)); rows marked
 *2026-10-11* were measured again after the party-of-four rebalance
 ([Party balance](../specs/PARTY.md#9-the-demo-the-companions-of-cinderwatch-pass):
-58 enemies instead of 53, Rook a seventh villager at the camp):
+58 enemies instead of 53, Rook a seventh villager at the camp). *These figures were measured with
+the real-time combat (its scripts `combat.programs.json` / `combat.perf.json` are gone since the
+GLAIVE turn-based combat, 2026-10-21); a turn-based fight draws fewer effects at once, so they are
+upper bounds:*
 
 | What | Value |
 | --- | --- |
@@ -585,10 +588,10 @@ hundreds of props ([`Viewport3D._syncAll` / `_runJobs`](../../src/editor/viewpor
 How Cinderwatch Pass stays inside the budgets of [COMBAT.md §18](../contracts/COMBAT.md#18-performance-budgets)
 with 58 enemies ([Combat effects budgets](PERFORMANCE.md)):
 
-- **Nothing on peaceful levels.** `Game` imports `CombatSystem` dynamically and only when
+- **Nothing on peaceful levels.** `Game` imports `GlaiveCombat` dynamically and only when
   `levelHasCombat(level)`: peaceful levels fetch no combat rules, compile no combat program and
   build no pool. Since 2026-09-28 (KNOWN_ISSUES COMBAT-17, [Combat loading](PERFORMANCE.md))
-  they also fetch none of the combat engine modules: `CombatSystem` imports `FxQuads`,
+  they also fetch none of the combat engine modules: `GlaiveCombat` imports `FxQuads`,
   `GroundMarkers`, `FxSprites`, `MonsterSprites` and the combat UI from their own files,
   `vite.config.js` marks those 9 modules side-effect free (so the engine barrel's re-exports put
   nothing into chunks that do not use them), `UI.js` gets the combat UI classes from
@@ -603,19 +606,17 @@ with 58 enemies ([Combat effects budgets](PERFORMANCE.md)):
 - **One sprite program.** All combat sprites use `luminati-sprite3d-lit-fx-v1`; flash, glow and
   highlight are per-sprite uniforms, not materials. Enemy shadows use the existing shadow-only
   proxies and the instanced `BlobBatch`.
-- **Dormancy.** Enemies more than 32 u from the player that are not aggroed are not updated at
-  all (checked every 0.25 s); aggroed enemies are never throttled.
-- **Rationed path searches.** Chasers walk straight while the way is clear (a grid line test every
-  6 f) and search the walk grid only otherwise; `CombatSystem` allows 2 searches per combat
-  sub-step (`NAV_SEARCHES`; a refused enemy keeps its old path and asks again), each bounded to
-  6000 expanded cells and allocation-free (typed arrays built once, a binary heap), so a crowd that
-  loses sight of the player cannot spike a frame.
+- **Turns, not frames.** A fight's rules run only when a turn is taken (`Encounter`); between
+  turns the stage only animates the last beats. Foes outside a fight idle at home.
+- **Path searches per move.** The walk grid (`Nav`) is searched once for each move a turn
+  makes (bounded to 6000 expanded cells, allocation-free: typed arrays built once, a binary heap),
+  never every frame.
 - **Pools, no allocation per frame.** Fixed pools for projectiles (64), pickups (64), markers (48),
   FX quads (256), DOM numbers (40), bars (32) and edge arrows (8); reused vectors and hit queues.
   DOM labels write `translate3d` only when the rounded pixel changes (0 draw calls).
 - **Warm-up.** `combat.warmup(far)` renders one instance of every batch, uploads every sheet and
   primes every burst before `_compileScene()`, so the program count after a full fight equals the
-  count at load (63; `combat.programs.json`).
+  count at load (63; `combat.programsAtLoad`, checked by `campaign.travel.json` after `showcase()`).
 
 ---
 

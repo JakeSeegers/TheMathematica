@@ -92,6 +92,8 @@ const CALM_AFTER_FLEE = 8;
 const AMBUSH_REACH = 2.6;
 /** The ground cursor's speed (u/s at full stick). */
 const CURSOR_SPEED = 7;
+/** Seconds of plain play before the character or level-up menu opens. */
+const QUIET_S = 0.8;
 /** Draughts a waystone rest leaves the player at least. */
 const REST_DRAUGHTS = 2;
 const _v = new THREE.Vector3();
@@ -261,6 +263,8 @@ export class GlaiveCombat {
     this.sheet = Sheet.create('sellsword', 'human', '');
     /** A build was chosen (else the picker opens at the first quiet moment of play). */
     this.chosen = false;
+    /** Seconds of plain play in a row (the menus open after QUIET_S). */
+    this._quietFor = 0;
     this.pc = new PlayerCard(this);
     /** @type {AllyView[]} */
     this.allies = [];
@@ -906,13 +910,21 @@ export class GlaiveCombat {
     this._updateMinimap();
     this.quads.update();
     this.markers.update();
-    if (playing && active && !this.chosen && !this._choosing && this._quiet()) this._chooseBuild();
-    if (playing && active && this._levelQueue === 0 && this.sheet.pendingLevels > 0 && !this.encounter && !this._choosing && this._quiet()) this._levelUps();
+    // the menus wait for a moment of quiet (a story event queued just after the load goes first)
+    this._quietFor = playing && active && this._quiet() ? this._quietFor + dt : 0;
+    const calm = this._quietFor >= QUIET_S;
+    if (calm && !this.chosen && !this._choosing) this._chooseBuild();
+    if (calm && this._levelQueue === 0 && this.sheet.pendingLevels > 0 && !this.encounter && !this._choosing) this._levelUps();
   }
 
-  /** The game is in plain play: no dialog, no cutscene, no travel, no menu. */
+  /**
+   * The game is in plain play: no dialog, no cutscene, no travel, no menu — and the story has
+   * nothing running or queued (its scenes come first; the character and level menus wait).
+   */
   _quiet() {
     const g = this.game;
+    const story = g.story;
+    if (story && (story.run || story.queue?.length)) return false;
     return g.mode === 'play' && !g.busy && !this.ui.dialog.isOpen && !this.ui.cutscene && !g.campaign?.traveling && !g.mapOpen && !g.photoMode && !g.journalOpen && !g.partyMenuOpen && !this._respawning;
   }
 

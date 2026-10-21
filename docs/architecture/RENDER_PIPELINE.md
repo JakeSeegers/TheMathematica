@@ -456,7 +456,7 @@ and dialogs; no frame over 45 ms on Emberfall's first rain, snow or dialog. Comb
 (adds hidden), one `FxQuads` and one `GroundMarkers` instance are drawn at y = −1000 through the
 warm frames, every sheet and the marker height texture are uploaded and every combat burst is
 primed — Cinderwatch Pass has 63 programs at load and exactly 63 after a full fight
-(`sandbox/combat.programs.json`). With the shadow primer (rule 8) every level's count at load equals
+(`combat.programsAtLoad`; `sandbox/campaign.travel.json` compares it after `showcase()`). With the shadow primer (rule 8) every level's count at load equals
 the count after visiting every part of it: Emberfall 57, sample-hamlet 54, Brightwater 57, Starfall
 59 and Gildhaven 59 — also with its two spawn-side pines removed (`sandbox/gildhaven.shadows.json`;
 58 → 59 on the first walk into High Town without the primer). When you add a material that first

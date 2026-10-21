@@ -59,11 +59,14 @@ export function formatPlayTime(seconds) {
 }
 
 /**
- * The player's combat progress carried from one combat level to the next (CombatSystem
- * `exportProgress` / `importProgress`): level, XP, gold, draughts, the upgrades from chests and
- * wares, and the one-time wares bought. (The story's `gold` is the purse between combat levels.)
+ * The player's combat progress carried from one combat level to the next (GlaiveCombat
+ * `exportProgress` / `importProgress`): level, XP, gold (GLAIVE's silver), draughts, the upgrades
+ * from chests and wares, the one-time wares bought, and (additive) the player's GLAIVE character
+ * sheet and whether its build was chosen — a sheet is untrusted data, `Sheet.from` clamps it. (The
+ * story's `gold` is the purse between combat levels.)
  * @typedef {{ level: number, xp: number, gold: number, potions: number,
- *   upgrades: { maxHp: number, maxMp: number, attack: number, def: number }, wares: string[] }} CombatProgress
+ *   upgrades: { maxHp: number, maxMp: number, attack: number, def: number }, wares: string[],
+ *   sheet?: Record<string, any>, chosen?: boolean }} CombatProgress
  */
 
 export class CampaignState {
@@ -101,7 +104,7 @@ export class CampaignState {
     /** @type {Record<string, string[]>} level id → chests opened there */
     this.opened = Object.create(null);
     /**
-     * Base level id → the enemy groups defeated there (`CombatSystem.defeatedGroups`): they are not
+     * Base level id → the enemy groups defeated there (`GlaiveCombat.defeatedGroups`): they are not
      * there when the player comes back, until a waystone rest there brings them back
      * (KNOWN_ISSUES CMP-03).
      * @type {Record<string, string[]>}
@@ -199,6 +202,8 @@ export class CampaignState {
         level: n(c.level, 1, 10), xp: n(c.xp, 0, 1e7), gold: n(c.gold, 0, 1e7), potions: n(c.potions, 0, 5),
         upgrades: { maxHp: n(up.maxHp, 0, 999), maxMp: n(up.maxMp, 0, 999), attack: n(up.attack, 0, 999), def: n(up.def, 0, 999) },
         wares: Array.isArray(c.wares) ? c.wares.filter((w) => typeof w === 'string') : [],
+        ...(isPlain(c.sheet) ? { sheet: c.sheet } : {}),
+        ...(c.chosen === true ? { chosen: true } : {}),
       };
     }
     if (Array.isArray(d.visited)) s.visited = d.visited.filter((id) => typeof id === 'string' && campaign.levels.some((l) => l.id === id));

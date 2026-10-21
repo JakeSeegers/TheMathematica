@@ -382,13 +382,13 @@ Millbrook (40 × 32; before: ≈ 0.6–0.7 s) and for the 128 × 128 Gildhaven s
 - **Fog.** The fog starts at the level's own camera distance − 7 (`environment.camera.distance`,
   default 30 → 23 units; the mill cellar, 20 → 13): a shader uniform set on every travel, so a
   change compiles nothing.
-- **Combat.** A combat level gets a new `CombatSystem`; the player's progress — level, XP, gold,
+- **Combat.** A combat level gets a new `GlaiveCombat`; the player's progress — level, XP, gold,
   draughts, upgrades, wares bought — carries over from earlier combat levels (`exportProgress` /
   `importProgress`), and chests opened on an earlier visit stay open and empty. **An enemy group
   defeated there stays defeated** — every foe of it fallen, its boss's adds aside; a group fought
   only in part comes back whole — until the player rests at a waystone there, which brings the
   fallen back in place as it does within a visit: on entering, the groups the save remembers
-  (`cleared`) are simply not there (`CombatSystem.markGroupsCleared`: no death, drop, XP, `kill`
+  (`cleared`) are simply not there (`GlaiveCombat.markGroupsCleared`: no death, drop, XP, `kill`
   event — so no `cleared` event — or effect), and a defeated boss stays defeated (its arena
   open, off the maps; a rest never brings a boss back). The list is taken from the level as it
   stands whenever the campaign saves there or the player leaves (`defeatedGroups`): a rest takes
@@ -430,7 +430,7 @@ start, i.e. an editor play-test: `….test`), JSON, **version 2**:
 ```
 
 - **Per level.** `opened` (base level id → the chests opened there) and `cleared` (base level id →
-  the enemy groups defeated there, `CombatSystem.defeatedGroups`, taken whenever the game saves in
+  the enemy groups defeated there, `GlaiveCombat.defeatedGroups`, taken whenever the game saves in
   that level or leaves it; a waystone rest there empties it but for a defeated boss; an empty list
   leaves the key out). `cleared` is additive to version 2: an older engine keeps it as an unknown
   field and writes it back. On load only levels of the campaign keep a list, of text ids (≤ 200

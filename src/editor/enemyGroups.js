@@ -4,7 +4,7 @@
  * use them without loading the 3D view.
  *
  *  - kind / boss tests, the relative `arena` / `gate` fields and their world rect / segment;
- *    only the boss kind's arena and gate exist in the game (`CombatSystem` builds a `BossArena`
+ *    only the boss kind's arena and gate exist in the game (`GlaiveCombat` builds a `BossArena`
  *    for `golem` groups only), so the views draw and edit `bossArena` / `bossGate`;
  *  - how far a gate lies off its arena's edge (`gateEdgeGap`);
  *  - a boss asking for more than the one member the game spawns (`bossExtraCount`,
@@ -24,7 +24,7 @@ import { isWalkablePoint, tileDef } from '../engine/level/LevelFormat.js';
 
 /**
  * A known enemy kind ('slime' for anything else). The editor previews an unknown kind as slimes;
- * the game spawns nothing for it (CombatSystem._spawnGroup: no enemy sheet).
+ * the game spawns nothing for it (GlaiveCombat._spawnGroup: no enemy sheet).
  */
 export const enemyKind = (o) => (ENEMY_KINDS.includes(o?.kind) ? o.kind : 'slime');
 
@@ -166,7 +166,7 @@ export function dataColliders(level) {
 }
 
 /**
- * The combat spawn's start test (`CombatSystem._spawnGroup`) on level data: walkers need
+ * The combat spawn's start test (`GlaiveCombat._spawnGroup`) on level data: walkers need
  * standable ground — a walkable tile or a bridge deck, never open water (`isWalkablePoint`) —
  * fliers may also start over water; both stay out of `colliders` (`dataColliders`, plus the
  * props' TileMap colliders when the caller has them: circles, and `type: 'box'` rects tested

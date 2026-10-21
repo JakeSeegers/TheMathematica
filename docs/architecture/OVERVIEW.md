@@ -205,8 +205,9 @@ The game layer (`src/game/`) adds what is not engine-generic: `Game` (wiring and
 shares with the editor preview), `AudioDirector`, `Scenery` (outer
 world, tree merging), `GroundDetail` (foliage fields), `SnowCover`, `AtmosphereFog`,
 `ResolutionGovernor`, `DebugControls`, `dialogue.js`, `config.js`, `levels.js`, and — on levels
-with enemies only — the ARPG combat in `src/game/combat/` (`CombatSystem` and the player kit,
-`Enemy` and its `ai/*` brains; contract [COMBAT.md](../contracts/COMBAT.md)). See [GAME.md](GAME.md).
+with enemies only — the turn-based GLAIVE combat in `src/game/glaive/` (`GlaiveCombat`, the
+`Encounter` rules, the `Stage` and the fight HUD; spec [GLAIVE.md](../specs/GLAIVE.md)) with the
+shared pieces of `src/game/combat/` (engine additions: [COMBAT.md](../contracts/COMBAT.md)). See [GAME.md](GAME.md).
 
 ---
 

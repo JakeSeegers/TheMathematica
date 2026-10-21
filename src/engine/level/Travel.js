@@ -18,7 +18,7 @@ import { presenceCondition, canHoldTogether } from './StoryStates.js';
  * the player is in the level, as the story changes: the logic markers (looked up when used), the
  * villagers, every prop — houses, windmills, wells and waterfalls too (World's story groups) —,
  * critters (Critters.applyStory), particle areas and the combat objects (enemy groups, chests,
- * waystones: every one loaded and warmed, the absent ones out of play — CombatSystem.applyPresence),
+ * waystones: every one loaded and warmed, the absent ones out of play — GlaiveCombat.applyPresence),
  * and the interior furniture (World's story groups, like any prop): since 2026-10-07 every type of
  * the catalog. A type added later follows its conditions when the level is entered until it is
  * listed here (docs/specs/STORY_SCRIPT.md §9.5).

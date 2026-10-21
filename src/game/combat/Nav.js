@@ -1,7 +1,7 @@
 /**
  * Nav — the enemies' walk grid and path search (KNOWN_ISSUES COMBAT-06 / COMBAT-18, COMBAT.md §7.6).
  *
- * Built once by `CombatSystem.load()` from the TileMap: a grid of 0.5 u cells (two per tile, so a
+ * Built once by `GlaiveCombat.load()` from the TileMap: a grid of 0.5 u cells (two per tile, so a
  * cell never straddles a tile edge) holding the ground height at each cell centre and whether an
  * enemy may walk there — a walkable tile or walk surface (a bridge deck), not open water, not within
  * 0.2 u of a static collider (villagers are `dynamic` and ignored), not within 0.3 u of the map edge
@@ -24,7 +24,7 @@
  * expanded cells ("too far" counts as unreachable). The cell path is string-pulled with
  * `lineClear(…, body = true)` into at most `out.length / 2` waypoints, the last one the goal
  * itself. A start or goal inside a closed cell (an actor pressed against a rock) snaps to the
- * nearest open cell within 1.5 u on its level. Cost bound (COMBAT.md §18): CombatSystem allows 2
+ * nearest open cell within 1.5 u on its level. Cost bound (COMBAT.md §18): GlaiveCombat allows 2
  * searches per combat sub-step, each at most `maxExpand` (6000) cells — about 1.5 ms warm for the
  * longest; `warm()` runs one throw-away search at load, so the first real ones are not JIT-cold.
  *
@@ -33,7 +33,7 @@
  * sub-step (a caller that is refused keeps its old path, or walks straight, and asks again).
  *
  * When colliders or walk surfaces come and go (the story's presence changes,
- * `CombatSystem.rebuildNav(rect)`), `buildRect` recomputes only the cells a change inside that
+ * `GlaiveCombat.rebuildNav(rect)`), `buildRect` recomputes only the cells a change inside that
  * rect can reach — the grid ends identical to a full `build` (KNOWN_ISSUES STORY-04: a full build
  * on a big level took 14–42 ms, one hitch per change).
  *
@@ -420,7 +420,7 @@ export class Nav {
   }
 
   /**
-   * One throw-away search across the grid (CombatSystem.load, after building): the first real
+   * One throw-away search across the grid (GlaiveCombat.load, after building): the first real
    * searches then run JIT-warm (cold, the first ones took 2–5.6 ms). `stats` and the sub-step
    * ration are left as they were.
    */

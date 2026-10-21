@@ -928,8 +928,9 @@ const ROOK_RUINS = { minX: 4, maxX: 41, minZ: 44, maxZ: 71.5 };
  * [id, kind, count, level, x, z, radius, extra] — positions are the design (§15.3). Counts and levels
  * are balanced for the party of four (ADR-056: the player with Rook and Ilse from the camp, Sela from
  * the crossroads): the glade for three, a pack more each and Lv 2; the Ruins (the harder branch) Lv
- * 7–8 with a third goblin in the court, the Mire Lv 6–7, the quarry Lv 8 — measured with the
- * play-through bot (`sandbox/combat_play.js`, its human model beside the party). More foes than these
+ * 7–8 with a third goblin in the court, the Mire Lv 6–7, the quarry Lv 8 — measured with the old
+ * real-time combat's play-through bot; the GLAIVE stat blocks (src/game/glaive/bestiary.js) scale
+ * with these levels (`monsterStats`). More foes than these
  * would break rule 15 (≤ 30 start spots within 28 u, at the crossroads); the levels carry the rest.
  * @type {[id: string, kind: string, count: number, level: number, x: number, z: number,
  *   radius: number, extra?: { spotOffsets?: XZ[], area?: Rect, elite?: boolean, name?: string,

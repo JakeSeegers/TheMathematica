@@ -44,7 +44,8 @@ platforms and report verification limitations. See
 ## Engineering safeguards
 
 - Read the applicable contract: [engine](ARCHITECTURE.md),
-  [level/editor](docs/contracts/LEVEL_EDITOR.md), [combat](docs/contracts/COMBAT.md),
+  [level/editor](docs/contracts/LEVEL_EDITOR.md), [combat](docs/specs/GLAIVE.md) (with the engine
+  additions of [COMBAT.md](docs/contracts/COMBAT.md)),
   [pixel UI](docs/specs/PIXEL_UI.md), or the feature specification in `docs/specs/`.
   Contract changes must be additive; update documentation and JSDoc or `types.d.ts` copies
   together. If a document disagrees with the implementation, check the code and correct the

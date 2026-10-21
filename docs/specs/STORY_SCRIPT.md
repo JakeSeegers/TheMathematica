@@ -602,7 +602,7 @@ When the story changes, the game re-checks every `when` / `unless`:
 - **live, combat** (`enemy`, `chest`, `waystone`, also `LIVE_STORY_TYPES`): a combat level loads
   every enemy group, chest and waystone, present or not — their kinds' sheets painted, their
   sprites and props built and warmed at load, so nothing compiles when one comes — and the combat
-  system keeps the absent ones out of play (`CombatSystem.applyPresence`, called by the story's
+  system keeps the absent ones out of play (`GlaiveCombat.applyPresence`, called by the story's
   presence after the world's). An absent **enemy group** has no AI, is not drawn, not hit, not on
   the minimap, not counted for its `cleared` event (`state().combat.enemies.absent` counts it);
   its boss's arena closes nothing (no exclusion, the enemies' walk grid opens there, no map

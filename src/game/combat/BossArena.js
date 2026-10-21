@@ -26,7 +26,7 @@ export class BossArena {
   /**
    * @param {LevelObjectOf<'enemy'>} group the golem `enemy`
    *   object (x, z, arena, gate)
-   * @param {GlaiveCombat} sys the CombatSystem (groundAt, quads,
+   * @param {GlaiveCombat} sys the combat (GlaiveCombat) (groundAt, quads,
    *   markers, sfx)
    */
   constructor(group, sys) {

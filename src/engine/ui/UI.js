@@ -109,7 +109,7 @@ function paintRing(lit) {
  * Combat levels call `enableCombat()` once, which adds the combat components (COMBAT.md §13:
  * vitals, skill bar, loot feed, boss bar, world labels, announcer, death screen) as `ui.combat`.
  * The combat classes reach it from the caller — registered once with `UI.useCombatUI(classes)`
- * (CombatSystem imports them from their own files) or passed as `enableCombat(classes)` — so this
+ * (GlaiveCombat imports them from their own files) or passed as `enableCombat(classes)` — so this
  * module never uses them itself and a peaceful level's bundle does not hold them (COMBAT-17; the
  * re-exports at the end are side-effect free, vite.config.js).
  *
@@ -353,7 +353,7 @@ export class UI {
 
   /**
    * Register the combat UI classes once (`src/engine/ui/{CombatHUD,BossBar,WorldLabels,Announcer,
-   * DeathScreen}.js`) for `enableCombat()` (additive; CombatSystem does it before enabling). Kept
+   * DeathScreen}.js`) for `enableCombat()` (additive; GlaiveCombat does it before enabling). Kept
    * out of this module's imports so a peaceful level's bundle does not hold them (COMBAT-17).
    * @param {{ CombatHUD: Function, BossBar: Function, WorldLabels: Function, Announcer: Function, DeathScreen: Function }} classes
    */
@@ -396,7 +396,7 @@ export class UI {
     // panels (the label layer is under the HUD)
     this._setLabelPanels();
     // COMBAT-02: pre-render the death screen (its first show was one long frame) once the fonts
-    // are in, with the texts it will show (the combat namespace, CombatSystem registers it; a
+    // are in, with the texts it will show (the combat namespace, GlaiveCombat registers it; a
     // sandbox without it primes the English)
     this.fontsReady.then(() => {
       if (this.combat !== c) return;

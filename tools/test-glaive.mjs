@@ -19,6 +19,8 @@ import { SPELLS, castDc } from '../src/game/glaive/spells.js';
 import { Encounter } from '../src/game/glaive/Encounter.js';
 import { ENEMY_KINDS } from '../src/engine/level/ObjectCatalog.js';
 import { PRESET_NAMES, PARTY_PRESETS, CLASS_NAMES } from '../src/engine/level/PartyRules.js';
+import GLAIVE_STRINGS from '../src/game/glaive/strings.js';
+import { ANCESTRY_IDS } from '../src/game/glaive/talents.js';
 
 const args = Object.fromEntries(process.argv.slice(2).map((a) => a.replace(/^--/, '').split('=')).map(([k, v]) => [k, v ?? true]));
 const VERBOSE = !!args.verbose;
@@ -381,6 +383,30 @@ sec('tactics');
   // the passive preset never attacks
   const r = play([...party({ members: ['warden'] }).map((c) => (c.id === 'm0' ? { ...c, rule: PARTY_PRESETS.passive.rule } : c)), ...foes('goblin', 2)], { seed: 42 });
   ok(!r.beats.some((b) => b.t === 'attack' && b.who === 'm0' && !b.free), 'Hold Back never attacks');
+}
+
+// -------------------------------------------------------------------------------------------------
+sec('strings');
+{
+  const en = Object.keys(GLAIVE_STRINGS.en);
+  for (const lang of ['ja', 'zh']) {
+    const missing = en.filter((k) => !(k in GLAIVE_STRINGS[lang]));
+    const extra = Object.keys(GLAIVE_STRINGS[lang]).filter((k) => !(k in GLAIVE_STRINGS.en));
+    ok(!missing.length, `${lang}: every English key translated`, missing);
+    ok(!extra.length, `${lang}: no key English lacks`, extra);
+  }
+  const need = [
+    ...TALENT_IDS.flatMap((id) => [`talent.${id}.name`, `talent.${id}.text`]),
+    ...Object.keys(SPELLS).flatMap((id) => [`spell.${id}.name`, `spell.${id}.text`]),
+    ...BUILD_IDS.flatMap((id) => [`build.${id}`, `build.${id}.hint`]),
+    ...ANCESTRY_IDS.flatMap((id) => [`ancestry.${id}`, `ancestry.${id}.hint`]),
+    ...Object.keys(CONDITIONS).map((id) => `cond.${id}`),
+    ...['trip', 'disarm', 'feint', 'grapple', 'bash', 'defend'].flatMap((m) => [`maneuver.${m}`, `maneuver.${m}.hint`]),
+    ...['fine', 'fatigued', 'wounded', 'scarred', 'maimed', 'dead'].map((r) => `injury.${r}`),
+    ...['str', 'dex', 'wis', 'wil'].map((a) => `ability.${a}`),
+  ];
+  const lacking = need.filter((k) => !(k in GLAIVE_STRINGS.en));
+  ok(!lacking.length, 'every talent, spell, build, ancestry, condition, maneuver and injury has its words', lacking);
 }
 
 // -------------------------------------------------------------------------------------------------

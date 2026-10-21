@@ -366,7 +366,7 @@ export class Engine {
    * Manual stepping (opt-in; tests and bots). While on, the engine installs no animation loop
    * (`start()` / `stop()` only mark it started / stopped) and frames advance only through
    * `step()` — e.g. a fixed 1/60 s as fast as the page allows, so a scripted run repeats frame
-   * for frame on any GPU load (`sandbox/combat_play.js`). Turning it off installs the loop again
+   * for frame on any GPU load (scripted checks). Turning it off installs the loop again
    * if the engine is started. Starts on with `opts.manualStep` or the URL flag `?fixedstep` (with
    * `?autostart` or `?debug`, like `window.__engine`).
    * @type {boolean}

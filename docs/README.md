@@ -110,8 +110,9 @@ Details: [user/GETTING_STARTED.md](user/GETTING_STARTED.md).
    - engine modules — [architecture/modules/README.md](architecture/modules/README.md) (index of
      `core`, `audio`, `render`, `pixel`, `sprite`, `fx`, `lighting`, `world`, `level`, `ui`);
    - rendering — [architecture/RENDER_PIPELINE.md](architecture/RENDER_PIPELINE.md);
-   - the game — [architecture/GAME.md](architecture/GAME.md); its combat —
-     [contracts/COMBAT.md](contracts/COMBAT.md) (binding) and [GAME.md §15](architecture/GAME.md#15-combat-combat-levels-only);
+   - the game — [architecture/GAME.md](architecture/GAME.md); its turn-based combat —
+     [specs/GLAIVE.md](specs/GLAIVE.md), the engine additions in [contracts/COMBAT.md](contracts/COMBAT.md)
+     and [GAME.md §15](architecture/GAME.md#15-combat-combat-levels-only);
    - the editor — [architecture/EDITOR.md](architecture/EDITOR.md);
    - speed — [architecture/PERFORMANCE.md](architecture/PERFORMANCE.md).
 4. [contracts/README.md](contracts/README.md) — what is binding, and the additive rule for
@@ -197,6 +198,9 @@ describes the code.
   - [STORY_SCRIPT.md](specs/STORY_SCRIPT.md) — the story: conditions, the script language and its
     commands, `event` objects and triggers, talk scripts and actors, story files (items, quests,
     actors, start presets), runs, cutscenes, live presence, the journal, saves, checks and tests.
+  - [GLAIVE.md](specs/GLAIVE.md) — the turn-based combat on the GLAIVE rules: dice, the
+    character sheet, talents, the encounter and its beats, spells, monsters and the boss, the game
+    side (foes, the stage, the fight HUD), video-game choices, test hooks.
   - [PARTY.md](specs/PARTY.md) — the party: villagers who join the player, the follow, companions
     in combat and their rules (presets, fields, classes), the tactics panel, the story's `party`
     commands, saves, the Cinderwatch demo (Ilse, Rook and Sela).
@@ -286,9 +290,10 @@ describes the code.
     known differences between the contracts and the code.
   - [LEVEL_EDITOR.md](contracts/LEVEL_EDITOR.md) — **binding**: level format, object catalog,
     builder, storage, editor architecture, tool interface, UX, performance design.
-  - [COMBAT.md](contracts/COMBAT.md) — **binding**: the ARPG combat — per-level enabling, controls,
-    player rules, enemies and the boss, runtime interfaces, sprites, VFX, audio, UI, the combat
-    catalog types, Cinderwatch Pass, budgets, tests, and the deviations recorded at integration.
+  - [COMBAT.md](contracts/COMBAT.md) — **binding** for the parts that still hold: per-level
+    enabling, the engine additions (sprites, VFX, audio, input, the combat UI), the combat catalog
+    types, Cinderwatch Pass; its real-time rules (player kit, enemy brains, the real-time boss and
+    companions) are superseded by [specs/GLAIVE.md](specs/GLAIVE.md).
   - [MODULE_NOTES.md](contracts/MODULE_NOTES.md) — descriptive: what each engine module's builders
     and auditors reported (with an errata table of the stale statements).
 
@@ -310,7 +315,7 @@ code that answers it — link to it rather than repeating it.
 | What are the controls?                                             | [user/PLAYING_THE_GAME.md](user/PLAYING_THE_GAME.md) (players), [specs/INPUT_AND_CONTROLS.md](specs/INPUT_AND_CONTROLS.md) (normative) | `DEFAULT_BINDINGS` / `DEFAULT_PAD_BINDINGS` in [`Input.js`](../src/engine/core/Input.js)                                                                                                                                                                                                                             |
 | How do I use the level editor?                                     | [user/LEVEL_EDITOR_GUIDE.md](user/LEVEL_EDITOR_GUIDE.md)                                                                               | [`src/editor/`](../src/editor/EditorApp.js)                                                                                                                                                                                                                                                                          |
 | What can Luminati do, and where is it implemented?                 | [features/FEATURES.md](features/FEATURES.md)                                                                                           | —                                                                                                                                                                                                                                                                                                                    |
-| How does combat work (rules, enemies, boss, APIs)?                 | [contracts/COMBAT.md](contracts/COMBAT.md), [architecture/GAME.md §15](architecture/GAME.md#15-combat-combat-levels-only)              | [`src/game/combat/`](../src/game/combat/CombatSystem.js)                                                                                                                                                                                                                                                             |
+| How does combat work (rules, enemies, boss, APIs)?                 | [specs/GLAIVE.md](specs/GLAIVE.md), [architecture/GAME.md §15](architecture/GAME.md#15-combat-combat-levels-only)              | [`src/game/glaive/`](../src/game/glaive/GlaiveCombat.js)                                                                                                                                                                                                                                                             |
 | What is in a level file?                                           | [specs/LEVEL_FORMAT.md](specs/LEVEL_FORMAT.md)                                                                                         | [contracts/LEVEL_EDITOR.md](contracts/LEVEL_EDITOR.md) §1, [`LevelFormat.js`](../src/engine/level/LevelFormat.js)                                                                                                                                                                                                    |
 | Which object types exist, with which fields?                       | [specs/OBJECT_CATALOG.md](specs/OBJECT_CATALOG.md)                                                                                     | [contracts/LEVEL_EDITOR.md](contracts/LEVEL_EDITOR.md) §2, [`ObjectCatalog.js`](../src/engine/level/ObjectCatalog.js)                                                                                                                                                                                                |
 | How do several levels make one story (campaigns, exits, saves)?    | [specs/CAMPAIGN_FORMAT.md](specs/CAMPAIGN_FORMAT.md)                                                                                   | [`src/game/campaign/`](../src/game/campaign/CampaignRuntime.js), [`Travel.js`](../src/engine/level/Travel.js)                                                                                                                                                                                                        |

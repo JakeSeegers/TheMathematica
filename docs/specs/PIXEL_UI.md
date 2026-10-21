@@ -599,7 +599,7 @@ shrink; the roles are `roles()`)
 | Dialogue | `DialogBox.js`, `InteractPrompt.js`, `dialog.css`, `strings/dialog.js` |
 | Maps | `Minimap.js`, `map.css`, `strings/map.js` |
 | Title | `TitleScreen.js`, `title.css`, `game.html` (loading screen), `strings/title.js` |
-| Combat UI | `CombatHUD.js`, `BossBar.js`, `Announcer.js`, `DeathScreen.js`, `combat.css`; the combat strings in `CombatSystem.js`, `PlayerCombat.js`, `Waystones.js`, `Chests.js`, `bindings.js`; `src/game/combat/strings.js` |
+| Combat UI | `CombatHUD.js`, `BossBar.js`, `Announcer.js`, `DeathScreen.js`, `combat.css`; the combat strings in `GlaiveCombat.js`, `Waystones.js`, `Chests.js`, `bindings.js`; `src/game/combat/strings.js`; the fight's HUD `src/game/glaive/TurnHUD.js`, `glaive.css` and `src/game/glaive/strings.js` |
 | World labels | `WorldLabels.js`, `worldfx.css`, `strings/worldfx.js` |
 | Party UI | `PartyFrames.js`, `PartyPanel.js`, `party.css`, `src/game/party/Party.js` (strings, localised rules, portraits), `party/types.d.ts`, `src/game/party/strings.js`, `sandbox/party_ui.*` |
 | Story UI | `Journal.js`, `Emotes.js`, `EndCard.js`, `story.css`, `UI.js` (letterbox, skip hint, the death prime's strings), `strings/story-ui.js` |
@@ -666,7 +666,7 @@ All additions are additive. Components and their callers share the following int
 what they get.
 
 **Death screen.**
-- `CombatSystem` registers the `combat` namespace in its constructor, before it calls
+- `GlaiveCombat` registers the `combat` namespace in its constructor, before it calls
   `ui.enableCombat()`.
 - In `UI.js`, `enableCombat()` primes the death screen with
   `t('combat.death.title')` and `t('combat.death.prompt', …)`.
@@ -679,7 +679,7 @@ The legend also stays aside while the boss's results card shows (`Announcer` set
 merges with the skill bar's (`PanelSpec.merge: false`, KNOWN_ISSUES UI-25).
 
 **Feature string tables.**
-- `src/game/combat/strings.js`: registered by `CombatSystem`.
+- `src/game/combat/strings.js`: registered by `GlaiveCombat` (with `glaive`, `src/game/glaive/strings.js`).
 - `src/game/party/strings.js`: registered by the `Party` constructor and by `partyUIClasses()`
   (`src/game/party/partyUI.js`).
 - `src/game/story/strings.js`: registered by `StoryRunner`.

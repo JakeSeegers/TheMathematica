@@ -66,8 +66,7 @@ agents and the sandbox scripts rely on them, so keep them backward compatible.
 file — and [`src/globals.d.ts`](../../src/globals.d.ts) gives `window` those members.
 `npm run typecheck` checks the objects against their typedefs (a member added without its typedef
 line, or listed but never set, is an error) and the JavaScript that reads them — the game, the
-editor and the sandbox helpers (`combat_fixture.js`, `editor_shell.helpers.js`,
-`editor_perf.helpers.js`, `combat_play.js`). The `eval` strings of the JSON action scripts are not
+editor and the sandbox helpers (`editor_shell.helpers.js`, `editor_perf.helpers.js`). The `eval` strings of the JSON action scripts are not
 checked: a typo there shows only when the harness runs the script (KNOWN_ISSUES TC-01). A new hook
 needs its typedef line, then a row here.
 
@@ -93,7 +92,7 @@ ignored, so a script that still opens `index.html?level=…` lands here, with no
 | `level=local:<slot>` | Plays the level in browser storage slot `<slot>` (`localStorage["luminati.level.<slot>"]`). The editor's play-test uses `local:__playtest__`. |
 | `autostart` | Skips the title screen and enters play at once. `autostart=0` counts as off (but still exposes `window.__engine`). Audio unlocks at the first key or click. |
 | `debug` | Exposes `window.__engine` (also done by `autostart`). |
-| `fixedstep` | Together with `autostart` or `debug` (alone it is ignored; `fixedstep=0` counts as off): the engine starts in **manual-step mode** (`Engine#manualStep`) — no animation loop, frames advance only through `engine.step()`. The fixed-step play-through bot loads the level this way ([§10.6](#106-the-fixed-step-play-through-bot)). A page in this mode stands still until a script steps it. |
+| `fixedstep` | Together with `autostart` or `debug` (alone it is ignored; `fixedstep=0` counts as off): the engine starts in **manual-step mode** (`Engine#manualStep`) — no animation loop, frames advance only through `engine.step()`. The fight scripts load the level this way ([§10.6](#106-playing-a-fight-in-fixed-step)). A page in this mode stands still until a script steps it. |
 | `lang=en\|ja\|zh` | The language for this load (also `ja-JP`, `zh-CN` …), not saved; else the saved choice (`localStorage['luminati.lang']`), else English — never the browser's locale ([I18N.md §1](I18N.md#1-choosing-the-language)). |
 | `fonts=auto\|google\|local\|google-fail\|gstatic-fail` | How the UI fonts load ([I18N.md §5](I18N.md#5-fonts)): `auto` (default) Google Fonts first, then the copies in `dist/`; `google` / `local` one source only; `google-fail` / `gstatic-fail` force a Google failure (tests of the fallback). Also `localStorage['luminati.fonts']`. |
 | `i18n=<table>` | One more content table to load, by id (`levels/<name>`, [I18N.md §4.3](I18N.md#43-loader-api)). The editor's play-test of a level outside a campaign adds `&i18n=<origin>`, the table of the project file the level was opened from (a copy saved under another name keeps it: `EditorState#origin`), so a browser-slot level is translated like its file. It only adds the table: the keys are in the level's data ([I18N.md §4.2](I18N.md#42-keys-and-lookup)). Ignored in English. |
@@ -253,93 +252,41 @@ Captured on Emberfall at night in the rain:
 
 ### 3.4 `window.__game.combat` (combat levels only)
 
-The combat test hooks ([`src/game/combat/hooks.js`](../../src/game/combat/hooks.js), contract:
-[COMBAT.md §20.1](../contracts/COMBAT.md#201-window__gamecombat-combat-levels-only-hooks-of-91)).
-They work in real time and in **stepped mode**: `step(n)` stops the engine loop, advances `n`
-engine frames of `dt` (default 1/60 s) and restarts the loop if it was running, so a sequence of
-`seed(n); reset(); press(…); step(…)` is exactly repeatable (identical `state()` JSON on every
-run). Virtual presses obey the resume and respawn guards like real input.
+The turn-based combat's test hooks ([`src/game/glaive/hooks.js`](../../src/game/glaive/hooks.js),
+reference: [GLAIVE.md §10](GLAIVE.md#10-test-hooks)):
 
-| Hook | Effect |
+| Hook | Returns / does |
 | --- | --- |
-| `state()` | the combat state ([§3.5](#35-statecombat-combat-levels-only)) |
-| `seed(n)` | combat RNG = `new RNG(n >>> 0)`, every enemy's RNG = `new RNG((hashString(uid) ^ n) >>> 0)`, loot seed input `n` |
-| `reset()` | full reset to a reproducible state: player Lv 1 at full HP / MP / SP, gold 0, 3 draughts, no action, combo 0, cooldowns 0, checkpoint = the spawn, lock released; every enemy home / full HP / idle / not aggro, `deathCount` 0, token budgets full; the boss reset (phase 1, dormant, adds hidden, arena open, not defeated); projectiles, markers, pickups, effects, edge arrows cleared; hit-stop, time scales, look offsets, input buffer, virtual queue, guards cleared; counters, tutorial flags, combat clock and frame 0; music back to the level track; every RNG re-created from the current seed. Chests stay as they are. `god`, `freezeAI`, `move` and `aim` are left as set. |
-| `step(n = 1, dt = 1/60)` | stepped frames (see above); returns `state()` |
-| `stepUntil(pred, maxFrames = 600, dt = 1/60)` | steps one engine frame at a time until `pred(hooks)` is true, at most `maxFrames` frames (stopping and restarting the loop like `step`); returns the frames stepped (0: already true) or −1 if it never held. Hit-stop freezes whole sub-steps, so wait for a state rather than a frame count (e.g. `stepUntil((c) => c.state().player.action === null, 120)`). |
-| `press(action, frames = 1)` / `hold(action, frames = 30)` | a virtual edge, held for `frames` engine frames: `attack`, `dodge`, `skill1`–`skill3`, `draught`, `lock` (`lock`: released within 0.35 s = tap, held 0.35 s = release) |
-| `move(x, z)` / `move(null)` | world-space move vector for the player (`player.moveOverride`); `null` = real input |
-| `aim(x, z)` / `aim(null)` | aim-point override, like the mouse pointer for every action (attacks, skills, the roll without move input) |
-| `place(uid, x, z)` | moves an enemy **and its home** to (x, z) (`uid` or `'all'`) |
-| `wake(uid)`, `kill(uid)`, `damage(uid, n)` | force aggro / kill through the normal path (XP, loot, events) / deal `n` damage without RNG or boss floors (`uid` or `'all'`) |
-| `damagePlayer(n)` | direct damage to the player (ignores i-frames and `god`); HP 0 starts the death sequence |
-| `setPlayer({ hp, mp, sp, level, xp, gold, potions, upgrades })` | sets player values (a new `level` refills HP / MP / SP — and the party's companions, who level with the player, keep their HP / MP fractions of the new maxima; `xp` is set as is, the next kill levels up); `upgrades` (`{ maxHp, maxMp, attack, def }`, each optional) replaces those upgrade totals and refills HP / MP — e.g. the equipped greedy run's every chest and shop ware |
-| `god(on = true)` | the player ignores every enemy hit (no damage, no reaction) |
-| `freezeAI(on = true)` | enemies stop updating (they still take hits, die and fade) |
-| `bossPhase(n)` | jumps the boss to phase `n` (1–3) without its transition (the brain's `jumpPhase`, which signals `bossPhase`); HP drops to that phase's threshold if above it |
-| `setBossHp(frac)` | sets the boss's HP fraction (no floors: the brain starts the transition itself, e.g. `0.69` → phase 2 with adds) |
-| `boss.force(move \| null)` | only `move` (`'slam'`, `'sweep'`, `'toss'`, `'rain'`, `'charge'`) may be picked next, at once (every other move waits); `null`: no move at all. Returns false without a living boss. Scripts force moves through this instead of the golem brain's internals |
-| `boss.info()` | `{ uid, state, t (frames in the state), phase, alive, hazards (count), move, pending, skid }` of the boss (or `null`) |
-| `boss.hazards(type?)` | snapshots of the boss's live delayed hazards `[{ type, x, z, r (current), rInner, delay, t, dur, mv, kb }]` (`type`: `'circle'`, `'ring'`, `'magma'`, `'fade'`) |
-| `path(x0, z0, x1, z1, maxU = 80)` | a path on the enemies' walk grid (`Nav`): waypoints `[[x, z], …]`, or `null` when there is none within `maxU` units |
-| `checkpoint(id)` | attunes a waystone (`'spawn'` = the level start) silently |
-| `rest(id?)` | rests at once (no fade, not refused while engaged) at `id` or the current checkpoint |
-| `respawn()` | runs the death reset at once (no screen): enemies, boss, pickups, the player at the checkpoint. A death screen already up is dismissed and stops there (it does not reset or cut gold a second time) |
-| `showcase()` | fires every named effect, marker shape / style, projectile kind, pickup kind, burst and combat SFX once near the player |
-| `enemies()` | `[{ uid, kind, hp, hpMax, state, x, z, aggro, dormant, zone }]` (hidden boss adds and the foes of groups the story has away excluded; `zone`: the id of the `region` the group belongs to, or `null`). `wake`, `kill` and `damage` skip a foe the story has away |
-| `stats()` | `{ programs, programsAtLoad, drawCalls, tickMsP50, tickMsP95, pools: { fx, markers, projectiles, pickups }, nav: { searches, found, failed, expanded, maxExpanded, open, tight, cells, buildMs } }` — `tickMs` is the CPU time of `combat.update + afterPlayer` (the last 240 frames in which combat was active: title, map, dialog and photo frames are not sampled; it reads 0 in a fixed-step run, whose `performance.now()` is virtual); `nav` counts the walk grid's path searches and its build |
-| `system` | the `CombatSystem` itself (events: `system.events.on('hit' \| 'kill' \| 'playerHurt' \| 'purchase' \| …)`, enemies, the player kit `system.pc`, the shop: `buy(item)` → `{ ok, reason: 'gold' \| 'full' \| 'item' \| 'sold' }`, `priceOf(item)`, `shopOffers()` → `[{ id, name, price, gain, once, upgrade, sold, available, reason, label, gainLabel }]` — `name` and `gain` are the English (`buy(name)` looks a ware up by it), `label` and `gainLabel` what a menu shows in the page's language; `wareLabel(item)` → a ware's shown name; `displayName(e)` → an enemy's shown name (an elite's bar); `upgradeText(what)` → an upgrade's toast sentence). `hit` also fires for the player as the target: `('player', damage, false, 'melee' \| 'projectile' \| 'hazard')`, before `playerHurt`; `engaged(false)` also fires when a death reset, a rest or `reset()` ends an engagement |
-| `allies()` | the party's companions fighting here ([PARTY.md §5](PARTY.md#5-companions-in-combat-party-combat), [COMBAT.md §28](../contracts/COMBAT.md#28-party-allies)), join order: `[{ id, name, cls, preset, level, hp, hpMax, mp, mpMax, atk, def, down, active, mode, action, actionFrame, target, targetedBy, kills, x, z, invulnerable, cooldowns: { attack, skill, heal, roll }, counts: { attacks, hits, crits, skills, heals, healed, rolls, hurts, damageDealt, damageTaken, downs } }]` (`mode`: `idle` — the follow drives it —, `hold`, `attack`, `retreat`, `heal`, `evade`, `wait` — outside a closed boss arena —, `down`, `stop` — the player fell; `target`: the foe's uid); `[]` without a party |
-| `allyHurt(id, n)` | `n` damage to a companion (member id or name; no RNG, no reaction; at 0 HP it goes down and the foes after it turn to the player) → its HP, `null` when there is no such companion |
-| `allyTarget(uid, who?)` | whom enemy `uid` fights: a companion's id or `'player'` (`null`: no such enemy); with `who` (a companion's id or name, `'player'` / `null`) it is set first, held 2.5 s as after a companion's hit (the boss and its adds stay on the player) |
-| `allySet(id, { hp, mp })` | sets a companion's HP / MP (`hp` 0: down; a downed one set above 0 is up again) → its `allies()` row |
-| `allyGod(on = true)` | no enemy hit reaches a companion |
-| `healAllies()` | every companion full HP / MP and up again (what the story's `heal` calls) → how many |
+| `state()` | `state().combat` (§3.5) |
+| `system` | the `GlaiveCombat` itself (scripted checks read `system.enemies`, `system.defeatedGroups()` …) |
+| `choose(build = 'sellsword', ancestry = 'human')` | makes the player's character without the menus (closes the picker if it is open); the sheet as JSON |
+| `fight(uidOrGroupId, ambush = null)` | starts a fight with that foe or group (`'party'`: the foes are surprised; `'foes'`: the party saves against surprise); the boss: its arena fight |
+| `auto(on = true)` | the companions' AI plays the player's turns (an open turn menu closes) |
+| `pace(k = 1)` | the stage's speed-up (0.1–20) |
+| `god(on = true)` | +900 max HP for the party, full HP |
+| `xp(n)` → levels owed · `levelUp(talent, ability)` → boolean | progress without the menus |
+| `rest(id?)` → boolean | attunes a waystone (default: the checkpoint) and rests there |
+| `reset()` | every foe home and whole, the boss too, pickups cleared, no fight |
+| `kill(uid)` → boolean | a foe falls at once: its XP, no loot, its `kill` event (the content tours) |
+| `freezeAI(on = true)` | foes never notice the player and the boss's arena does not close (the content tours) |
+| `foes()` / `enemies()`, `log()` | the foes (uid, kind, group, alive, hidden, boss, position); the last log lines |
+| `showcase()` | every effect, marker style and pickup once (program checks) |
 
-`seed(n)` also reseeds every companion's RNG and `reset()` resets them (full, no kills or counters,
-cooldowns and plans cleared, facing +z). `system.events` adds `allyHit (id, enemy, damage, crit)`,
-`allyKill (id, enemy)`, `allyHurt (id, damage)`, `allyTargeted (enemy, id)`, `allyDown (id)`,
-`allyUp (id)`, `allyHeal (id, whom, hp)`; `state().combat.allies` holds the `allies()` rows once a
-companion was added.
-
-Enemy uids are `<group id>#<index>` (index in `enemyStartPoints` order); boss adds are
-`<boss uid>:add#<i>`.
+Fights advance with the frames. In manual-step mode (`fixedstep=1`) a script plays a fight quickly
+by stepping without drawing: `for (…) __engine.step(1 / 30, { render: false }); __engine.redraw();`.
+The dialog box closes on a real-time timer, so give a menu a few hundred milliseconds of real time
+after a key press before reading the next state.
 
 ### 3.5 `state().combat` (combat levels only)
 
-Captured on the combat fixture after the stepped combo:
-
-```json
-{
-  "player": { "hp": 100, "hpMax": 100, "mp": 40, "mpMax": 40, "sp": 88.75, "spMax": 100, "level": 1, "xp": 0,
-    "xpNext": 30, "gold": 0, "potions": 3, "atk": 12, "def": 4, "action": null, "actionFrame": 0,
-    "invulnerable": false, "combo": 0, "winded": false, "lock": null, "checkpoint": "spawn",
-    "cooldowns": [0, 0, 0], "deaths": 0, "perfectDodges": 0 },
-  "engaged": false, "time": 1.483, "frame": 89, "seed": 1, "kills": 0, "bossDefeated": false, "device": "keyboard",
-  "enemies": { "total": 15, "alive": 15, "active": 15, "aggro": 0, "absent": 0 },
-  "boss": { "uid": "cinderheart#0", "hp": 5200, "hpMax": 5200, "phase": 1, "state": "dormant", "broken": false,
-    "defeated": false, "fightTime": 0, "phaseTimes": [0, 0, 0] },
-  "projectiles": 0, "markers": 0, "pickups": 0, "fx": 0, "edgeArrows": 0,
-  "tokens": { "melee": 0, "ranged": 0 },
-  "guards": { "resume": false, "respawn": false },
-  "tutorial": { "combo": true, "dodge": false, "rewarded": false },
-  "shop": { "purchased": [] }
-}
-```
-
-| Field | Meaning |
-| --- | --- |
-| `player.action` | `null` (locomotion), `attack`, `roll`, `backstep`, `skill1`–`skill3`, `draught`, `hitstun`, `knockdown`, `dead`; `actionFrame` its frame (60 Hz) |
-| `player.combo` | the current combo step (1–3; 0 = the next attack is A1) |
-| `player.lock` | uid of the lock-on target or `null`; `checkpoint` the attuned waystone id or `spawn` |
-| `time`, `frame` | combat clock (real combat seconds while active) and sub-step counter |
-| `enemies` | counts (hidden boss adds excluded): alive, active (not dormant), aggroed; `absent`: the foes of the groups the story has away (`when` / `unless`, [STORY_SCRIPT.md §9.5](STORY_SCRIPT.md#95-objects-that-come-and-go)), counted there only |
-| `boss` | the first golem (or `null`): `broken` = Broken (poise spent); `fightTime` since the intro; `phaseTimes` per phase (s) |
-| `projectiles`, `markers`, `pickups`, `fx`, `edgeArrows` | live pool entries |
-| `tokens` | attack-token budgets in use (melee ≤ 3, ranged ≤ 2) |
-| `guards` | the resume guard ignores a held action / the 0.25 s respawn guard runs |
-| `tutorial` | the drillmaster's tasks: a full combo on a dummy, a dodge; `rewarded` once |
-| `shop` | `purchased`: the ids of the one-time wares bought this session (`whetstone`, `tonic`, `charm`; `reset()` restocks them) |
+`rules: 'glaive'`, `player` (HP, max HP, AC, level, XP, XP to next, silver as `gold`, draughts,
+`build`, `ancestry`, `abilities`, `talents`, `spells`, `casts`, `fatigue`, `wounds`, `checkpoint`,
+`deaths`, `chosen`), `engaged`, `fight` — null between fights, else `{ round, current, needsInput,
+order, combatants: [{ id, side, kind, hp, hpMax, state, x, z, conditions }], options (the player's
+choices while it is their turn), picking (the target under the picker), cursor (the ground
+cursor), busy (the stage is playing) }` —, `fights`, `kills`, `bossDefeated`, `enemies: { total,
+alive }`, `boss: { uid, alive, defeated }`, `log` (the last 12 lines), `markers`, `pickups`,
+`tutorial`, `shop: { purchased }` and, once a companion fights here, `allies`.
 
 ### 3.6 `window.__game.campaign` (campaigns only)
 
@@ -469,11 +416,9 @@ conversation to chapter two, with `auto(true)`: events, talk scripts, the walk-o
 cutscene, the cleared event, the welcome cutscene, the save, Continue), and the editor's
 [`sandbox/editor_shell.story.json`](../../sandbox/editor_shell.story.json).
 
-The combat fixture ([`sandbox/combat_fixture.js`](../../sandbox/combat_fixture.js)) builds a small
-test level in-page (`makeCombatFixture()`, saved by `saveCombatFixture()` to the browser slot
-`combat-fixture`) with named coordinates (`FIXTURE`), and holds the scripted checks the
-`sandbox/combat.*.json` scripts call (`tests.combo()`, `tests.boss()` …; `use(cinderwatch)` runs
-them on Cinderwatch Pass; `tests.nav()`, `tests.zones()`, `tests.shop()` … added on 2026-09-28).
+The turn-based combat's browser checks ([`sandbox/combat.glaive.fight.json`](../../sandbox/combat.glaive.fight.json),
+[`sandbox/combat.glaive.boss.json`](../../sandbox/combat.glaive.boss.json)) drive fights through
+the hooks of §3.4 in manual-step mode.
 
 ### 3.8 `window.__game.party` (every level)
 
@@ -518,18 +463,7 @@ review's fixes), [`party.follow.combat.json`](../../sandbox/party.follow.combat.
 Pass) and [`party.follow.campaign.json`](../../sandbox/party.follow.campaign.json) (the demo
 campaigns), with the helpers [`sandbox/party_follow.js`](../../sandbox/party_follow.js)
 (`window.PF`: `drive`, `checkDrive`, `checkRest`, `checkPlaced`, `checkHidden`, `coverage`,
-`stopStart`, `sweep`, `talk`, `travel`). Cinderwatch Pass's three companions
-([PARTY.md §9](PARTY.md#9-the-demo-the-companions-of-cinderwatch-pass)):
-[`sandbox/party.cinderwatch.json`](../../sandbox/party.cinderwatch.json) with the helpers
-[`sandbox/party_cinderwatch.js`](../../sandbox/party_cinderwatch.js) (`window.PC`, beside `PF`:
-`talk(id, answers, { stop })` / `go(answers)` — a conversation with real keys, recorded in `talks`
-with its speaker, title, pages, questions and options, and what a talk to a busy member waited
-for —, `villagerOf(id)`, `memberOf(id)`, `infoOf(id)` (its `state().party` entry), `allyOf(id)`
-(its `MemberCombat`), `ids()`, `count()`, `holds(cond)`, `put(x, z)`, `walk(points)`,
-`settle(ms)` (until the game's clock has moved on `ms`: a slow frame holds it back), `calm(on)`,
-`fight(gid)` / `fightEnd()`, a companion's talk steps `offer(id)`, `notYet(id)`, `join(id)`,
-`memberTalk(id)`, `partWays(id)`, the recorded `toasts` and `barks`, and the script's steps
-`s01_before` … `s27b_calderaDone`).
+`stopStart`, `sweep`, `talk`, `travel`). Cinderwatch Pass's three companions in a fight: [`sandbox/combat.glaive.boss.json`](../../sandbox/combat.glaive.boss.json) (the party of four against the boss; GLAIVE.md §8.5).
 
 ## 4. `window.__luminati`
 
@@ -675,35 +609,22 @@ handle's full member list is the typedef next to its assignment in the sandbox f
 | `story_ui.html` | `window.__ui`, `window.__story` (`journal(open, tab)`, `emote(i, icon, s)`, `cutscene(on)`, `endCard()`, `toasts()`, `hud(on)`, `info()`, `expect(actual, expected, label)` …: the story UI, [ui.md §11](../architecture/modules/ui.md#11-story-ui-story-levels-only)) |
 | `combat_fx.html` | `window.__cfx` (`renderTrack(track, seconds, mute)` …) |
 | `combat_audio.html` | `window.__caudio` (`results`, `identity()`, `compare(url)` …: the combat audio QA, [audio.md §7](../architecture/modules/audio.md#7-testing-and-offline-rendering)) |
-| `enemy_ai.html` | `window.__sb` (`assertAll()`, the brains against a mock `CombatContext` with a `Nav` grid) |
 | `editor3d.html` | `window.__vp` (`vp`, `state`, `view()`, `frames(n)`, `hoverWorld`, `clickWorld`, `strokeWorld`, `fire`…) |
 | `game_levels.html` | `window.__levelCases` (`CASES`, `runCase(name)`); the module also exports `HOSTILE_NAMES` (the `Object.prototype` names of the `hostile` case, imported by `game_levels.hostile.json`) |
 | `level_builder.html` | `window.__smoke` |
 | `i18n_tour.js` (a module, imported by an `eval` step on the game page) | `window.IT` (`ready()`, `enter()`, `start()`, `wait(ms)`, `finish()`, `last()`, `tour()`, `talkThrough(npc, answers)`, `drain(answer, ms)`, `show(what)`, `close()`, `misses()`, `counts()`, `log` …): the content-text tour of one level, `sandbox/i18n.tour.json` ([I18N.md §4.8](I18N.md#48-call-sites)) |
 | `i18n_campaign.js` (a module, imported by an `eval` step on the game page) | `window.CT` (`go(name)` — a part: `ferryTitle` … `titleAgain`, `rooms`, `party`, and Cinderwatch's companions `camp`, `campTalks`, `ruins`, `caldera`, `selaJoins`, `fullIlse`, `fullOthers` —, `wait()`, `check(label)`, `dismissEnding()`, `talk(id, answer)`, `peek(id, picks, nth)` — a talk held open at its choice or at the `nth` page after the picks, for the script's `shot` —, `resume(answer)` — pages on through the window `peek` left —, `enterBark(id, x, z)` — the player put into a background `enter` event's box, its bark left up —, `settle(id)` — until that event ran to its end —, `member(id)`, `members()`, `rule(id)`, `barkUp()`, `results`, `trail` …) and `window.IT`: the content-text check of the campaigns, the story and the party, `sandbox/i18n.campaign.json` ([I18N.md §4.8](I18N.md#48-call-sites)) |
-| `combat_fixture.js` (a module, no page) | `makeCombatFixture()`, `saveCombatFixture()`, `FIXTURE`, `ready()`, `use(points)`, `cinderwatch()`, `tests.*` — see [§3.5](#35-statecombat-combat-levels-only) |
 
 The ready-made scripts next to them (`sandbox/*.actions.json`, `sandbox/editor_shell.*.json`,
 `sandbox/editor3d.*.actions.json`, `sandbox/editor_perf*.json`, `sandbox/combat.*.json`) are the
-best examples of what each hook can do. The combat scripts on the fixture start from any dev-server
-page (`--page=sandbox/index.html --query=`), save the fixture and `goto` the game:
+best examples of what each hook can do. The combat scripts:
 
 ```bash
-npm run check -- --page=sandbox/index.html --query= --out=fight --fps=0 --script=sandbox/combat.fight.json
-npm run check -- --page=sandbox/index.html --query= --out=iframes --fps=0 --script=sandbox/combat.iframes.json
-npm run check -- --page=sandbox/index.html --query= --out=death --fps=0 --script=sandbox/combat.death.json
-npm run check -- --page=sandbox/index.html --query= --out=boss --fps=0 --script=sandbox/combat.boss.json
-npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1" --out=fightcw --wait=3000 --fps=0 --script=sandbox/combat.fight.cw.json
-npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1" --out=bosscw --wait=3000 --fps=0 --script=sandbox/combat.boss.cw.json
-npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1" --out=programs --wait=3000 --fps=0 --script=sandbox/combat.programs.json
-npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1" --out=perf --wait=3000 --fps=0 --script=sandbox/combat.perf.json
+npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1&fixedstep=1" --out=glaive-fight --wait=2000 --script=sandbox/combat.glaive.fight.json
+npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1&fixedstep=1" --out=glaive-boss --wait=2000 --script=sandbox/combat.glaive.boss.json
 npm run check -- --page=game.html --query=autostart=1 --out=peaceful --wait=2000 --fps=0 --script=sandbox/combat.peaceful.json
-npm run check -- --page=sandbox/index.html --query= --out=play --wait=0 --fps=0 --script=sandbox/combat.play.json      # the fixed-step bot (§10.6)
 npm run check -- --page=sandbox/combat_audio.html --query= --out=caudio --wait=1000 --fps=0 --script=sandbox/combat_audio.actions.json
 ```
-
-`combat.programs.json` and `combat.perf.json` judge frame gaps and GPU timings: run them alone on
-the GPU (KNOWN_ISSUES TOOL-18).
 
 ## 8. The check harness (`npm run check`)
 
@@ -946,43 +867,22 @@ opened …` rather than going on in the editor page.
   (`npm run check -- --page=editor.html --query=new --out=perf --fps=0 --script=sandbox/editor_perf.json`).
 - Details and reference numbers: [../architecture/PERFORMANCE.md](../architecture/PERFORMANCE.md).
 
-### 10.6 The fixed-step play-through bot
+### 10.6 Playing a fight in fixed step
 
-[`sandbox/combat_play.js`](../../sandbox/combat_play.js) plays all of Cinderwatch Pass with real
-`KeyboardEvent`s (an engine system at order −100 dispatches them before the game reads its input).
-The scripts: `combat.play.json` (fixed step, every frame drawn), `combat.play.fast.json` (fixed
-step, `renderEvery: 4`), `combat.play.human.json` (fixed step, the human model, every 4th frame),
-`combat.play.realtime.json` (the real-time run). The fixed-step ones start with a `goto` to
-`game.html?level=cinderwatch-pass&autostart=1&fixedstep=1`, so any `--page` / `--query` works
-(`--page=sandbox/index.html --query= --wait=0` loads nothing twice); the real-time one needs
-`--page=game.html --query="level=cinderwatch-pass&autostart=1" --wait=5000` and must run alone.
+The real-time play-through bot (`sandbox/combat_play.js`) went with the real-time combat. A fight
+is now played through the hooks of §3.4 in manual-step mode:
 
-The level is balanced for a party of four
-([Party balance](PARTY.md#9-the-demo-the-companions-of-cinderwatch-pass)),
-so the plan recruits it: after the drill reward Rook and Sister Ilse join at the camp, after the rest
-Sela at the Crossroads Waystone. The task is `join` (`{ do: 'join', npc, party: true }`): the bot
-talks to the villager — every page, its offer's *Walk with me* — and fails unless it is a member
-then (one already: nothing to do). For the planned fall beside Old Ironhide the members hold back
-(`__game.party.rule(id, 'passive')`, the test hook — a player would pick Hold Back) and get their
-rules back at the respawn; with no Old Ironhide left (a fight woke and killed him first — the
-expert alone does) the fall and its respawn check are skipped with a note, not a failure.
+```json
+[
+  { "eval": "window.S = (n) => { for (let i = 0; i < n; i++) __engine.step(1 / 30, { render: false }); __engine.redraw(); return n; }; 'ok'" },
+  { "eval": "S(30); __game.combat.choose('sellsword', 'human'); __game.combat.fight('glade_goblins', 'party'); __game.combat.auto(true); __game.combat.pace(4); 'fight'" },
+  { "eval": "(async () => { for (let i = 0; i < 6000 && __game.combat.state().fight; i++) { __engine.step(1 / 30, { render: false }); if (i % 50 === 49) await new Promise((r) => setTimeout(r, 0)); } __engine.redraw(); return JSON.stringify(__game.combat.state().player); })()" },
+  { "shot": "after-the-fight" }
+]
+```
 
-| Export | Effect |
-| --- | --- |
-| `start(opts)` | waits for the combat level, locks the resolution governor, installs the bot. `fixed` (default: the URL has `fixedstep`): the engine is in manual step, and a virtual page clock (`FixedClock`: `setTimeout`, `setInterval`, `requestAnimationFrame`, `performance.now()` from a fixed origin of 1e6 ms) follows the stepped frames — the bot steps at dt = 1/60 from the level's first frame, 30 frames per real task; `fixed: false` restores real time. `renderEvery` (fixed step): draw every n-th frame only (the last frame is drawn before a screenshot). `route`: `'ruins'` (default), `'mire'`, `'full'`, `'boss'` (with `at`, `kill`, `player`, `delay`); `skill`: `'expert'` (default), `'human'` or an object of `{ reaction, miss, burst, pause, healAt, skillDelay, drinkBusy, seed }`; `shop` (default true); `party` (default true: the `join` tasks recruit the party; `false`: alone, the hard way — no `join` task, `/solo` in the summary line); `from` / `to` / `at` / `level` (development slices of the plan) |
-| `until(ms = 120000)` | runs until the plan is done, a screenshot is wanted or `ms` of real time passed; in fixed step the game then stays on that frame until the next call (a screenshot shows the frame that asked for it). Returns JSON `{ shot, task, done, frame, t, failed, log }`. A new `until` stops a loop still running from an eval the harness gave up on |
-| `verify(ms = 150000)` | the verdict (throws asynchronously on a failure, so the harness exits 1): the plan finished; the drill reward; the route's chests; Lv ≥ 5, ≥ 30 kills, ≥ 50 pickups; the planned death and respawn (route `ruins`); the Whetstone bought at Odo's; the boss down with the results card; programs after load = at load; with `party`, three members at the end. Returns `{ summary, verdict, result, … }` — `summary` is one line of exact numbers printed first by the harness, e.g. `ok \| fixed done \| f 21924 (365.400 s) \| Lv 6 xp 483 gold 333 potions 5 hp 154 \| kills 39 deaths 1 chests 5 pickups 133 \| party 3 kills 9 downs 0 \| boss down 57.917 s [16.083 22.000 19.833] \| hurts 35 dmg 794 rolls 36 keys 659 \| failed 0 \| digest cf165213` (the `party` part — members, the companions' kills and downs — only when the party has members; `kills` counts every kill, the companions' too); the `digest` hashes the float bits of the player's position and stats and every enemy's position and HP, every frame; `trace` holds it every 10 s of game time (where two runs part), `pace` the real ms per 10 s (not part of the result); `zones` (per zone also `allyKills` / `allyDowns`), `bossAttempts`, `damageBy`, `bought`, `goldSpent`, `draughtsDrunk`, `bossUptime`, `segments` and `party` (`{ members, kills, dmg, hurt, downs, healed, playerDmg, playerKills }`: the companions' kills, damage dealt and taken, downs and HP healed — from the combat's `ally*` events —, the player's own damage and kills) are the balance figures |
-| `summary()`, `report()` | the summary / the full report so far (`summary().party`: `{ members, kills, damage, hurt, downs, healed }`; `report().party` as above) |
-| `stop()` | removes the bot; in fixed step also gives the page its real clock and the engine its loop back |
-| `window.__play` | `{ bot, report, summary, until }` while a bot runs |
-
-The same tree gives the same digest on any GPU load (and with `renderEvery: 4`: rendering feeds
-nothing back into the game). A chunk the game loads mid-run — the party's, at the first join
-(`Game.ensureParty`) — would arrive in real time; `runFixed` waits for it between two frames
-(`chunkLoads`), so it lands on the same frame however fast the frames go. In fixed step, eval
-steps must measure real time with `Date.now()` (`performance.now()` is virtual), combat tick
-timings read 0, CSS transitions still run in real time, and a fixed-step run is not the same run
-as a real-time one (KNOWN_ISSUES TOOL-17).
+Run it with `--query="level=cinderwatch-pass&autostart=1&fixedstep=1"`. The Node self-test
+(`npm run glaive:test`) plays hundreds of fights without a browser.
 
 ## 11. Pitfalls
 

@@ -97,7 +97,7 @@ export class CombatFx {
     }
     /** @type {FxQuadParams} scratch parameters for FxQuads#set */
     this._p = { x: 0, y: 0, z: 0, frame: '', index: 0, scale: 1, rot: 0, mode: 'billboard', dirX: 0, dirZ: 1, r: 1, g: 1, b: 1, a: 1, flipX: false };
-    /** Camera forward on XZ (unit; CombatSystem sets it every frame) for the effects' `back`. */
+    /** Camera forward on XZ (unit; GlaiveCombat sets it every frame) for the effects' `back`. */
     this.viewX = 0;
     this.viewZ = -1;
   }

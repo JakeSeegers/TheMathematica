@@ -34,7 +34,7 @@ const _v = new THREE.Vector3();
  *
  * Out of a fight it follows the player along their trail (the Party decides where it goes each
  * frame — `Party._follow` — and moves it with `stepToward` / `stand`); in one the combat drives it
- * (`combat`, a MemberCombat, set by `CombatSystem.addAlly`; the follow waits while
+ * (`combat`, an AllyView, set by `GlaiveCombat.addAlly`; the follow waits while
  * `combat.active`). A story script directs it like a villager — it has the staging members
  * StoryRunner uses on an `Npc` (`walkStep`, `stopWalk`, `placeAt`, `direct`, `release`,
  * `beginTalk`, `endTalk` …).
@@ -57,7 +57,7 @@ export class PartyMember {
     this.position = new THREE.Vector3();
     /** Unit facing on XZ (the way it last moved). */
     this.facing = { x: 0, z: 1 };
-    /** The member's fight on a combat level (MemberCombat; CombatSystem.addAlly), else null. @type {AllyCombatView|null} */
+    /** The member's fight on a combat level (an AllyView; GlaiveCombat.addAlly), else null. @type {AllyCombatView|null} */
     this.combat = null;
     /** The story / the talk read these like a villager's. */
     this.def = { preset: record.preset, portraitColor: record.color };
@@ -230,7 +230,7 @@ export class PartyMember {
     this.game = null;
   }
 
-  // ---- movement (the follow, the story's walks; MemberCombat's moves) ----
+  // ---- movement (the follow, the story's walks; a fight's moves) ----
 
   /**
    * Move by (dx, dz) through the terrain and the colliders (`tileMap.move`, radius 0.3). Members

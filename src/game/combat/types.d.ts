@@ -51,7 +51,7 @@ export interface FxOptions {
   duration?: number;
 }
 
-/** Options of a positional combat sound (`ctx.sfx`, `CombatSystem.sfxAt`). */
+/** Options of a positional combat sound (`ctx.sfx`, `GlaiveCombat.sfxAt`). */
 export interface SfxOptions {
   /** Multiplies the distance attenuation (1). */
   volume?: number;
@@ -67,7 +67,7 @@ export type MarkerStyle = 'enemy' | 'player' | 'lock' | 'barrier' | 'magma';
 
 /**
  * A telegraph / decal on the draped ground (`GroundMarkers.set`, §9.5, §11.2). Core keeps a full
- * copy per handle (`MARKER_DEFAULTS` in CombatSystem.js); `ctx.marker` / `ctx.setMarker` copy only
+ * copy per handle (`MARKER_DEFAULTS` in GlaiveCombat.js); `ctx.marker` / `ctx.setMarker` copy only
  * the fields given, so callers pass partial records (`Partial<MarkerSpec>`).
  */
 export interface MarkerSpec {

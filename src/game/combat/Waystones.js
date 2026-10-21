@@ -29,7 +29,7 @@ import { term } from '../../engine/i18n/ContentText.js';
  *
  * Both come and go with the story (`when` / `unless`, STORY_SCRIPT.md §9.5): the World's story group
  * shows / hides the prop, its collider and its prompt; the combat system marks the record `absent`
- * (`CombatSystem.applyPresence`) — an absent chest is not discovered, opened or on the maps, an
+ * (`GlaiveCombat.applyPresence`) — an absent chest is not discovered, opened or on the maps, an
  * absent waystone is not attuned or rested at.
  */
 
@@ -69,7 +69,7 @@ import { term } from '../../engine/i18n/ContentText.js';
  * @property {{ x: number, z: number, kind: string, readonly hidden?: boolean }} marker  its map
  *   marker (`hidden` while the chest is absent: the maps skip it)
  * @property {LevelObject} obj  the chest's level object
- * @property {boolean} absent  the story has taken it away (CombatSystem.applyPresence)
+ * @property {boolean} absent  the story has taken it away (GlaiveCombat.applyPresence)
  */
 
 const CHECK_EVERY = 0.25;
@@ -86,7 +86,7 @@ export const placeName = (cp) => (cp?.place ? t(`combat.place.${cp.place}`)
   : cp?.unnamed ? t('game.default.waystone') : term(String(cp?.name ?? '')));
 
 export class Waystones {
-  /** @param {GlaiveCombat} sys the CombatSystem */
+  /** @param {GlaiveCombat} sys the combat (GlaiveCombat) */
   constructor(sys) {
     this.sys = sys;
     const level = sys.level;
@@ -200,7 +200,7 @@ export class Waystones {
   }
 
   /**
-   * The story took waystone `w` away or brought it back (CombatSystem.applyPresence): an absent
+   * The story took waystone `w` away or brought it back (GlaiveCombat.applyPresence): an absent
    * stone is not attuned or rested at, and the checkpoint it held falls back to the level's start
    * (silently, its crystal dimmed); back, it is attuned again by walking up to it.
    * @param {Checkpoint} w
@@ -224,7 +224,7 @@ export class Waystones {
 }
 
 export class Chests {
-  /** @param {GlaiveCombat} sys the CombatSystem */
+  /** @param {GlaiveCombat} sys the combat (GlaiveCombat) */
   constructor(sys) {
     this.sys = sys;
     /** @type {Chest[]} the level's chests */

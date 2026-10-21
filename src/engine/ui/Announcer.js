@@ -19,7 +19,7 @@ import { currentFonts } from './FontLoader.js';
  * promise resolves when it has finished. Its own element (never the area Banner); the level card
  * high on the screen (`compact`: a level-up mid-fight, G's place at the top; else a little lower),
  * the results card under it, or where the caller's `y` puts them (below the area banner while it
- * shows: CombatSystem); hidden in photo mode only. While a results card shows the root carries
+ * shows: GlaiveCombat); hidden in photo mode only. While a results card shows the root carries
  * `lu-root--results` (RESULTS_CLASS): the controls legend stays aside until it has gone (the boss
  * bar, whose `lu-root--boss` set it aside, hides 0.5 s into the card; at 1024 × 768 the card's lower
  * left corner covered the legend's top right).

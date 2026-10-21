@@ -102,6 +102,14 @@
       "source": "You felled {Cinderheart}. I watched the glow go out of the caldera from the palisade — the whole camp cheered loud enough to wake the dummies.",
       "target": "{シンダーハート}を倒したか。柵の上から、カルデラの光が消えていくのを見ていた――野営地じゅうの歓声で、わら人形まで目を覚ましそうだったぞ。"
     },
+    "dlg.drillmaster.dice.keys": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {J (or the left mouse button)} and it loses its first turn.",
+      "target": "一振りごとにd20と筋力を足して、敵の鎧と比べる。気づかれる前に{J（または左クリック）}で斬りかかれば、敵は最初の番を失う。"
+    },
+    "dlg.drillmaster.dice.pad": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {X} and it loses its first turn.",
+      "target": "一振りごとにd20と筋力を足して、敵の鎧と比べる。気づかれる前に{X}で斬りかかれば、敵は最初の番を失う。"
+    },
     "dlg.drillmaster.first-watch": {
       "source": "The pass has not been this quiet since my grandmother held this post. Rest by the fire tonight, soldier. You have earned the first watch off.",
       "target": "祖母がこの持ち場を守っていた頃から、峠がこれほど静かだったことはない。今夜は火のそばで休め、兵士よ。最初の見張りは免除だ。それだけの働きはした。"
@@ -109,6 +117,10 @@
     "dlg.drillmaster.glade-warning": {
       "source": "The glade beyond the gate is crawling with slimes. Mind the goblins — they circle before they strike.",
       "target": "門の先の林はスライムだらけだ。ゴブリンに気をつけろ――奴らは回り込んでから仕掛けてくる。"
+    },
+    "dlg.drillmaster.good-swing": {
+      "source": "There is a sword arm! Remember: the dice favour the bold, and the careful even more.",
+      "target": "いい腕だ！覚えておけ、ダイスは勇敢な者に味方する。慎重な者には、なおさらだ。"
     },
     "dlg.drillmaster.hold-there": {
       "source": "Hold there, traveler. Nobody leaves this camp with a sword they cannot swing. I am {Captain Maren}, and the dummies are my recruits.",
@@ -118,77 +130,29 @@
       "source": "Obtained: Healing Draught ×${count}",
       "target": "回復薬×${count}を手に入れた"
     },
-    "dlg.drillmaster.remember": {
-      "source": "Remember: strike, roll, strike again. And rest at a {waystone} before you take on anything with a crown of fire.",
-      "target": "忘れるな。斬って、転がって、また斬る。それから、炎の冠をいただく相手に挑む前に、{道標石}で休んでおけ。"
+    "dlg.drillmaster.remember-turns": {
+      "source": "Remember: let the dice decide, but choose your fights. And rest at a {waystone} before you take on anything with a crown of fire.",
+      "target": "覚えておけ。勝負はダイス次第だが、戦う相手は自分で選べ。それと、炎の冠をかぶった奴に挑む前に{ウェイストーン}で休め。"
     },
-    "dlg.drillmaster.reward.keys": {
-      "source": "Take these {Healing Draughts}. Drink one with {C} when the world starts to spin. Bram sells more at the stall.",
-      "target": "この{回復薬}を持っていけ。目が回りだしたら{C}で飲め。足りなくなったら、屋台でブラムが売っている。"
-    },
-    "dlg.drillmaster.reward.pad": {
-      "source": "Take these {Healing Draughts}. Drink one with {Y} when the world starts to spin. Bram sells more at the stall.",
-      "target": "この{回復薬}を持っていけ。目が回りだしたら{Y}で飲め。足りなくなったら、屋台でブラムが売っている。"
-    },
-    "dlg.drillmaster.roll.keys": {
-      "source": "Roll with {K (or the right mouse button)} while you move: for a heartbeat nothing can touch you. Roll just as a blow lands and the world slows for you.",
-      "target": "移動中に{K／マウス右ボタン}で転がれ。ほんの一瞬、何者もお前に触れられない。攻撃が当たるその瞬間に転がれば、世界がお前のために遅くなる。"
-    },
-    "dlg.drillmaster.roll.pad": {
-      "source": "Roll with {B} while you move: for a heartbeat nothing can touch you. Roll just as a blow lands and the world slows for you.",
-      "target": "移動中に{B}で転がれ。ほんの一瞬、何者もお前に触れられない。攻撃が当たるその瞬間に転がれば、世界がお前のために遅くなる。"
+    "dlg.drillmaster.reward": {
+      "source": "Take these {Healing Draughts}. In a fight, drink one from the menu on your turn. Bram sells more at the stall.",
+      "target": "この{回復薬}を持っていけ。戦いの最中なら、自分の番にメニューから飲める。屋台のブラムがもっと売っている。"
     },
     "dlg.drillmaster.satchel-full": {
       "source": "I had draughts for you, but your satchel is full. Bram sells more at the stall when you need them.",
       "target": "回復薬をやるつもりだったが、鞄がいっぱいだな。必要になったら、屋台でブラムが売っている。"
     },
-    "dlg.drillmaster.show-me": {
-      "source": "Show me a full three-cut combo on a dummy, and one good roll. Then come back to me.",
-      "target": "わら人形に三連撃を最後まで決めてみせろ。それと、見事な回避ロールを一回。済んだら私のところへ戻ってこい。"
+    "dlg.drillmaster.try-dummy": {
+      "source": "Go on: take a swing at a dummy. Then come back to me.",
+      "target": "さあ、わら人形に一太刀浴びせてみろ。それから戻ってこい。"
     },
-    "dlg.drillmaster.skills.keys": {
-      "source": "Your skills are on {U, I and O (or 1–3)}, your draughts on {C}, and {L} fixes your eyes on one foe.",
-      "target": "スキルは{U・I・O／1〜3}、回復薬は{C}だ。{L}で、狙いを一体の敵に定められる。"
+    "dlg.drillmaster.turns": {
+      "source": "Out past the gate, a fight goes by turns. When foes spot you, everyone rolls for initiative and acts in order. On your turn, pick {Attack}, {Move}, a {Maneuver} or a spell from the menu.",
+      "target": "門の外では、戦いは順番に進む。敵に見つかったら、全員がイニシアチブを振って順に動く。自分の番が来たら、メニューから{攻撃}、{移動}、{戦技}や呪文を選べ。"
     },
-    "dlg.drillmaster.skills.pad": {
-      "source": "Your skills are on {LT with X, Y or B}, your draughts on {Y}, and {a click of the right stick} fixes your eyes on one foe.",
-      "target": "スキルは{LT+X/Y/B}、回復薬は{Y}だ。{右スティック押し込み}で、狙いを一体の敵に定められる。"
-    },
-    "dlg.drillmaster.strike.keys": {
-      "source": "Strike with {J (or the left mouse button)} — press it again as the blade comes back and you chain three cuts, the last one a thrust that knocks foes flat.",
-      "target": "{J／マウス左ボタン}で斬れ。刃が戻るところでもう一度押せば三連撃になる。最後の突きは敵を打ち倒すぞ。"
-    },
-    "dlg.drillmaster.strike.pad": {
-      "source": "Strike with {X} — press it again as the blade comes back and you chain three cuts, the last one a thrust that knocks foes flat.",
-      "target": "{X}で斬れ。刃が戻るところでもう一度押せば三連撃になる。最後の突きは敵を打ち倒すぞ。"
-    },
-    "dlg.drillmaster.wait-both.keys": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({J (or the left mouse button)} three times) and one roll ({K (or the right mouse button)}). The dummies are patient. I am less so.",
-      "target": "まだわら人形への三連撃（{J／マウス左ボタン}を三回）と、回避ロール一回（{K／マウス右ボタン}）を見せてもらっていないぞ。人形は辛抱強いが、私はそうでもない。"
-    },
-    "dlg.drillmaster.wait-both.pad": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({X} three times) and one roll ({B}). The dummies are patient. I am less so.",
-      "target": "まだわら人形への三連撃（{X}を三回）と、回避ロール一回（{B}）を見せてもらっていないぞ。人形は辛抱強いが、私はそうでもない。"
-    },
-    "dlg.drillmaster.wait-combo.keys": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({J (or the left mouse button)} three times). The dummies are patient. I am less so.",
-      "target": "まだわら人形への三連撃（{J／マウス左ボタン}を三回）を見せてもらっていないぞ。人形は辛抱強いが、私はそうでもない。"
-    },
-    "dlg.drillmaster.wait-combo.pad": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({X} three times). The dummies are patient. I am less so.",
-      "target": "まだわら人形への三連撃（{X}を三回）を見せてもらっていないぞ。人形は辛抱強いが、私はそうでもない。"
-    },
-    "dlg.drillmaster.wait-roll.keys": {
-      "source": "Still waiting on one roll ({K (or the right mouse button)}). The dummies are patient. I am less so.",
-      "target": "まだ回避ロール一回（{K／マウス右ボタン}）を見せてもらっていないぞ。人形は辛抱強いが、私はそうでもない。"
-    },
-    "dlg.drillmaster.wait-roll.pad": {
-      "source": "Still waiting on one roll ({B}). The dummies are patient. I am less so.",
-      "target": "まだ回避ロール一回（{B}）を見せてもらっていないぞ。人形は辛抱強いが、私はそうでもない。"
-    },
-    "dlg.drillmaster.well-done": {
-      "source": "Now that is a sword arm! A full combo and a clean roll — the dummies will be telling stories about you.",
-      "target": "見事な剣さばきだ！　完璧な連撃に、鮮やかな回避――わら人形どもの語り草になるぞ。"
+    "dlg.drillmaster.wait-swing": {
+      "source": "Still waiting on one honest swing at a dummy. The dummies are patient. I am less so.",
+      "target": "まだわら人形への一太刀を見せてもらっていないぞ。わら人形は辛抱強いが、私はそうでもない。"
     },
     "dlg.elder.founders": {
       "source": "Our founders followed this river up from the lowlands four hundred years ago. At dusk the falls catch the last of the sun and glow like embers in a hearth.",

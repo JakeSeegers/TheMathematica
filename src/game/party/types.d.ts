@@ -1,6 +1,6 @@
 // Party contract types (docs/specs/PARTY.md). Types only: nothing here reaches a bundle. The
 // runtime pieces: Party / PartyMember (src/game/party/, the follow, joins, travel, saves),
-// MemberCombat (src/game/party/MemberCombat.js, a member's fight, created by CombatSystem.addAlly),
+// AllyView (src/game/glaive/GlaiveCombat.js, a member's fight, created by GlaiveCombat.addAlly),
 // the party UI (src/engine/ui/PartyPanel.js, PartyFrames.js, registered by UI.usePartyUI), the
 // story's `party` commands and `party:<who>` conditions (StoryScript / StoryRunner / StoryState).
 
@@ -34,8 +34,8 @@ export interface PartyRecord {
 }
 
 /**
- * What the party reads of a member's fight (`member.combat`, a MemberCombat; null on a level
- * without combat). Created by `CombatSystem.addAlly(member)`.
+ * What the party reads of a member's fight (`member.combat`, an AllyView; null on a level
+ * without combat). Created by `GlaiveCombat.addAlly(member)`.
  */
 export interface AllyCombatView {
   /** The combat drives the member now (it is fighting, or down): the follow waits. */
@@ -46,7 +46,7 @@ export interface AllyCombatView {
   hpMax: number;
   mp: number;
   mpMax: number;
-  /** Its level (MemberCombat: the player's): the party frame's `Lv`. Optional (additive). */
+  /** Its level (AllyView: the player's): the party frame's `Lv`. Optional (additive). */
   level?: number;
   /** Full HP / MP, up again, action cleared (a rest, a respawn, the story's `heal`). */
   refill(): void;

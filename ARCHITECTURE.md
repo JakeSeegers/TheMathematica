@@ -116,7 +116,8 @@ src/engine/world/              TileMap.js, Water.js, Props.js (+ optional world/
 src/engine/ui/                 UI.js, DialogBox.js, Banner.js, TitleScreen.js, HUD.js,
                                InteractPrompt.js, DebugPanel.js, Fader.js, ui.css
 src/game/                      (integration) village map, player, NPCs, game wiring
-src/game/combat/               (combat levels only, COMBAT.md) CombatSystem, PlayerCombat, Enemy, ai/*, defs, rules
+src/game/glaive/               (combat levels only, docs/specs/GLAIVE.md) GlaiveCombat, Encounter, Sheet, bestiary, Foe, Stage
+src/game/combat/               shared combat-level pieces: waystones, chests, pickups, boss arena, FX, music, Nav, defs
 sandbox/<module>.html|.js      per-module standalone test pages (owned by that module's author)
 ```
 
@@ -795,9 +796,10 @@ itself, `talkTo`, `setWeather`, `photo`, `map`, `state()` …, and `combat` / `c
 where they exist); the full surface is [docs/specs/AUTOMATION_API.md](docs/specs/AUTOMATION_API.md)
 and its typed copy `GameHooks` in `src/game/Game.js`.
 
-**Combat (additive, [COMBAT.md](docs/contracts/COMBAT.md)).** A level with `enemy` objects (the
-shipped one: Cinderwatch Pass, `?level=cinderwatch-pass`) plays with real-time combat:
-`Game` imports and creates a `CombatSystem` (`src/game/combat/`) only when `levelHasCombat(level)`,
+**Combat (additive, [GLAIVE.md](docs/specs/GLAIVE.md), [COMBAT.md](docs/contracts/COMBAT.md)).** A
+level with `enemy` objects (the shipped one: Cinderwatch Pass, `?level=cinderwatch-pass`) plays with
+turn-based combat on the GLAIVE rules:
+`Game` imports and creates a `GlaiveCombat` (`src/game/glaive/`) only when `levelHasCombat(level)`,
 and on every other level `game.combat` is `null` and nothing combat-related exists. The frame order
 gains `combat.update` → `player.update` → `combat.afterPlayer` … `weather.update` →
 `combat.applyLook`; `window.__game.combat` holds the test hooks.

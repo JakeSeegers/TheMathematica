@@ -3,8 +3,8 @@
  * kind (defs.js stays English: the level generators import it), skill names by id, the shop's wares
  * by id (`shopWare` / `buy` / `priceOf` / the `purchase` event keep the English names), the loot
  * feed, level-ups, the results card, the death screen, waystones, the combat legend rows (by the
- * `id` of bindings.js) and the pad hint. Registered by `CombatSystem`'s constructor before
- * `ui.enableCombat()` (never at import: CombatSystem's chunk is the combat chunk), so a peaceful
+ * `id` of bindings.js) and the pad hint. Registered by `GlaiveCombat.load()` before
+ * `ui.enableCombat()` (never at import: GlaiveCombat's chunk is the combat chunk), so a peaceful
  * level never holds it. Owner: B-combat (docs/specs/PIXEL_UI.md §8).
  *
  * Import-free and Node-safe: `tools/lib/i18n.mjs` (`uiGlossary`) imports it in Node. Keys are ids;

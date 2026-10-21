@@ -202,7 +202,6 @@ scripts live in `sandbox/`.
 | `ui.html` | UI components (`?combat=1`: the combat UI) | `__ui`, `__sandbox` | `ui.actions.json`, `ui.combat.actions.json` |
 | `combat_fx.html` | FxQuads, GroundMarkers, combat bursts, combat audio, mouse input, stick zoom | `__cfx` | `combat_fx.actions.json` |
 | `combat_audio.html` | Combat audio QA and listening page: every combat SFX, stinger, music section and dense mix rendered offline and measured (loudness, true peak, truncation, steps, leaks, spectrum), with waveform, spectrogram and live playback | `__caudio` | `combat_audio.actions.json` |
-| `enemy_ai.html` | Enemy and the eight brains (game-layer code, tested in isolation; the walk grid `Nav` on the mock ledge) | `__sb` | `enemy_ai.actions.json` |
 | `game_levels.html` | Game level-loading edge cases (`?case=hostile`: `Object.prototype` names and unconvertible values in the level data, in the game and the editor) | `__levelCases` | `game_levels.hostile.json` |
 | `level_builder.html` | LevelFormat + LevelObjectBuilder smoke test | `__smoke` | none |
 | `editor3d.html` | The editor's 3D viewport in isolation | `__vp` | `editor3d.actions.json`, `editor3d.audit.actions.json`, `editor3d.real.actions.json`, `editor3d.tilemap.actions.json` (`editor3d.app.actions.json` drives `editor.html` through `window.__editor`) |

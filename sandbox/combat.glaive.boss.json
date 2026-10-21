@@ -1,0 +1,13 @@
+[
+  { "wait": 2000 },
+  { "eval": "window.S = (n, dt = 1/30) => { for (let i = 0; i < n; i++) window.__engine.step(dt, { render: false }); window.__engine.redraw(); return n; }; window.U = async (pred, max = 3000, dt = 1/30) => { for (let i = 0; i < max; i++) { if (pred()) { window.__engine.redraw(); return i; } window.__engine.step(dt, { render: false }); if (i % 50 === 49) await new Promise((r) => setTimeout(r, 0)); } window.__engine.redraw(); return -1; }; window.C = () => window.__game.combat; window.FAIL = (m) => { setTimeout(() => { throw new Error('[glaive.boss] ' + m); }); return 'FAIL ' + m; }; 'ok'" },
+  { "eval": "(async () => { await U(() => window.__game && C() && window.__game.state().mode === 'play', 4000); S(30); C().choose('holyWarrior', 'human'); C().xp(3000); for (let i = 0; i < 3; i++) C().levelUp(null, null); S(5); const p = C().state().player; return p.level === 4 ? JSON.stringify(p) : FAIL('not level 4: ' + p.level); })()" },
+  { "eval": "(async () => { const P = window.__game.party; await P.join('ilse', { cls: 'mystic' }); await P.join('rook', { cls: 'ranger' }); S(10); window.__game.teleport(50.8, 79.5); S(10); await P.join('sela', { cls: 'warden' }); S(10); const m = P.info().members; return m.length === 3 ? JSON.stringify(m.map((x) => [x.id, x.cls, x.hp, x.hpMax])) : FAIL('the party is not three: ' + m.length); })()" },
+  { "eval": "C().freezeAI(true); window.__game.teleport(48.5, 26); S(120); C().freezeAI(false); window.__game.teleport(48.5, 22.5); S(30); const st = C().state(); (st.fight && st.fight.combatants.some((c) => c.kind === 'golem') && st.fight.combatants.filter((c) => c.side === 'party').length === 4) ? JSON.stringify(st.fight.order) : FAIL('the boss fight did not start with the party of four: ' + JSON.stringify(st.fight && st.fight.combatants.map((c) => c.id)))" },
+  { "shot": "01-boss-start" },
+  { "eval": "C().auto(true); C().pace(4); (async () => { const r = await U(() => { const f = C().state().fight; return !f || f.combatants.some((c) => c.kind === 'bat'); }, 8000); return r >= 0 ? 'bats or the end after ' + r : FAIL('no bats and no end'); })()" },
+  { "shot": "02-boss-bats" },
+  { "eval": "(async () => { const r = await U(() => !C().state().fight, 14000); const sb = C().state(); return r >= 0 ? JSON.stringify({ boss: sb.boss, defeated: sb.bossDefeated, hp: sb.player.hp, deaths: sb.player.deaths, log: sb.log.slice(-6) }) : FAIL('the boss fight did not end'); })()" },
+  { "eval": "S(90); const sc = C().state(); (sc.bossDefeated || sc.player.deaths > 0) ? 'outcome: ' + (sc.bossDefeated ? 'victory' : 'defeat') : FAIL('neither victory nor defeat')" },
+  { "shot": "03-boss-after" }
+]

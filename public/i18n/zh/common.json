@@ -102,6 +102,14 @@
       "source": "You felled {Cinderheart}. I watched the glow go out of the caldera from the palisade — the whole camp cheered loud enough to wake the dummies.",
       "target": "你击倒了{烬心}。我在栅栏上看着火山口的光熄灭——整个营地欢呼声震天，连假人都快被吵醒了。"
     },
+    "dlg.drillmaster.dice.keys": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {J (or the left mouse button)} and it loses its first turn.",
+      "target": "每一击都是d20加上你的力量，与敌人的护甲比较。趁敌人没察觉时用{J（或鼠标左键）}先下手，它会失去第一个回合。"
+    },
+    "dlg.drillmaster.dice.pad": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {X} and it loses its first turn.",
+      "target": "每一击都是d20加上你的力量，与敌人的护甲比较。趁敌人没察觉时用{X}先下手，它会失去第一个回合。"
+    },
     "dlg.drillmaster.first-watch": {
       "source": "The pass has not been this quiet since my grandmother held this post. Rest by the fire tonight, soldier. You have earned the first watch off.",
       "target": "自从我祖母驻守这里以来，隘口还从没这么安静过。今晚就在火边好好休息吧，士兵。头一班岗你不用站了，这是你应得的。"
@@ -109,6 +117,10 @@
     "dlg.drillmaster.glade-warning": {
       "source": "The glade beyond the gate is crawling with slimes. Mind the goblins — they circle before they strike.",
       "target": "大门外的林地里到处都是史莱姆。小心哥布林——它们会先绕着你转，再动手。"
+    },
+    "dlg.drillmaster.good-swing": {
+      "source": "There is a sword arm! Remember: the dice favour the bold, and the careful even more.",
+      "target": "好身手！记住：骰子眷顾勇敢的人，更眷顾谨慎的人。"
     },
     "dlg.drillmaster.hold-there": {
       "source": "Hold there, traveler. Nobody leaves this camp with a sword they cannot swing. I am {Captain Maren}, and the dummies are my recruits.",
@@ -118,77 +130,29 @@
       "source": "Obtained: Healing Draught ×${count}",
       "target": "获得：治疗药水 ×${count}"
     },
-    "dlg.drillmaster.remember": {
-      "source": "Remember: strike, roll, strike again. And rest at a {waystone} before you take on anything with a crown of fire.",
-      "target": "记住：砍、滚、再砍。还有，在对付任何头顶火焰之冠的家伙之前，先在{路标石}旁休息。"
+    "dlg.drillmaster.remember-turns": {
+      "source": "Remember: let the dice decide, but choose your fights. And rest at a {waystone} before you take on anything with a crown of fire.",
+      "target": "记住：胜负交给骰子，但对手要自己挑。还有，在挑战头顶火冠的家伙之前，先在{路石}休息。"
     },
-    "dlg.drillmaster.reward.keys": {
-      "source": "Take these {Healing Draughts}. Drink one with {C} when the world starts to spin. Bram sells more at the stall.",
-      "target": "拿着这些{治疗药水}。天旋地转的时候，按{C}喝一瓶。布拉姆的摊子上还有得卖。"
-    },
-    "dlg.drillmaster.reward.pad": {
-      "source": "Take these {Healing Draughts}. Drink one with {Y} when the world starts to spin. Bram sells more at the stall.",
-      "target": "拿着这些{治疗药水}。天旋地转的时候，按{Y}喝一瓶。布拉姆的摊子上还有得卖。"
-    },
-    "dlg.drillmaster.roll.keys": {
-      "source": "Roll with {K (or the right mouse button)} while you move: for a heartbeat nothing can touch you. Roll just as a blow lands and the world slows for you.",
-      "target": "移动时按{K／鼠标右键}翻滚：一瞬之间，没有任何东西碰得到你。在攻击落下的刹那翻滚，世界就会为你放慢。"
-    },
-    "dlg.drillmaster.roll.pad": {
-      "source": "Roll with {B} while you move: for a heartbeat nothing can touch you. Roll just as a blow lands and the world slows for you.",
-      "target": "移动时按{B}翻滚：一瞬之间，没有任何东西碰得到你。在攻击落下的刹那翻滚，世界就会为你放慢。"
+    "dlg.drillmaster.reward": {
+      "source": "Take these {Healing Draughts}. In a fight, drink one from the menu on your turn. Bram sells more at the stall.",
+      "target": "拿着这些{治疗药水}。战斗中，在你的回合从菜单里喝一瓶。布拉姆的摊位还有更多。"
     },
     "dlg.drillmaster.satchel-full": {
       "source": "I had draughts for you, but your satchel is full. Bram sells more at the stall when you need them.",
       "target": "本来有药水给你，可你的挎包满了。需要的时候，布拉姆的摊子上有卖。"
     },
-    "dlg.drillmaster.show-me": {
-      "source": "Show me a full three-cut combo on a dummy, and one good roll. Then come back to me.",
-      "target": "对假人打出一套完整的三连击，再来一次漂亮的翻滚给我看。然后回来找我。"
+    "dlg.drillmaster.try-dummy": {
+      "source": "Go on: take a swing at a dummy. Then come back to me.",
+      "target": "去吧，对稻草人挥一下。然后回来找我。"
     },
-    "dlg.drillmaster.skills.keys": {
-      "source": "Your skills are on {U, I and O (or 1–3)}, your draughts on {C}, and {L} fixes your eyes on one foe.",
-      "target": "技能在{U、I、O／1–3}，药水在{C}，按{L}能把目光锁定在一个敌人身上。"
+    "dlg.drillmaster.turns": {
+      "source": "Out past the gate, a fight goes by turns. When foes spot you, everyone rolls for initiative and acts in order. On your turn, pick {Attack}, {Move}, a {Maneuver} or a spell from the menu.",
+      "target": "出了大门，战斗是轮流进行的。一旦被敌人发现，所有人掷先攻，依次行动。轮到你时，从菜单中选择{攻击}、{移动}、{战技}或法术。"
     },
-    "dlg.drillmaster.skills.pad": {
-      "source": "Your skills are on {LT with X, Y or B}, your draughts on {Y}, and {a click of the right stick} fixes your eyes on one foe.",
-      "target": "技能在{LT+X/Y/B}，药水在{Y}，{按下右摇杆}能把目光锁定在一个敌人身上。"
-    },
-    "dlg.drillmaster.strike.keys": {
-      "source": "Strike with {J (or the left mouse button)} — press it again as the blade comes back and you chain three cuts, the last one a thrust that knocks foes flat.",
-      "target": "按{J／鼠标左键}挥砍——剑刃收回时再按一次，就能连出三击，最后一记突刺能把敌人掀翻在地。"
-    },
-    "dlg.drillmaster.strike.pad": {
-      "source": "Strike with {X} — press it again as the blade comes back and you chain three cuts, the last one a thrust that knocks foes flat.",
-      "target": "按{X}挥砍——剑刃收回时再按一次，就能连出三击，最后一记突刺能把敌人掀翻在地。"
-    },
-    "dlg.drillmaster.wait-both.keys": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({J (or the left mouse button)} three times) and one roll ({K (or the right mouse button)}). The dummies are patient. I am less so.",
-      "target": "我还在等你对假人打出一套完整的三连击（按{J／鼠标左键}三次），再来一次翻滚（{K／鼠标右键}）。假人有的是耐心，我可没那么多。"
-    },
-    "dlg.drillmaster.wait-both.pad": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({X} three times) and one roll ({B}). The dummies are patient. I am less so.",
-      "target": "我还在等你对假人打出一套完整的三连击（按{X}三次），再来一次翻滚（{B}）。假人有的是耐心，我可没那么多。"
-    },
-    "dlg.drillmaster.wait-combo.keys": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({J (or the left mouse button)} three times). The dummies are patient. I am less so.",
-      "target": "我还在等你对假人打出一套完整的三连击（按{J／鼠标左键}三次）。假人有的是耐心，我可没那么多。"
-    },
-    "dlg.drillmaster.wait-combo.pad": {
-      "source": "Still waiting on a full three-cut combo on a dummy ({X} three times). The dummies are patient. I am less so.",
-      "target": "我还在等你对假人打出一套完整的三连击（按{X}三次）。假人有的是耐心，我可没那么多。"
-    },
-    "dlg.drillmaster.wait-roll.keys": {
-      "source": "Still waiting on one roll ({K (or the right mouse button)}). The dummies are patient. I am less so.",
-      "target": "我还在等你来一次翻滚（{K／鼠标右键}）。假人有的是耐心，我可没那么多。"
-    },
-    "dlg.drillmaster.wait-roll.pad": {
-      "source": "Still waiting on one roll ({B}). The dummies are patient. I am less so.",
-      "target": "我还在等你来一次翻滚（{B}）。假人有的是耐心，我可没那么多。"
-    },
-    "dlg.drillmaster.well-done": {
-      "source": "Now that is a sword arm! A full combo and a clean roll — the dummies will be telling stories about you.",
-      "target": "这才叫好身手！一整套连击，外加一次干净利落的翻滚——假人们会把你的事迹传开的。"
+    "dlg.drillmaster.wait-swing": {
+      "source": "Still waiting on one honest swing at a dummy. The dummies are patient. I am less so.",
+      "target": "我还在等你对稻草人好好挥一下。稻草人很有耐心，我可没那么有耐心。"
     },
     "dlg.elder.founders": {
       "source": "Our founders followed this river up from the lowlands four hundred years ago. At dusk the falls catch the last of the sun and glow like embers in a hearth.",

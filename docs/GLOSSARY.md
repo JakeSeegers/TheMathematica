@@ -209,8 +209,10 @@ beside each text — the data holds keys, never translations
 
 ## Combat
 
-Only on levels with enemies (or `environment.combat: true`). The binding design is
-[COMBAT.md](contracts/COMBAT.md); how to play is in [PLAYING_THE_GAME.md](user/PLAYING_THE_GAME.md).
+Only on levels with enemies (or `environment.combat: true`). Fights are turn-based on the GLAIVE
+rules ([GLAIVE.md](specs/GLAIVE.md)); the engine additions are in [COMBAT.md](contracts/COMBAT.md);
+how to play is in [PLAYING_THE_GAME.md](user/PLAYING_THE_GAME.md). Terms of the old real-time
+combat (hit-stop, hurt radius, sub-step, the bot's digest) are kept below for reading the history.
 
 | Term | Definition | Details |
 | --- | --- | --- |
@@ -248,7 +250,7 @@ Only on levels with enemies (or `environment.combat: true`). The binding design 
 | **Hurt radius / move radius / separation** | Hits test the **hurt** radius, movement the **move** radius; overlapping actors are pushed apart in inverse proportion to their mass (enemies have no TileMap colliders). | [Combat contract](contracts/COMBAT.md) |
 | **Pickups / magnet** | Coins, hearts, mana motes, draughts, upgrades and the boss's core pop out of defeated enemies and chests and fly to a player within about 2 u. | [COMBAT.md §7.8](contracts/COMBAT.md#78-loot) |
 | **Results card** | The summary shown after the boss falls: time, foes defeated, falls, perfect dodges, level. | [COMBAT.md §6.12](contracts/COMBAT.md#612-waystones-chests-shop-engagement) |
-| **Combat fixture / greedy run / play-through bot** | The small in-page test level of `sandbox/combat_fixture.js`; the god-mode, always-attacking boss run that sets a lower bound on the fight's length (≈ 40 s); `combat.play.json`, a bot that plays Cinderwatch Pass with real key presses. | [TESTING_AND_VERIFICATION.md](development/TESTING_AND_VERIFICATION.md) |
+| **GLAIVE / encounter / beat** | The tabletop rules the turn-based combat follows ([GLAIVE.md](specs/GLAIVE.md)); one fight's rules state (`Encounter`); one thing that happened in it (an attack, a save, a move), which the stage animates and the log writes. *The old real-time terms — combat fixture, greedy run, play-through bot — went with the real-time combat.* | [GLAIVE.md](specs/GLAIVE.md) |
 | **Fixed step / digest** | The bot's deterministic mode: the page is loaded with `&fixedstep=1` (`Engine#manualStep`, no animation loop), the bot steps the engine at exactly 1/60 s and a virtual page clock replaces the timers; the run's `digest` (a hash of every actor's state, every frame) is the same for the same code on any machine load. | [Automation API](specs/AUTOMATION_API.md) |
 
 ---

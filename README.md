@@ -44,7 +44,7 @@ Choose a destination in the launcher, or append one of these paths to your local
 | -------------------------- | ---------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
 | **Emberfall**              | `game.html`                              | A riverside village with villagers, a windmill, farms, waterfalls and changing weather.                         |
 | **Starfall Vale**          | `game.html?level=starfall-vale`          | A 128 × 128 festival valley with a market town, observatory, lakes and forest.                                  |
-| **Cinderwatch Pass**       | `game.html?level=cinderwatch-pass`       | Action combat, three recruitable companions and the three-phase boss Cinderheart. Balanced for a party of four. |
+| **Cinderwatch Pass**       | `game.html?level=cinderwatch-pass`       | Turn-based GLAIVE combat, three recruitable companions and the three-phase boss Cinderheart. Balanced for a party of four. |
 | **Gildhaven**              | `game.html?level=gildhaven`              | A walled river town with 68 villagers, markets, quays and an abbey.                                             |
 | **Brightwater Crossing**   | `game.html?level=brightwater-crossing`   | A small hamlet built with the visual level editor.                                                              |
 | **Willowmere**             | `game.html?level=sample-hamlet`          | A compact generated example level.                                                                              |
@@ -61,8 +61,10 @@ do not sync between devices. Export levels you want to keep as files.
 - **World building:** multi-height tile terrain, stairs, bridges, procedural buildings and props,
   indoor rooms, and spatial batching for levels up to 128 × 128 tiles.
 - **Gameplay:** exploration, conversations, maps, procedural audio, photo mode and a live debug panel.
-- **Combat:** sword combos, dodges, skills, loot, shops, checkpoints, telegraphed enemy attacks and
-  companions with configurable tactics. Combat loads only for levels that enable it.
+- **Combat:** turn-based fights on the rules of the GLAIVE tabletop RPG — d20 rolls, initiative,
+  maneuvers, spellbooks, talents, morale, the injury table and levels — with character creation,
+  loot, shops, checkpoints, a telegraphing boss and companions with configurable tactics. Combat
+  loads only for levels that enable it. See [GLAIVE combat](docs/specs/GLAIVE.md).
 - **Stories:** a line-based script language for branching dialogue, quests, items, events, cutscenes
   and story-dependent objects; campaigns connect levels without reloading the page.
 - **Tools:** a visual level editor, deterministic level generators, a browser verification harness,
@@ -79,8 +81,8 @@ See the [feature reference](docs/features/FEATURES.md) for details and implement
 | Rotate / zoom                     | Q / E, Z / X or mouse wheel        |
 | World map / photo mode            | N or Tab / P                       |
 | Time / weather / music            | T / R / M                          |
-| Attack / dodge (combat)           | J or left click / K or right click |
-| Skills / healing draught (combat) | U / I / O or 1 / 2 / 3 / C or 4    |
+| Strike first (combat)             | J or left click, next to a foe     |
+| Fight menus (combat)              | W / S, Space; Esc goes back        |
 | Party tactics / journal           | G / B, when available              |
 
 Sound starts after a key press or click. Standard-mapping gamepads are supported in the game.

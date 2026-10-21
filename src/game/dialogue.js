@@ -63,34 +63,6 @@ import { t } from '../engine/i18n/I18n.js';
  */
 
 /**
- * The drillmaster's lines that name keys, as whole sentences per device — keyboard and mouse, or
- * a gamepad — so a translation never has a key phrase dropped into the middle of it (COMBAT.md
- * §6.12). Read when spoken (the table of the language in force).
- * @param {boolean} pad the last device used was a gamepad
- */
-function drillLines(pad) {
-  return pad
-    ? {
-      reward: loc('dlg.drillmaster.reward.pad', 'Take these {Healing Draughts}. Drink one with {Y} when the world starts to spin. Bram sells more at the stall.'),
-      strike: loc('dlg.drillmaster.strike.pad', 'Strike with {X} — press it again as the blade comes back and you chain three cuts, the last one a thrust that knocks foes flat.'),
-      roll: loc('dlg.drillmaster.roll.pad', 'Roll with {B} while you move: for a heartbeat nothing can touch you. Roll just as a blow lands and the world slows for you.'),
-      skills: loc('dlg.drillmaster.skills.pad', 'Your skills are on {LT with X, Y or B}, your draughts on {Y}, and {a click of the right stick} fixes your eyes on one foe.'),
-      waitBoth: loc('dlg.drillmaster.wait-both.pad', 'Still waiting on a full three-cut combo on a dummy ({X} three times) and one roll ({B}). The dummies are patient. I am less so.'),
-      waitCombo: loc('dlg.drillmaster.wait-combo.pad', 'Still waiting on a full three-cut combo on a dummy ({X} three times). The dummies are patient. I am less so.'),
-      waitRoll: loc('dlg.drillmaster.wait-roll.pad', 'Still waiting on one roll ({B}). The dummies are patient. I am less so.'),
-    }
-    : {
-      reward: loc('dlg.drillmaster.reward.keys', 'Take these {Healing Draughts}. Drink one with {C} when the world starts to spin. Bram sells more at the stall.'),
-      strike: loc('dlg.drillmaster.strike.keys', 'Strike with {J (or the left mouse button)} — press it again as the blade comes back and you chain three cuts, the last one a thrust that knocks foes flat.'),
-      roll: loc('dlg.drillmaster.roll.keys', 'Roll with {K (or the right mouse button)} while you move: for a heartbeat nothing can touch you. Roll just as a blow lands and the world slows for you.'),
-      skills: loc('dlg.drillmaster.skills.keys', 'Your skills are on {U, I and O (or 1–3)}, your draughts on {C}, and {L} fixes your eyes on one foe.'),
-      waitBoth: loc('dlg.drillmaster.wait-both.keys', 'Still waiting on a full three-cut combo on a dummy ({J (or the left mouse button)} three times) and one roll ({K (or the right mouse button)}). The dummies are patient. I am less so.'),
-      waitCombo: loc('dlg.drillmaster.wait-combo.keys', 'Still waiting on a full three-cut combo on a dummy ({J (or the left mouse button)} three times). The dummies are patient. I am less so.'),
-      waitRoll: loc('dlg.drillmaster.wait-roll.keys', 'Still waiting on one roll ({K (or the right mouse button)}). The dummies are patient. I am less so.'),
-    };
-}
-
-/**
  * The toast of a ware the combat shop sold (`o`: a `combat.shopOffers()` entry, its name already
  * translated in `name`, its gain in `gainLabel`): an upgrade says what it changed ("ATK 20 → 22"),
  * one sentence per stat.
@@ -249,10 +221,10 @@ export const CONVERSATIONS = {
   },
 
   /**
-   * The combat drillmaster (COMBAT.md §6.12): explains the controls (keyboard or pad keys by the
-   * last device used), asks for a full 3-hit combo on a dummy and one dodge, rewards 2 draughts
-   * once both are done, and speaks two post-victory pages once the boss has fallen. On a peaceful
-   * level the NPC's own dialogue pages play instead.
+   * The combat drillmaster (docs/specs/GLAIVE.md §8.6): explains how a turn-based fight goes and the
+   * ambush key (keyboard or pad by the last device used), asks for one swing at a dummy, rewards 2
+   * draughts once, and speaks two post-victory pages once the boss has fallen. On a peaceful level
+   * the NPC's own dialogue pages play instead.
    */
   async drillmaster(ctx, obj) {
     const { say, game, toast, sfx, visits } = ctx;
@@ -268,36 +240,37 @@ export const CONVERSATIONS = {
       ]);
       return;
     }
-    const L = drillLines(game.engine?.input?.lastDevice === 'gamepad');
+    const pad = game.engine?.input?.lastDevice === 'gamepad';
     const tut = combat.tutorial;
-    if (tut.combo && tut.dodge && !tut.rewarded) {
+    if (tut.combo && !tut.rewarded) {
       const given = combat.rewardTutorial();
       if (given > 0) {
         sfx('chime');
         toast(contentFormat(loc('dlg.drillmaster.obtained-draughts', 'Obtained: Healing Draught ×${count}'), { count: given }));
       }
       await say([
-        loc('dlg.drillmaster.well-done', 'Now that is a sword arm! A full combo and a clean roll — the dummies will be telling stories about you.'),
-        given > 0 ? L.reward : loc('dlg.drillmaster.satchel-full', 'I had draughts for you, but your satchel is full. Bram sells more at the stall when you need them.'),
+        loc('dlg.drillmaster.good-swing', 'There is a sword arm! Remember: the dice favour the bold, and the careful even more.'),
+        given > 0 ? loc('dlg.drillmaster.reward', 'Take these {Healing Draughts}. In a fight, drink one from the menu on your turn. Bram sells more at the stall.')
+          : loc('dlg.drillmaster.satchel-full', 'I had draughts for you, but your satchel is full. Bram sells more at the stall when you need them.'),
         loc('dlg.drillmaster.glade-warning', 'The glade beyond the gate is crawling with slimes. Mind the goblins — they circle before they strike.'),
       ]);
       return;
     }
     if (tut.rewarded) {
-      await say([loc('dlg.drillmaster.remember', 'Remember: strike, roll, strike again. And rest at a {waystone} before you take on anything with a crown of fire.')]);
+      await say([loc('dlg.drillmaster.remember-turns', 'Remember: let the dice decide, but choose your fights. And rest at a {waystone} before you take on anything with a crown of fire.')]);
       return;
     }
     if (visits === 0) {
       await say([
         loc('dlg.drillmaster.hold-there', 'Hold there, traveler. Nobody leaves this camp with a sword they cannot swing. I am {Captain Maren}, and the dummies are my recruits.'),
-        L.strike,
-        L.roll,
-        L.skills,
-        loc('dlg.drillmaster.show-me', 'Show me a full three-cut combo on a dummy, and one good roll. Then come back to me.'),
+        loc('dlg.drillmaster.turns', 'Out past the gate, a fight goes by turns. When foes spot you, everyone rolls for initiative and acts in order. On your turn, pick {Attack}, {Move}, a {Maneuver} or a spell from the menu.'),
+        pad ? loc('dlg.drillmaster.dice.pad', 'Every swing is a d20 plus your strength against the foe\'s armour. Catch a foe unaware with {X} and it loses its first turn.')
+          : loc('dlg.drillmaster.dice.keys', 'Every swing is a d20 plus your strength against the foe\'s armour. Catch a foe unaware with {J (or the left mouse button)} and it loses its first turn.'),
+        loc('dlg.drillmaster.try-dummy', 'Go on: take a swing at a dummy. Then come back to me.'),
       ]);
       return;
     }
-    await say([!tut.combo && !tut.dodge ? L.waitBoth : !tut.combo ? L.waitCombo : L.waitRoll]);
+    await say([loc('dlg.drillmaster.wait-swing', 'Still waiting on one honest swing at a dummy. The dummies are patient. I am less so.')]);
   },
 
   /**

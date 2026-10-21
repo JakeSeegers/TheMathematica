@@ -10,7 +10,7 @@
  *  - After 0.3 s they are magnetised within 2.2 u (coins 3.0 u), accelerating to 8 u/s, and
  *    collected within 0.5 u. Lifetime 40 s, blinking for the last 6 s. A full pool recycles the
  *    oldest coin. A pickup that would give nothing — a draught at the carry cap, a heart at full
- *    HP, a mana mote at full MP (`CombatSystem.wantsPickup`) — stays on the ground: it is not
+ *    HP, a mana mote at full MP (`GlaiveCombat.wantsPickup`) — stays on the ground: it is not
  *    magnetised, a magnetised one that becomes useless mid-flight drops where it is, and walking
  *    over it does not use it up.
  */
@@ -77,7 +77,7 @@ export const PICKUP_KINDS = Object.freeze(Object.keys(LOOKS));
 const isCoin = (kind) => kind.startsWith('coin');
 
 export class Pickups {
-  /** @param {GlaiveCombat} sys the CombatSystem */
+  /** @param {GlaiveCombat} sys the combat (GlaiveCombat) */
   constructor(sys) {
     this.sys = sys;
     /** @type {LivePickup[]} the pool (CAPACITY records, reused) */

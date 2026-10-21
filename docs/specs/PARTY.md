@@ -367,7 +367,7 @@ Start help, LS photo, RS lock-on, the d-pad moves; LT and LS are free only on pe
 button that does one thing on one level and another on the next is worse than none); a pad player
 opens the panel through a member's talk (A, *Tactics…*). The line is marked `pad: false`
 (`PARTY_CONTROL`): the combat legend's pad variant should leave it out (§11 C14). `_bindParty` runs
-again in every `_buildLevel` while a party exists: a combat level's CombatSystem puts back, when
+again in every `_buildLevel` while a party exists: a combat level's GlaiveCombat puts back, when
 it goes, the bindings it saved at its load — from before a party made on that level, which lost G
 on the next level. The HUD frames are fed every frame while
 playing and shown only then (`_updatePartyHud`: hidden in photo mode, a cutscene, on the title and
@@ -404,133 +404,38 @@ the party's conversation.
 
 ## 5. Companions in combat (party combat)
 
-*(Implementation: party combat — `src/game/party/MemberCombat.js`, `src/game/party/rules.js`,
-`src/game/combat/CombatSystem.js`, `Enemy.js`, `Projectiles.js`, `Hitboxes.js`, `hooks.js`,
-`src/game/combat/types.d.ts`, the COMBAT.md section it adds.)*
+*(Implementation: the turn-based GLAIVE combat — `src/game/glaive/GlaiveCombat.js` (`AllyView`),
+`Encounter.js` (`_decideAlly`), `Sheet.js` (`CLASS_BUILDS`), `allyRules.js`. The real-time
+`MemberCombat` this section described before is gone; [GLAIVE.md](GLAIVE.md) is the reference.)*
 
 ### 5.1 Allies
 
-- `CombatSystem.addAlly(member)` → a `MemberCombat` (implements `AllyCombatView`), stored in
-  `combat.allies` and as `member.combat`; `removeAlly(member)` drops it (its target, tokens, hit
-  tags and markers released). Combat's `dispose` drops all.
-- The member's stats: its class's `CLASS_STATS` at the **player's level** (the party levels with
-  the player): HP, MP, ATK, DEF. Kills by a member give the player XP and loot as the player's
-  kills do; the combat's kill count counts them.
-- **When it fights** (`active`): while the combat is `engaged`, or a foe has it as its target, or
-  it is down. Otherwise the follow drives it (§4.2; it catches up). A member that has been out of
-  a fight for 2 s regains HP and MP quickly (≈ 10 % / s) and a downed member gets up with 30 %.
-- **Frame order.** Each combat sub-step: the player's kit, then the allies (`MemberCombat.step`),
-  then the enemies (with `ctx.player` per target, §5.3), projectiles, `_resolve`. `afterPlayer`
-  separates allies too and writes their sprite speeds. Nothing advances while combat is inactive
-  (dialog, map, tactics panel, photo).
+- `GlaiveCombat.addAlly(member)` → an `AllyView` (implements `AllyCombatView`), stored in
+  `combat.allies` and as `member.combat`; `removeAlly(member)` drops it. Combat's `dispose` drops
+  all.
+- **Its sheet.** The member's class maps to a GLAIVE build (`CLASS_BUILDS`): a warden is a
+  Sellsword (spear, shield, medium armour), a ranger a Hunter (shortbow), a mystic a Holy Warrior
+  with Mending Light and Ember Dart. It is always at the **player's level** (`syncLevel`) and takes
+  talents and ability raises in its class's fixed order.
+- **When it fights** (`active`): while it is a combatant of a running fight (it was within 20 u of
+  the player when the fight started; in the boss fight it is placed inside the arena), and while it
+  lies Out of Action (`down`, until a waystone rest). Otherwise the follow drives it (§4.2).
+- Kills by a member count for the party: the fight's XP goes to the player's sheet.
 
-### 5.2 The kit (per class; numbers in `rules.js`, tuned by the combat package)
+### 5.2 Turns
 
-| Class | Basic attack | Skill (`skills`) | Heal (`heal`) |
-| --- | --- | --- | --- |
-| warden | spear thrust combo (2 hits, sector ≈ 1.7 u) | *Sweep*: a spin around it (r ≈ 2.2 u), knockback | *Mend*: heals the lowest ally below the threshold |
-| ranger | arrow (a player-side projectile, range ≈ 12 u) | *Volley*: three arrows fanned | *Mend* |
-| mystic | ember bolt (the player's bolt projectile, smaller splash) | *Flare*: a delayed burst on its target's spot | *Mend* (stronger) |
+A companion takes its own turns in the initiative order (d20 + DEX). Its choices follow its rule
+(§3; the thresholds in `allyRules.js`): it steps out of a marked furnace or magma pool
+(`evade: on`), heals the most hurt friend below the `heal` threshold with Mending Light, falls back
+behind the player below the `retreat` threshold, picks its foe by `target` (`leader`: the foe the
+player last attacked), takes on foes only within `distance` of the player (close 4 u, mid 8 u, far
+14 u), uses free talents and spells as `skills` allows, and does not attack with `attack: never`.
 
-Poses from the combat sheet (`sheet.poses`: `wind`, `slash`, `follow`, `thrust`, `spin`, `cast`,
-`aim`, `hurt`, `tuck`, `roll`, `down`) with `sprite.setFrame`; locomotion with `play`. Effects
-through the combat's `fx` / bursts / projectiles (already warmed). Allies' attacks show **no**
-ground markers (only enemy attacks are telegraphed). Hit numbers in the ally colour.
+### 5.3 Going down
 
-### 5.3 Enemies against allies
-
-- Each enemy has a **target**: the player (default) or an ally. Before an enemy's update core sets
-  `ctx.player` to its target's view (a `PlayerView` per ally: position, radius 0.3, body
-  [0, 1.8], facing, velocity, alive (not down), invulnerable, dodging, action, swing, sealed) and
-  back to the player's after the loop. With no ally nothing changes (P5).
-- Switching: an enemy hit by an ally switches to it when the ally is nearer to it than the player
-  (and holds it ≥ 2.5 s); every 0.5 s an enemy whose target is an ally goes back to the player
-  when the ally is down or gone, or the player is clearly nearer (< 0.6 × the distance). The boss
-  and its adds always target the player (their area attacks still hit allies).
-- Enemy hitboxes and projectiles resolve against allies too (after the player; one hit per tag per
-  target), with the player's damage formula against the ally's DEF; hitstun / knockback / down.
-  Allies have i-frames while rolling. No friendly fire.
-- `engaged` stays the player's (an aggroed foe within 16 u of the player).
-- Separation: allies are pushed by enemies (ally mass 3) and by each other; an ally never pushes
-  the player (it yields entirely).
-- Boss arena: when it closes, allies within 12 u are placed inside behind the player; while it is
-  closed they are held inside like the player; outside ones wait at the gate (they follow again
-  when it opens).
-- The player's death: allies stop (invulnerable, idle); the respawn puts them behind the player
-  (`game.teleport` → `party.onTeleport`) at full HP. A waystone's rest and the story's `heal`
-  refill them.
-
-### 5.4 The AI (per sub-step decision, re-planned ≈ every 0.25 s)
-
-In order: down → nothing; retreat (`retreat`) → move behind the player away from foes; evade
-(`evade: on`, standing in an enemy marker whose fill is ≥ 0.3 and < 1) → roll out; heal (§3) →
-*Mend* when MP allows (cooldown); skill (`skills`) → when ready and a cluster / target suits it;
-attack (`attack`, `target`) → pick the target (only foes within `leash` of the player plus reach;
-not dummies; not the boss's arena from outside), approach (melee: to reach; ranged / caster: to
-`standoff` with line of sight) along the walk grid when the straight way is blocked; else hold a
-spot beside the player (≈ 1.8 u, the side away from the nearest foe). Seeded (no `Math.random`);
-deterministic with `&fixedstep=1`.
-
-### 5.5 As built (party combat)
-
-The code: [`src/game/party/MemberCombat.js`](../../src/game/party/MemberCombat.js) (a member's
-fight), [`src/game/party/rules.js`](../../src/game/party/rules.js) (`DISTANCE`, `HEAL_AT`,
-`RETREAT_AT`, `CLASS_STATS`, `ALLY`, `KIT`), the combat side in
-[`CombatSystem.js`](../../src/game/combat/CombatSystem.js); the combat contract's view of it is
-[COMBAT.md §28](../contracts/COMBAT.md#28-party-allies). Deviations from §5.1–5.4: §11 rows PC1–PC26
-(PC15–PC26: the fixes and the balance pass after the play-test review).
-
-- **API.** `combat.addAlly(member)` → the `MemberCombat` (null before the combat's `load`; again
-  for the same member: the one it has); `combat.removeAlly(member)`; `combat.allies`;
-  **`combat.healAllies()`** → every companion full HP / MP and up again (the story's `heal` calls
-  it, falling back to each `member.combat.refill()`; also the `healAllies` hook) — the count.
-  `MemberCombat` implements `AllyCombatView` (`active`, `down`, `hp`, `hpMax`, `mp`, `mpMax`,
-  `refill()`, `onTeleport()`) and adds `info()` (the state row of §8), `id`, `cls`, `kills`,
-  `target`, `mode`, `action`, `counts`.
-- **Stats** at the player's level `L`: `CLASS_STATS[cls]` + `perLevel × (L − 1)` (HP, MP rounded).
-  At L 3: warden 98 HP / 36 MP / ATK 8.8 / DEF 4.9, ranger 75 / 36 / 10.4 / 3, mystic 70 / 72 /
-  9.7 / 3 (the player: 124 HP, ATK 18, DEF 6). ATK × `ALLY.partyAtk` by the members in the fight:
-  1 / 0.85 / 0.72 for one / two / three. A member that heals `often` (Support) waits twice as long
-  after a basic attack and for its skill (`ALLY.healerPace` 2). The player's level-up fills the
-  members up too; any change of the player's level keeps their HP / MP fractions (PC20). *(Before the balance pass,
-  PC25: warden 115 / 36 / 15 / 7, ranger 91 / 36 / 13.4 / 4.4, mystic 84 / 72 / 12 / 4.4, no
-  party factor.)*
-- **Regeneration.** In a fight 0.8 MP / s; out of one (`engaged` off and no foe after it) for 2 s:
-  10 % of max HP and MP per second, and a downed member gets up (24 f, pose `tuck`) with 30 %.
-- **The kit** (`KIT`; frames at 60 Hz; each class also has the dodge `roll`: 20 f, i-frames f1–13,
-  3 u, cooldown 1.1 s):
-
-  | Class | Basic | Skill (MP, cooldown) | Mend (MP, cooldown, heal, range) |
-  | --- | --- | --- | --- |
-  | warden | thrust 20 f (sector r 1.7 / 35°, mv 1.0, kb 0.5) then at once while in reach a second 26 f (r 1.8, mv 1.3, kb 1.2); 0.75 s pause; starts within 1.35 u + the foe's radius | *Sweep* (10, 7 s): spin 32 f, circle r 2.2 at f10–13, mv 1.3, kb 2.2, super armour to f16; ≥ 2 foes within 2.5 u, or an elite / the boss in reach | 10, 6 s, 25 % + 6, 8 u |
-  | ranger | arrow 26 f (release f14; 16 u/s, range 12, mv 1.0), 0.5 s | *Volley* (9, 7 s): three arrows ±12° (mv 0.9 each); ≥ 2 foes within 3 u of the target, or an elite / the boss | 10, 6 s, 25 % + 6, 8 u |
-  | mystic | ember bolt 26 f (release f14; 12 u/s, range 11, mv 1.15, splash r 0.8 mv 0.45), 0.75 s | *Flare* (12, 8 s): cast 30 f, a burst on the target's spot 0.7 s later (circle r 1.9, mv 2.2, kb 1.5) — no marker; ≥ 2 foes within 2.3 u of the target, or an elite / the boss | 12, 4.5 s, 35 % + 10, 9 u |
-
-  Poses: wind / thrust / follow (thrusts), spin, aim / follow (arrows), cast / follow (bolt,
-  Flare, Mend), tuck / roll (roll), hurt, down / tuck (knockdown), down (down). Effects: `thrust`,
-  `spin`, `impact`, bursts `healGlow`, `magicBurst`, `emberBurst`, `sparkle`, `hitSpark`,
-  `footstep`; sounds `swing`, `swingHeavy`, `whirl`, `arrow`, `bolt`, `hexBurst`, `pickup`, `dodge`,
-  `hurt`, `playerDown`. Mend heals the lowest HP fraction below the threshold among the player and
-  the members up (itself included); a downed member is not raised by it.
-- **Getting hit.** Hit stun 14 f (slide 10 f) then 0.5 s i-frames (blink); knockdown (`knockdown`
-  or kb ≥ 2.5) 36 + 18 f then 0.6 s; a hit without knockback does not interrupt Mend or Flare;
-  Sweep has super armour. Flat damage (magma) only takes HP. At 0 HP it is down: the foes after it
-  turn to the player at once, it lies (pose `down`, invulnerable) until the fight is over.
-- **Separation.** Only a member the combat drives (a follower has no collider, P4), up and not
-  rolling: against ground enemies by inverse mass (3 against the enemy's; an armoured one plows
-  through), against another member evenly, and it gives way to the player entirely.
-- **Where it stands and how it aims** (the review fixes; rows PC15–PC24, PC26). A warden strikes from a
-  spot round its foe that is not in front of the player on screen while another is free, and
-  steps to one between thrusts; it gives up a foe it cannot reach in height after 1 s. A shooter
-  shoots only from within its leash + 0.75 u of the player (and from on screen when a spot there
-  sees its target) and leads a moving target. Mends are reserved (one healer per target and
-  threshold) and checked again at the heal frame; a Support member keeps its hands free for them
-  (PC25). A member holding beside the player sets off only
-  beyond 1 u and faces one foe steadily. A member goes round the player in its way. The party level
-  is kept through any change of the player's level (HP and MP fractions). A foe not yet in the fight
-  is a target only within 6 u of the player, never an elite or the boss.
-
----
+A companion at 0 HP is Out of Action. When the fight is won it rolls on the injury table like the
+player; a slain companion stays down until the next waystone rest. Foes pick the nearest member of
+the party, the player or a companion.
 
 ## 6. The party UI
 
@@ -817,12 +722,12 @@ party as it was when the run began.
   in AUTOMATION_API.md).
 - `state().party` once a party exists: `PartyInfo` (members with position, mode, distance to the
   player, rule, preset; HP on combat levels; `menuOpen`).
-- `__game.combat` (combat package): `allies()` (each ally's state: hp, mp, action, target, down,
-  kills), `allyHurt(id, n)`, `allyTarget(enemyUid)` … and `state().combat.allies`.
+- `__game.combat` (combat levels): `state().combat.allies` (each ally's id, HP, level, AC, `down`,
+  `active`) and the fight's combatants in `state().combat.fight` ([GLAIVE.md §10](GLAIVE.md#10-test-hooks)).
 
-Harness scripts (one per package, named in its brief): `sandbox/party.follow.json`,
-`sandbox/party.combat.json`, `sandbox/party.story.json` (or Node tests), `sandbox/party_ui.json`,
-`sandbox/party.cinderwatch.json`.
+Harness scripts: `sandbox/party.follow.json`, `sandbox/party.follow.combat.json`,
+`sandbox/party.story.json`, `sandbox/party_ui.json`; the companions' fight choices are covered by
+`npm run glaive:test` (every preset).
 
 ---
 
@@ -849,17 +754,16 @@ with them (§10, must-not-change 2).
 ([Party balance](PARTY.md#9-the-demo-the-companions-of-cinderwatch-pass)).
 The enemies are set for the player with all three companions: the Mossy Glade for three (Ilse and
 Rook join at the camp), the rest of the pass for four (Sela joins at the crossroads). The balance
-is in the level's own data — the enemy table's counts and levels (55 hostile foes, was 50; the
-glade Lv 2, the Bramble Ruins Lv 7–8, the Hollow Mire Lv 6–7, the quarry Lv 8) and the region
-banners that name them ([cinderwatch-pass.md](../design/levels/cinderwatch-pass.md)) — and in
-Cinderheart's HP (`ENEMY_DEFS.golem.hp` 1800 → 5200; this level is the golem's only one). Nothing
-scales with the party: `ENEMY_DEFS`, `scaledDef`, the token budgets and the companions' numbers
-(`ALLY.partyAtk` …, §5.5) are unchanged, so a player alone meets the same foes, and the pass is
-hard alone by design. Measured with the fixed-step play-through bot
-([`sandbox/combat_play.js`](../../sandbox/combat_play.js), its human model at ≈ 30 % damage uptime
-beside the party it recruits): the Ruins 65–99 s, the Mire 61 s, the quarry 77–98 s, Cinderheart
-85–153 s, the player's own kills 46–51 %; alone the human model needs 4 draughts in the Ruins and 5
-for Cinderheart and wins barely, and the expert alone falls once to Cinderheart before it wins.
+is in the level's own data — the enemy table's counts and levels (55 hostile foes; the glade Lv 2,
+the Bramble Ruins Lv 7–8, the Hollow Mire Lv 6–7, the quarry Lv 8) and the region banners that name
+them ([cinderwatch-pass.md](../design/levels/cinderwatch-pass.md)) — and, since the GLAIVE
+conversion, in the stat blocks of [`bestiary.js`](../../src/game/glaive/bestiary.js) (a group's
+level adds hit dice and armour; Cinderheart has three pools of 60 / 52 / 52 HP). Nothing scales
+with the party, so a player alone meets the same foes, and the pass is hard alone by design. One
+branch brings the party to Cinderheart at about level 3; `npm run glaive:test` checks that a party
+of four can beat it ([GLAIVE.md §11](GLAIVE.md#11-tests)). (Before the conversion the real-time
+pass was measured with a fixed-step play-through bot; that bot and its numbers are gone with the
+real-time combat.)
 
 | The offer at the Crossroads Waystone | The story sets her rule on the quarry lip |
 | --- | --- |
@@ -1073,8 +977,8 @@ Ilse and Rook joined the demo and the enemies were balanced for four).*
   [I18N_GLOSSARY.md](I18N_GLOSSARY.md)). `sandbox/i18n.campaign.json` reads Ilse's and Rook's
   offers, *Not yet*, joins, member options and *Part ways*, the full-party lines, both new barks
   and Sela's "watch marches" line in ja and zh (0 misses).
-- **Test.** [`sandbox/party.cinderwatch.json`](../../sandbox/party.cinderwatch.json) (helpers
-  [`party_cinderwatch.js`](../../sandbox/party_cinderwatch.js), `window.PC`): real input throughout,
+- **Test.** `sandbox/party.cinderwatch.json` (removed) (helpers
+  `party_cinderwatch.js` (removed), `window.PC`): real input throughout,
   the party hooks only where a player could not (a fourth join, Pip as a member). s01–s14, Sela:
   the offer and *Not yet* (no party made), the short second talk and the join (her villager hidden,
   the toast, *G — Party* in the legend), a walk up the glade road (on her trail point, no snap),

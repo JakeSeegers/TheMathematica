@@ -3,8 +3,9 @@
 The design document of **Cinderwatch Pass**, the combat demo level: a 96 × 120 mountain pass climbed
 from a safe camp at the south edge, through a meadow, over one of two branches (the Bramble Ruins or
 the Hollow Mire) and across a quarry, to Cinderheart's caldera. It is the only shipped level with
-enemies, so it is the only one that turns the ARPG combat of
-[COMBAT.md](../../contracts/COMBAT.md) on (automatically: it has `enemy` objects and no
+enemies, so it is the only one that turns combat on — since 2026-10-21 the turn-based combat on
+the GLAIVE rules ([GLAIVE.md](../../specs/GLAIVE.md); the engine additions in
+[COMBAT.md](../../contracts/COMBAT.md)) — (automatically: it has `enemy` objects and no
 `environment.combat` key). Like Starfall Vale it is **generated** by a deterministic,
 self-validating script; this page documents what the script builds and how to change it. It
 also has a small **story**: three villagers join the player's party when asked — Sister Ilse (a
@@ -14,7 +15,9 @@ Crossroads Waystone ([below](#the-companions-and-the-story);
 2026-10-11 its enemies are **balanced for that party of four**: the player and three companions
 ([Party balance](../../specs/PARTY.md#9-the-demo-the-companions-of-cinderwatch-pass)).
 Nothing scales with the party's size; alone the pass is hard by design
-([Balance](#balance-for-a-party-of-four)).
+([Balance](#balance-for-a-party-of-four)). *The balance numbers below were measured with the
+old real-time combat; the packs, levels and places stay, and the GLAIVE stat blocks
+(`src/game/glaive/bestiary.js`) give their fighting numbers now.*
 
 | | |
 | --- | --- |
@@ -532,7 +535,7 @@ Cinderheart in 85.1 s) — [Balance](#balance-for-a-party-of-four). The greedy r
 the harness's 180 s protocol timeout can cut them off). `combat.perf.json`: worst 240 draw calls
 (≤ 300), combat tick p95 0.4 ms, 63 programs; `combat.programs.json` 63 = 63.
 
-The companions themselves: [`sandbox/party.cinderwatch.json`](../../../sandbox/party.cinderwatch.json)
+The companions themselves: `sandbox/party.cinderwatch.json` (removed)
 (helpers `party_cinderwatch.js`; real input throughout) — Sela's talk, the join, the tactics panel,
 her two events, *Part ways*, fights in the glade and the quarry (s01–s14, the fights with the
 companions in god mode, `allyGod(true)`); then (s15–s27) Ilse and Rook — first talk, *Not yet*, the

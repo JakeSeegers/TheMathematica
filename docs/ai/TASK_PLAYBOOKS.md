@@ -404,11 +404,10 @@ Docs: [architecture/GAME.md](../architecture/GAME.md), [specs/OBJECT_CATALOG.md]
    [specs/INPUT_AND_CONTROLS.md](../specs/INPUT_AND_CONTROLS.md),
    [user/PLAYING_THE_GAME.md](../user/PLAYING_THE_GAME.md), [user/shortcuts.html](../user/shortcuts.html).
 
-**Combat actions** are different: they are **not** in `DEFAULT_BINDINGS`. `CombatSystem.load()`
+**Combat actions** are different: they are **not** in `DEFAULT_BINDINGS`. `GlaiveCombat.load()`
 registers them at runtime with `input.addBindings(…)` from
 [`src/game/combat/bindings.js`](../../src/game/combat/bindings.js) (plus `enableMouseButtons`), so
-peaceful levels never bind J / K / L / U / I / O / C / 1–4 or the mouse buttons (KNOWN_ISSUES
-COMBAT-01); `CombatInput` buffers their edges for 10 frames. The pad legend and keycaps are
+peaceful levels never bind the combat keys or the mouse buttons (KNOWN_ISSUES COMBAT-01). The pad legend and keycaps are
 `COMBAT_CONTROLS` / `COMBAT_PAD_CONTROLS` (COMBAT.md §5). Actions added at runtime are typed by
 augmenting `ExtraActions` ([`core/types.d.ts`](../../src/engine/core/types.d.ts)) from the module
 that adds them — [`combat/types.d.ts`](../../src/game/combat/types.d.ts) declares the combat
@@ -901,43 +900,37 @@ several of them **fail silently** when three changes: the effect just disappears
 
 ## 19. Add an enemy kind
 
-A new hostile creature for combat levels (e.g. a spider). The binding rules are
-[COMBAT.md](../contracts/COMBAT.md) §7 (roster, telegraph grammar, state machine, tokens, height
-model), §9.3 (the `Enemy` interface), §10.3 (enemy sheets) and §15.6 (coverage). Read the brain
-of the closest existing kind first — `slime.js` (hopper), `goblin.js` (melee flanker),
-`archer.js` (ranged), `bat.js` (flier), `boar.js` (charger).
+A new hostile creature for combat levels (e.g. a spider). Combat is turn-based on the GLAIVE rules:
+a foe is a **stat block** (its fight) plus a **presence** (its size, sight and look). Read
+[specs/GLAIVE.md §7](../specs/GLAIVE.md#7-monsters) and the stat block of the closest existing kind
+first — `slime` (sticky), `goblin` (gang), `archer` (skirmish), `shaman` (hex / mend), `bat` (flit),
+`boar` (charge).
 
 | # | File | Symbol | What to do |
 | --- | --- | --- | --- |
-| 1 | [`src/engine/level/ObjectCatalog.js`](../../src/engine/level/ObjectCatalog.js) | `ENEMY_KINDS`, `ENEMY_INFO` | **Append** the kind (never reorder — the inspector lists them in this order) and its node-safe traits `{ label, flier, boss, passive, humanoid }`. The `enemy` type's *Kind* select, the editor and both generators read these. `ENEMY_KINDS` is a plain list: the type check works from the `EnemyKind` union (step 2), so keep the two in step. |
-| 2 | [`src/game/combat/defs.js`](../../src/game/combat/defs.js) | `ENEMY_DEFS[kind]` | Every field the other kinds have: `name, hp, atk, def, poise, mass, speed, aggro, leash, radius` (hurt), `moveRadius, body [y0, y1]` (the projectile height band, §7.1), `xp, gold [min, max], drops { heart, mana, draught }, token { type, cost }, flier, hover, passive, boss, labelY` (where bars and numbers sit). `scaledDef` scales it per level and elite — do not scale elsewhere. First add the kind to the `EnemyKind` union at the top of `defs.js`: the type check then requires its `ENEMY_DEFS` entry (`Record<EnemyKind, EnemyDef>`) and its brain in `BRAINS` (step 4). A new field goes into the `EnemyDef` typedef there (JSDoc, so the generator's Node program stays free of the combat code). |
-| 3 | [`src/engine/pixel/MonsterSprites.js`](../../src/engine/pixel/MonsterSprites.js) | `ENEMY_SHEET_KINDS`, `KINDS[kind]` | A monster: frame size `fw × fh`, `columns` (at least `COMMON`: `idle0, idle1, move0–3, windup, attack, hurt, dead`, plus the kind's own poses), `aliases`, `spriteOptions`, `ramps()` and a `draw(p, view, key)` painter with a 1 px transparent margin. A humanoid: a character `HUMANOID_SPECS` entry and aliases onto the combat poses (`windup`, `attack`, `dead` …). Glowing texels (eyes, gems) use `glowTexel` (alpha 204, §10.1). Check the value contrast against grass (≥ 1.6, §10.3). Add the kind to the `ENEMY_SHEET_KINDS` type and to `createEnemySheet`'s `kind` union. |
-| 4 | `src/game/combat/ai/<kind>.js` (new) and [`ai/index.js`](../../src/game/combat/ai/index.js) | the brain, `BRAINS` | A plain object with `init`, `engage`, `attack` and the optional members listed in `ai/index.js`. Timings in frames at the top of the file (`const F = (n) => n / 60`). **Telegraph grammar:** every attack — follow-ups too — has a wind-up ≥ 18 f, starts only while `e.canWindup(ctx)` (on screen), requests a token (`ctx.requestToken(e)`), and an area of r ≥ 1.5 or any ranged attack shows a draped ground marker whose progress reaches 1 when it resolves. Use `e.rng`, never `Math.random`; no imports of `Enemy.js` (pure helpers such as `aimVy` are fine). Type it like `goblin.js`: `/** @satisfies {Brain} */` on the object, `/** @type {Brain['engage']} */` (and so on) on each method, so parameters and arity come from the contract ([`combat/types.d.ts`](../../src/game/combat/types.d.ts)); module helpers get `@param {Enemy} e`, `{number} h`, `{CombatContext} ctx`; the brain state is a closed typedef (`XAI = Required<ReturnType<typeof x.init>>`) cast at each `e.ai` read — a field created later on `e.ai` must be added to it, as `GolemAI.weights` is. |
-| 5 | [`src/game/combat/Enemy.js`](../../src/game/combat/Enemy.js) | `die` | Only if the death look differs: slimes burst `gooPoof`, every other kind `deathPoof` when the fade ends. Kind-specific branches elsewhere in `Enemy.js` / `CombatSystem.js` are few (`dummy` refill, `boar` stagger length, `golem` arena) — search for `kind ===` before adding one. |
-| 6 | [`src/engine/audio/AudioSystem.js`](../../src/engine/audio/AudioSystem.js) | `COMBAT_SFX_NAMES` | Optional: the kind's own cue (like `slimeHop`, `batScreech`, `boarSnort`) — append to `COMBAT_SFX_NAMES`, **never** to `SFX_NAMES` (that list is part of the peaceful contract, COMBAT.md §2). |
-| 7 | [`sandbox/enemy_ai.js`](../../sandbox/enemy_ai.js) | the check list | Checks for the brain against the scripted fake player (wind-up length and on-screen rule, token use, marker progress at resolve, a determinism dump run twice). |
-| 8 | [`tools/make-cinderwatch-pass.mjs`](../../tools/make-cinderwatch-pass.mjs) | the combat objects of a zone | `coverage()` fails (and writes nothing) until a group of the new kind is placed. A new group id is an additive change to COMBAT.md §15.3 — record it there. Re-run the generator and read its rule report (rules 4–6, 14, 15, 17, 19 and 20 care about enemy homes). |
+| 1 | [`src/engine/level/ObjectCatalog.js`](../../src/engine/level/ObjectCatalog.js) | `ENEMY_KINDS`, `ENEMY_INFO` | **Append** the kind (never reorder — the inspector lists them in this order) and its node-safe traits `{ label, flier, boss, passive, humanoid }`. Keep it in step with the `EnemyKind` union (step 2). |
+| 2 | [`src/game/combat/defs.js`](../../src/game/combat/defs.js) | `EnemyKind`, `ENEMY_DEFS[kind]` | Add the kind to the union, then its presence: `name, speed, aggro, radius, moveRadius, body, flier, hover, passive, boss, labelY`. The type check then asks for the stat block (step 3). |
+| 3 | [`src/game/glaive/bestiary.js`](../../src/game/glaive/bestiary.js) | the kind's stat block | `ac, hd, attacks [{ name, damage, range, condition?, save?, dc?, rounds? }], attacksPerTurn, morale, xp, silver, dex, saves, moves`. Use an existing `MonsterMove`, or add a new one to the typedef **and** to the foe AI in [`Encounter.js`](../../src/game/glaive/Encounter.js). `monsterStats` scales it per level and elite — do not scale elsewhere. |
+| 4 | [`src/game/glaive/strings.js`](../../src/game/glaive/strings.js) | `log.monster.<move>` | Only for a new special move that writes its own log line: the line in en, ja and zh. |
+| 5 | [`src/engine/pixel/MonsterSprites.js`](../../src/engine/pixel/MonsterSprites.js) | `ENEMY_SHEET_KINDS`, `KINDS[kind]` | The sheet: at least `idle0, idle1, move0–3, windup, attack, hurt, dead` (the stage's `poseFor` uses `windup`, `attack`, `hurt`), with a 1 px transparent margin. A humanoid: a `HUMANOID_SPECS` entry and aliases. |
+| 6 | [`tools/make-cinderwatch-pass.mjs`](../../tools/make-cinderwatch-pass.mjs) | the combat objects of a zone | Place a group of the new kind, re-run the generator and read its rule report. |
+| 7 | [`tools/test-glaive.mjs`](../../tools/test-glaive.mjs) | the bestiary checks | A check that the new block is well formed and that its special move does what it says in an `Encounter`. |
 
-Comes for free: the editor (palette, inspector, 3D preview sprites through `createEnemySheet`, 2D
-glyphs and start dots, soft warnings), spawning, separation, hit resolution, loot, XP, bars and
-numbers, minimap dots, the warm-up (the level's sheets are painted and uploaded at load), the
-`luminati-sprite3d-lit-fx-v1` program (no new program unless you add a material).
+Comes for free: the editor (palette, inspector, previews), spawning, the fight's join rule, the
+turn order, loot, XP, bars and numbers, minimap dots, the warm-up.
 
 **Verify.**
 
 ```bash
-npm run typecheck                                                                                                     # defs, brain, sheet kind
-npm run check -- --page=sandbox/enemy_ai.html --query= --out=eai --fps=0 --script=sandbox/enemy_ai.actions.json      # all brains, your checks
-npm run check -- --page=sandbox/sprite_art.html --query=mode=combat --out=sa --fps=0 --script=sandbox/sprite_art.combat.json   # sheets, contrast, the 86 unchanged hashes
+npm run typecheck
+npm run glaive:test
 node tools/make-cinderwatch-pass.mjs && node tools/make-cinderwatch-pass.mjs --check
-npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1" --out=cw_prog --wait=5000 --fps=0 --script=sandbox/combat.programs.json   # alone on the GPU (its frame-gap check, KNOWN_ISSUES TOOL-18)
+npm run check -- --page=sandbox/sprite_art.html --query=mode=combat --out=sa --fps=0 --script=sandbox/sprite_art.combat.json
 ```
 
-Look at the sheet in `sprite_art.html?mode=combat` (every pose × direction) and at the kind in
-the level (teleport there, `__game.combat.wake('<group>#0')`, read the screenshots — is the wind-up
-pose readable under the highlight?). Then §16, `combat.play.json` (the fixed-step bot must still
-finish; compare its `summary` line with the previous run), and the docs: COMBAT.md §7 (additive rows), [specs/OBJECT_CATALOG.md](../specs/OBJECT_CATALOG.md),
-[architecture/modules/pixel.md](../architecture/modules/pixel.md),
+Then fight the kind in the level (teleport there, `__game.combat.fight('<group>')`, read the
+screenshots and `__game.combat.log()`), and update the docs: GLAIVE.md §7.1,
+[specs/OBJECT_CATALOG.md](../specs/OBJECT_CATALOG.md),
 [design/levels/cinderwatch-pass.md](../design/levels/cinderwatch-pass.md),
 [user/PLAYING_THE_GAME.md](../user/PLAYING_THE_GAME.md) (the bestiary).
 
@@ -949,107 +942,37 @@ Numbers live in a few pure-data places; change them there, never in scattered li
 
 | What | Where |
 | --- | --- |
-| Enemy stats, XP, gold, drop chances, token costs, per-level and elite scaling | [`src/game/combat/defs.js`](../../src/game/combat/defs.js) (`ENEMY_DEFS`, `scaledDef`) |
-| Enemy timings (wind-ups, cooldowns, ranges, speeds of moves) | the constants at the top of each [`src/game/combat/ai/*.js`](../../src/game/combat/ai/) brain (wind-ups ≥ 18 f, COMBAT.md §7.3) |
-| Boss HP and phase thresholds · boss moves | `ENEMY_DEFS.golem` (`hp`, `phases`) · [`ai/golem.js`](../../src/game/combat/ai/golem.js) (weights, cooldowns, gaps, `STALL_*`) |
-| Player curves (HP / MP / ATK / DEF per level, XP to next), skills, SP / MP costs, combo motion values, crits, roll / backstep, perfect dodge, draughts and price, the shop's wares (`SHOP_WARES`: price, one-time, upgrade and amount), lock-on, engagement, waystones | [`src/game/combat/rules.js`](../../src/game/combat/rules.js) |
-| Hit-stop, shake, flash times, the look offsets (engaged DOF, hurt vignette, low-HP pulse) | [`src/game/combat/Feel.js`](../../src/game/combat/Feel.js) (`HIT_STOP`, `SHAKE`, `CombatLook`) |
+| Foe stat blocks (AC, HD, attacks, morale, XP, silver), level and elite scaling | [`src/game/glaive/bestiary.js`](../../src/game/glaive/bestiary.js) (`BESTIARY`, `monsterStats`) |
+| The boss's turn (furnace, magma, bats, summon cap) | `BOSS` in [`Encounter.js`](../../src/game/glaive/Encounter.js), the golem's block in `bestiary.js` |
+| Core rules: DCs, HP and AC, weapons and armour, zones as distances, conditions, injuries, morale, draughts, the shop's wares, upgrades | [`src/game/glaive/rules.js`](../../src/game/glaive/rules.js) |
+| The player's builds, level-ups, rests | [`Sheet.js`](../../src/game/glaive/Sheet.js) (`BUILDS`, `CLASS_BUILDS`) |
+| Talents · spells | [`talents.js`](../../src/game/glaive/talents.js) · [`spells.js`](../../src/game/glaive/spells.js) |
+| The companions' choices (heal and retreat thresholds, leash) | [`allyRules.js`](../../src/game/glaive/allyRules.js) |
+| How fast the stage plays the beats | [`Stage.js`](../../src/game/glaive/Stage.js) (and `combat.pace(k)` in tests) |
 | Effect colours and sizes · marker colours · the ember wall | [`CombatFx.js`](../../src/game/combat/CombatFx.js) · [`GroundMarkers.js`](../../src/engine/fx/GroundMarkers.js) · [`BossArena.js`](../../src/game/combat/BossArena.js) |
-| Wind-up, elite and boss-hit tints | `WINDUP_HL`, `ELITE_HL` and `_writeFlash` in [`Enemy.js`](../../src/game/combat/Enemy.js) (Sprite3D highlight, KNOWN_ISSUES COMBAT-03) |
 | Battle music thresholds · combat SFX | [`CombatMusic.js`](../../src/game/combat/CombatMusic.js) · [`AudioSystem.js`](../../src/engine/audio/AudioSystem.js) |
-| Chase, return and zone rules (path search, replanning, leash, zone margin) | the constants at the top of [`Enemy.js`](../../src/game/combat/Enemy.js) (`NAV_EVERY`, `REPLAN_*`, `CHASE_COST`, `HOME_COST`, `ZONE_MARGIN`, `ZONE_LEAVE_S`) and [`Nav.js`](../../src/game/combat/Nav.js) (`CELL`, `CLEAR`, `STEP`, costs); `NAV_SEARCHES` in `CombatSystem.js` |
 | Where the fights are (packs, levels, elites, chests, waystones, shopkeepers) and the region banners' `Lv a–b` | [`tools/make-cinderwatch-pass.mjs`](../../tools/make-cinderwatch-pass.mjs) (`ENEMIES`, the regions), then regenerate |
 
 Rules of thumb:
 
-- **Cinderwatch Pass is balanced for a party of four** ([COMBAT.md](../contracts/COMBAT.md)):
-  the player with Rook and Sister Ilse (they join at the Waystone Camp, so the glade is fought by
-  three) and Sela (at the Crossroads Waystone; everything after it by four). The balance is the
-  level's own data — its enemy table and Cinderheart's HP (`ENEMY_DEFS.golem.hp` 5200, the golem's
-  only level is this one); nothing scales with the party at run time (`ENEMY_DEFS`, `scaledDef`,
-  the token budgets and the companions' numbers stay as they are), and solo play is hard by
-  design. Measure with the bot recruiting the party (its default) and solo (`party: false`, for the
-  report). Mind rule 15 (≤ 30 hostile start spots within 28 u; the peak is exactly 30 at (56, 70)
-  today): more foes there fail the generator, so raise a pack's level instead (`scaledDef` per
-  level: HP + 20 %, ATK + 12 %, XP + 25 %). A pack's level changed means its region banner's
-  `Lv a–b` changes with it: rule 16 compares the two and fails the generator until they agree.
+- **Cinderwatch Pass is balanced for a party of four**: the player with Rook and Sister Ilse (they
+  join at the Waystone Camp) and Sela (at the Crossroads Waystone). Nothing scales with the party
+  at run time; solo play is hard by design.
+- **Keep the rules fair to the table.** A GLAIVE number (a DC, a die, a bonus) is a rule; change it
+  only for a reason a player would accept, and record the change in GLAIVE.md §9.
+- **Measure, don't guess.** The encounter runs in Node without the game: `tools/test-glaive.mjs`
+  plays seeded fights (for example the boss against a level-3 party) and reports the win rate.
+  Run many seeds — one fight proves little.
 
-- **HDR colours:** bloom starts at luminance 1.05 (`0.2126 R + 0.7152 G + 0.0722 B`). Keep marker
-  and wind-up colours under it, or the phase-3 haze comes back (KNOWN_ISSUES COMBAT-15); use the
-  highlight, not `uFlash`, for any tint longer than a few frames (COMBAT-03).
-- **Telegraphs stay fair:** never below 18 f of wind-up, lanes lock 12–15 f before they fire, and
-  the phase-3 × 0.75 still has to stay ≥ 18 f.
-- **Pacing:** COMBAT.md §15.3 pins the XP pacing. Since the party-of-four table, on the Ruins route
-  (the bot): Lv 2 after the glade's west half, Lv 4 after the branch, Lv 6 after the quarry, so
-  the player meets Cinderheart at Lv 6 (it was the glade → Lv 2, a branch → Lv 3, the quarry →
-  Lv 5). Changing XP, enemy counts, enemy levels or `xpToNext` changes the level the player meets
-  the boss at — recompute that table.
-- **The boss's length has a floor:** the greedy run (god mode, always attacking, alone) must stay
-  ≥ 30 s for the fight and ≥ 7 s for phase 3 (`combat.boss.json` asserts it; today, at HP 5200,
-  99.8 s on the fixture and 96.6 s on Cinderwatch at Lv 5, and 83.5 s in `combat.boss.cw.json`'s
-  equipped greedy run with every chest and shop ware; 38.9 / 39.9 / 34.7 s at HP 1800). Raise
-  `ENEMY_DEFS.golem.hp` if it drops below; the thresholds are fractions. The greedy run now steps
-  ≈ 5 900 frames in one `eval`: run those two scripts alone (under a loaded GPU it can pass the
-  harness's 180 s protocol limit).
-- **Measure, don't guess** (the 2026-09-28 balance pass, KNOWN_ISSUES COMBAT-12): the play-through
-  bot ([`sandbox/combat_play.js`](../../sandbox/combat_play.js)) is deterministic in fixed step and
-  has balance settings — `start({ route, skill, shop, party, … })`:
-  - `route`: `'ruins'` (default), `'mire'`, `'full'` (a thorough player: the whole glade and both
-    branches) or `'boss'` (a boss-only probe: `at` the Quarry Waystone, `kill` the groups to clear
-    first, `player` = `setPlayer` values incl. `upgrades`, `delay` idle frames for another sample);
-  - `skill`: `'expert'` (default; reads every telegraph) or `'human'` (the seeded human model:
-    reacts 0.25 s late, misses 20 % of telegraphs, attacks in bursts at ≈ 30 % damage uptime,
-    uses skills late, drinks below 30 % HP even mid-combo; an object of `{ reaction, miss, burst,
-    pause, healAt, skillDelay, drinkBusy, seed }` overrides the preset);
-  - `shop: false` skips the shops;
-  - `party` (default true): its `join` tasks recruit Rook and Ilse at the camp and Sela at the
-    Crossroads Waystone, by their talks; `party: false` plays alone (no `join` task, `/solo` in the
-    summary line).
-
-  `report()` / `verify()` add per-zone figures (`zones`: time, fight time, damage taken in shares
-  of max HP, deaths, draughts, uptime, the companions' kills and downs — `allyKills` /
-  `allyDowns` —, level / gold / stats at the end), `bossAttempts`, `damageBy` (per enemy kind and
-  boss move), `bought` / `goldSpent`, `draughtsDrunk`, `bossUptime`, `segments` and `party` (the
-  companions' kills, damage dealt and taken, downs, HP healed; the player's own damage and kills).
-  Design targets, with the party: the glade teaches (≈ 0 damage), each branch is a step up, the
-  quarry is the hardest normal zone, the boss takes 90–120 s at 30–35 % uptime, deaths are possible
-  but not the norm, gold has something to buy. The final table of the party-of-four pass, the
-  human model beside the party (three runs): the glade 28–35 s, the Ruins 65–99 s, the Mire 61 s,
-  the quarry 77–98 s, Cinderheart 87–153 s; the player's own kills 46–51 %. Alone the human model
-  wins only barely (4 draughts in the Ruins, 5 against Cinderheart). Run several `human` seeds (a
-  boss probe per seed) — one run proves little.
-
-**Verify.** The stepped scripts pin exact behaviour, so a balance change moves their numbers:
-
-- `combat.fight.json` / `combat.fight.cw.json` — the combo's damage bands use `COMBO` motion values
-  (hard-coded as `[1.0, 1.1, 1.8]` in `tests.combo()` of `sandbox/combat_fixture.js`) and the golden
-  total at `seed(1)` (21 · 13 · 23 = 57 today, recorded in COMBAT.md §27.1 I12) changes with ATK,
-  DEF, motion values or the crit rolls — update the recorded values in the same change and say why.
-  `tests.costs()` asserts the SP / MP costs (A1 = 5 SP).
-- `combat.boss.json` / `combat.boss.cw.json` — the greedy floor and the kneel cap (8 % of max HP);
-  each alone on the GPU (the long greedy run).
-- `combat.iframes.json` — the perfect-dodge window; `combat.death.json` — the gold loss (10 %).
-- `enemy_ai.actions.json` — timings the brains assert (wind-up lengths, lane lock, paths, zones).
-- `combat.play.json` / `combat.play.fast.json` — the fixed-step bot must still clear the level.
-  Any gameplay change shows as a different `digest` in its `summary` line (compare the whole line
-  with the previous run: time, level, gold, kills, deaths, the boss's phase times); its `trace`
-  (the digest every 10 s of game time) tells where two runs part. Same tree → same digest on any
-  GPU load, so it need not run alone. `combat.play.human.json` runs the human model;
-  `combat.play.realtime.json` is the real-time feel check — that one alone on the GPU
-  (KNOWN_ISSUES TOOL-17). All of them recruit the party (today `cf165213` for `.json` and `.fast`,
-  `8c4ef71b` for `.human`); a solo run is a copy of a script whose start step reads
-  `import('/sandbox/combat_play.js').then((m) => m.start({ party: false }))`, for the report only.
-- `party.combat.json` — the companions in combat on the level's packs (the warden's glade fight,
-  the hex, the leash, the lead, the arena): its recorded numbers move with the packs.
+**Verify.**
 
 ```bash
-npm run check -- --page=sandbox/index.html --query= --out=play --wait=0 --fps=0 --script=sandbox/combat.play.json        # fixed step, ≈ 2.5–8 min
-npm run check -- --page=sandbox/index.html --query= --out=playf --wait=0 --fps=0 --script=sandbox/combat.play.fast.json  # same digest, every 4th frame drawn
+npm run glaive:test
+npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1&fixedstep=1" --out=gfight --wait=0 --width=960 --height=540 --script=sandbox/combat.glaive.fight.json
+npm run check -- --page=game.html --query="level=cinderwatch-pass&autostart=1&fixedstep=1" --out=gboss --wait=0 --width=960 --height=540 --script=sandbox/combat.glaive.boss.json
 ```
 
-Record a tuning pass in COMBAT.md §27 (the section and the old → new value) and in
-KNOWN_ISSUES COMBAT-12 if the balance picture changes. If the intended party size changes,
-update the level's design guide and combat contract with the rationale. The region banners are
+Record a tuning pass in GLAIVE.md (the section and the old → new value). The region banners are
 translated text: run `npm run i18n:check` and the worklist after changing them (§26).
 
 ---
@@ -1088,14 +1011,13 @@ one `file(line,col): error TSnnnn: …` line per error); one program alone:
 | --- | --- | --- |
 | an object type | the catalog entry (the level types derive from it); for a prop a `case` in `LevelObjectBuilder.build` and a `PropFactory` method whose `opts` JSDoc declares the catalog's default `opts`; default-less optional fields in `ObjectExtras` | [§1](#1-add-a-placeable-object-type) |
 | a level or environment field | an optional member of `LevelEnvironment` / `LevelWater` (or `ObjectExtras` for an object field) in `level/types.d.ts` | [§11](#11-add-a-level-field) |
-| an enemy kind | `EnemyKind` in `defs.js` → its `ENEMY_DEFS` entry and its `BRAINS` brain; the `ENEMY_SHEET_KINDS` / `createEnemySheet` kind unions | [§19](#19-add-an-enemy-kind) |
+| an enemy kind | `EnemyKind` in `defs.js` → its `ENEMY_DEFS` entry and its stat block in `glaive/bestiary.js`; the `ENEMY_SHEET_KINDS` / `createEnemySheet` kind unions | [§19](#19-add-an-enemy-kind) |
 | a sound | its name in `SFX_NAMES` or `COMBAT_SFX_NAMES` | [§17](#17-add-a-sound-effect) |
 | an input action | its key in `DEFAULT_BINDINGS` / `DEFAULT_PAD_BINDINGS`; a runtime action through an `ExtraActions` augmentation | [§8](#8-add-an-input-action-game-key) |
 | a particle preset / parameter | nothing for a preset; a `DEFAULTS` entry for a new parameter | [§3](#3-add-a-particle-preset) |
 | an editor tool / event | `/** @type {Tool} */` on the tool; an `EditorEvents` entry for an event | [§10](#10-add-an-editor-tool) |
-| an automation hook (`window.__game`, `__editor`, `__luminati`, `__game.combat`) | the member in its typedef — `GameHooks` above `Game._exposeGlobal`, `EditorHooks` in `EditorApp.js`, `LuminatiHooks` in `main.js`, `CombatHooks` in `combat/types.d.ts`. The objects are checked against them: a member added without its typedef line is an excess-property error, a typedef member never set a missing-property error. Then its row in [AUTOMATION_API.md](../specs/AUTOMATION_API.md) | — |
+| an automation hook (`window.__game`, `__editor`, `__luminati`, `__game.combat`) | the member in its typedef — `GameHooks` above `Game._exposeGlobal`, `EditorHooks` in `EditorApp.js`, `LuminatiHooks` in `main.js`, `GlaiveHooks` in `glaive/hooks.js`. The objects are checked against them: a member added without its typedef line is an excess-property error, a typedef member never set a missing-property error. Then its row in [AUTOMATION_API.md](../specs/AUTOMATION_API.md) | — |
 | a sandbox handle (`window.__x`) | a typedef next to its assignment in the sandbox file and a `Window` member in `src/globals.d.ts` | — |
-| a `CombatContext` member | the member in `combat/types.d.ts`, its implementation in `CombatSystem._makeContext` and in the mock context of `sandbox/enemy_ai.js` (both are checked against it); COMBAT.md §9.2 | — |
 | a field set lazily (`this._x ??= …`) | a module augmentation in the folder's `types.d.ts` | — |
 
 **Verify.** Both programs report 0 errors. After a change of comments and types only, the build is

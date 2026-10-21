@@ -850,8 +850,8 @@ Enemy groups ([§8.6](#86-combat-content-enemy-groups-chests-waystones)): one `S
 `_enemySheet(kind)`, also handed to the ghost) through the same `_makeSprite` path as NPCs
 (shadow-only sun quad, `registerEmissive` fill) with the sheet's `spriteOptions` — the plain lit
 program, never the game's `combatFx` variant. Start spots use the combat spawn's test
-(`enemyTest(flier)`, = `CombatSystem._spawnGroup`): walkers need standable ground
-(`Viewport3D._isStandable` = `CombatSystem.standable`: walkable, and on a water tile only a walk
+(`enemyTest(flier)`, = `GlaiveCombat._spawnGroup`): walkers need standable ground
+(`Viewport3D._isStandable` = `GlaiveCombat.standable`: walkable, and on a water tile only a walk
 surface — a bridge deck — above the water surface), fliers anything walkable or water; both avoid
 the villagers' colliders. **Re-scatter**: a group whose footprint (spots, scatter `area` / home
 square, boss arena; `_footprint`) touches changed terrain, a prop with colliders built or removed
@@ -1066,7 +1066,7 @@ The preview is trustworthy because it **calls the game's code** wherever it can:
 
 **Duplicated logic to keep in sync by hand** (drift risks): the Weather option lists
 (`Inspector.js`, `dialogs.js`), `rooms.isRoom` / `backdropKind` (the main chunk's copies of
-`LevelLook.isInterior` / `backdropColor`, a line or two each), and the enemy start-spot test (the combat spawn's `CombatSystem._spawnGroup`
+`LevelLook.isInterior` / `backdropColor`, a line or two each), and the enemy start-spot test (the combat spawn's `GlaiveCombat._spawnGroup`
 / `standable` against `ActorPreview.enemyTest` + `Viewport3D._isStandable`, and the data-only
 `levelStartTest` in `enemyGroups.js`; the villager collider radius 0.34 of `Npc` in
 `ActorPreview` and `enemyGroups.js`, the chest / waystone radii of `CombatProps` in

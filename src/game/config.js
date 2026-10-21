@@ -58,7 +58,7 @@ export const KEYFRAME_OVERRIDES = Object.freeze({
  * Its strength is therefore SPRITE_FILL below: the game (Game._buildLevel: player, villagers,
  * critters, enemies) and the editor preview register every such sprite with
  * `registerEmissive(material, SPRITE_FILL)`, which sets `emissiveIntensity` at once and every
- * frame. `emissiveIntensity` here only lights sprites nobody registers (the combat_fx and enemy_ai
+ * frame. `emissiveIntensity` here only lights sprites nobody registers (the combat_fx
  * sandboxes); without it Sprite3D's default (1) would apply to them.
  */
 export const CHARACTER_SPRITE_OPTS = Object.freeze({

@@ -839,7 +839,7 @@ export class Viewport3D {
   }
 
   /**
-   * The combat spawn's standable test (`CombatSystem.standable`): walkable (above) and, on a water
+   * The combat spawn's standable test (`GlaiveCombat.standable`): walkable (above) and, on a water
    * tile, a walk surface (bridge deck) above the water — open water is not ground.
    */
   _isStandable(x, z) {

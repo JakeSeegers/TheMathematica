@@ -384,7 +384,7 @@ export class ActorPreview {
   }
 
   /**
-   * Where an enemy may start (the combat spawn, COMBAT.md §9.2 / §14.1: `CombatSystem._spawnGroup`):
+   * Where an enemy may start (the combat spawn, COMBAT.md §9.2 / §14.1: `GlaiveCombat._spawnGroup`):
    * walkers on standable ground — walkable, and over water only on a deck above it; fliers
    * anywhere walkable or over water. Both avoid prop and villager colliders.
    * @param {boolean} flier
