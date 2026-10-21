@@ -1,0 +1,8 @@
+[
+  { "eval": "window.__postfx.freeze(true); 'default ' + JSON.stringify(window.__postfx.flickerTest(24, 0.013))" },
+  { "eval": "window.__postfx.set('dof.enabled', false); 'dofOff ' + JSON.stringify(window.__postfx.flickerTest(24, 0.013))" },
+  { "eval": "window.__postfx.reset(); window.__postfx.set('dof.bokehSprites', false); 'noSprites ' + JSON.stringify(window.__postfx.flickerTest(24, 0.013))" },
+  { "eval": "window.__postfx.reset(); window.__postfx.set('grade.enabled', false); 'gradeOff ' + JSON.stringify(window.__postfx.flickerTest(24, 0.013))" },
+  { "eval": "window.__postfx.reset(); window.__postfx.set('dof.maxBlur', 28); 'strong ' + JSON.stringify(window.__postfx.flickerTest(24, 0.013))" },
+  { "eval": "window.__postfx.reset(); window.__postfx.set('enabled', false); 'allOff ' + JSON.stringify(window.__postfx.flickerTest(24, 0.013))" }
+]

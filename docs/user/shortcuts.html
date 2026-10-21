@@ -1,0 +1,583 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luminati Shortcuts</title>
+<meta name="description" content="Every key binding and mouse gesture of the Luminati game and level editor on one printable page.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' rx='3' fill='%231a2238'/%3E%3Cpath fill='%23c9a45c' d='M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z'/%3E%3Cpath fill='%23f59a2e' d='M7 5h2v2h1v3H9v1H7v-1H6V7h1z'/%3E%3Cpath fill='%23fff6d0' d='M7 8h2v2H7z'/%3E%3C/svg%3E">
+<script>
+  /* Apply a remembered docs theme before the first paint (shared with docs/index.html). */
+  (function () {
+    try {
+      var t = localStorage.getItem('luminati-docs-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* no storage: follow the system */ }
+  })();
+</script>
+<style>
+  /* ---------------------------------------------------------------------------------------
+     Tokens (same palette as docs/index.html). Light is the default; dark follows the system
+     unless a theme was chosen with the toggle.
+     --------------------------------------------------------------------------------------- */
+  :root {
+    --navy-950: #070b16;
+    --navy: #0e1424;
+    --navy-2: #1a2238;
+    --navy-3: #26314f;
+    --gold: #c9a45c;
+    --gold-hi: #f2d990;
+    --gold-lo: #8a6a2c;
+    --ember: #f59a2e;
+
+    --bg: #f4efe4;
+    --surface: #fffcf6;
+    --surface-2: #f7f1e5;
+    --ink: #151c30;
+    --ink-2: #3d465f;
+    --ink-3: #676e83;
+    --accent: #8a6722;
+    --line: rgba(21, 28, 48, 0.12);
+    --line-gold: rgba(138, 103, 34, 0.38);
+    --chip: rgba(138, 103, 34, 0.1);
+    --key-top: #ffffff;
+    --key-bot: #efe7d6;
+    --key-line: rgba(21, 28, 48, 0.28);
+    --key-ink: #151c30;
+    --gesture-bg: rgba(26, 34, 56, 0.07);
+    --gesture-ink: #26314f;
+    --shadow: 0 1px 2px rgba(14, 20, 36, 0.06), 0 10px 28px rgba(14, 20, 36, 0.08);
+
+    --display: "Cinzel", "Trajan Pro", "Palatino Linotype", "Book Antiqua", Palatino, "URW Palladio L", Georgia, serif;
+    --serif: "Crimson Pro", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, Menlo, monospace;
+    --gutter: clamp(16px, 4vw, 44px);
+    --maxw: 1320px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0f1c;
+      --surface: #121a2e;
+      --surface-2: #182139;
+      --ink: #ede5d2;
+      --ink-2: #b9bfcf;
+      --ink-3: #8b92a7;
+      --accent: #dcb86f;
+      --line: rgba(201, 164, 92, 0.14);
+      --line-gold: rgba(201, 164, 92, 0.42);
+      --chip: rgba(201, 164, 92, 0.12);
+      --key-top: #2a3557;
+      --key-bot: #1d263f;
+      --key-line: rgba(201, 164, 92, 0.42);
+      --key-ink: #f3e7c6;
+      --gesture-bg: rgba(201, 164, 92, 0.1);
+      --gesture-ink: #e6d3a4;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0f1c;
+    --surface: #121a2e;
+    --surface-2: #182139;
+    --ink: #ede5d2;
+    --ink-2: #b9bfcf;
+    --ink-3: #8b92a7;
+    --accent: #dcb86f;
+    --line: rgba(201, 164, 92, 0.14);
+    --line-gold: rgba(201, 164, 92, 0.42);
+    --chip: rgba(201, 164, 92, 0.12);
+    --key-top: #2a3557;
+    --key-bot: #1d263f;
+    --key-line: rgba(201, 164, 92, 0.42);
+    --key-ink: #f3e7c6;
+    --gesture-bg: rgba(201, 164, 92, 0.1);
+    --gesture-ink: #e6d3a4;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+  }
+
+  /* --------------------------------------------------------------------------------------- */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; scroll-padding-top: 16px; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 400 15px/1.5 var(--sans);
+    overflow-x: hidden;
+  }
+  a { color: var(--accent); text-underline-offset: 2px; }
+  a:hover { color: var(--ember); }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  code { font-family: var(--mono); font-size: 0.86em; background: var(--chip); padding: 0.05em 0.35em; border-radius: 4px; }
+  .wrap { max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* ---- title plate (navy in both themes) ---- */
+  .plate {
+    position: relative;
+    color: #ede5d2;
+    background:
+      radial-gradient(ellipse at 18% 0%, rgba(245, 154, 46, 0.16), transparent 55%),
+      radial-gradient(ellipse at 90% 120%, rgba(201, 164, 92, 0.14), transparent 60%),
+      linear-gradient(180deg, var(--navy-2), var(--navy) 70%, var(--navy-950));
+    border-bottom: 1px solid rgba(201, 164, 92, 0.5);
+    overflow: hidden;
+  }
+  .plate::after {
+    content: "";
+    position: absolute; left: 0; right: 0; bottom: 5px; height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(201, 164, 92, 0.55), transparent);
+  }
+  .plate .wrap { display: flex; flex-wrap: wrap; align-items: center; gap: 18px 28px; padding-top: 26px; padding-bottom: 30px; }
+  .brand { display: flex; align-items: center; gap: 16px; min-width: 0; flex: 1 1 420px; }
+  .brand svg { width: 52px; height: 52px; flex: none; filter: drop-shadow(0 0 14px rgba(245, 154, 46, 0.35)); }
+  .eyebrow {
+    display: flex; align-items: center; gap: 10px;
+    font: 600 11.5px/1.2 var(--sans); letter-spacing: 0.26em; text-transform: uppercase; color: var(--gold);
+  }
+  .eyebrow::before { content: ""; width: 6px; height: 6px; background: var(--gold); transform: rotate(45deg); flex: none; }
+  h1 {
+    margin: 6px 0 4px;
+    font: 600 clamp(26px, 4.2vw, 40px)/1.1 var(--display);
+    letter-spacing: 0.04em;
+    color: #f4e8c8;
+  }
+  .lede { margin: 0; font: italic 400 17px/1.45 var(--serif); color: #c9cfdd; max-width: 60ch; }
+  .actions { display: flex; flex-wrap: wrap; gap: 10px; align-items: center; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 8px;
+    height: 36px; padding: 0 14px; border-radius: 8px;
+    border: 1px solid rgba(201, 164, 92, 0.55);
+    background: rgba(201, 164, 92, 0.1); color: #f0d28e;
+    font: 600 13px/1 var(--sans); letter-spacing: 0.02em; cursor: pointer; text-decoration: none;
+  }
+  .btn:hover { background: rgba(201, 164, 92, 0.2); color: #fff3d0; }
+  .btn.primary { background: linear-gradient(180deg, #d8b66c, #b8914a); color: #1a1206; border-color: #e2c27b; }
+  .btn.primary:hover { background: linear-gradient(180deg, #e6c67f, #c49c55); color: #120c04; }
+  .btn svg { width: 16px; height: 16px; flex: none; }
+  .theme-btn .i-sun { display: none; }
+  :root[data-theme="dark"] .theme-btn .i-sun { display: block; }
+  :root[data-theme="dark"] .theme-btn .i-moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-btn .i-sun { display: block; }
+    :root:not([data-theme="light"]) .theme-btn .i-moon { display: none; }
+  }
+
+  /* ---- contents / notes strip ---- */
+  .strip { display: flex; flex-wrap: wrap; gap: 10px 18px; align-items: center; padding: 18px 0 4px; color: var(--ink-2); font-size: 14px; }
+  .chip {
+    display: inline-flex; align-items: center; gap: 8px; height: 30px; padding: 0 12px;
+    border: 1px solid var(--line-gold); border-radius: 999px; background: var(--surface);
+    color: var(--ink); text-decoration: none; font-weight: 600; font-size: 13px;
+  }
+  .chip:hover { border-color: var(--gold); color: var(--accent); }
+  .chip b { color: var(--accent); font-weight: 700; }
+
+  /* ---- sections ---- */
+  section.sheet { padding: 26px 0 8px; }
+  .sheet-head { display: flex; align-items: flex-end; flex-wrap: wrap; gap: 6px 18px; margin: 8px 0 4px; }
+  h2 {
+    margin: 0;
+    font: 600 clamp(22px, 3vw, 30px)/1.15 var(--display);
+    letter-spacing: 0.06em;
+    color: var(--ink);
+  }
+  .sheet-head p { margin: 0 0 3px; color: var(--ink-3); font: italic 400 16px/1.4 var(--serif); }
+  .ornament { display: block; width: min(360px, 80%); height: 14px; margin: 10px 0 18px; color: var(--gold); }
+
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 300px), 1fr)); gap: 16px; align-items: start; }
+  .card {
+    background: var(--surface);
+    border: 1px solid var(--line);
+    border-top: 2px solid var(--line-gold);
+    border-radius: 10px;
+    padding: 14px 16px 12px;
+    box-shadow: var(--shadow);
+    min-width: 0;
+  }
+  .card.wide { grid-column: 1 / -1; }
+  h3 {
+    display: flex; align-items: center; gap: 9px;
+    margin: 0 0 10px;
+    font: 600 13px/1.2 var(--sans); letter-spacing: 0.16em; text-transform: uppercase; color: var(--accent);
+  }
+  h3 svg { width: 16px; height: 16px; flex: none; color: var(--gold); }
+  ul.sc { list-style: none; margin: 0; padding: 0; }
+  ul.sc li {
+    display: grid; grid-template-columns: minmax(0, 46%) minmax(0, 1fr); gap: 4px 12px; align-items: baseline;
+    padding: 6px 0; border-top: 1px dashed var(--line);
+  }
+  ul.sc li:first-child { border-top: 0; }
+  .k { display: flex; flex-wrap: wrap; align-items: center; gap: 4px; min-width: 0; }
+  .d { color: var(--ink-2); font-size: 14px; min-width: 0; overflow-wrap: anywhere; }
+  .d small { color: var(--ink-3); font-size: 12.5px; }
+  kbd {
+    display: inline-flex; align-items: center; justify-content: center;
+    min-width: 1.95em; height: 1.95em; padding: 0 0.5em;
+    border: 1px solid var(--key-line); border-bottom-width: 3px; border-radius: 6px;
+    background: linear-gradient(180deg, var(--key-top), var(--key-bot));
+    color: var(--key-ink);
+    font: 600 12px/1 var(--sans); letter-spacing: 0.01em; white-space: nowrap;
+    box-shadow: 0 1px 0 rgba(0, 0, 0, 0.06);
+  }
+  .sep { color: var(--ink-3); font-size: 12px; padding: 0 1px; }
+  .g {
+    display: inline-flex; align-items: center; gap: 6px;
+    padding: 0.18em 0.6em; border-radius: 999px;
+    background: var(--gesture-bg); color: var(--gesture-ink);
+    font: 600 12px/1.4 var(--sans); white-space: nowrap;
+  }
+  .g svg { width: 12px; height: 12px; flex: none; }
+  .note { margin: 10px 0 0; color: var(--ink-3); font-size: 13px; }
+  .tips { margin: 0; padding-left: 18px; color: var(--ink-2); font-size: 14px; }
+  .tips li { margin: 4px 0; }
+  .src { margin: 14px 0 0; color: var(--ink-3); font-size: 12.5px; }
+
+  footer { margin-top: 30px; border-top: 1px solid var(--line); }
+  footer .wrap { display: flex; flex-wrap: wrap; gap: 8px 22px; padding-top: 18px; padding-bottom: 34px; color: var(--ink-3); font-size: 13px; }
+
+  @media (max-width: 520px) {
+    ul.sc li { grid-template-columns: 1fr; }
+    .plate .wrap { padding-top: 20px; padding-bottom: 24px; }
+  }
+
+  /* ---- print: a clean two-column sheet, the editor on its own page ---- */
+  @media print {
+    @page { size: A4; margin: 11mm 10mm; }
+    :root, :root[data-theme="dark"], :root:not([data-theme="light"]) {
+      --bg: #ffffff; --surface: #ffffff; --ink: #000000; --ink-2: #1c1c1c; --ink-3: #555555;
+      --accent: #6a4d12; --line: #cfcfcf; --line-gold: #b89556; --chip: #f2f2f2;
+      --key-top: #ffffff; --key-bot: #ffffff; --key-line: #8a8a8a; --key-ink: #000000;
+      --gesture-bg: #efefef; --gesture-ink: #111111; --shadow: none;
+    }
+    body { font-size: 11px; background: #fff; }
+    .no-print { display: none !important; }
+    .plate { background: none; color: #000; border-bottom: 2px solid #b89556; }
+    .plate::after { display: none; }
+    .plate .wrap { padding: 0 0 8px; }
+    .brand svg { width: 34px; height: 34px; filter: none; }
+    h1 { color: #000; font-size: 22px; margin: 2px 0; }
+    .lede { color: #333; font-size: 12px; }
+    .eyebrow { color: #6a4d12; }
+    .wrap { max-width: none; padding: 0; }
+    section.sheet { padding: 10px 0 0; }
+    section.sheet + section.sheet { break-before: page; }
+    .ornament { margin: 4px 0 8px; height: 10px; }
+    h2 { font-size: 18px; }
+    .grid { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .card { break-inside: avoid; padding: 7px 9px 6px; border-radius: 6px; }
+    h3 { font-size: 10px; margin-bottom: 4px; }
+    ul.sc li { padding: 2.5px 0; }
+    .d { font-size: 10.5px; }
+    kbd { font-size: 9.5px; border-bottom-width: 2px; box-shadow: none; }
+    .g { font-size: 9.5px; }
+    a { color: inherit; text-decoration: none; }
+    footer { margin-top: 10px; }
+    footer .wrap { padding: 6px 0 0; font-size: 9.5px; }
+  }
+</style>
+</head>
+<body>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <defs>
+    <symbol id="i-mouse" viewBox="0 0 16 16"><rect x="4" y="1.5" width="8" height="13" rx="4" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M8 1.8v4.4" stroke="currentColor" stroke-width="1.5"/></symbol>
+    <symbol id="i-diamond" viewBox="0 0 16 16"><path d="M8 1.5 14.5 8 8 14.5 1.5 8z" fill="currentColor"/></symbol>
+  </defs>
+</svg>
+
+<header class="plate">
+  <div class="wrap">
+    <div class="brand">
+      <svg viewBox="0 0 16 16" shape-rendering="crispEdges" aria-hidden="true">
+        <rect width="16" height="16" rx="3" fill="#1a2238"/>
+        <path fill="#c9a45c" d="M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z"/>
+        <path fill="#f59a2e" d="M7 5h2v2h1v3H9v1H7v-1H6V7h1z"/>
+        <path fill="#fff6d0" d="M7 8h2v2H7z"/>
+      </svg>
+      <div>
+        <div class="eyebrow">Luminati · Cheat-sheet</div>
+        <h1>Keys &amp; Gestures</h1>
+        <p class="lede">Every key binding and mouse gesture of the game and the level editor, on one page.</p>
+      </div>
+    </div>
+    <div class="actions no-print">
+      <button class="btn primary" type="button" id="printBtn">
+        <svg viewBox="0 0 16 16" aria-hidden="true"><path d="M4 6V1.5h8V6M4 12H2.5A1 1 0 0 1 1.5 11V7a1 1 0 0 1 1-1h11a1 1 0 0 1 1 1v4a1 1 0 0 1-1 1H12" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/><path d="M4 9.5h8v5H4z" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/></svg>
+        Print
+      </button>
+      <button class="btn theme-btn" type="button" id="themeBtn" aria-label="Switch between light and dark">
+        <svg class="i-moon" viewBox="0 0 16 16" aria-hidden="true"><path d="M13.5 10.2A6 6 0 0 1 5.8 2.5a6 6 0 1 0 7.7 7.7z" fill="currentColor"/></svg>
+        <svg class="i-sun" viewBox="0 0 16 16" aria-hidden="true"><circle cx="8" cy="8" r="3.2" fill="currentColor"/><path d="M8 .8v2M8 13.2v2M.8 8h2M13.2 8h2M2.9 2.9l1.4 1.4M11.7 11.7l1.4 1.4M2.9 13.1l1.4-1.4M11.7 4.3l1.4-1.4" stroke="currentColor" stroke-width="1.4" stroke-linecap="round"/></svg>
+        Theme
+      </button>
+      <a class="btn" href="../index.html">Docs home</a>
+    </div>
+  </div>
+</header>
+
+<main class="wrap">
+  <nav class="strip no-print" aria-label="On this page">
+    <a class="chip" href="#game"><b>1</b> Game</a>
+    <a class="chip" href="#editor"><b>2</b> Level editor</a>
+    <span>Full guides: <a href="PLAYING_THE_GAME.md">Playing the game</a> · <a href="LEVEL_EDITOR_GUIDE.md">Level editor guide</a> · <a href="GETTING_STARTED.md">Getting started</a></span>
+  </nav>
+
+  <!-- =============================================================================== GAME -->
+  <section class="sheet" id="game" aria-labelledby="game-title">
+    <div class="sheet-head">
+      <h2 id="game-title">The Game</h2>
+      <p>game.html · any level</p>
+    </div>
+    <svg class="ornament" viewBox="0 0 360 14" preserveAspectRatio="none" aria-hidden="true"><path d="M0 7h160M200 7h160" stroke="currentColor" stroke-width="1" opacity=".7"/><path d="M180 1l6 6-6 6-6-6z" fill="currentColor"/><circle cx="164" cy="7" r="1.6" fill="currentColor"/><circle cx="196" cy="7" r="1.6" fill="currentColor"/></svg>
+
+    <div class="grid">
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Move &amp; camera</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd><span class="sep">/</span><kbd>↑</kbd><kbd>←</kbd><kbd>↓</kbd><kbd>→</kbd></span><span class="d">Move <small>(relative to the camera)</small></span></li>
+          <li><span class="k"><kbd>Shift</kbd><span class="sep">hold</span></span><span class="d">Run</span></li>
+          <li><span class="k"><kbd>Q</kbd><span class="sep">/</span><kbd>E</kbd><span class="sep">hold</span></span><span class="d">Rotate the camera <small>(up to 60° each way)</small></span></li>
+          <li><span class="k"><kbd>Z</kbd><span class="sep">/</span><kbd>X</kbd><span class="sep">or</span><kbd>=</kbd><span class="sep">/</span><kbd>−</kbd></span><span class="d">Zoom in / out</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Wheel</span></span><span class="d">Zoom</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Talk &amp; choose</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>Space</kbd><span class="sep">/</span><kbd>Enter</kbd><span class="sep">/</span><kbd>F</kbd></span><span class="d">Talk, read, knock, look · next page</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Click the dialogue</span></span><span class="d">Next page</span></li>
+          <li><span class="k"><kbd>↑</kbd><span class="sep">/</span><kbd>↓</kbd><span class="sep">or</span><kbd>W</kbd><span class="sep">/</span><kbd>S</kbd></span><span class="d">Choose an answer <small>(or hover and click it)</small></span></li>
+          <li><span class="k"><kbd>Esc</kbd><span class="sep">/</span><kbd>Backspace</kbd></span><span class="d">Show the whole page at once</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>World &amp; time</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>T</kbd></span><span class="d">Next time of day <small>Dawn → Midday → Golden Hour → Dusk → Night</small></span></li>
+          <li><span class="k"><kbd>R</kbd></span><span class="d">Next weather <small>clear → rain → snow</small></span></li>
+          <li><span class="k"><kbd>M</kbd></span><span class="d">Music on / off</span></li>
+        </ul>
+        <p class="note">The clock runs by itself: one game hour ≈ 90 seconds.</p>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Screens</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>N</kbd><span class="sep">/</span><kbd>Tab</kbd></span><span class="d">World map <small>(N, Tab, Esc or Backspace closes it)</small></span></li>
+          <li><span class="k"><kbd>P</kbd></span><span class="d">Photo mode <small>(P, Esc or Backspace returns)</small></span></li>
+          <li><span class="k"><kbd>H</kbd></span><span class="d">Controls legend on / off</span></li>
+          <li><span class="k"><kbd>`</kbd><span class="sep">/</span><kbd>F1</kbd></span><span class="d">Debug panel <small>(the legend shows ~)</small></span></li>
+          <li><span class="k"><span class="g">Any key</span></span><span class="d">Leave the title screen <small>(also a click or any gamepad button; not Shift, Ctrl, Alt, Tab, F5, F11, F12…)</small></span></li>
+          <li><span class="k"><kbd>L</kbd></span><span class="d">Title screen: the language row <small>(← / → choose EN · 日本語 · 中文, Enter switches and reloads, Esc back; pad LB / RB, A, B)</small></span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Gamepad</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>Left stick</kbd><span class="sep">/</span><kbd>D-pad</kbd></span><span class="d">Move · D-pad ↑↓ picks answers</span></li>
+          <li><span class="k"><kbd>Right stick</kbd><span class="sep">/</span><kbd>LB</kbd><kbd>RB</kbd></span><span class="d">Rotate the camera</span></li>
+          <li><span class="k"><kbd>RT</kbd></span><span class="d">Run</span></li>
+          <li><span class="k"><kbd>A</kbd></span><span class="d">Talk / confirm</span></li>
+          <li><span class="k"><kbd>B</kbd></span><span class="d">Cancel · close the map · leave photo mode</span></li>
+          <li><span class="k"><kbd>Y</kbd><span class="sep">/</span><kbd>X</kbd></span><span class="d">Zoom in / out</span></li>
+          <li><span class="k"><kbd>Back</kbd></span><span class="d">World map <small>(open / close)</small></span></li>
+          <li><span class="k"><kbd>Start</kbd></span><span class="d">Controls legend</span></li>
+          <li><span class="k"><kbd>R-stick click</kbd></span><span class="d">Photo mode</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Combat <small>(Cinderwatch Pass)</small></h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>J</kbd><span class="sep">/</span><kbd>LMB</kbd></span><span class="d">Attack <small>(again as the blade returns: 3-hit combo) · pad X</small></span></li>
+          <li><span class="k"><kbd>K</kbd><span class="sep">/</span><kbd>RMB</kbd></span><span class="d">Dodge roll <small>(no direction: backstep) · pad B</small></span></li>
+          <li><span class="k"><kbd>U</kbd><kbd>I</kbd><kbd>O</kbd><span class="sep">/</span><kbd>1</kbd><kbd>2</kbd><kbd>3</kbd></span><span class="d">Skills <small>Whirl Slash · Ember Bolt · Radiant Nova · pad LT + X / Y / B</small></span></li>
+          <li><span class="k"><kbd>C</kbd><span class="sep">/</span><kbd>4</kbd></span><span class="d">Healing Draught <small>· pad Y</small></span></li>
+          <li><span class="k"><kbd>L</kbd><span class="sep">/</span><kbd>MMB</kbd></span><span class="d">Lock on / next <small>(hold: release) · pad R-stick click</small></span></li>
+          <li><span class="k"><kbd>Space</kbd></span><span class="d">Open a chest · rest at a waystone <small>· pad A</small></span></li>
+        </ul>
+        <p class="note">On combat levels the pad's X / Y attack and drink instead of zooming (zoom moves to the right stick), the right-stick click locks on and a left-stick click takes photos. These keys do nothing on the other levels.</p>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Good to know</h3>
+        <ul class="tips">
+          <li>Keys are <b>physical positions</b>: on AZERTY, move with Z Q S D.</li>
+          <li>Sound starts after your first key press or click.</li>
+          <li>URL: <code>game.html?level=starfall-vale</code>, <code>?level=cinderwatch-pass</code> (combat), <code>?autostart=1</code> skips the title, <code>?lang=ja</code> / <code>?lang=zh</code> plays in Japanese / Chinese. On the title, ← / → pick a level and Enter travels.</li>
+          <li>Console (F12): <code>__game.teleport(x, z)</code>, <code>__game.setTime(22)</code>, <code>__game.state()</code>.</li>
+        </ul>
+      </div>
+    </div>
+    <p class="src">Source of truth: <code>src/engine/core/Input.js</code> (<code>DEFAULT_BINDINGS</code>, <code>DEFAULT_PAD_BINDINGS</code>), <code>src/game/Game.js</code>, <code>src/engine/ui/DialogBox.js</code>, <code>src/game/combat/bindings.js</code> (combat).</p>
+  </section>
+
+  <!-- ============================================================================= EDITOR -->
+  <section class="sheet" id="editor" aria-labelledby="editor-title">
+    <div class="sheet-head">
+      <h2 id="editor-title">The Level Editor</h2>
+      <p>editor.html · Cmd works wherever Ctrl is shown</p>
+    </div>
+    <svg class="ornament" viewBox="0 0 360 14" preserveAspectRatio="none" aria-hidden="true"><path d="M0 7h160M200 7h160" stroke="currentColor" stroke-width="1" opacity=".7"/><path d="M180 1l6 6-6 6-6-6z" fill="currentColor"/><circle cx="164" cy="7" r="1.6" fill="currentColor"/><circle cx="196" cy="7" r="1.6" fill="currentColor"/></svg>
+
+    <div class="grid">
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>File</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>Alt</kbd><kbd>N</kbd><span class="sep">/</span><kbd>Ctrl</kbd><kbd>N</kbd></span><span class="d">New level <small>(Chrome keeps Ctrl+N)</small></span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>O</kbd></span><span class="d">Open</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>S</kbd></span><span class="d">Save</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>S</kbd></span><span class="d">Save as</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>E</kbd></span><span class="d">Download a .json copy</span></li>
+          <li><span class="k"><kbd>F5</kbd></span><span class="d">Play-test in a new tab</span></li>
+          <li><span class="k"><span class="g">Drop a .json</span></span><span class="d">Open that file</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>V</kbd></span><span class="d">With a whole level's JSON on the clipboard: open it as a new, unsaved level</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Tools</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>V</kbd></span><span class="d">Select / Move</span></li>
+          <li><span class="k"><kbd>B</kbd></span><span class="d">Paint tiles</span></li>
+          <li><span class="k"><kbd>G</kbd></span><span class="d">Fill</span></li>
+          <li><span class="k"><kbd>U</kbd></span><span class="d">Rectangle</span></li>
+          <li><span class="k"><kbd>H</kbd></span><span class="d">Height</span></li>
+          <li><span class="k"><kbd>T</kbd></span><span class="d">Stairs</span></li>
+          <li><span class="k"><kbd>O</kbd></span><span class="d">Place object</span></li>
+          <li><span class="k"><kbd>P</kbd></span><span class="d">Player start</span></li>
+          <li><span class="k"><kbd>I</kbd></span><span class="d">Eyedropper</span></li>
+          <li><span class="k"><kbd>X</kbd></span><span class="d">Erase objects</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Edit</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>Z</kbd></span><span class="d">Undo <small>(one stroke = one step)</small></span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>Y</kbd><span class="sep">/</span><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>Z</kbd></span><span class="d">Redo</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>C</kbd><span class="sep">/</span><kbd>X</kbd><span class="sep">/</span><kbd>V</kbd></span><span class="d">Copy / cut / paste <small>(paste lands at the pointer)</small></span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>D</kbd></span><span class="d">Duplicate</span></li>
+          <li><span class="k"><kbd>Delete</kbd><span class="sep">/</span><kbd>Backspace</kbd></span><span class="d">Delete the selection</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>A</kbd></span><span class="d">Select all objects</span></li>
+          <li><span class="k"><kbd>Esc</kbd></span><span class="d">Deselect · cancel the current stroke or drag</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Select &amp; place</h3>
+        <ul class="sc">
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Click</span><span class="sep">/</span><kbd>Shift</kbd><span class="sep">/</span><kbd>Ctrl</kbd></span><span class="d">Select / add / toggle</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Drag empty ground</span></span><span class="d">Box select</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Drag</span><span class="sep">+</span><kbd>Alt</kbd></span><span class="d">Move · Alt = no snapping (also when placing)</span></li>
+          <li><span class="k"><kbd>R</kbd><span class="sep">/</span><kbd>Shift</kbd><kbd>R</kbd></span><span class="d">Rotate ±15° <small>(selection or Place ghost)</small></span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>R</kbd><span class="sep">/</span><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>R</kbd></span><span class="d">Rotate ±90°</span></li>
+          <li><span class="k"><kbd>←</kbd><kbd>↑</kbd><kbd>↓</kbd><kbd>→</kbd></span><span class="d">Nudge 0.5 · Shift 2 · Alt 0.1</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Double-click</span></span><span class="d">Focus · inside an area: select it</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Click, click</span><span class="sep">or</span><span class="g">drag</span></span><span class="d">Place a fence or bridge · drag a region</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Terrain</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>[</kbd><span class="sep">/</span><kbd>]</kbd></span><span class="d">Brush size 1–9</span></li>
+          <li><span class="k"><kbd>Alt</kbd><span class="sep">+</span><span class="g">click</span></span><span class="d">Pick the tile and level under the pointer <small>(Height tool: the level)</small></span></li>
+          <li><span class="k"><kbd>Shift</kbd><span class="sep">+</span><span class="g">click</span></span><span class="d">Paint: straight line from the last stroke</span></li>
+          <li><span class="k"><kbd>Shift</kbd><span class="sep">+</span><span class="g">click</span></span><span class="d">Fill: replace that tile everywhere</span></li>
+          <li><span class="k"><kbd>Shift</kbd><span class="sep">hold</span></span><span class="d">Rectangle: outline · Height: invert raise / lower</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Drag across a cliff</span></span><span class="d">Stairs: a whole flight, foot to top</span></li>
+          <li><span class="k"><kbd>R</kbd><span class="sep">/</span><kbd>Shift</kbd><kbd>R</kbd></span><span class="d">Player start: turn its facing</span></li>
+          <li><span class="k"><kbd>Shift</kbd><span class="sep">+</span><span class="g">click</span></span><span class="d">Eyedropper: keep picking</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>View</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>1</kbd><span class="sep">/</span><kbd>2</kbd><span class="sep">/</span><kbd>3</kbd></span><span class="d">Layout: 3D + 2D / 3D only / 2D only</span></li>
+          <li><span class="k"><kbd>F</kbd></span><span class="d">Frame the selection <small>(nothing selected: the 3D view focuses the pointer)</small></span></li>
+          <li><span class="k"><kbd>Home</kbd></span><span class="d">Frame the level</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>G</kbd></span><span class="d">Grid on / off</span></li>
+          <li><span class="k"><kbd>?</kbd></span><span class="d">Shortcut list</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Right-click</span></span><span class="d">Context menu (both views)</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>2D map</h3>
+        <ul class="sc">
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Wheel</span></span><span class="d">Zoom to the cursor</span></li>
+          <li><span class="k"><span class="g">Right-drag</span><span class="sep">/</span><span class="g">Middle-drag</span></span><span class="d">Pan</span></li>
+          <li><span class="k"><kbd>Space</kbd><span class="sep">+</span><span class="g">drag</span></span><span class="d">Pan</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Double-click</span></span><span class="d">Focus an object <small>(Select tool)</small></span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Right-click</span></span><span class="d">Context menu <small>(a click without dragging)</small></span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>3D view</h3>
+        <ul class="sc">
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Right-drag</span></span><span class="d">Orbit</span></li>
+          <li><span class="k"><span class="g">Middle-drag</span><span class="sep">/</span><kbd>Shift</kbd><span class="sep">+</span><span class="g">right-drag</span></span><span class="d">Pan</span></li>
+          <li><span class="k"><kbd>Space</kbd><span class="sep">+</span><span class="g">drag</span></span><span class="d">Pan</span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Wheel</span></span><span class="d">Zoom toward the cursor</span></li>
+          <li><span class="k"><kbd>F</kbd><span class="sep">/</span><span class="g">double-click</span></span><span class="d">Focus <small>(double-click: Select tool; on open ground it looks at that point)</small></span></li>
+          <li><span class="k"><span class="g">hold right</span><span class="sep">+</span><kbd>W</kbd><kbd>A</kbd><kbd>S</kbd><kbd>D</kbd></span><span class="d">Fly <small>(Shift: faster)</small></span></li>
+          <li><span class="k"><span class="g">hold right</span><span class="sep">+</span><kbd>Q</kbd><span class="sep">/</span><kbd>E</kbd></span><span class="d">Turn while flying</span></li>
+          <li><span class="k"><kbd>Q</kbd><span class="sep">/</span><kbd>E</kbd></span><span class="d">Rotate the gameplay camera</span></li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3><svg><use href="#i-diamond"/></svg>Fields &amp; dialogs</h3>
+        <ul class="sc">
+          <li><span class="k"><kbd>Enter</kbd></span><span class="d">Commit a field · confirm a dialog</span></li>
+          <li><span class="k"><kbd>Esc</kbd></span><span class="d">Restore a field · close a dialog or menu</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>Enter</kbd></span><span class="d">Commit a multi-line text</span></li>
+          <li><span class="k"><kbd>Tab</kbd><span class="sep">·</span><kbd>Shift</kbd><kbd>Tab</kbd></span><span class="d">In a script: indent / outdent at a line's start or on selected lines <small>(elsewhere: next / previous field)</small></span></li>
+          <li><span class="k"><span class="g"><svg><use href="#i-mouse"/></svg>Wheel</span></span><span class="d">Step a focused number box</span></li>
+          <li><span class="k"><kbd>Ctrl</kbd><kbd>S</kbd><span class="sep">·</span><kbd>Ctrl</kbd><kbd>Shift</kbd><kbd>S</kbd><span class="sep">·</span><kbd>F5</kbd></span><span class="d">Work even while typing <small>(the field commits first)</small></span></li>
+        </ul>
+        <p class="note">Tool and view keys never fire while a text field has focus.</p>
+      </div>
+    </div>
+    <p class="src">Source of truth: <code>src/editor/EditorApp.js</code> (<code>_buildCommands</code>, <code>_shortcutGroups</code>, <code>_onKeyDown</code>), <code>src/editor/tools/*.js</code> (<code>keyDown</code>, modifiers), <code>src/editor/map2d/Map2DView.js</code>, <code>src/editor/viewport3d/Viewport3D.js</code>.</p>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Luminati 2.5D Pixel-Art Engine · docs/user/shortcuts.html</span>
+    <a href="../README.md">Documentation index</a>
+    <a href="PLAYING_THE_GAME.md">Playing the game</a>
+    <a href="LEVEL_EDITOR_GUIDE.md">Level editor guide</a>
+  </div>
+</footer>
+
+<script>
+(function () {
+  'use strict';
+  var root = document.documentElement;
+  function effectiveTheme() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  var themeBtn = document.getElementById('themeBtn');
+  if (themeBtn) themeBtn.addEventListener('click', function () {
+    var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('luminati-docs-theme', next); } catch (e) { /* no storage */ }
+  });
+  var printBtn = document.getElementById('printBtn');
+  if (printBtn) printBtn.addEventListener('click', function () { window.print(); });
+})();
+</script>
+</body>
+</html>

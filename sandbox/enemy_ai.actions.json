@@ -1,0 +1,332 @@
+[
+  {
+    "eval": "window.__sb.pause(true)"
+  },
+  {
+    "eval": "window.__sb.tests.idle()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "01_roster_idle"
+  },
+  {
+    "eval": "window.__sb.tests.slime()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "02_slime_leap"
+  },
+  {
+    "eval": "window.__sb.tests.goblin()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "03_goblin_windup"
+  },
+  {
+    "eval": "window.__sb.tests.interrupts()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "04_elite_rim"
+  },
+  {
+    "eval": "window.__sb.tests.goblinHop()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "05_goblin_backhop"
+  },
+  {
+    "eval": "window.__sb.tests.goblinHopSkills()"
+  },
+  {
+    "eval": "window.__sb.tests.archer()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "06_archer_volley"
+  },
+  {
+    "eval": "window.__sb.tests.shove()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "07_archer_shove"
+  },
+  {
+    "eval": "window.__sb.tests.shaman()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "08_shaman_hexflame"
+  },
+  {
+    "eval": "window.__sb.tests.bat()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "09_bat_dive"
+  },
+  {
+    "eval": "window.__sb.tests.boar()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "10_boar_wall_stun"
+  },
+  {
+    "eval": "window.__sb.tests.boarSkid()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "11_boar_elite_second_charge"
+  },
+  {
+    "eval": "window.__sb.tests.gore()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "12_boar_gore"
+  },
+  {
+    "eval": "window.__sb.tests.dummy()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "13_dummy_wobble"
+  },
+  {
+    "eval": "window.__sb.tests.ledge()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "14_ledge_archer_lane"
+  },
+  {
+    "eval": "window.__sb.tests.stairs()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "15_goblin_stairs"
+  },
+  {
+    "eval": "window.__sb.tests.offscreen()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "16_offscreen_then_windup"
+  },
+  {
+    "eval": "window.__sb.tests.leash()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "17_leash_return"
+  },
+  {
+    "eval": "window.__sb.tests.unreachable()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "18_unreachable_giveup"
+  },
+  {
+    "eval": "window.__sb.tests.ledgeEdge()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "18a_ledge_edge_climb"
+  },
+  {
+    "eval": "window.__sb.tests.returnPath()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "18b_return_path"
+  },
+  {
+    "eval": "window.__sb.tests.zones()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "18c_zones"
+  },
+  {
+    "eval": "window.__sb.tests.death()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "19_death_reset"
+  },
+  {
+    "eval": "window.__sb.tests.boss()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "20_boss_intro_roar"
+  },
+  {
+    "eval": "window.__sb.tests.bossFight()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "21_boss_slam_windup"
+  },
+  {
+    "eval": "window.__sb.tests.bossPhase2()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "22_boss_phase2_ring_adds"
+  },
+  {
+    "eval": "window.__sb.tests.bossCharge()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "23_boss_charge_brazier_stun"
+  },
+  {
+    "eval": "window.__sb.tests.bossSkid()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "24_boss_charge_rim_skid"
+  },
+  {
+    "eval": "window.__sb.tests.bossToss()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "25_boss_rock_toss"
+  },
+  {
+    "eval": "window.__sb.tests.bossRain()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "26_boss_ember_rain"
+  },
+  {
+    "eval": "window.__sb.tests.bossBroken()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "27_boss_broken"
+  },
+  {
+    "eval": "window.__sb.tests.bossSweep()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "28_boss_sweep"
+  },
+  {
+    "eval": "window.__sb.tests.bossAdds()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "29_boss_second_adds"
+  },
+  {
+    "eval": "window.__sb.tests.bossPhase3()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "30_boss_phase3_shockwave"
+  },
+  {
+    "eval": "window.__sb.tests.determinism()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "31_determinism_mix"
+  },
+  {
+    "eval": "window.__sb.tests.perf()"
+  },
+  {
+    "wait": 350
+  },
+  {
+    "shot": "32_perf_30_enemies"
+  },
+  {
+    "eval": "JSON.stringify(window.__sb.failures())"
+  },
+  {
+    "eval": "window.__sb.assertAll()"
+  },
+  {
+    "wait": 200
+  }
+]

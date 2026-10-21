@@ -1,0 +1,304 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "campaigns/emberfall-interiors",
+  "extends": [
+    "levels/emberfall"
+  ],
+  "terms": {
+    "Auntie Bryony": "布里奥妮阿姨",
+    "Elder's Cottage": "长老的小屋",
+    "Emberfall — Open Doors": "烬落村——敞开的门",
+    "Fenna": "芬娜",
+    "Garrick": "加里克",
+    "Hilde": "希尔德",
+    "Kit": "基特",
+    "Linden": "林登",
+    "Master Ivo": "伊沃先生",
+    "Miller Hesk": "磨坊主赫斯克",
+    "Old Nan": "南婆婆",
+    "Posy": "波西",
+    "Riverside House": "河畔小屋",
+    "Rowan": "罗文",
+    "Sir Brannoc": "布兰诺克爵士",
+    "Sister Ada": "艾达修女",
+    "Tam": "塔姆",
+    "Thatched Cottage": "茅草屋",
+    "The Ember & Oak": "烬火橡木旅店",
+    "The Windmill": "风车磨坊",
+    "Tobin's Barn": "托宾的谷仓",
+    "Wendel": "温德尔",
+    "Woodcutter's Lodge": "樵夫小屋"
+  },
+  "units": {
+    "2ACB201C3F8D64E6FB2FB1B4F3BF9D67": {
+      "source": "Mind the pot, dear. The pot minds nobody.",
+      "target": "当心那口锅，孩子。那口锅可不会当心任何人。"
+    },
+    "3A08313C9065759C49B79B425317D4CA": {
+      "source": "The Hayloft",
+      "target": "干草阁楼"
+    },
+    "3BBBD2218658BE08B69AA37632E31C61": {
+      "source": "Amberleaf Grove",
+      "target": "琥珀叶林"
+    },
+    "3D8D3637DF0F2F1929436DE8A8F26B82": {
+      "source": "I grease the gears! Miller Hesk says I have a gift for it. A sticky gift.",
+      "target": "我负责给齿轮上油！磨坊主赫斯克说我在这方面有天赋。黏糊糊的天赋。"
+    },
+    "3D0477C1F21667C535EA950AC4DD4E58": {
+      "source": "Open Doors — every house has a room behind its door",
+      "target": "敞开的门——每座房子的门后都有一个房间"
+    },
+    "4ACC0102F0EE64357897DD20E946742A": {
+      "source": "Two pops. Clear skies, then. Probably.",
+      "target": "响了两下。那就是晴天。大概吧。"
+    },
+    "4E71AE06AE8177C4E0D2B34FA22389CD": {
+      "source": "Listen — that creak is the wind turning the cap. It means the weather is changing. Or that I missed a gear.",
+      "target": "听——那嘎吱声是风在转动风车顶。说明天气要变了。要不就是我漏了一个齿轮没上油。"
+    },
+    "5C6BCB758DE731F23FD90754D01DE2A9": {
+      "source": "Emberfall",
+      "target": "烬落村"
+    },
+    "5F832304830031CF72F17D667103B527": {
+      "source": "Mm? Oh. Wendel, tinker. Tobin lets me sleep up here when the inn is full, if I mend his pots.",
+      "target": "嗯？哦。温德尔，补锅匠。旅店住满的时候，只要我帮托宾修锅，他就让我睡在这上头。"
+    },
+    "6A5B5583C2FC0386102C020F5B4FEA3C": {
+      "source": "Go upstairs",
+      "target": "上楼"
+    },
+    "6DAD2918CF5C60CEDB96451B650E2B35": {
+      "source": "Every book on these shelves has a pressed leaf in it. She says the leaves remember the year better than the ink.",
+      "target": "这些书架上的每本书里都夹着一片压平的叶子。她说，叶子比墨水更记得住那一年。"
+    },
+    "7A295FF35271498E6BA7DE8E1CC10EBB": {
+      "source": "The Hayloft",
+      "target": "干草阁楼"
+    },
+    "8B639D97322901F002E17088AF4B3AFB": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "8EB42B78AAF6BB78D3080B7221E3AC15": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "9C1586787EA4FC6BB477ACE955F7D403": {
+      "source": "Take a heel of the loaf, the crusty end. It is the best part and nobody else knows it.",
+      "target": "拿块面包头吧，脆皮的那端。那是最好吃的部分，别人都不知道。"
+    },
+    "9DA01DBD482AE500261547AC716903C9": {
+      "source": "Hm? Yes, I wrote it. Twelve verses. Kit knows them all. Kit is sick of them all.",
+      "target": "嗯？对，是我写的。一共十二段。基特全会唱。基特也全听腻了。"
+    },
+    "12E19623D9ACF1555EA180053E9231A4": {
+      "source": "Ember ale, brewed with the river's own water. It tastes of autumn, or so the label says. I wrote the label.",
+      "target": "烬火麦酒，用这条河的河水酿的。喝起来有秋天的味道——标签上是这么写的。标签是我写的。"
+    },
+    "28FD5CA40C39C74DF34AF1C0AF38E02B": {
+      "source": "Go upstairs",
+      "target": "上楼"
+    },
+    "33E80A635EA4AFFC6C82CED9867115CB": {
+      "source": "Stew's on. It has been on since the founders came up the river, I'm told. I just keep adding to it.",
+      "target": "炖菜在锅里呢。听说打从先人们沿河上来那会儿起，这锅就没离过火。我呀，只管往里添东西。"
+    },
+    "36C3EEAD5D4E4D09F1DCDB892F89627C": {
+      "source": "I'm going to be a woodcutter too. I've already cut down a dandelion.",
+      "target": "我以后也要当樵夫。我已经砍倒过一棵蒲公英了！"
+    },
+    "47C6A28CED20B2E0BBA6CBF956FE4267": {
+      "source": "A Song About Axes",
+      "target": "斧头之歌"
+    },
+    "52F17F72FE474D4329A7E0FD38AE8302": {
+      "source": "The Taproom",
+      "target": "酒馆"
+    },
+    "180A4477637B94064DC647B056246767": {
+      "source": "Press any key",
+      "target": "按任意键开始"
+    },
+    "271BA2DDE762E9D0A4EAF02D6B21C1F3": {
+      "source": "You followed the bread, didn't you? Everyone follows the bread.",
+      "target": "你是循着面包香来的吧？大家都是。"
+    },
+    "405E4432EA254EBDB62F0F3580E94C36": {
+      "source": "Shh — I am listening to the fire. It pops in threes before rain.",
+      "target": "嘘——我在听火的声音。要下雨之前，它会一连噼啪响三下。"
+    },
+    "430F72691EBCEC73D02DB77A4D18FCAB": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "848D9E04620898562C9BA8B8BB37A404": {
+      "source": "Welcome to the {Ember & Oak}! Rosalind keeps the door, I keep the taps. Between us we keep the gossip.",
+      "target": "欢迎光临{烬火橡木旅店}！罗莎琳德管门，我管酒桶。至于闲话嘛，我们俩一起管。"
+    },
+    "869D606D6FBCA44E681BE406D8C6ED91": {
+      "source": "I have crossed six kingdoms and fought a wyvern in a hailstorm. Nothing prepared me for Nan's stew.",
+      "target": "我曾走过六个王国，还在冰雹里与飞龙搏斗过。可这些经历，没有一样能让我招架得住南婆婆的炖菜。"
+    },
+    "982C476763210DBEBAFDFEC2974EE587": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "1389F2D3F7C56FAA5A5F0A67660320B6": {
+      "source": "Master Ivo, cartographer. I am mapping every room in Emberfall. This corridor is eleven paces long. I have checked twice.",
+      "target": "我是伊沃先生，制图师。我正在为烬落村的每一个房间绘制地图。这条走廊长十一步，我量过两遍。"
+    },
+    "2316A73F0FE55FC948F4BECB6FB0CAB6": {
+      "source": "Flour in your hair already? That is the windmill saying hello.",
+      "target": "头发上已经沾上面粉啦？那是风车在跟你打招呼呢。"
+    },
+    "3420E8FBD42F4F3AC8372BF1734160F3": {
+      "source": "Books by the Fire",
+      "target": "炉边书香"
+    },
+    "04558C7D574906697D618FB17C13252E": {
+      "source": "Dad says the grove turns amber because the trees are shy. I think they're just cold.",
+      "target": "爸爸说，林子会变成琥珀色，是因为树害羞。我觉得它们只是冷而已。"
+    },
+    "4858CCFD7EDC3A75287642B157988B3A": {
+      "source": "EMBERFALL",
+      "target": "烬落村"
+    },
+    "5385A3774D8DCA75A9B3A820F519B6A3": {
+      "source": "The Guest Rooms",
+      "target": "客房"
+    },
+    "5793CC82691C905495D1682F13194307": {
+      "source": "Fresh Bread",
+      "target": "新出炉的面包"
+    },
+    "6689C009C68AE877FFFDAD21D4252C96": {
+      "source": "Go downstairs",
+      "target": "下楼"
+    },
+    "7272FCAD2853E560F2C0E08755CF3CB9": {
+      "source": "The Kettle Sings",
+      "target": "水壶在歌唱"
+    },
+    "9635DA9BBB5E9D77A8D1D5539F620952": {
+      "source": "The Cap Floor",
+      "target": "顶层"
+    },
+    "76453BA669D5349DD5B98F86C08BABC5": {
+      "source": "Hay and Patience",
+      "target": "干草与耐心"
+    },
+    "88865C2608126971875648514004C72E": {
+      "source": "A Luminati campaign",
+      "target": "Luminati 冒险"
+    },
+    "27789903D7DE4D726A3DC449E47E52BA": {
+      "source": "The Millstone Floor",
+      "target": "石磨层"
+    },
+    "A47F4CA11D804AF23E1C2ED0713532DF": {
+      "source": "The sails turn, the stones grind, the bread rises. A simple life. A dusty one.",
+      "target": "风车转，石磨碾，面包发。日子简单。就是灰大了点。"
+    },
+    "AB1E05A8D16E2C17E5649ECAE0E7C6F5": {
+      "source": "Luminati 2.5D Pixel-Art Engine · three.js",
+      "target": "Luminati 2.5D 像素艺术引擎 · three.js"
+    },
+    "AC6354E731330BAE1BDBA6F5A9BA0B8A": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "B2EEBD0FBBAA24878EB8354B99341B31": {
+      "source": "Emberfall",
+      "target": "烬落村"
+    },
+    "B4D11F7F2CB60DD521392096343D5134": {
+      "source": "Go downstairs",
+      "target": "下楼"
+    },
+    "B8F8F0B2FFF6A22352328614196F450D": {
+      "source": "The Cap Floor",
+      "target": "顶层"
+    },
+    "B7575005A0F0AD87C2BF5FDF5657F088": {
+      "source": "There's the kettle singing! Sit, sit. Everyone who knocks gets a cup, and you didn't even knock.",
+      "target": "听，水壶唱起来啦！坐，快坐。敲门的人都有一杯茶喝，你连门都没敲呢。"
+    },
+    "BB225F8378C55EB13B410D1071F3D12F": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "BF078E5503F897E52E0AA8E987D2EC2B": {
+      "source": "The cow is out in the paddock. She prefers it to company. I understand her.",
+      "target": "奶牛在外头的围场里。比起有人陪，它更喜欢待在那儿。我懂它。"
+    },
+    "BFE36E961F9FBAD12D39F193413B5709": {
+      "source": "Emberfall",
+      "target": "烬落村"
+    },
+    "C3D39A2F0B6CADBF0C6EB2190BD0F018": {
+      "source": "The windmill is round inside, you know. Rounder than you would think.",
+      "target": "您知道吗，风车磨坊里面是圆的。比您想的还要圆。"
+    },
+    "C323195261C9BF39E229458DA14D871A": {
+      "source": "Go downstairs",
+      "target": "下楼"
+    },
+    "C05980671410D012C40125D3E1F1EED2": {
+      "source": "The Millstone Floor",
+      "target": "石磨层"
+    },
+    "D0DBC852C066BE1195F9730016D37AEA": {
+      "source": "Hilde, farmhand. Tobin pays me in eggs and advice. Mostly advice.",
+      "target": "希尔德，农场帮工。托宾拿鸡蛋和忠告付我工钱。多半是忠告。"
+    },
+    "D4B2E7C5E0D6579AF694A3430C3A7786": {
+      "source": "The Taproom",
+      "target": "酒馆"
+    },
+    "DAA160EDF7821C67192C8D15A510F859": {
+      "source": "I came for one night. That was a fortnight ago.",
+      "target": "我本打算只住一晚。那已是两个星期前的事了。"
+    },
+    "DBD3CF718724D9E612BA547A18D86BC4": {
+      "source": "The elder's apprentice, at your service. She is out on the square, teaching the cobbles patience.",
+      "target": "我是长老的学徒，愿为您效劳。长老去广场了，正在教那些石子路学会耐心呢。"
+    },
+    "DD512683661A14E22D1DB83A4D6E5C7B": {
+      "source": "The hay smells of summer. Don't tell Rosalind, but it is better than her mattresses.",
+      "target": "干草里有夏天的味道。别告诉罗莎琳德，这可比她那儿的床垫舒服。"
+    },
+    "DF31568C30AFEB7F27FCCB800D4BB019": {
+      "source": "♪ Oh the axe is sharp and the oak is tall, and the tea is hot when the chips all fall ♪",
+      "target": "♪ 斧头锋利哟橡树高，木屑落尽哟热茶好 ♪"
+    },
+    "E2EA679E88C75152909FAD12686ECBD1": {
+      "source": "The river talks all night under the floor. You get used to it. Then you can't sleep anywhere quiet.",
+      "target": "河水在地板底下整夜说个不停。慢慢就习惯了。习惯以后，到了安静的地方反倒睡不着。"
+    },
+    "EE4B89D07941531456B9736CDAF64A2D": {
+      "source": "The Guest Rooms",
+      "target": "客房"
+    },
+    "EEA56E5D73A2592A1BE9B307675EA9B2": {
+      "source": "Go out",
+      "target": "出去"
+    },
+    "F06AA0453E4141545AE75CC8E29EA8BE": {
+      "source": "Go upstairs",
+      "target": "上楼"
+    },
+    "F650327AA6E70224394C0391F5F54B40": {
+      "source": "A pilgrim, like me? The beds here are the softest between the mountains and the sea. I have tested many.",
+      "target": "您也和我一样是朝圣者吗？这里的床是群山与大海之间最软的。我试过的床可多了。"
+    },
+    "FE93FC227CDEB9CFFD23EE69E1D4A4FD": {
+      "source": "Tobin's Farm",
+      "target": "托宾农场"
+    }
+  }
+}

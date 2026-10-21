@@ -1,0 +1,337 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luminati Sandboxes</title>
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' rx='3' fill='%23140f17'/%3E%3Cpath fill='%23c9a45c' d='M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z'/%3E%3Cpath fill='%23f59a2e' d='M7 5h2v2h1v3H9v1H7v-1H6V7h1z'/%3E%3C/svg%3E" />
+  <script type="module">
+    import '@fontsource/cinzel/600.css';
+    import '@fontsource/crimson-pro/400.css';
+    import '@fontsource/crimson-pro/400-italic.css';
+  </script>
+  <style>
+    :root {
+      --bg: #0b0a10;
+      --panel: #15121c;
+      --panel-2: #1b1724;
+      --line: rgba(201, 164, 92, 0.28);
+      --gold: #c9a45c;
+      --gold-hi: #f2d072;
+      --text: #e8dcc0;
+      --muted: #a79a80;
+      --chip: rgba(201, 164, 92, 0.12);
+    }
+    * { box-sizing: border-box; }
+    html, body { margin: 0; background: var(--bg); color: var(--text); }
+    body {
+      min-height: 100vh;
+      font: 400 17px/1.5 'Crimson Pro', Georgia, 'Times New Roman', serif;
+      background:
+        radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245, 154, 46, 0.12), transparent 70%),
+        radial-gradient(ellipse 60% 40% at 90% 110%, rgba(106, 143, 214, 0.08), transparent 70%),
+        var(--bg);
+    }
+    main { max-width: 1180px; margin: 0 auto; padding: 56px 24px 72px; }
+    header { text-align: center; margin-bottom: 44px; }
+    .ember {
+      width: 10px; height: 10px; margin: 0 auto 18px; transform: rotate(45deg);
+      background: #f59a2e; box-shadow: 0 0 12px 3px rgba(245, 154, 46, 0.5);
+    }
+    h1 {
+      margin: 0; font: 600 clamp(28px, 4vw, 40px)/1.15 'Cinzel', Georgia, serif;
+      letter-spacing: 0.18em; color: #efe0b4;
+    }
+    .rule {
+      width: min(420px, 70%); height: 1px; margin: 18px auto 16px;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+    header p { margin: 0 auto; max-width: 640px; color: var(--muted); font-style: italic; }
+    header a { color: var(--gold-hi); }
+    header code { font: 14px ui-monospace, Consolas, monospace; font-style: normal; color: #d9c18a; }
+    .demo-link {
+      display: inline-flex; align-items: center; gap: 10px; margin-top: 22px; padding: 10px 22px;
+      border: 1px solid var(--gold); color: var(--text); text-decoration: none;
+      font: 600 13px/1 'Cinzel', Georgia, serif; letter-spacing: 0.2em; text-transform: uppercase;
+      background: linear-gradient(180deg, rgba(201, 164, 92, 0.14), rgba(201, 164, 92, 0.04));
+      transition: background 0.2s, border-color 0.2s;
+    }
+    .demo-link:hover, .demo-link:focus-visible { background: rgba(201, 164, 92, 0.24); border-color: var(--gold-hi); outline: none; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(330px, 1fr)); gap: 18px; }
+    .card {
+      position: relative; display: flex; flex-direction: column; padding: 22px 22px 18px;
+      background: linear-gradient(180deg, var(--panel-2), var(--panel));
+      border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+    }
+    .card::before {
+      content: ''; position: absolute; inset: 4px; border: 1px solid rgba(201, 164, 92, 0.1); pointer-events: none;
+    }
+    .card h2 {
+      margin: 0 0 4px; font: 600 17px/1.3 'Cinzel', Georgia, serif; letter-spacing: 0.08em;
+    }
+    .card h2 a { color: #f1e3bb; text-decoration: none; }
+    .card h2 a:hover, .card h2 a:focus-visible { color: var(--gold-hi); outline: none; text-decoration: underline; text-underline-offset: 4px; }
+    .card .file { font: 12px/1.4 ui-monospace, Consolas, monospace; color: #8d8270; margin-bottom: 10px; }
+    .card p { margin: 0 0 14px; color: #d4c7aa; font-size: 16px; }
+    .tags { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 14px; padding: 0; list-style: none; }
+    .tags li {
+      font: 12px/1 ui-monospace, Consolas, monospace; color: var(--gold-hi); background: var(--chip);
+      padding: 5px 7px; border: 1px solid rgba(201, 164, 92, 0.2);
+    }
+    .variants { margin-top: auto; display: flex; flex-wrap: wrap; gap: 6px 12px; font-size: 15px; }
+    .variants a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted rgba(201, 164, 92, 0.5); }
+    .variants a:hover, .variants a:focus-visible { color: var(--gold-hi); outline: none; }
+    footer { margin-top: 44px; text-align: center; color: #7f7563; font-size: 15px; }
+    footer code { font: 13px ui-monospace, Consolas, monospace; color: #b9a67a; }
+    @media (max-width: 480px) { main { padding: 40px 16px 56px; } .grid { grid-template-columns: 1fr; } }
+  </style>
+</head>
+<body>
+  <main>
+    <header>
+      <div class="ember" aria-hidden="true"></div>
+      <h1>Luminati Sandboxes</h1>
+      <div class="rule" aria-hidden="true"></div>
+      <p>Standalone test pages for every engine module. Each one exercises a module in isolation with
+        raw three.js and exposes a <code>window.__*</code> handle for scripted checks.</p>
+      <a class="demo-link" href="../index.html">All campaigns and levels ›</a>
+      <a class="demo-link" href="../game.html">Play the Emberfall demo ›</a>
+      <a class="demo-link" href="../game.html?level=cinderwatch-pass">Play Cinderwatch Pass (combat) ›</a>
+    </header>
+
+    <section class="grid" aria-label="Sandbox pages">
+      <article class="card">
+        <h2><a href="./core.html">Core &amp; Audio</a></h2>
+        <div class="file">sandbox/core.html</div>
+        <ul class="tags"><li>Engine</li><li>Input</li><li>CameraRig</li><li>AudioSystem</li></ul>
+        <p>A golden-hour flagstone diorama with a crystal you steer with WASD. Live readout of keys,
+          actions, gamepad and camera; sfx, ambience and music controls with an oscilloscope.</p>
+        <div class="variants"><a href="./core.html">Open</a></div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./textures.html">Pixel Textures</a></h2>
+        <div class="file">sandbox/textures.html</div>
+        <ul class="tags"><li>TextureLibrary</li><li>PixelCanvas</li><li>Palette</li></ul>
+        <p>All 46 procedural world textures with their normal and emissive maps, as a pixelated atlas,
+          lit 3D galleries and a tiny 2.5D diorama by day and night.</p>
+        <div class="variants">
+          <a href="./textures.html?view=atlas">Atlas</a>
+          <a href="./textures.html?view=gallery0">Terrain</a>
+          <a href="./textures.html?view=gallery1">Walls</a>
+          <a href="./textures.html?view=gallery2">Roofs</a>
+          <a href="./textures.html?view=gallery3">Props</a>
+          <a href="./textures.html?view=diorama">Diorama</a>
+          <a href="./textures.html?view=diorama&amp;night=1">Night</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./sprite_art.html">Sprite Art</a></h2>
+        <div class="file">sandbox/sprite_art.html</div>
+        <ul class="tags"><li>CharacterSprites</li><li>PropSprites</li><li>MonsterSprites</li><li>FxSprites</li></ul>
+        <p>Every character preset as a 4-direction sheet with live walk previews, the creatures (cat,
+          dog, chicken, bird) and all 23 prop / particle sprites; the combat sheets (player poses, the
+          eight enemies, the FX atlas) with the hit-flash / glow diorama and the sheet-hash baseline.</p>
+        <div class="variants">
+          <a href="./sprite_art.html">Gallery</a>
+          <a href="./sprite_art.html?mode=focus&amp;names=traveler,bard,innkeeper&amp;z=6">Zoomed sheets</a>
+          <a href="./sprite_art.html?mode=creatures&amp;z=6">Creatures</a>
+          <a href="./sprite_art.html?mode=props&amp;z=6">Props</a>
+          <a href="./sprite_art.html?mode=combat">Combat sheets</a>
+          <a href="./sprite_art.html?mode=hashes">Sheet hashes</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./sprite_runtime.html">Sprites, Foliage &amp; Particles</a></h2>
+        <div class="file">sandbox/sprite_runtime.html</div>
+        <ul class="tags"><li>Sprite3D</li><li>SpriteManager</li><li>Foliage</li><li>Particles</li></ul>
+        <p>Lit, shadow-casting billboards walking a meadow of 3,000 instanced grass tufts, plus every
+          particle preset: dust, fireflies, embers, smoke, leaves, petals, rain, snow, mist and bursts.</p>
+        <div class="variants"><a href="./sprite_runtime.html">Open</a></div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./terrain.html">Terrain &amp; Water</a></h2>
+        <div class="file">sandbox/terrain.html</div>
+        <ul class="tags"><li>TileMap</li><li>Water</li><li>createWaterfall</li></ul>
+        <p>A hand-made valley map with grassy cliffs, stairs, a plateau river tumbling into a waterfall,
+          a pond with sandy shores and a cobbled plaza.</p>
+        <div class="variants">
+          <a href="./terrain.html?view=overview">Overview</a>
+          <a href="./terrain.html?view=diorama">Diorama</a>
+          <a href="./terrain.html?view=cliffs">Cliffs</a>
+          <a href="./terrain.html?view=waterfall">Waterfall</a>
+          <a href="./terrain.html?view=pond">Pond</a>
+          <a href="./terrain.html?view=diorama&amp;time=night">Night</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./props.html">Props</a></h2>
+        <div class="file">sandbox/props.html</div>
+        <ul class="tags"><li>PropFactory</li><li>mergeStatic</li></ul>
+        <p>A showcase lot of houses, trees, lampposts, torches, the campfire, well, market stall, bridge,
+          windmill and small props, plus an option-coverage gallery.</p>
+        <div class="variants">
+          <a href="./props.html">Lot</a>
+          <a href="./props.html?night=1">Night</a>
+          <a href="./props.html?merge=1">Merged</a>
+          <a href="./props.html?mode=gallery">Gallery</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./lighting.html">Lighting &amp; Sky</a></h2>
+        <div class="file">sandbox/lighting.html</div>
+        <ul class="tags"><li>LightingSystem</li><li>Sky</li><li>GodRays</li></ul>
+        <p>The 24-hour palette — pink dawn, noon, golden hour, purple dusk, moonlit night — with sun and
+          moon paths, texel-snapped shadows, flickering lanterns and light shafts.</p>
+        <div class="variants">
+          <a href="./lighting.html">Golden hour</a>
+          <a href="./lighting.html?t=12">Noon</a>
+          <a href="./lighting.html?t=22.5">Night</a>
+          <a href="./lighting.html?speed=0.5">Time-lapse</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./lighting_engine.html">Lighting Integration</a></h2>
+        <div class="file">sandbox/lighting_engine.html</div>
+        <ul class="tags"><li>LightingSystem</li><li>Engine</li><li>PostFX</li><li>GodRays</li></ul>
+        <p>The lighting system registered as an engine system, following a moving target through the
+          real PostFX pipeline (MSAA HDR, depth of field, bloom and grade).</p>
+        <div class="variants"><a href="./lighting_engine.html">Open</a></div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./postfx.html">Post-processing</a></h2>
+        <div class="file">sandbox/postfx.html</div>
+        <ul class="tags"><li>PostFX</li><li>DOF</li><li>Bloom</li><li>Grade</li></ul>
+        <p>Tilt-shift depth of field with bokeh highlight scatter, soft-knee bloom and the colour grade
+          (vignette, grain, chromatic aberration) on a 2.5D test diorama.</p>
+        <div class="variants">
+          <a href="./postfx.html?gui">With controls</a>
+          <a href="./postfx.html?gui&amp;label">Timings</a>
+          <a href="./postfx.html?freeze">Frozen</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./ui.html">User Interface</a></h2>
+        <div class="file">sandbox/ui.html</div>
+        <ul class="tags"><li>DialogBox</li><li>TitleScreen</li><li>Banner</li><li>HUD</li><li>DebugPanel</li><li>CombatHUD</li><li>WorldLabels</li></ul>
+        <p>Title screen, gold-bordered dialog with typewriter text and choices, area banner, clock HUD,
+          interaction prompt, toasts, fader and the themed debug panel; with <code>?combat=1</code>
+          the combat UI: vitals, skill bar, loot feed, boss bar, damage numbers, enemy bars and pips,
+          edge arrows, the announcer, the death screen and the title's level row.</p>
+        <div class="variants"><a href="./ui.html">Open</a> <a href="./ui.html?combat=1">Combat UI</a></div>
+      </article>
+      <article class="card">
+        <h2><a href="./story_ui.html">Story UI</a></h2>
+        <div class="file">sandbox/story_ui.html</div>
+        <ul class="tags"><li>Journal</li><li>Emotes</li><li>EndCard</li><li>Letterbox</li><li>Toasts</li></ul>
+        <p>The story components of <code>ui.useStoryUI()</code> over nine villagers: the quest and item
+          journal, the nine emote bubbles, the cutscene letterbox with its hold-to-skip ring, the end
+          card, the quest / item / error toasts and the HUD-only hide. Keys: J, 1–9, 0, C, D, K, T, H.</p>
+        <div class="variants"><a href="./story_ui.html">Open</a></div>
+      </article>
+      <article class="card">
+        <h2><a href="./combat_fx.html">Combat FX, Audio &amp; Input</a></h2>
+        <div class="file">sandbox/combat_fx.html</div>
+        <ul class="tags"><li>FxQuads</li><li>GroundMarkers</li><li>Particles</li><li>AudioSystem</li><li>Input</li></ul>
+        <p>Atlas quads in every mode, telegraph markers of every shape and style draped over steps,
+          ledges and stairs, the combat bursts, the 35 combat sounds and the battle / boss music, mouse
+          buttons on and off the canvas and the right-stick zoom — with an 11-check self-test.</p>
+        <div class="variants">
+          <a href="./combat_fx.html?view=gallery">Markers</a>
+          <a href="./combat_fx.html?view=stepped">Stepped ground</a>
+          <a href="./combat_fx.html?view=probe">Quad modes</a>
+          <a href="./combat_fx.html?view=bursts">Bursts</a>
+          <a href="./combat_fx.html?view=gallery&amp;t=21.5">Night</a>
+        </div>
+      </article>
+      <article class="card">
+        <h2><a href="./combat_audio.html">Combat Audio QA</a></h2>
+        <div class="file">sandbox/combat_audio.html</div>
+        <ul class="tags"><li>AudioSystem</li><li>CombatMusic</li><li>OfflineAudioContext</li></ul>
+        <p>Every combat sound, stinger, music section and dense mix rendered offline and measured
+          (loudness, true peak, clicks, spectrum), with a waveform, a spectrogram and live playback per
+          row, the in-game victory sequence and a 12-check self-test.</p>
+        <div class="variants"><a href="./combat_audio.html">Open</a></div>
+      </article>
+      <article class="card">
+        <h2><a href="./enemy_ai.html">Enemy AI</a></h2>
+        <div class="file">sandbox/enemy_ai.html</div>
+        <ul class="tags"><li>Enemy</li><li>ai/*</li><li>CombatContext mock</li></ul>
+        <p>All eight brains — slime, goblin, archer, shaman, bat, boar, dummy and Cinderheart — against a
+          scripted player on a stepped test map with a ledge, a stair and a boss arena; 131 checks,
+          telegraph screenshots and a seeded determinism run.</p>
+        <div class="variants"><a href="./enemy_ai.html">Open</a></div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./level_builder.html">Level Builder</a></h2>
+        <div class="file">sandbox/level_builder.html</div>
+        <ul class="tags"><li>buildLevelTerrain</li><li>LevelObjectBuilder</li><li>ObjectCatalog</li></ul>
+        <p>One object of each catalog type (regions and waterfalls aside), a fence and a bridge on a
+          24 × 18 level with a river and a raised block, built with the level pipeline outside the game
+          and lit by plain three.js lights; build timings in <code>window.__smoke</code>.</p>
+        <div class="variants"><a href="./level_builder.html">Open</a></div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./game_levels.html">Game Level Loading</a></h2>
+        <div class="file">sandbox/game_levels.html</div>
+        <ul class="tags"><li>LevelFormat</li><li>LevelStorage</li><li>Game</li></ul>
+        <p>Edge-case levels saved to browser storage and opened in the real game like the editor's
+          play-test: a tiny map, a bare field, a spawn in a pond, a stormy night over the light budget,
+          every object type, the sample hamlet, Emberfall with villagers moved, and the hostile-names
+          case (LVL-17). Each link leaves this page for the game.</p>
+        <div class="variants">
+          <a href="./game_levels.html">Cases</a>
+          <a href="./game_levels.html?case=tiny">Tiny</a>
+          <a href="./game_levels.html?case=bare">Bare</a>
+          <a href="./game_levels.html?case=wetspawn">Wet spawn</a>
+          <a href="./game_levels.html?case=stormnight">Storm night</a>
+          <a href="./game_levels.html?case=everything">Everything</a>
+          <a href="./game_levels.html?case=hamlet">Hamlet</a>
+          <a href="./game_levels.html?case=moved">Moved</a>
+          <a href="./game_levels.html?case=hostile">Hostile</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./editor3d.html">Editor 3D Viewport</a></h2>
+        <div class="file">sandbox/editor3d.html</div>
+        <ul class="tags"><li>Viewport3D</li><li>EditorState</li><li>Tools</li></ul>
+        <p>The level editor's 3D view without the editor shell, on a generated 64 × 64 valley with about
+          200 objects or on Emberfall, with small local tools (select / move, paint, height, place,
+          erase, player start) or the real ones: pointer forwarding, previews and incremental rebuilds.</p>
+        <div class="variants">
+          <a href="./editor3d.html">Test valley</a>
+          <a href="./editor3d.html?level=emberfall">Emberfall</a>
+          <a href="./editor3d.html?level=emberfall&amp;realtools">Real tools</a>
+          <a href="./editor3d.html?postfx">Post-processing</a>
+          <a href="./editor3d.html?empty">Empty</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2><a href="./smoke.html">three.js Smoke Test</a></h2>
+        <div class="file">sandbox/smoke.html</div>
+        <ul class="tags"><li>three r186</li></ul>
+        <p>A spinning cube: checks that WebGL2 and three.js module loading work in this browser
+          before anything else.</p>
+        <div class="variants"><a href="./smoke.html">Open</a></div>
+      </article>
+    </section>
+
+    <footer>
+      Run with <code>npm run dev</code> and open <code>/sandbox/</code>. Headless check:
+      <code>npm run check -- --page=sandbox/terrain.html --out=terrain</code>
+    </footer>
+  </main>
+</body>
+</html>

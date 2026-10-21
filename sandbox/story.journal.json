@@ -1,0 +1,35 @@
+[
+  {
+    "eval": "(async () => { const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); for (let i = 0; i < 300 && !window.__luminati?.loadMs; i++) await sleep(100); window.SJ = { get G() { return window.__game; }, get game() { return window.__game.game; }, get S() { return window.__game.story; }, sleep, until: async (fn, ms = 15000) => { const t0 = performance.now(); while (performance.now() - t0 < ms) { try { if (fn()) return true; } catch {} await sleep(100); } return false; }, idle: () => SJ.until(() => !SJ.S.info().running && !SJ.S.info().queued.length && !SJ.game.busy && SJ.game.mode === 'play' && !SJ.G.state().campaign?.traveling, 30000), talk: async (id) => { await SJ.idle(); const ok = SJ.G.talkTo(id); await SJ.sleep(200); await SJ.idle(); return ok; }, fail: (msg) => { setTimeout(() => { throw new Error('[story.journal] ' + msg); }); return 'FAIL ' + msg; }, lang: document.documentElement.lang.slice(0, 2), clipped: () => { const out = []; const win = document.querySelector('.lu-journal__window').getBoundingClientRect(); for (const e of document.querySelectorAll('.lu-journal .tx')) { const r = e.getBoundingClientRect(); if (!r.width || !r.height) continue; const box = e.closest('.lu-journal__list, .lu-journal__detail'); const b = box ? box.getBoundingClientRect() : win; if (box && (r.bottom < b.top || r.top > b.bottom)) continue; if (r.left < b.left - 1 || r.right > b.right + 1 || (!box && (r.top < win.top - 1 || r.bottom > win.bottom + 1))) out.push(e.className.replace(/^g tx /, '') + ': ' + e.textContent.slice(0, 30)); } return out; } }; SJ.S.auto(true); await SJ.idle(); return JSON.stringify({ lang: SJ.lang, loadMs: __luminati.loadMs, level: SJ.G.state().campaign.level }); })()"
+  },
+  {
+    "eval": "(async () => { await SJ.talk('elder'); await SJ.talk('hollis'); SJ.S.give('plank', 2); SJ.S.give('gold', 35); await SJ.idle(); const j = SJ.S.journal(); return JSON.stringify({ quests: j.quests.map((q) => q.id + ':' + q.state), items: j.items.map((i) => i.id + 'x' + i.count), gold: j.gold }); })()"
+  },
+  {
+    "eval": "(async () => { const open = SJ.game.toggleJournal(true); await SJ.sleep(700); const j = SJ.game.ui.journal; const want = { en: 'JOURNAL', ja: '日誌', zh: '日志' }[SJ.lang]; const kicker = document.querySelector('.lu-journal__kicker')?.textContent; const bad = SJ.clipped(); if (!open || !j.isOpen || kicker !== want || !document.querySelectorAll('.lu-journal__entry').length || bad.length) return SJ.fail(JSON.stringify({ open, kicker, want, entries: document.querySelectorAll('.lu-journal__entry').length, clipped: bad })); return JSON.stringify({ ok: true, kicker, tab: j.tab, selected: j.selectedId, entries: document.querySelectorAll('.lu-journal__entry').length }); })()"
+  },
+  { "shot": "01-quests" },
+  { "press": "KeyE" },
+  { "wait": 500 },
+  {
+    "eval": "(() => { const j = SJ.game.ui.journal; const bad = SJ.clipped(); const gold = document.querySelector('.lu-journal__gold'); if (j.tab !== 'items' || !gold.classList.contains('is-on') || bad.length) return SJ.fail(JSON.stringify({ tab: j.tab, gold: gold.className, clipped: bad })); return JSON.stringify({ ok: true, tab: j.tab, selected: j.selectedId, gold: document.querySelector('.lu-journal__gold-n').textContent }); })()"
+  },
+  { "shot": "02-items" },
+  { "press": "KeyB" },
+  { "wait": 500 },
+  {
+    "eval": "(async () => { if (SJ.game.journalOpen) return SJ.fail('B did not close the journal'); const v = SJ.game.npcs.find((n) => n.id === 'elder') ?? SJ.game.npcs[0]; const line = { en: 'The {ferry} sleeps tonight.', ja: '今夜は{渡し舟}もおやすみだ。', zh: '今晚{渡船}也歇着了。' }[SJ.lang]; const secs = SJ.game.ui.emotes.bark(v.sprite, line, 30); if (SJ.game.player?.sprite) SJ.game.ui.emotes.show(SJ.game.player.sprite, '!', 30, { offsetY: 2.2 }); await SJ.sleep(600); const b = document.querySelector('.lu-bark'); return JSON.stringify({ secs, bark: b?.textContent, hl: b?.querySelector('.lu-hl')?.textContent }); })()"
+  },
+  { "shot": "03-bark" },
+  {
+    "eval": "(async () => { SJ.game.ui.emotes.clear(); SJ.game.ui.setCutscene(true); SJ.game.ui.setSkipHint(true, 0.5); await SJ.sleep(900); const s = document.querySelector('.lu-skip'); const want = { en: 'Hold', ja: '長押しでスキップ', zh: '长按' }[SJ.lang]; const txt = [...s.querySelectorAll('.lu-skip__text')].map((e) => e.textContent); if (!txt.includes(want) || getComputedStyle(s).visibility !== 'visible') return SJ.fail(JSON.stringify({ txt, want })); return JSON.stringify({ ok: true, skip: txt }); })()"
+  },
+  { "shot": "04-cutscene" },
+  {
+    "eval": "(async () => { SJ.game.ui.setSkipHint(false); SJ.game.ui.setCutscene(false); const E = { en: ['The Lantern Burns', 'The ferry crosses again.'], ja: ['灯りはともる', '渡し舟はまた川を渡る。'], zh: ['提灯长明', '渡船又开始渡河了。'] }[SJ.lang]; const sub = { en: SJ.game.campaign?.campaign.name ?? 'The Ferryman\\'s Lantern', ja: '渡し守のランタン', zh: '摆渡人的提灯' }[SJ.lang]; SJ.game.ui.endCard.show({ title: E[0], subtitle: sub, text: E[1], guard: 0.5 }); await SJ.sleep(3600); return JSON.stringify({ visible: SJ.game.ui.endCard.visible, armed: document.querySelector('.lu-endcard').classList.contains('is-armed'), subtitle: sub }); })()"
+  },
+  { "shot": "05-endcard" },
+  {
+    "eval": "(async () => { SJ.game.ui.endCard.hide(); await SJ.sleep(1300); const s = SJ.G.state().story; if (s.errors) return SJ.fail('story errors ' + s.errors); return JSON.stringify({ endCard: SJ.game.ui.endCard.visible, errors: s.errors }); })()"
+  }
+]

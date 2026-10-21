@@ -1,0 +1,23 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Luminati sandbox — lighting, sky, god rays</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    html, body { margin: 0; height: 100%; background: #000; overflow: hidden; }
+    #app { position: fixed; inset: 0; }
+    #hud {
+      position: fixed; left: 14px; top: 12px; padding: 6px 10px; border-radius: 4px;
+      font: 13px/1.35 ui-monospace, Consolas, monospace; color: #f4e6c8;
+      background: rgba(10, 12, 24, 0.55); border: 1px solid rgba(201, 164, 92, 0.6);
+      pointer-events: none; white-space: pre;
+    }
+  </style>
+</head>
+<body>
+  <div id="app"></div>
+  <div id="hud"></div>
+  <script type="module" src="./lighting.js"></script>
+</body>
+</html>

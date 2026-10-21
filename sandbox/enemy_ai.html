@@ -1,0 +1,42 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Luminati sandbox — enemy AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0d14; overflow: hidden; }
+  #app { position: fixed; inset: 0; }
+  #app canvas { display: block; width: 100%; height: 100%; }
+  #hud {
+    position: fixed; left: 12px; top: 10px; pointer-events: none; max-width: 560px;
+    font: 12px/1.35 Georgia, serif; color: #f1e4c6; text-shadow: 0 1px 2px #000;
+    background: rgba(10, 10, 18, 0.62); border: 1px solid rgba(201, 164, 92, 0.6); padding: 7px 11px; border-radius: 3px;
+  }
+  #hud b { font-weight: 600; letter-spacing: 0.06em; color: #e9c77e; }
+  #hud .dim { color: #b9ad95; }
+  #hud pre { margin: 4px 0 0; font: 11px/1.3 Consolas, 'Courier New', monospace; color: #e8dcc0; white-space: pre-wrap; }
+  #log {
+    position: fixed; right: 12px; top: 10px; width: 430px; pointer-events: none;
+    font: 11px/1.3 Consolas, 'Courier New', monospace; color: #e8dcc0; text-shadow: 0 1px 2px #000;
+    background: rgba(10, 10, 18, 0.62); border: 1px solid rgba(201, 164, 92, 0.45); padding: 6px 9px; border-radius: 3px; white-space: pre-wrap;
+  }
+  .elabel {
+    position: absolute; left: 0; top: 0; transform: translate(-50%, -100%); pointer-events: none; white-space: nowrap;
+    font: 10px/1.1 Consolas, 'Courier New', monospace; color: #fff; padding: 1px 4px; border-radius: 2px;
+    background: rgba(12, 12, 20, 0.66); border: 1px solid rgba(255, 255, 255, 0.18);
+  }
+  .elabel.windup { background: rgba(160, 60, 20, 0.85); border-color: #ffb070; }
+  .elabel.active { background: rgba(200, 30, 20, 0.9); border-color: #ff8a6a; }
+  .elabel.stun, .elabel.stagger, .elabel.kneel { background: rgba(40, 90, 160, 0.85); border-color: #9fd0ff; }
+  .elabel.dead { opacity: 0.5; }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="hud"><b>LUMINATI</b> · enemy AI sandbox <span class="dim" id="scen"></span><pre id="stats">…</pre></div>
+<div id="log"></div>
+<div id="labels"></div>
+<script type="module" src="./enemy_ai.js"></script>
+</body>
+</html>

@@ -1,0 +1,60 @@
+{
+  "format": "luminati-campaign",
+  "version": 1,
+  "name": "Emberfall — Open Doors",
+  "subtitle": "A Luminati campaign",
+  "title": {
+    "title": "EMBERFALL",
+    "subtitle": "Open Doors — every house has a room behind its door",
+    "prompt": "Press any key",
+    "credit": "Luminati 2.5D Pixel-Art Engine · three.js"
+  },
+  "start": {
+    "level": "emberfall",
+    "entrance": ""
+  },
+  "levels": [
+    {
+      "id": "emberfall",
+      "at": [0, 0]
+    },
+    {
+      "id": "inn"
+    },
+    {
+      "id": "inn-upstairs"
+    },
+    {
+      "id": "windmill"
+    },
+    {
+      "id": "windmill-upper"
+    },
+    {
+      "id": "barn"
+    },
+    {
+      "id": "barn-loft"
+    },
+    {
+      "id": "elder-house"
+    },
+    {
+      "id": "riverside-house"
+    },
+    {
+      "id": "thatch-cottage"
+    },
+    {
+      "id": "lodge"
+    }
+  ],
+  "chapters": [],
+  "textKeys": {
+    "subtitle": "88865C2608126971875648514004C72E",
+    "title.title": "4858CCFD7EDC3A75287642B157988B3A",
+    "title.subtitle": "3D0477C1F21667C535EA950AC4DD4E58",
+    "title.prompt": "180A4477637B94064DC647B056246767",
+    "title.credit": "AB1E05A8D16E2C17E5649ECAE0E7C6F5"
+  }
+}

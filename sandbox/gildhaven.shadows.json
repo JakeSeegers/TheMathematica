@@ -1,0 +1,15 @@
+[
+  {"eval":"(async () => { for (let i = 0; i < 200 && !(window.__luminati && window.__luminati.playLocal); i++) await new Promise((r) => setTimeout(r, 50)); const L = await (await fetch('/levels/gildhaven.json')).json(); const sp = L.spawn, n0 = L.objects.length; L.objects = L.objects.filter((o) => !(o.type === 'tree' && o.opts && o.opts.kind === 'pine' && Math.hypot(o.x - sp.x, o.z - sp.z) < 16)); const removed = n0 - L.objects.length; if (removed !== 2) setTimeout(() => { throw new Error('[gildhaven.shadows] expected the 2 pines by the King\\'s Road, removed ' + removed); }); window.__luminati.playLocal(L, 'shadow-primer', 'autostart=1'); return 'Gildhaven without the ' + removed + ' pines near its spawn → local:shadow-primer'; })()"},
+  {"wait":2000},
+  {"eval":"(async () => { const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); for (let k = 0; k < 600 && !(window.__luminati && window.__luminati.loadMs); k++) await sleep(100); const G = window.__game; if (!G) throw new Error('no __game'); G.game.resolution.enabled = false; G.engine.renderScale = 1; G.lighting.timeSpeed = 0; G.setTime(16.6); const fail = (m) => setTimeout(() => { throw new Error('[gildhaven.shadows] ' + m); }); const progs = () => G.engine.renderer.info.programs.map((p) => p.id + ':' + p.name); const S = window.__shadows = { fail, sleep, programs0: G.engine.renderer.info.programs.length, list0: progs(), log: [], async view(name, x, z, yaw = 0, dist = 30) { G.teleport(x, z); G.rig.setAngles(yaw); G.rig.distanceTarget = dist; G.rig.snap(); await sleep(900); const n = G.engine.renderer.info.programs.length; S.log.push(name + ': ' + n); return name + ': ' + n + ' programs'; }, added() { const before = new Set(S.list0); return progs().filter((p) => !before.has(p)); } }; const pines = G.level.objects.filter((o) => o.type === 'tree' && o.opts.kind === 'pine' && Math.hypot(o.x - G.level.spawn.x, o.z - G.level.spawn.z) < 30).length; return JSON.stringify({ source: window.__luminati.source, loadMs: window.__luminati.loadMs, programs: S.programs0, pinesWithin30OfSpawn: pines }); })()"},
+  {"shot":"01_spawn"},
+  {"eval":"__shadows.view('Abbey Plaza', 64, 21)"},
+  {"shot":"02_abbey"},
+  {"eval":"__shadows.view('Hall Court', 33, 20.5)"},
+  {"eval":"__shadows.view('Scholars Row', 92, 24.5)"},
+  {"eval":"__shadows.view('Undercliff', 30, 39)"},
+  {"eval":"__shadows.view('Market Square', 64, 54.5)"},
+  {"eval":"__shadows.view('the beach', 118, 50)"},
+  {"eval":"__shadows.view('Fairfield Mill', 34, 108.5)"},
+  {"eval":"(() => { const S = __shadows, n = window.__game.engine.renderer.info.programs.length; if (n !== S.programs0) S.fail((n - S.programs0) + ' program(s) compiled after load (' + S.programs0 + ' → ' + n + '): ' + JSON.stringify(S.added())); return JSON.stringify({ atLoad: S.programs0, now: n, added: S.added(), views: S.log }); })()"}
+]

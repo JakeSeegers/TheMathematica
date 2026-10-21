@@ -1,0 +1,43 @@
+{
+  "name": "luminati",
+  "version": "0.1.0",
+  "private": true,
+  "description": "An open-source engine combining pixel-art sprites with lit 3D environments, dynamic shadows and depth of field.",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "check": "node tools/check.mjs",
+    "typecheck": "node tools/typecheck.mjs",
+    "docs:check": "node tools/check-docs-links.mjs",
+    "level:check": "node tools/check-level.mjs",
+    "level:test": "node tools/test-levelcheck.mjs",
+    "story:test": "node tools/test-story.mjs && node tools/test-story-runtime.mjs",
+    "api:test": "node tools/test-level-api.mjs",
+    "i18n:check": "node tools/check-i18n.mjs",
+    "i18n:test": "node tools/test-i18n.mjs",
+    "i18n:keys": "node tools/i18n-keys.mjs",
+    "keys:test": "node tools/test-text-keys.mjs"
+  },
+  "dependencies": {
+    "@fontsource/cinzel": "^5.3.0",
+    "@fontsource/crimson-pro": "^5.3.0",
+    "@fontsource/dotgothic16": "^5.3.0",
+    "@fontsource/jersey-10": "^5.3.0",
+    "@fontsource/jersey-15": "^5.3.0",
+    "@fontsource/noto-sans-jp": "^5.3.0",
+    "@fontsource/noto-sans-sc": "^5.3.0",
+    "@fontsource/pixelify-sans": "^5.3.0",
+    "@fontsource/tiny5": "^5.3.0",
+    "lil-gui": "^0.21.0",
+    "three": "^0.186.1"
+  },
+  "devDependencies": {
+    "@types/node": "^24.19.0",
+    "@types/three": "^0.186.0",
+    "puppeteer-core": "^25.12.0",
+    "typescript": "^7.0.2",
+    "vite": "^8.3.1"
+  }
+}

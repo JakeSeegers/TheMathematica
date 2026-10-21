@@ -1,0 +1,9 @@
+[
+  {"eval": "(async () => { const t0 = performance.now(); while (!(window.__party && window.__party.state.ready)) { if (performance.now() - t0 > 20000) throw new Error('not ready'); await new Promise((r) => setTimeout(r, 50)); } return 'ready'; })()"},
+  {"wait": 500},
+  {"eval": "(() => { const P = __party.panel; const t0 = performance.now(); __party.menu(true); const a = performance.now() - t0; P.close(); const t1 = performance.now(); __party.menu(true); const b = performance.now() - t1; P.close(); const t2 = performance.now(); __party.menu(true, 'wren'); const c = performance.now() - t2; return JSON.stringify({ firstOpenMs: Math.round(a), secondOpenMs: Math.round(b), otherMemberMs: Math.round(c) }); })()"},
+  {"wait": 600},
+  {"eval": "(() => { const P = __party.panel; const t0 = performance.now(); for (let i = 0; i < 10; i++) P.update(0, { actionPressed: (n) => n === 'down' }); const a = (performance.now() - t0) / 10; const t1 = performance.now(); for (let i = 0; i < 10; i++) P.update(0, { actionPressed: (n) => n === 'right' }); const b = (performance.now() - t1) / 10; const t2 = performance.now(); for (let i = 0; i < 6; i++) P.update(0, { actionPressed: (n) => n === 'camRight' }); const c = (performance.now() - t2) / 6; return JSON.stringify({ downMs: +a.toFixed(2), rightMs: +b.toFixed(2), memberMs: +c.toFixed(2) }); })()"},
+  {"eval": "(async () => { __party.state.feed = false; const r = await __party.frameWrites(__party.frameList(), 200); __party.state.feed = true; return JSON.stringify({ framesUpdateUs: r.usPerCall, writes: r.writes }); })()"},
+  {"shot": "timing"}
+]

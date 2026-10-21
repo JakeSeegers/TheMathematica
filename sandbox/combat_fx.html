@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Luminati sandbox — combat FX, markers, audio &amp; input</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  html, body { margin: 0; height: 100%; background: #0b0d14; overflow: hidden; }
+  #app { position: fixed; inset: 0; }
+  #panel {
+    position: fixed; right: 10px; top: 10px; width: 300px; max-height: calc(100% - 20px); overflow: auto;
+    font: 12px/1.35 Georgia, serif; color: #f1e4c6; text-shadow: 0 1px 2px #000;
+    background: rgba(10, 10, 18, 0.72); border: 1px solid rgba(201, 164, 92, 0.7); padding: 8px 10px; border-radius: 3px;
+  }
+  #panel h2 { font-size: 12px; margin: 8px 0 4px; letter-spacing: 0.08em; text-transform: uppercase; color: #e9c77e; font-weight: 600; }
+  #panel h2:first-child { margin-top: 0; }
+  #panel .grid { display: flex; flex-wrap: wrap; gap: 3px; }
+  #panel button {
+    font: 11px Georgia, serif; color: #f1e4c6; background: rgba(40, 34, 52, 0.9); border: 1px solid rgba(201, 164, 92, 0.55);
+    border-radius: 2px; padding: 2px 5px; cursor: pointer;
+  }
+  #panel button:hover { background: rgba(70, 58, 84, 0.95); }
+  #panel pre { margin: 0; font: 11px/1.3 Consolas, monospace; white-space: pre-wrap; color: #d9d0ba; }
+  #panel .ok { color: #a8e07a; }
+  #panel .bad { color: #ff8a70; }
+  .tag {
+    position: absolute; left: 0; top: 0; transform: translate(-50%, -100%); pointer-events: none;
+    font: 600 11px/1.1 Georgia, serif; letter-spacing: 0.06em; text-transform: uppercase; color: #f3e3bf;
+    padding: 2px 6px 3px; white-space: nowrap; background: rgba(12, 11, 20, 0.7); border: 1px solid rgba(201, 164, 92, 0.6);
+  }
+</style>
+</head>
+<body>
+<div id="app"></div>
+<div id="tags"></div>
+<div id="panel" data-input-ignore>
+  <h2>Combat FX sandbox</h2>
+  <pre id="stats">…</pre>
+  <h2>Mouse / device</h2>
+  <pre id="mouse">…</pre>
+  <h2>Combat SFX</h2>
+  <div class="grid" id="sfx"></div>
+  <h2>Music</h2>
+  <div class="grid" id="music"></div>
+  <pre id="musicState">…</pre>
+  <h2>Checks</h2>
+  <pre id="checks">running…</pre>
+</div>
+<script type="module" src="./combat_fx.js"></script>
+</body>
+</html>

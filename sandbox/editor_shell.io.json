@@ -1,0 +1,179 @@
+[
+ {
+  "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.begin('Sample'); s.editTiles([...Array(10)].map((_, k) => ({ i: 8 + k, j: 10, tile: '.' }))); s.addObject('house', 10, 7, { name: 'Test house' }); s.addObject('tree', 5.5, 14.5); s.addObject('npc', 14.5, 12.5, { name: 'Tester', dialogue: ['Hello from the test!', { text: 'Ready?', choices: ['Yes', 'No'] }] }); s.addObject('fence', 4, 18, { x1: 12, z1: 18 }); s.commit(); return T.summary(); })()"
+ },
+ {
+  "eval": "T.key('s', { ctrl: true, shift: true })"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "T.setInput(document.querySelector('.le-dialog input[type=text]'), 'zz-editor-test'); T.clickText('.le-dest-card', 'Project folder'); document.querySelector('.le-form-summary').textContent"
+ },
+ {
+  "shot": "01-save-as"
+ },
+ {
+  "eval": "T.clickText('.le-dialog .le-btn', 'Save')"
+ },
+ {
+  "wait": 800
+ },
+ {
+  "eval": "import('/src/engine/level/LevelStorage.js').then((m) => m.listProjectLevels()).then((l) => JSON.stringify({ files: l.map((x) => x.name), ref: T.E.state.fileRef, dirty: T.E.state.dirty, doc: document.querySelector('.le-doc-where').textContent }))"
+ },
+ {
+  "eval": "fetch('/levels/zz-editor-test.json', { cache: 'no-store' }).then((r) => r.json()).then((d) => JSON.stringify({ name: d.name, objects: d.objects.length, npc: d.objects.find((o) => o.type === 'npc')?.dialogue }))"
+ },
+ {
+  "eval": "T.E.state.moveObjects(['house_1'], 1, 0); T.key('s', { ctrl: true }); T.sleep(600).then(() => fetch('/levels/zz-editor-test.json', { cache: 'no-store' })).then((r) => r.json()).then((d) => JSON.stringify({ houseX: d.objects.find((o) => o.id === 'house_1').x, dirty: T.E.state.dirty }))"
+ },
+ {
+  "eval": "T.key('o', { ctrl: true })"
+ },
+ {
+  "wait": 700
+ },
+ {
+  "shot": "02-open-project"
+ },
+ {
+  "eval": "T.key('Escape')"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "eval": "(T.E.app.commands['file.saveAs'].run(), 'opened')"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "T.setInput(document.querySelector('.le-dialog input[type=text]'), 'zz-editor-test-local'); T.clickText('.le-dest-card', 'This browser'); T.clickText('.le-dialog .le-btn', 'Save')"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "import('/src/engine/level/LevelStorage.js').then((m) => JSON.stringify({ local: m.listLocalLevels().map((x) => x.slot), ref: T.E.state.fileRef }))"
+ },
+ {
+  "eval": "(() => { const orig = HTMLAnchorElement.prototype.click; let got = null; HTMLAnchorElement.prototype.click = function () { got = this.download + ' ' + this.href.slice(0, 5); }; T.E.app.exportFile(); HTMLAnchorElement.prototype.click = orig; return got; })()"
+ },
+ {
+  "eval": "T.key('n', { ctrl: true })"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "T.clickText('.le-dialog .le-btn', 'Create')"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "eval": "T.summary()"
+ },
+ {
+  "eval": "T.key('o', { ctrl: true })"
+ },
+ {
+  "wait": 500
+ },
+ {
+  "eval": "T.clickText('.le-dialog .le-seg-btn', 'This browser')"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "03-open-browser"
+ },
+ {
+  "eval": "(() => { const it = [...document.querySelectorAll('.le-file-item')].find((x) => x.textContent.includes('zz-editor-test-local')); it.dispatchEvent(new MouseEvent('dblclick', { bubbles: true })); return 'dbl'; })()"
+ },
+ {
+  "wait": 500
+ },
+ {
+  "eval": "T.summary()"
+ },
+ {
+  "eval": "(T.E.app.commands['level.resize'].run(), 'opened')"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "(() => { const inputs = document.querySelectorAll('.le-dialog .le-num'); T.setInput(inputs[0], '40'); T.setInput(inputs[1], '30'); document.querySelectorAll('.le-anchor-cell')[0].click(); return document.querySelector('.le-form-summary').textContent; })()"
+ },
+ {
+  "shot": "04-resize"
+ },
+ {
+  "eval": "T.clickText('.le-dialog .le-btn', 'Resize')"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "JSON.stringify({ size: T.E.state.level.width + 'x' + T.E.state.level.depth, house: T.E.state.getObject('house_1')?.x, undo: T.E.state.undoLabel })"
+ },
+ {
+  "eval": "T.E.state.undo(); JSON.stringify({ size: T.E.state.level.width + 'x' + T.E.state.level.depth, house: T.E.state.getObject('house_1')?.x })"
+ },
+ {
+  "eval": "T.E.state.redo(); (T.E.app.commands['level.settings'].run(), 'opened')"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "(() => { const inputs = document.querySelectorAll('.le-dialog input[type=text]'); T.setInput(inputs[0], 'Tester Town'); T.setInput(inputs[1], 'A test subtitle'); T.clickText('.le-dialog .le-seg-btn', 'Environment'); return 'ok'; })()"
+ },
+ {
+  "wait": 200
+ },
+ {
+  "shot": "05-settings"
+ },
+ {
+  "eval": "T.clickText('.le-dialog .le-btn', 'Apply')"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "eval": "JSON.stringify({ name: T.E.state.level.name, sub: T.E.state.level.subtitle, title: document.title })"
+ },
+ {
+  "eval": "(() => { window.__opened = []; window.open = (u, n) => { window.__opened.push([u, n]); return {}; }; T.key('F5'); const raw = localStorage.getItem('luminati.level.__playtest__'); return JSON.stringify({ opened: window.__opened, stored: raw ? JSON.parse(raw).name : null, objects: raw ? JSON.parse(raw).objects.length : 0 }); })()"
+ },
+ {
+  "eval": "T.E.state.setSpawn(0.5, 0.5); T.key('F5'); document.querySelector('.le-dialog-title')?.textContent"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "06-playtest-errors"
+ },
+ {
+  "eval": "T.key('Escape'); T.E.state.undo(); JSON.stringify(T.E.state.level.spawn)"
+ },
+ {
+  "eval": "import('/src/engine/level/LevelStorage.js').then(async (m) => { await m.deleteProjectLevel('zz-editor-test'); m.deleteLocalLevel('zz-editor-test-local'); return JSON.stringify({ project: (await m.listProjectLevels()).map((x) => x.name), local: m.listLocalLevels().map((x) => x.slot) }); })"
+ },
+ {
+  "eval": "T.E.app._autosave(true); JSON.stringify(JSON.parse(localStorage.getItem('luminati.editor.autosave')))"
+ },
+ {
+  "shot": "07-final"
+ }
+]

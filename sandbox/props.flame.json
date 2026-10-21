@@ -1,0 +1,13 @@
+[
+  { "eval": "window.__props.setNight(true); window.__props.frame('flames'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "flame_a" },
+  { "wait": 170 },
+  { "shot": "flame_b" },
+  { "eval": "window.__props.setNight(false); 'ok'" },
+  { "wait": 200 },
+  { "shot": "flame_day" },
+  { "eval": "window.__props.setNight(true); window.__props.frame('torch'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "torch_night" }
+]

@@ -1,0 +1,23 @@
+[
+  { "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())" },
+  { "eval": "T.summary()" },
+  { "eval": "T.E.state.setView({ layout: '2d' }); T.sleep(400).then(() => { T.E.view2d.frameLevel(false); return T.E.view2d.zoomPercent; })" },
+  { "wait": 400 },
+  { "shot": "01-emberfall-2d" },
+  { "eval": "T.E.view2d.focusOn(22, 20, { scale: 40, animate: false }); T.hover(21.3, 19.6)" },
+  { "wait": 300 },
+  { "shot": "02-zoom-village" },
+  { "eval": "T.E.view2d.focusOn(28, 10, { scale: 56, animate: false }); T.E.state.setTool('select'); T.hover(30, 12)" },
+  { "wait": 300 },
+  { "shot": "03-zoom-hill" },
+  { "eval": "T.E.state.setView({ textured2d: false }); T.E.view2d.frameLevel(false); 'flat'" },
+  { "wait": 300 },
+  { "shot": "04-flat-colours" },
+  { "eval": "T.E.state.setView({ textured2d: true, layout: 'split' }); T.sleep(300).then(() => { const h = T.E.state.level.objects.find((o) => o.type === 'house'); T.E.state.select([h.id]); T.E.app.focusIds([h.id]); return h.id; })" },
+  { "wait": 700 },
+  { "shot": "05-split-house" },
+  { "eval": "(() => { const n = T.E.state.level.objects.find((o) => o.type === 'npc'); T.E.state.select([n.id]); return n.id + ' ' + (n.script || '-'); })()" },
+  { "wait": 300 },
+  { "shot": "06-npc-inspector" },
+  { "fps": 2000, "label": "split-idle" }
+]

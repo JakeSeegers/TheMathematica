@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<title>Luminati sandbox — combat audio QA &amp; listening</title>
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<style>
+  :root {
+    --bg: #0b0d14; --panel: rgba(18, 16, 26, 0.92); --line: rgba(201, 164, 92, 0.45); --gold: #e9c77e;
+    --text: #f1e4c6; --muted: #a99d84; --ok: #a8e07a; --warn: #f2c35b; --bad: #ff8a70;
+  }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; background: var(--bg); color: var(--text); font: 13px/1.4 Georgia, serif; }
+  body { padding: 12px 16px 40px; }
+  h1 { font-size: 18px; margin: 0 0 2px; color: var(--gold); font-weight: 600; letter-spacing: 0.04em; }
+  h2 { font-size: 12px; margin: 14px 0 6px; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gold); font-weight: 600; }
+  p { margin: 4px 0; max-width: 1100px; }
+  .muted { color: var(--muted); }
+  #status { font: 12px Consolas, monospace; color: var(--muted); }
+  .bar { display: flex; flex-wrap: wrap; gap: 4px; align-items: center; margin: 4px 0; }
+  button {
+    font: 12px Georgia, serif; color: var(--text); background: rgba(40, 34, 52, 0.95); border: 1px solid rgba(201, 164, 92, 0.55);
+    border-radius: 2px; padding: 2px 7px; cursor: pointer;
+  }
+  button:hover { background: rgba(70, 58, 84, 0.95); }
+  button.on { background: rgba(120, 90, 40, 0.9); }
+  .views { display: grid; grid-template-columns: minmax(0, 1fr) 320px; gap: 10px; align-items: start; }
+  .card { background: var(--panel); border: 1px solid var(--line); border-radius: 3px; padding: 8px 10px; }
+  canvas { display: block; width: 100%; background: #07060d; border: 1px solid rgba(201, 164, 92, 0.35); image-rendering: pixelated; }
+  #wave { height: 150px; }
+  #spec { height: 230px; margin-top: 6px; }
+  #detail { font: 11.5px/1.35 Consolas, monospace; white-space: pre-wrap; color: #d9d0ba; margin: 0; }
+  .tablewrap { overflow-x: auto; }
+  table { border-collapse: collapse; font: 11.5px Consolas, monospace; white-space: nowrap; }
+  th, td { padding: 2px 6px; border-bottom: 1px solid rgba(201, 164, 92, 0.14); text-align: right; }
+  th { color: var(--gold); font-weight: 600; position: sticky; top: 0; background: #14121c; cursor: help; }
+  td.name, th.name { text-align: left; }
+  td.flags { text-align: left; }
+  tr.group td { color: var(--gold); text-align: left; font: 600 11px Georgia, serif; letter-spacing: 0.08em; text-transform: uppercase; padding-top: 8px; }
+  tr.row { cursor: pointer; }
+  tr.row:hover { background: rgba(201, 164, 92, 0.08); }
+  tr.sel { background: rgba(201, 164, 92, 0.16); }
+  td button { padding: 0 5px; font-size: 11px; }
+  .f { display: inline-block; padding: 0 4px; margin-right: 3px; border-radius: 2px; font-size: 10.5px; }
+  .f.bad { background: rgba(255, 138, 112, 0.2); color: var(--bad); }
+  .f.warn { background: rgba(242, 195, 91, 0.18); color: var(--warn); }
+  .f.ok { color: var(--ok); }
+  .ok { color: var(--ok); }
+  .bad { color: var(--bad); }
+  pre.block { font: 11.5px/1.35 Consolas, monospace; white-space: pre-wrap; color: #d9d0ba; margin: 0; }
+  ul { margin: 4px 0 4px 18px; padding: 0; max-width: 1100px; }
+  li { margin: 2px 0; }
+  @media (max-width: 900px) { .views { grid-template-columns: 1fr; } }
+</style>
+</head>
+<body>
+<h1>Combat audio — QA &amp; listening pass</h1>
+<p class="muted">Every combat sound, stinger and music section rendered offline with the game's audio settings and measured against the peaceful
+  sounds and "Emberfall Evening". Buttons play the real <code>AudioSystem</code> (the first click unlocks audio); click a row to see its
+  render. Headless checks read <code>window.__caudio</code>.</p>
+<div id="status">analysing…</div>
+
+<div class="views">
+  <div class="card">
+    <canvas id="wave" width="1200" height="150"></canvas>
+    <canvas id="spec" width="1200" height="230"></canvas>
+  </div>
+  <div class="card"><pre id="detail">Select a row.</pre></div>
+</div>
+
+<h2>Music, stingers &amp; scenes (live)</h2>
+<div class="bar" id="musicBar"></div>
+<div class="bar" id="sceneBar"></div>
+
+<h2>QA table</h2>
+<div class="tablewrap card"><table id="qa"></table></div>
+
+<h2>Music sections</h2>
+<div class="tablewrap card"><table id="music"></table></div>
+
+<h2>Dense mix &amp; transitions</h2>
+<div class="card"><pre class="block" id="mix">…</pre></div>
+
+<h2>Checks</h2>
+<div class="card"><pre class="block" id="checks">…</pre></div>
+
+<h2>How to read it · what a listener should still judge</h2>
+<ul id="legend"></ul>
+
+<script type="module" src="./combat_audio.js"></script>
+</body>
+</html>

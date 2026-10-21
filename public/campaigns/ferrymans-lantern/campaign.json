@@ -1,0 +1,66 @@
+{
+  "format": "luminati-campaign",
+  "version": 1,
+  "name": "The Ferryman's Lantern",
+  "subtitle": "A Luminati campaign",
+  "title": {
+    "title": "THE FERRYMAN'S LANTERN",
+    "subtitle": "A short tale of Millbrook",
+    "credit": "Luminati 2.5D Pixel-Art Engine · three.js"
+  },
+  "start": {
+    "level": "millbrook",
+    "entrance": ""
+  },
+  "levels": [
+    {
+      "id": "millbrook",
+      "at": [0, 0]
+    },
+    {
+      "id": "mill-road",
+      "at": [40, 8]
+    },
+    {
+      "id": "old-quarry",
+      "at": [96, 2]
+    },
+    {
+      "id": "mill-cellar"
+    }
+  ],
+  "chapters": [
+    {
+      "id": "the-flood",
+      "title": "Chapter One",
+      "subtitle": "The Broken Ford",
+      "textKeys": {
+        "title": "584273F049EDEB5C43FFF023ABC397D4",
+        "subtitle": "4F2D24DCCC01D2B1EE348EF102CAE518"
+      }
+    },
+    {
+      "id": "lanterns-home",
+      "title": "Chapter Two",
+      "subtitle": "Lanterns Home",
+      "when": "lantern-found",
+      "levels": {
+        "millbrook": "millbrook-dusk"
+      },
+      "textKeys": {
+        "title": "1EBA4F29C036486BAE79B3B8AA57F2FE",
+        "subtitle": "2D1E7B6A3302575E219AB56949AF790A"
+      }
+    }
+  ],
+  "story": [
+    "main.json",
+    "dialogue.story"
+  ],
+  "textKeys": {
+    "subtitle": "05426E8D2A5191B0A476FCF3AEE8958D",
+    "title.title": "701427B116FC1EFE783E06CDFF305DBE",
+    "title.subtitle": "BBB49BD62AD27311A97DB7811850DE22",
+    "title.credit": "6D2B7A0D615B0F4E7214CC0B4F363B78"
+  }
+}

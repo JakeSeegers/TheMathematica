@@ -1,0 +1,12 @@
+[
+  { "eval": "(async () => { await window.__editor.app.ready; return window.__editor.state.level.name; })()" },
+  { "press": "F5" },
+  { "tab": "last" },
+  { "eval": "(async () => { for (let k = 0; k < 300 && !(window.__luminati && window.__luminati.loadMs && window.__game); k++) await new Promise((r) => setTimeout(r, 100)); const slot = JSON.parse(localStorage.getItem('luminati.level.__playtest__') || 'null'); const s = window.__game ? window.__game.state() : null; const r = { path: location.pathname, search: location.search, name: window.name, mode: s && s.mode, level: s && s.level, slotLevel: slot && slot.name }; const ok = r.path.endsWith('/game.html') && /^\\?level=local:__playtest__&autostart=1(&i18n=levels\\/[\\w%.-]+)?$/.test(r.search) && r.name === 'luminati-playtest' && r.mode === 'play' && !!r.level && r.level === r.slotLevel; if (!ok) setTimeout(() => { throw new Error('[playtest] the tab step did not land in the loaded play-test tab — ' + JSON.stringify(r)); }); return JSON.stringify({ ok, ...r }); })()" },
+  { "wait": 1500 },
+  { "shot": "01-playtest" },
+  { "tab": 1 },
+  { "eval": "(() => { const ok = location.pathname.endsWith('/editor.html') && !!window.__editor; if (!ok) setTimeout(() => { throw new Error('[playtest] tab 1 is not the editor — ' + location.href); }); return JSON.stringify({ ok, path: location.pathname }); })()" },
+  { "tab": "last" },
+  { "eval": "(() => { const ok = window.name === 'luminati-playtest' && !!window.__game; if (!ok) setTimeout(() => { throw new Error('[playtest] tab last (back) is not the play-test — ' + location.href); }); return JSON.stringify({ ok, name: window.name }); })()" }
+]

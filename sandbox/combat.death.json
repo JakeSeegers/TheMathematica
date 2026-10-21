@@ -1,0 +1,16 @@
+[
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => m.saveCombatFixture())" },
+  { "goto": "game.html?level=local:combat-fixture&autostart=1" },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => m.ready()).then(() => window.__luminati.loadMs)" },
+  { "wait": 1000 },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => JSON.stringify(m.tests.deathSetup().player))" },
+  { "wait": 700 },
+  { "shot": "01_fallen" },
+  { "wait": 1800 },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => JSON.stringify(m.tests.deathScreenUp()))" },
+  { "shot": "02_death_screen" },
+  { "press": "Space" },
+  { "wait": 3000 },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => JSON.stringify(m.tests.deathCheck()))" },
+  { "shot": "03_respawned" }
+]

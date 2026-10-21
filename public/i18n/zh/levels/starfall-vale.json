@@ -1,0 +1,1016 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "levels/starfall-vale",
+  "extends": [],
+  "terms": {
+    "Amberpine Heights": "琥珀松高地",
+    "Ansel Birchwood": "安塞尔·伯奇伍德",
+    "Barleycorn Farm": "巴利科恩农场",
+    "Barnaby Crumb": "巴纳比·克拉姆",
+    "Bramble Hollow": "荆棘洼地",
+    "Chapel Row": "礼拜堂街",
+    "Dunstan Flint": "邓斯坦·弗林特",
+    "Emberwood": "烬木林",
+    "Festival Ribbon": "节庆丝带",
+    "Finn Ashdown": "芬恩·阿什当",
+    "Garrick Ironwell": "加里克·艾恩维尔",
+    "Goldenfield Farms": "金田农庄",
+    "Goldenfield Orchard": "金田果园",
+    "Grandmother Isolde": "伊索尔德奶奶",
+    "Hearthwick": "炉火镇",
+    "Hearthwick Square": "炉火镇广场",
+    "Hollis Barleycorn": "霍利斯·巴利科恩",
+    "Kestrel": "凯斯特雷尔",
+    "Lake Mirrormere": "镜湖",
+    "Lark Silverstring": "拉克·银弦",
+    "Lumen Lookout": "流明瞭望台",
+    "Marigold Fenn": "玛丽戈尔德·芬",
+    "Marlow Tench": "马洛·坦奇",
+    "Master Casimir Vey": "卡西米尔·维大师",
+    "Mayor Aldous Bramblecote": "奥尔德斯·布兰布尔科特镇长",
+    "Mirror Falls": "镜瀑",
+    "Mirrormere Landing": "镜湖码头",
+    "Moonpetal Tea": "月瓣茶",
+    "Mount Lumen": "流明山",
+    "Old Gorse": "老戈斯",
+    "Old Lumen": "流明旧城",
+    "Old Nell": "内尔婆婆",
+    "Old Thistle": "老西斯尔",
+    "Paper Lantern": "纸灯笼",
+    "Poppy": "波比",
+    "Professor Ptolemy Marrow": "托勒密·马罗教授",
+    "Quentin Fairweather": "昆廷·费尔韦瑟",
+    "Reedmouth": "芦苇河口",
+    "Rowan the Wayfarer": "漫游者罗文",
+    "Saffi": "萨菲",
+    "Sergeant Hobb Vane": "霍布·韦恩中士",
+    "Signor Orsino": "奥西诺先生",
+    "Silverspring": "银泉",
+    "Sister Amarantha": "阿玛兰莎修女",
+    "Southgate": "南门区",
+    "Starbloom Garland": "星花花环",
+    "Stargazer's Steps": "观星者石阶",
+    "Starlight Bun": "星光面包",
+    "Tamsin Bloom": "塔姆辛·布鲁姆",
+    "Tansy": "坦西",
+    "The Foothills": "山麓",
+    "The Hidden Glade": "隐秘林地",
+    "The High Terrace": "高台地",
+    "The Lumen Observatory": "流明天文台",
+    "The Meadowlands": "草甸",
+    "The North Shore": "北岸",
+    "The Old Quarry": "旧采石场",
+    "The South Beach": "南滩",
+    "The Three Sisters": "三姐妹",
+    "The Troupe Camp": "剧团营地",
+    "The Windmill": "风车磨坊",
+    "Warden Ivo": "守卫伊沃",
+    "Wendel the Miller": "磨坊主温德尔",
+    "Wick Reed": "威克·里德",
+    "Woodcutter's Camp": "樵夫营地"
+  },
+  "units": {
+    "0DFA00025042B02BE4699A2777D4D015": {
+      "source": "I have dropped eleven coins. Nothing yet. I think the stars are shy. Or saving up.",
+      "target": "我已经丢了十一枚了。还什么都没有。我觉得星星是害羞了。要不就是在攒钱。"
+    },
+    "0E5E99320A92575653FC0B91DD624744": {
+      "source": "A brass plate on the door: \"M. CASIMIR VEY — ASTRONOMER. If out, look up.\"",
+      "target": "门上钉着一块黄铜牌：“卡西米尔·维大师——天文学家。如不在家，请抬头看。”"
+    },
+    "0E48F6FF1BBD4A8473A703316BD525BE": {
+      "source": "Starfall Vale",
+      "target": "星落谷"
+    },
+    "0FA07868D7AB8114661ED4EF5F6C136C": {
+      "source": "Ever seen a star up close?",
+      "target": "你近距离看过星星吗？"
+    },
+    "1ACE894205CA103D374F4D59C459A5E3": {
+      "source": "Not now",
+      "target": "现在不用"
+    },
+    "1C3FAD24F741C1856CBFAF043DAC41CF": {
+      "source": "Starfall Vale",
+      "target": "星落谷"
+    },
+    "1E2EDB4E9B1D0F564558DF63ECB69748": {
+      "source": "The old well still stands. They say it hums on Starfall night. I have brought a notebook, just in case it hums something important.",
+      "target": "那口老井至今还在。据说星落之夜它会嗡嗡作响。我带了笔记本，万一它哼出什么重要的东西呢。"
+    },
+    "1E92CC9DB40801916B6440722C57A9F4": {
+      "source": "A child's drawing is pinned to the door: a very large star falling on a very small house. It is labelled \"OURS\".",
+      "target": "门上钉着一幅孩子的画：一颗大大的星星落在一座小小的房子上。旁边写着：“我们家的！”"
+    },
+    "2ACBE2349BB3AA46AC03E0767947798F": {
+      "source": "The roof of the vale",
+      "target": "山谷之巅"
+    },
+    "02AD3D1FDE31A324ACEF2BB898FC00B8": {
+      "source": "A hammer rings inside — clang, clang, pause, clang — like a heartbeat with opinions.",
+      "target": "屋里锤声叮当——当、当、停、当——像一颗很有主见的心脏在跳动。"
+    },
+    "2B5ED563A816AB2C7FC93BDED17BDCFD": {
+      "source": "Have you been up to see {Master Casimir} at the observatory?",
+      "target": "你上天文台去见过{卡西米尔大师}了吗？"
+    },
+    "2B08BCEDB9472689E9FE30B10BA20CF5": {
+      "source": "Do you believe it?",
+      "target": "您相信吗？"
+    },
+    "2BCBDEAB299339AE7CF98389445D97BC": {
+      "source": "{The Three Sisters}. Eldest, middle, youngest — stand still and you can hear them bicker.",
+      "target": "{三姐妹}。大姐、二姐、小妹——静静站着，就能听见她们拌嘴。"
+    },
+    "2D2D81264F5094E166FA61CFF5869342": {
+      "source": "The Meadowlands",
+      "target": "草甸"
+    },
+    "3A1E5FA96A2BE21A1ABE0387D5DB005D": {
+      "source": "Halt! Name and business— ah. Festival guest. You have the look: slightly lost, faintly hopeful.",
+      "target": "站住！报上姓名和来意——啊。来过节的客人。看你那样子就知道：有点迷路，又有点期待。"
+    },
+    "3A99EDC1120D828C034152B623F053BC": {
+      "source": "↑ {The Old Quarry} · → {Hearthwick}\n↓ {Emberwood} · ↖ the {windmill}",
+      "target": "↑ {旧采石场} · → {炉火镇}\n↓ {烬木林} · ↖ {风车磨坊}"
+    },
+    "3AA09E536EA5A1801F6F8A8339E7D7A4": {
+      "source": "The sleeping stars?",
+      "target": "沉睡的星星？"
+    },
+    "3B4455D28471C078C6D3BC5397DC953C": {
+      "source": "Lake Mirrormere",
+      "target": "镜湖"
+    },
+    "3BAB669CE2E52181A873385E4C13ABB6": {
+      "source": "Here's hoping. If one lands in this fire, though, it's mine. Those are the rules.",
+      "target": "但愿如此。不过要是有颗落进这堆火里，那就归我了。规矩就是这样。"
+    },
+    "3BEC30ABF77FDED7E9E777292C5862A3": {
+      "source": "Welcome, welcome to {Hearthwick}! You have arrived on the best night of the year, traveller — tonight is the {Starfall Festival}.",
+      "target": "欢迎，欢迎来到{炉火镇}！旅人，你赶上了一年中最好的夜晚——今晚就是{星落节}！"
+    },
+    "3CD5A6B8AD2A03477E2DF46AD90EA220": {
+      "source": "I came to Starfall to find a fallen star, sell it and retire. Then I saw the lake at dusk and forgot all about selling anything.",
+      "target": "我是冲着星落来的，本想找颗落下的星星，卖掉它就退休。结果黄昏时看了一眼那片湖，就把卖东西的事忘得一干二净。"
+    },
+    "3E2A4EE33D86B935CAE8A6433710B5A2": {
+      "source": "A sign in the window: \"Festival shoes mended while you dance. Please stop dancing first.\"",
+      "target": "窗上挂着一块牌子：“节日舞鞋，随跳随修。修之前请先停下来。”"
+    },
+    "3E243862FD37C83F2305C3F43F274A8B": {
+      "source": "Pines above the mirror",
+      "target": "镜湖上的松林"
+    },
+    "3F6CA22FD73E286623ED2101B97D6EE8": {
+      "source": "Don't step on that! Oh — it's just moss. Carry on. I am mapping the ruins of {Old Lumen}, the first town in the vale.",
+      "target": "别踩那个！哦——只是青苔啊。请继续。我正在绘制{流明旧城}遗迹的地图，那是山谷里的第一座城镇。"
+    },
+    "3F6E7B1B8DA15CF835040CB95AE9C2C7": {
+      "source": "Lake Mirrormere",
+      "target": "镜湖"
+    },
+    "3FE25B8097E6A4C4FDB210D737A1E995": {
+      "source": "The barn smells of hay and patience. A cow regards you with polite indifference, then goes back to her thoughts.",
+      "target": "谷仓里弥漫着干草和耐心的气味。一头母牛礼貌而冷淡地看了你一眼，又回到了自己的思绪里。"
+    },
+    "4AF8BC2AD5F3CDAEA1288073D042C24E": {
+      "source": "Not today",
+      "target": "今天就算了"
+    },
+    "4B7EC6BB6BDE6A30C016F8693A36680B": {
+      "source": "Mind the flour, friend — it gets everywhere this week. I found some in my eyebrows this morning. Both of them.",
+      "target": "当心面粉，朋友——这礼拜它到处都是。今早我在眉毛里都发现了。两边都有。"
+    },
+    "04B0667D9098FA8B4958807FD859906D": {
+      "source": "Moonpetal tea, dearie. The petals only open under starlight, so I pick them at night. My knees have filed a complaint.",
+      "target": "月瓣茶哟，孩子。这花瓣只在星光下才开，所以我都是夜里去摘。我的膝盖已经提出抗议啦。"
+    },
+    "4BCB7C3D8AEC3C6553B5BC4223C91512": {
+      "source": "From here you can see the whole of {Mirrormere}. Come back after dark: when the stars wake, the lake lights up as if someone spilled the sky into it.",
+      "target": "从这儿能看到整个{镜湖}。天黑后再来吧：星星醒来时，湖面会亮起来，就像有人把天空打翻在了湖里。"
+    },
+    "4D43E2F55DF38D36595F2008AF71C566": {
+      "source": "A cup, please",
+      "target": "来一杯吧"
+    },
+    "4E753E48D821C00EBDC9EA784062B2EA": {
+      "source": "Ribbons, charms and fortunes, my friend! The fortunes are free. The ribbons, alas, are also free — it is festival night and I am feeling generous.",
+      "target": "丝带、护身符，还有算命，朋友！算命免费。丝带嘛，唉，也免费——今晚过节，我心情大方。"
+    },
+    "4E50068FD4DB6D5985ABC0C3CCEF232A": {
+      "source": "One garland",
+      "target": "来一个花环"
+    },
+    "4E803357D1C762911989AF2F32456EA7": {
+      "source": "If I catch her before the first star falls, I get a wish. Gran says that's not how wishes work. Gran hasn't met Duchess.",
+      "target": "要是我在第一颗星星落下之前抓住它，就能许一个愿。阿婆说许愿可不是这么回事。那是因为阿婆没见过公爵夫人。"
+    },
+    "4EE7ADEF3DA0A2B4CB6FA9DBCE288910": {
+      "source": "Hearthwick",
+      "target": "炉火镇"
+    },
+    "4F0F765CFBBA596C1325C00C8A4AC7EA": {
+      "source": "Just looking",
+      "target": "随便看看"
+    },
+    "5C78C0AE4FD837C3A602965CC8219627": {
+      "source": "Then climb the stairs north of the farm to the {Old Quarry}. Best view of the western sky, if you don't mind a little dust in your tea.",
+      "target": "那就从农场北边爬石阶，上{旧采石场}去。那儿看西边的天空最清楚，只要你不介意茶里落点灰。"
+    },
+    "5CA57A9506100487E55804178C43A6CF": {
+      "source": "Same as you, maybe",
+      "target": "也许和你一样"
+    },
+    "5D32ACD8C42A704F748467E53031FC88": {
+      "source": "No answer — then, from somewhere behind you: \"I'm not in. Try the stones.\"",
+      "target": "无人应答——接着，你身后某处传来一个声音：“我不在家。去石头那边找找。”"
+    },
+    "5DAC94AAA71475F84143AB02B0CBEB1C": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "6A89CD88CA8E727641B1670A0294ED08": {
+      "source": "{The Hidden Glade}. Please knock. There is no door. Knock anyway.",
+      "target": "{隐秘林地}。请敲门。这里没有门。也请照敲。"
+    },
+    "6A93A4A7BAB970A2EE9769DBC5158A0F": {
+      "source": "→ {Lake Mirrormere}\n← the {Wandering Lanterns} troupe",
+      "target": "→ {镜湖}\n← {流浪灯火}剧团"
+    },
+    "6B3DE4199F9EC1A2A1A98E66ED841F4A": {
+      "source": "Where are you headed afterwards?",
+      "target": "之后你打算去哪儿？"
+    },
+    "6E6FBFCF2F5F70C750089AD2B41DBE25": {
+      "source": "The {Star Cairn}. Every pilgrim adds a stone. Nobody remembers who added the first one, but everybody agrees it was a very good stone.",
+      "target": "{星石堆}。每位朝圣者都会添上一块石头。没人记得第一块是谁放的，但大家都同意，那是一块非常好的石头。"
+    },
+    "6EB6043AB1AC780ED1ED5AB271C792ED": {
+      "source": "A Luminati 2.5D showcase · three.js",
+      "target": "Luminati 2.5D 展示 · three.js"
+    },
+    "6FB3F55C0A2809653C73C1445E7AEAB6": {
+      "source": "The well of {Old Lumen}. They say it never ran dry, even in the long drought.",
+      "target": "{流明旧城}的井。据说即便在那场漫长的大旱中，它也从未干涸。"
+    },
+    "7AAFB937E748055D69AA1F5F684CC3AD": {
+      "source": "This one is called {Where the Stars Come Home}. I wrote it on the shore of Mirrormere, the year the lake lit up so bright the fish got sunburnt.",
+      "target": "这首歌叫《{群星归来之地}》。是我在镜湖岸边写的，那年湖面亮得连鱼都晒伤了。"
+    },
+    "7B6FC316451D7237F98326DF13E1DB45": {
+      "source": "An axe leans by the door, polished to a mirror shine. A sign underneath: \"Do not touch the axe. The axe knows.\"",
+      "target": "门边靠着一把斧头，磨得像镜子一样锃亮。下面挂着块牌子：“别碰斧头。斧头都知道。”"
+    },
+    "7B78406A2897796359B4FCB6BFD484DE": {
+      "source": "Fresh fish, old stories",
+      "target": "鲜鱼与老故事"
+    },
+    "7CB3BAEA19E6F0C73EDACEFE744C1F0E": {
+      "source": "There's an old glade south-west of here, down the steps past the big trees. The {hermit} lives there. Knock politely. Knock twice if you have brought biscuits.",
+      "target": "从这儿往西南，下了石阶，过了那几棵大树，有片古老的林地。{隐士}就住在那儿。敲门要客气点。要是带了饼干，就敲两下。"
+    },
+    "7F712BA35B6CBF71ACF95ADE10CF20C0": {
+      "source": "They built it up here to be closer to the sky. Then the winters reminded them why nobody lives closer to the sky, and they moved down to the river and called it {Hearthwick}.",
+      "target": "他们把城建在这么高的地方，是为了离天空更近。后来冬天让他们明白了为什么没人住得离天空那么近，于是他们搬到河边，把新家叫作{炉火镇}。"
+    },
+    "8A9AC302DAECF68B93D3884A28535A59": {
+      "source": "Nobody answers. A cat on the windowsill regards you with the calm of a creature who owns the house.",
+      "target": "无人应门。窗台上的一只猫打量着你，神情淡定，俨然是这屋子的主人。"
+    },
+    "8C342BA8CE9BD1E8526AB1A8D87983E1": {
+      "source": "↙ {The Hidden Glade}\n→ {The Meadowlands} · ↑ {Goldenfield Farms}",
+      "target": "↙ {隐秘林地}\n→ {草甸} · ↑ {金田农庄}"
+    },
+    "8D2C49A3BE26ABBB015270527F75584B": {
+      "source": "↑ {Mirrormere Landing} · ← {The Meadowlands}\n↓ the {South Beach}",
+      "target": "↑ {镜湖码头} · ← {草甸}\n↓ {南滩}"
+    },
+    "9A798FDDF43F36431C148A43810F486E": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "9AEB194D5E8BF2C7598E818663B12050": {
+      "source": "One lantern, freshly folded?",
+      "target": "来一盏刚折好的灯笼吗？"
+    },
+    "9B9C2275E7480B5E05248E930494EE7C": {
+      "source": "Shh! I'm catching {Duchess Feathers}. She's the fat one. She's also the fastest, which is SO unfair.",
+      "target": "嘘！我在抓{羽毛公爵夫人}。就是最胖的那只。它也是跑得最快的，真的超级不公平！"
+    },
+    "09B6815F334955712847988C75F17F09": {
+      "source": "Our Stargazer. Follow the {King's Road} north, up the stairs past the falls. He will tell you when the first star is due. He has never once been wrong. Late, occasionally. Never wrong.",
+      "target": "我们的观星者。沿着{王之大道}往北走，过了瀑布再爬上石阶就到了。他会告诉你第一颗星什么时候落下。他从来没错过一次。偶尔会迟到，但从来没错过。"
+    },
+    "9F849D2EEBB60D18AF6913BA653EC18F": {
+      "source": "Peace be with you. Our little chapel keeps the {Star Register}: every star that has fallen on the vale, written down by candlelight.",
+      "target": "愿您平安。我们的小礼拜堂保存着{星辰名录}：每一颗落在山谷里的星星，都在烛光下记录在册。"
+    },
+    "9FF822CAB5E97FB97D5A022A011D7525": {
+      "source": "These stones mark where the first star fell, before the vale had a name. It didn't land here, mind — it landed in the lake — but the stones were stubborn about it and stayed anyway.",
+      "target": "这些石头标记着第一颗星星落下的地方，那时山谷还没有名字。不过它其实没落在这儿——它落进了湖里——可这些石头很倔，硬是留在了这里。"
+    },
+    "026ACB0DFB52013076319BBB77DCD946": {
+      "source": "A notice is nailed to the door: \"{STARFALL FESTIVAL} — lanterns on the lake after dusk. Wishes at your own risk. — Mayor Bramblecote\"",
+      "target": "门上钉着一张告示：“{星落节}——黄昏后湖上放灯。许愿后果自负。——布兰布尔科特镇长”"
+    },
+    "37DCEB5F13F74C81FA737E7D1B103297": {
+      "source": "Hearthwick",
+      "target": "炉火镇"
+    },
+    "40A4B999AEAB5888EBB134EF2F712DC9": {
+      "source": "Maybe later",
+      "target": "下次吧"
+    },
+    "41C3E1B063E489E83B16B21AF9C7ECFA": {
+      "source": "The {Meadowlands} are south of the bridge. The travelling troupe has camped by the road; their bard has played the same song for three days. It is growing on me. Like moss.",
+      "target": "{草甸}在桥的南边。巡回剧团在路边扎了营；他们的吟游诗人把同一首歌弹了三天。这歌在我心里慢慢扎了根。像青苔一样。"
+    },
+    "42F50CBACCFC2F00A93BB8488CD5C5F9": {
+      "source": "Careful down here. The quarry is older than the town, and half as polite.",
+      "target": "下面这儿小心点。采石场比镇子还老，礼貌却只有镇子的一半。"
+    },
+    "43E4464EBD48A7F55751E76A66AC9C74": {
+      "source": "Shh — you'll scare the fish. Or I will. I have been talking to them all afternoon.",
+      "target": "嘘——你会把鱼吓跑的。要不就是我把它们吓跑。我跟它们聊了一下午了。"
+    },
+    "44A44474679A27BAE6F12E319172FB28": {
+      "source": "The goats won't come down tonight. They know. Animals always know when the sky is about to do something foolish.",
+      "target": "今晚羊群不肯下山。它们知道。天要干什么傻事的时候，动物总是知道的。"
+    },
+    "45F75AF9FD30C1DB9720E0C82BE60067": {
+      "source": "Ruins of the first town",
+      "target": "最早城镇的遗迹"
+    },
+    "46E87544BA04754C482C0F6322D852C0": {
+      "source": "Will you watch tonight?",
+      "target": "今晚你会来看吗？"
+    },
+    "47D7D9A607E70D4517BE7D22C0FEC787": {
+      "source": "The smell of smoked trout drifts under the door. Somebody inside is mending a net and humming the {Starfall} song, badly.",
+      "target": "熏鳟鱼的香味从门缝底下飘出来。屋里有人一边补网，一边哼着{星落}之歌，哼得很难听。"
+    },
+    "48C413C9E6E1A8C523C39A679F1D0769": {
+      "source": "Mind the dog. {Biscuit} is friendly, but she herds anything that moves. Including, last spring, the mayor.",
+      "target": "当心那条狗。{饼干}很友善，可它见什么会动的都要赶到一块儿去。去年春天，连镇长都被它赶过。"
+    },
+    "54FD8586F00EF5C4AF4F0BEFEB4B9E12": {
+      "source": "The {Lumen Observatory}. Built to watch the sky; these days it mostly watches the weather.",
+      "target": "{流明天文台}。建来观测星空；如今大多时候只观测天气。"
+    },
+    "56AC0103C6A6EB0FAA7FA6FB5EA64159": {
+      "source": "Somewhere new",
+      "target": "去新的地方"
+    },
+    "56C9AA1B379C127A4D1A776374ADA7A9": {
+      "source": "Evenin'. Or mornin'. Time goes funny in the woods. The leaves fall, I split logs, the leaves fall some more.",
+      "target": "晚上好啊。也许是早上好。林子里的时间怪得很。叶子落下来，我劈柴，叶子又落下来。"
+    },
+    "58AFFCC7C0FC9B2767210A6D9EAACA51": {
+      "source": "A note pinned to the door: \"Gone fishing. If I am not back, I have caught something big. Send help. Or a bigger net.\"",
+      "target": "门上别着一张字条：“钓鱼去了。如果我没回来，那就是钓到大家伙了。请派人来帮忙。或者带张更大的网。”"
+    },
+    "61A8B53742FC54A7A0311BF501D071F6": {
+      "source": "Where the stars sleep",
+      "target": "星辰沉睡之处"
+    },
+    "62F8A10CB01AC5B2EBC7FCE8FFA65904": {
+      "source": "Pull up a log. The fire is warm and the company is... well, it's me, so it's adequate.",
+      "target": "找根木头坐吧。火很暖和，至于作伴的人嘛……呃，是我，所以还凑合。"
+    },
+    "68FBCD95703D686E87B15B30809C96FC": {
+      "source": "The farm well. The bucket comes up with cold water, a leaf and a very surprised beetle.",
+      "target": "农场的井。吊桶提上来一桶凉水、一片叶子，还有一只大吃一惊的甲虫。"
+    },
+    "72C70C90F17F5E9A1EDB21CC3D373FF5": {
+      "source": "Lake Mirrormere",
+      "target": "镜湖"
+    },
+    "74E17DE8AA0A3CA218EC8AAA82638830": {
+      "source": "→ {Mirrormere Landing} · the {East Road}\n↑ the {Chapel of the Fallen Stars}",
+      "target": "→ {镜湖码头} · {东大路}\n↑ {陨星礼拜堂}"
+    },
+    "80AD716F99DBEA5E52B0F3CECBA08B9E": {
+      "source": "Emberwood",
+      "target": "烬木林"
+    },
+    "84A5BB0DE0158BBB62A8562701E32F56": {
+      "source": "Of course",
+      "target": "当然"
+    },
+    "84FEC9B9525347C8578B5879127B3E3F": {
+      "source": "Goldenfield Farms",
+      "target": "金田农庄"
+    },
+    "85B950DCBD836EBFC75066699B63C094": {
+      "source": "Ducks have left very muddy footprints all over the doorstep. The ducks, apparently, live here now.",
+      "target": "门槛上满是鸭子留下的泥脚印。看样子，鸭子现在住在这儿了。"
+    },
+    "92F8F73BA84A6C29CB8EA12A48BC8591": {
+      "source": "↑ the {Lumen Observatory} · ← {Lumen Lookout}\n→ the {Amberpine} stair",
+      "target": "↑ {流明天文台} · ← {流明瞭望台}\n→ {琥珀松}石阶"
+    },
+    "113B7E3329E0EE282A29CAE59612116D": {
+      "source": "Lanterns! Paper lanterns! Half the vale floats one on {Lake Mirrormere} after dusk, and the sleeping stars rise to see who is knocking — or so the song goes.",
+      "target": "灯笼！纸灯笼！黄昏过后，半个山谷的人都会在{镜湖}上放一盏，沉睡的星星便会浮上来，看看是谁在敲门——歌里是这么唱的。"
+    },
+    "154DC2BEE441D0EE6F2DF4616FF04FE1": {
+      "source": "{The Heron Spit}. The herons were here first. They would like that noted.",
+      "target": "{鹭鸶沙嘴}。鹭鸶比谁都先到这儿。它们希望大家记住这一点。"
+    },
+    "217F3F1DAC8C6DBA915824014C609BF0": {
+      "source": "Stand clear of the forge, friend. The sparks don't care who you are, and neither, frankly, do I until I have finished this hinge.",
+      "target": "离炉子远点，朋友。火星子可不管你是谁——说实话，在打完这片合页之前，我也不管。"
+    },
+    "220B11EB408BC69E176693522AC9EBEE": {
+      "source": "Caught nothing but an old boot and a very philosophical frog. The fish are all watching the sky tonight. Can't say I blame them.",
+      "target": "除了一只旧靴子和一只很有哲理的青蛙，什么也没钓到。今晚鱼儿们都在看天呢。我也不怪它们。"
+    },
+    "256DAFC24340089B6171D84B3264DF08": {
+      "source": "{Grandmother Isolde} at the lake says the stars sleep under the water. That's silly. Stars can't swim. ...Can they?",
+      "target": "湖边的{伊索尔德奶奶}说星星都睡在水底下。好傻哦。星星又不会游泳。……会吗？"
+    },
+    "289E51EF13D0109F26B18CA582D7D6F5": {
+      "source": "Evening. Barley's in, hay's stacked, and the dog has been brushed for the festival. We are as ready as we will ever be.",
+      "target": "晚上好。大麦收了，干草垛好了，狗也为了过节刷干净了毛。咱们算是准备得再好不过了。"
+    },
+    "318BCEE5A9CC0477EC26C18D9437FD94": {
+      "source": "↑ {Hearthwick} · {The Meadowlands}\nWelcome to {Starfall Vale}!",
+      "target": "↑ {炉火镇} · {草甸}\n欢迎来到{星落谷}！"
+    },
+    "319FCAD38FA5659A243FC85CEEBF85FF": {
+      "source": "Off to watch the stars later?",
+      "target": "待会儿要去看星星吗？"
+    },
+    "371FAF12058368CADC98F93D544B4102": {
+      "source": "Listen tonight, when the stars fall. Everything in the vale hums along — the lake, the woods, even the mayor, if he has had enough cider.",
+      "target": "今晚星星落下的时候，好好听。山谷里的一切都会跟着哼唱——湖水、树林，连镇长也会，只要他苹果酒喝够了。"
+    },
+    "456AB981D2C847D5BEAFF4BD6D3E9CAA": {
+      "source": "The forest that remembers autumn",
+      "target": "记得秋天的森林"
+    },
+    "475C18E13567DE140463391A27183706": {
+      "source": "Grandmother Isolde says the sleeping stars are right under us. Twenty years I have fished here and never hooked one. Probably for the best. Imagine the paperwork.",
+      "target": "伊索尔德奶奶说沉睡的星星就在我们脚底下。我在这儿钓了二十年鱼，一颗也没钓上来过。这样大概也好。真钓上来，想想得填多少表格吧。"
+    },
+    "501F52546AAAC2567AE398CC789C856B": {
+      "source": "Sit, listen — this one's for you.",
+      "target": "坐下听吧——这首献给你。"
+    },
+    "532DB31F542950E5855DA18BE34956EE": {
+      "source": "A note on the door: \"Out lighting lamps. Back when they are all lit. (Forty-one, if you are counting. I am.)\"",
+      "target": "门上贴着一张字条：“出门点灯去了。全部点完就回来。（一共四十一盏，如果你在数的话。我在数。）”"
+    },
+    "559A014F66FF99F7284C9B8CC0E085A0": {
+      "source": "...No?",
+      "target": "……没有？"
+    },
+    "693A686960C5649D9C31F9E6AC82EEF9": {
+      "source": "A ribbon for luck?",
+      "target": "来条丝带讨个好运？"
+    },
+    "706D44D317653D4A7702ED5375252154": {
+      "source": "I will stay up",
+      "target": "我会熬着不睡"
+    },
+    "754F4883C04F8CCB59012CC174AA93B7": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "811D3F9E6E45EBF0B070887D0F55097D": {
+      "source": "The market town of the vale",
+      "target": "山谷里的集镇"
+    },
+    "882DECD570F4E0506E54B747F977F94D": {
+      "source": "You want the story. Everyone does, on Starfall. Very well: the stars that fell into {Mirrormere} long ago never went out. They sleep on the lakebed, curled up like cats in a sunbeam.",
+      "target": "你是来听故事的吧。每逢星落，大家都想听。好吧：很久以前落进{镜湖}的那些星星，从来没有熄灭过。它们睡在湖底，像晒太阳的猫一样蜷成一团。"
+    },
+    "897FBC745F7F920AB81F7F15ADB8BA6E": {
+      "source": "Garrick mended my pick, did he? Tell him the star-glass is real. And that he still owes me a hinge.",
+      "target": "加里克把我的镐修好了，是吧？告诉他，星晶是真的。还有，他还欠我一片合页。"
+    },
+    "946AB726D106167F2C7047A33E2DA5AA": {
+      "source": "Starblooms from the {Meadowlands}! Folk wear a garland on Starfall night, so the stars know who their friends are.",
+      "target": "{草甸}采来的星花！星落之夜大家都会戴上花环，好让星星知道谁是它们的朋友。"
+    },
+    "2084CFCB800661395201BD23CA4FF76F": {
+      "source": "I don't hunt on Starfall, mind. Tonight the forest belongs to the fireflies. After dusk the whole {Emberwood} glows like the embers of a hearth.",
+      "target": "不过星落之夜我是不打猎的。今晚的森林属于萤火虫。黄昏过后，整片{烬木林}都会像炉膛里的余烬一样发光。"
+    },
+    "2209C5E5D98D9DCA88F50F5E8433DB66": {
+      "source": "Those falls there — the {Three Sisters}, we call them. Eldest at the top, youngest at the bottom, and all three of them talking at once.",
+      "target": "那边那几道瀑布——我们管它们叫{三姐妹}。大姐在最上头，小妹在最底下，三个一起说个不停。"
+    },
+    "2608FB4C4DF4B7B1499B31DB4647F679": {
+      "source": "Folded every one myself. I have not felt my thumbs since Tuesday.",
+      "target": "每一盏都是我亲手折的。从礼拜二起，我的大拇指就没知觉了。"
+    },
+    "2807D64D0AA3D6F68CA574ABC6BA30AF": {
+      "source": "Where the first stones were cut",
+      "target": "第一块石头开凿之处"
+    },
+    "4347CCC5B1D7E3236833424BDDEE97CB": {
+      "source": "Welcome to the {Starlight Inn}! Every bed is spoken for tonight — but I always keep one aired for a traveller with tired feet.",
+      "target": "欢迎光临{星光旅店}！今晚每张床都有人订了——不过我总会特意留一张收拾好的，给走累了的旅人歇脚。"
+    },
+    "4753A7AD8C7701195E87BE68A161DF93": {
+      "source": "Flowers as far as the lantern-light",
+      "target": "灯火所及，尽是繁花"
+    },
+    "5962EC0B20B85870E26681723B675965": {
+      "source": "↑ {Amberpine Heights} · the {Mirror Falls}\n↓ {Mirrormere Landing}",
+      "target": "↑ {琥珀松高地} · {镜瀑}\n↓ {镜湖码头}"
+    },
+    "6822CB7253C407C35B58F82BDD1D73A4": {
+      "source": "Three hundred and twelve, as of last year. Most of them fell into {Lake Mirrormere}. The old folk say the lake keeps them, sleeping under the water until they are needed.",
+      "target": "截至去年，一共三百一十二颗。大多落进了{镜湖}。老人们说，湖水把它们收藏起来，让它们在水下沉睡，直到被需要的那一天。"
+    },
+    "6911C20DA3EB66921509E65B96703E2B": {
+      "source": "The mill is turning sweetly tonight. The wind always picks up before a Starfall — my brother says that's nonsense. My brother also says the dog understands poetry.",
+      "target": "今晚风车转得真顺。每逢星落之前，风总会大起来——我那兄弟说这是胡扯。我那兄弟还说，那条狗听得懂诗呢。"
+    },
+    "7086A07F817AEF846A37CB323A268A1C": {
+      "source": "See the glittery bits in the stone? {Star-glass}. You find it wherever a star has struck the ground. I keep a jar of it at home. My wife calls it a jar of gravel. We agree to disagree.",
+      "target": "看见石头里那些亮晶晶的东西了吗？{星晶}。只要是星星砸过的地方，就能找到它。我家里攒了一罐。我老婆说那是一罐碎石子。我们俩各执己见。"
+    },
+    "7711BE4B5A0D889AE8E3A5159F432B7C": {
+      "source": "{The Wishing Oak}. Folk tie a ribbon here and make a wish, and tell nobody — especially not the oak. It gossips.",
+      "target": "{许愿橡树}。人们在这里系上丝带、许下心愿，然后对谁都不说——尤其不能告诉橡树。它爱嚼舌根。"
+    },
+    "8059D48A5913D73694A253E282C38812": {
+      "source": "Goldenfield Farms",
+      "target": "金田农庄"
+    },
+    "8746C98EBE452B11884058277E0AC1A3": {
+      "source": "The King's Road, to the lowlands.\nSomeone has chalked underneath: \"The festival is the OTHER way.\"",
+      "target": "王之大道，通往低地。\n下面有人用粉笔写着：“过节的地方在反方向！”"
+    },
+    "9181F1DC6F734B50BBA3066952DA95B8": {
+      "source": "The Wandering Lanterns",
+      "target": "流浪灯火剧团"
+    },
+    "9710CAE94EB4C9E27F7E0651DEFB4628": {
+      "source": "Hm. A visitor. The stones told me someone would come. Well — one of them did. The others are sulking.",
+      "target": "嗯。有客人。石头们告诉我会有人来。呃——是其中一块说的。其他几块在闹别扭。"
+    },
+    "013150F8A905426988C848B0396A082C": {
+      "source": "The clack of a loom stops, then starts again. Someone is weaving star patterns into a festival banner, and losing count.",
+      "target": "织布机的咔嗒声停了一下，又响了起来。有人正往节庆的横幅上织星星图案，数着数着就数乱了。"
+    },
+    "34531A4B094016EC8D58D8094328CF7F": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "38197F5982A25F1101EA49484F9BDD7F": {
+      "source": "Where the Stars Come Home",
+      "target": "群星归来之地"
+    },
+    "40942E73FB16F37EA297B3F2B19D09C9": {
+      "source": "My granddad swore a star once landed in this very field. Grew the tallest wheat you ever saw. Tasted of pepper, mind. We don't talk about the pepper.",
+      "target": "我爷爷发誓说，有颗星星就落在这块地里。长出来的麦子高得你从没见过。不过吃起来一股胡椒味。胡椒的事咱们就别提了。"
+    },
+    "41355D85A01810C835CA5D0CD7ADE2AD": {
+      "source": "← {Emberwood} · the {Woodcutter's Camp}\n↑ {Hearthwick}",
+      "target": "← {烬木林} · {樵夫营地}\n↑ {炉火镇}"
+    },
+    "61788FBFB3590A667847A044029B3F28": {
+      "source": "Hearthwick",
+      "target": "炉火镇"
+    },
+    "74977C1A2CD64477E4405E54164ABF56": {
+      "source": "The Old Quarry",
+      "target": "旧采石场"
+    },
+    "86209CCFA26FDDDD2A5179CE83ADA3DA": {
+      "source": "Where the first star is remembered",
+      "target": "初星铭记之处"
+    },
+    "94733ABFA8B67FA2186440BEE23A38E9": {
+      "source": "I'll take one",
+      "target": "给我一盏"
+    },
+    "99193E58E7D1C0C3A6A239AD19799D72": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "193523A3A17273597772A40591F6E33D": {
+      "source": "{Mirror Falls}. Do not lean. The lake has enough stars.",
+      "target": "{镜瀑}。请勿探身。湖里的星星已经够多了。"
+    },
+    "497299B3C009F12D0BE51AED1972766D": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "521111E5FC5E42C8DEAF75E64902EB34": {
+      "source": "→ {Hearthwick}\n← {Goldenfield Farms}",
+      "target": "→ {炉火镇}\n← {金田农庄}"
+    },
+    "0795021BE8E94940357356518BAA438C": {
+      "source": "Go and see for yourself after dark. And ask {Grandmother Isolde} at the fishing hamlet — she has watched them rise more times than I have counted stars. Well. Nearly.",
+      "target": "天黑后亲眼去看看吧。再去渔村问问{伊索尔德奶奶}——她看它们升起的次数，比我数过的星星还多。嗯，差不多吧。"
+    },
+    "805814A0BEA2677F1C6286ABDD899FB9": {
+      "source": "Someone is practising the festival song on a tin whistle. They have reached the difficult bit. They are staying there.",
+      "target": "有人在用锡哨练习节日的歌。已经吹到了最难的那一段。然后就一直停在了那里。"
+    },
+    "0962939D3646BB01590EA04EA9A2F24E": {
+      "source": "Do you know the old story? About the lake?",
+      "target": "您知道那个古老的传说吗？关于那片湖的？"
+    },
+    "972854F0C6238E9CC135D2D5AB117224": {
+      "source": "→ {Mount Lumen} terrace\n↓ {Goldenfield Farms}",
+      "target": "→ {流明山}台地\n↓ {金田农庄}"
+    },
+    "978553B39420D78D555349B799785FE3": {
+      "source": "The stair below drops to the {North Shore}. Watch your step on the ledge — the pines have roots like tripwires.",
+      "target": "下面的石阶通往{北岸}。走在崖边要看好脚下——那些松树的根就跟绊索似的。"
+    },
+    "1042600CF07E5FDA016511B9BAF8867D": {
+      "source": "I think I do",
+      "target": "好像听见了"
+    },
+    "2230528B45E0CF4D45ABDFDA6959EAC7": {
+      "source": "The Plateau",
+      "target": "高原"
+    },
+    "3106298C17186AB32ED1A0B3E7559664": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "04642867C246E81BD77E1F7792E1F3B5": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "33507844A37FC970DBF0330356F15A38": {
+      "source": "Candlelight flickers behind the chapel door. Inside, a quill scratches away — someone is writing down the stars.",
+      "target": "礼拜堂的门后烛光摇曳。屋里传来羽毛笔沙沙的书写声——有人正把星星一颗颗记下来。"
+    },
+    "59546320C6C819C4ED8D8E43D64D5709": {
+      "source": "The millwheel was taken down years ago, but the house still smells of flour and river water.",
+      "target": "磨坊的水车多年前就拆掉了，可屋子里仍飘着面粉和河水的气味。"
+    },
+    "70240823BFE2DEB00E7A0EB5B87944F8": {
+      "source": "Once a year the sky over the vale lets go of a few stars. Where they land is anyone's guess. Mostly the lake. Once, regrettably, my hat.",
+      "target": "每年一次，山谷上空的天会放下几颗星星。落在哪儿谁也说不准。多半是湖里。有一回，很遗憾，落在了我的帽子上。"
+    },
+    "6444751773126C9B72D836C211B073F3": {
+      "source": "The water is so still tonight you could read your fortune in it. Mine says: more bait.",
+      "target": "今晚的湖水静得能照出你的命数。我的命数是：多放点鱼饵。"
+    },
+    "A4A3B20FC833C4EEECB02A5371148279": {
+      "source": "Home of the Stargazer",
+      "target": "观星者之居"
+    },
+    "A5B9A361F7DA2071FCD91B230700A5C9": {
+      "source": "Laughter, a fiddle and the smell of honey cake spill out of the {Starlight Inn}.",
+      "target": "笑声、提琴声，还有蜂蜜蛋糕的香气，一齐从{星光旅店}里涌了出来。"
+    },
+    "A05BF78CC8A5986F06297193176AD0F7": {
+      "source": "The Market Town",
+      "target": "集镇"
+    },
+    "A6C51F26B409C4F0B9696F8C2015CD7E": {
+      "source": "Yes, please",
+      "target": "好的，谢谢"
+    },
+    "A07E26A27568A943A3AE990640B85C0C": {
+      "source": "{Starlight Buns}! Honey, cinnamon and a sugar star on top. Folk eat one when the lake first lights up. Tradition also says three beforehand, to be safe.",
+      "target": "{星光面包}！蜂蜜、肉桂，顶上还有一颗糖做的星星。湖面第一次亮起来的时候，大家都会吃一个。按老规矩，保险起见，之前还得先吃三个。"
+    },
+    "A7EB212B80AB6D2940DC97D346A8B125": {
+      "source": "Yes, please",
+      "target": "好的，谢谢"
+    },
+    "A8A23E6CED4261FF959C6D43A04D70A2": {
+      "source": "Belief is a lantern, friend. It does not change the dark — it only lets you see a little further into it.",
+      "target": "信念是一盏提灯，朋友。它改变不了黑暗——只是让您在黑暗中看得更远一些。"
+    },
+    "A30E5A0DC4EEAE64FD185D103B436AF7": {
+      "source": "Two voices argue inside about whether stars are hot. Neither of them has touched one. Both of them are certain.",
+      "target": "屋里有两个声音在争论星星到底烫不烫。两人都没摸过星星。两人都十分笃定。"
+    },
+    "A84F6F57249BBE4A982A397DB8CD4374": {
+      "source": "Maybe tonight",
+      "target": "也许就在今晚"
+    },
+    "A696C2EF88384B9CCB5245FF294F2B2D": {
+      "source": "↑ {The Old Quarry} · ↖ the ruins of {Old Lumen}\nMind the edges. The edges do not mind you.",
+      "target": "↑ {旧采石场} · ↖ {流明旧城}遗迹\n小心边缘。边缘可不会小心你。"
+    },
+    "A846A0921A0FAA99E15EEDBAB8999C6F": {
+      "source": "Amberpine Heights",
+      "target": "琥珀松高地"
+    },
+    "A1999DB9AD04C2EEF27AFF3509A58D98": {
+      "source": "Fishing nets hang drying by the door. The cottage smells pleasantly of tar and toast.",
+      "target": "门边晾着渔网。小屋里飘着柏油和烤面包的味道，闻着倒挺舒服。"
+    },
+    "A577237FECD8F8D5113D666D224715EB": {
+      "source": "Lake Mirrormere",
+      "target": "镜湖"
+    },
+    "A648343A493B46B163D55B25733FF8EB": {
+      "source": "Press any key",
+      "target": "按任意键开始"
+    },
+    "AA0A4C89C68DBDF951AC21FB33490D31": {
+      "source": "The Meadowlands",
+      "target": "草甸"
+    },
+    "AA8761CFC869C26D3BC3C2F0273B3372": {
+      "source": "Folk tie them to the old stones in the {Emberwood} glade and make a wish. The hermit pretends to disapprove. He is secretly delighted.",
+      "target": "大家会把丝带系在{烬木林}林地里的古石上，然后许个愿。那位隐士装作不赞成。其实心里乐得很。"
+    },
+    "AE1C22FABD945E48745728A6954CBDBF": {
+      "source": "You found the {Mirror Falls}. Most folk never climb this far — they stop at the observatory and stare at the Stargazer.",
+      "target": "你找到{镜瀑}了。大多数人都爬不到这么远——他们在天文台就停下了，光顾着盯着观星者看。"
+    },
+    "AE3FBF3D259F72A2AF715BBBCABAD8C8": {
+      "source": "The farmhouse door is ajar. Inside, someone is singing to a pie. The pie does not seem to mind.",
+      "target": "农舍的门虚掩着。屋里有人正对着一个馅饼唱歌。馅饼似乎并不介意。"
+    },
+    "AE65A7C74999DC5A00C288E4EC611CD5": {
+      "source": "The {South Beach}. The best seat in the vale for the far side of the sky.",
+      "target": "{南滩}。想看天空的另一边，这里是全山谷最好的位子。"
+    },
+    "AF0B42DACE30D7860465BF59AE61E9BD": {
+      "source": "Tell me",
+      "target": "说给我听"
+    },
+    "B3B147B6B99A7B2AE39318E474B6B6BE": {
+      "source": "{Signor Orsino} says I dance like a comet. I have decided that is a compliment.",
+      "target": "{奥西诺先生}说我跳起舞来像颗彗星。我决定把这当成夸奖。"
+    },
+    "B6E90A59AE0922E0ADE5F581D1D541BC": {
+      "source": "↑ the {Observatory} on {Mount Lumen}\n↓ {Hearthwick} · ← the {Three Sisters}",
+      "target": "↑ {流明山}上的{天文台}\n↓ {炉火镇} · ← {三姐妹}"
+    },
+    "B70E4A7F62BFB17645570545DFDA4394": {
+      "source": "Mushrooms of every colour hang drying under the eaves. A note: \"The red ones are for looking at. NOT for soup.\"",
+      "target": "屋檐下挂着各色蘑菇在风干。旁边有张字条：“红色的只能看。绝对不能煮汤！”"
+    },
+    "BB3B453E1013782F09E79C4035332432": {
+      "source": "{Old Lumen} — the first town in the vale. Abandoned when the winters won the argument.",
+      "target": "{流明旧城}——山谷中的第一座城镇。自从冬天吵赢了这场架，这里便被废弃了。"
+    },
+    "BC4E6917900ADE238217853A2CDDE7A8": {
+      "source": "Three falls, one river",
+      "target": "三道瀑布，一条河"
+    },
+    "BDA67C5C565D2BAB6A94625B94E564C1": {
+      "source": "Settles the stomach, calms the nerves and keeps a body awake for the falling stars. Also excellent for gossip.",
+      "target": "养胃、安神，还能让人撑着不睡，等星星落下来。拿来配闲话也是一绝。"
+    },
+    "BE63FD3574BFE8BC24ABEF3E035C902A": {
+      "source": "The old well of {Hearthwick}. Coins glint far below — wishes from a hundred festivals.",
+      "target": "{炉火镇}的老井。井底深处硬币闪闪发光——那是上百届节日留下的心愿。"
+    },
+    "BFDBFA7A80B3B3464704A415BF4FF508": {
+      "source": "Starfall Vale",
+      "target": "星落谷"
+    },
+    "C1A9DF852698659EBA326EBBAAA6F04D": {
+      "source": "From where?",
+      "target": "在哪儿看？"
+    },
+    "C9A1C2C426ACC964D39B3BA4B43872BE": {
+      "source": "Where the Stars Come Home",
+      "target": "群星归来之地"
+    },
+    "C9C8717AE6AF0A0F0A5C8555349BE013": {
+      "source": "Ha! Wherever the road goes, I'd wager we'll both be back next year, pretending we just happened to be passing.",
+      "target": "哈！不管路通向哪儿，我敢打赌，明年咱俩都会回来，还装作只是碰巧路过。"
+    },
+    "C18E9AEA065F1420C495C5B7CEBA11BD": {
+      "source": "Sister Amarantha keeps a little bell up in the chapel rafters. My grandmother forged it from a fallen star. Or from a cooking pot. Depends which uncle you ask.",
+      "target": "阿玛兰莎修女在礼拜堂的房梁上挂着一只小铃铛。那是我奶奶用一颗落下来的星星打的。也可能是用一口锅打的。看你问的是哪个叔叔了。"
+    },
+    "C213E24C6947E5E6D3AACD47EF77C55A": {
+      "source": "Hollyhocks nod by the door. A voice inside calls, \"If that is the tax man, we are all out, including me.\"",
+      "target": "门边的蜀葵轻轻点着头。屋里有个声音喊道：“要是收税的，我们全家都不在，包括我。”"
+    },
+    "C569F3FA4CDBEF51073E66E3E2050826": {
+      "source": "Long ago a whole river of stars fell into {Lake Mirrormere}. They did not burn out. They sleep there still, and every Starfall a few of them wake and glimmer up through the water, to answer the sky.",
+      "target": "很久以前，一整条星河坠入了{镜湖}。它们没有燃尽，至今仍沉睡在那里。每逢星落，总有几颗醒来，从水下闪烁着浮起，回应天空的呼唤。"
+    },
+    "C602D78F6FC94F5645B0426BF6EF5351": {
+      "source": "Starfall Vale",
+      "target": "星落谷"
+    },
+    "C968CAED7D1F5584DD80A8747C065CB8": {
+      "source": "Above Mirrormere",
+      "target": "镜湖之上"
+    },
+    "C77740731F7069C268FDDCAC50652EEA": {
+      "source": "Half the vale is in town for the festival. The other half is pretending not to be, so they can arrive late and complain about the crowds.",
+      "target": "半个山谷的人都进城过节来了。另一半假装不来，好晚点到，再抱怨人太多。"
+    },
+    "CAABA84ED9D3CE4F525B424E0B144E32": {
+      "source": "{Bramble Hollow}. Blackberries in autumn, nettles the rest of the year, and the quietest seat for the stars.",
+      "target": "{荆棘洼地}。秋天有黑莓，其余时节遍地荨麻，也是看星星最清静的地方。"
+    },
+    "CB95EAC1016166D3A3000ABCB329F87E": {
+      "source": "Going up to see the Stargazer? Take the steps on the east side of the upland to the terrace. Saves you the long way round through town.",
+      "target": "要上去见观星者？走高地东边的石阶上台地。省得你绕远路穿过镇子。"
+    },
+    "CD39132DC8B9622DE99866671A2E81A0": {
+      "source": "Mount Lumen",
+      "target": "流明山"
+    },
+    "CE0C3582AF6814678EB0FA1317E1191B": {
+      "source": "The hamlet well. The water tastes faintly of the lake, and faintly of starlight — whatever that tastes like. Cold, mostly.",
+      "target": "小村的井。井水带着淡淡的湖水味，还有淡淡的星光味——不管那是什么味道。主要是凉。"
+    },
+    "CEAFB4559847288F486FAF2B95474786": {
+      "source": "Emberwood",
+      "target": "烬木林"
+    },
+    "CFC23628B5B4120050CF850FC1F0322E": {
+      "source": "The door is warm to the touch. Behind it: cinnamon, burnt sugar and a very busy oven.",
+      "target": "门摸上去暖乎乎的。门后是肉桂和焦糖的香气，还有一座忙得不可开交的烤炉。"
+    },
+    "CFD6D171A2D39EE0AFE51841FC434A0C": {
+      "source": "Who is he?",
+      "target": "他是谁？"
+    },
+    "D4C76D037C937A5C8681BA5BE157DB77": {
+      "source": "Welcome, welcome! The {Wandering Lanterns}, at your service. I'm {Lark} — the one with the lute and the questionable singing voice.",
+      "target": "欢迎，欢迎！{流浪灯火}剧团，竭诚为您效劳。我是{拉克}——就是抱着鲁特琴、歌声有待商榷的那位。"
+    },
+    "D5F8244B512F86B790882133DAAA9E1D": {
+      "source": "Do you hear them singing?",
+      "target": "你听见它们在唱歌了吗？"
+    },
+    "D6F1A974DCA4542A32668FFBB57BA687": {
+      "source": "The tower door is propped open with a very old book. Up the winding stair, a brass telescope points at the sky, patient as a heron.",
+      "target": "塔门被一本非常古老的书抵着敞开。沿着盘旋的楼梯往上，一架黄铜望远镜指向天空，像苍鹭一样耐心。"
+    },
+    "D026A77A45529345191B984BCE952B67": {
+      "source": "Every Starfall I build the big bonfire for the troupe. Three cartloads. Their bard sings me a song about it. It is mostly about my axe.",
+      "target": "每逢星落，我都给剧团搭那堆大篝火。足足三车柴。他们的吟游诗人还为这事给我唱了首歌。歌里唱的大多是我的斧头。"
+    },
+    "D53ABED74A51362EF65BA35C7F555033": {
+      "source": "A garland, then?",
+      "target": "那，来个花环？"
+    },
+    "D86C5E2EDEAAEB5FD37292707417118A": {
+      "source": "{Lumen Lookout}. On a clear night you can count every roof in {Hearthwick}. Please don't; it upsets the Stargazer.",
+      "target": "{流明瞭望台}。晴朗的夜里，在这儿能数清{炉火镇}的每一片屋顶。请别数；观星者会不高兴的。"
+    },
+    "D7089951D64A599E3D2F74653B41C6C0": {
+      "source": "The stair east of here climbs to the {Observatory}. Mind the switchbacks. The last fellow who ran up them is still telling everyone about it.",
+      "target": "这儿往东的石阶通到{天文台}。当心那些之字形的弯道。上一个跑着上去的家伙，到现在还逢人就讲这事儿。"
+    },
+    "D30536927442ABAB40FA56EDB95C5103": {
+      "source": "Quiet. There's a stag in the birches that has been giving me the slip since summer. I think it's winning.",
+      "target": "安静。白桦林里有头雄鹿，从夏天起就一直从我手里溜走。我看是它占上风了。"
+    },
+    "DAB364AB3D35F5ECBD6116A5FC583460": {
+      "source": "You make one of your own. Something in the deep water glimmers back. Probably a coin. Probably.",
+      "target": "你也许下了一个。深水里有什么东西闪了一下，像在回应你。大概是枚硬币吧。大概。"
+    },
+    "DABFCC722E26639488746F687177D268": {
+      "source": "Care for one? Still warm.",
+      "target": "来一个吗？还热乎着呢。"
+    },
+    "DE8E1F060F96E41A7C31B993D0AD12A3": {
+      "source": "Starfall Vale",
+      "target": "星落谷"
+    },
+    "E1C53C2A9B8630E75EF12616B4101478": {
+      "source": "↑ {Observatory} — by the switchbacks\n→ {Amberpine Heights} · ← {Three Sisters}",
+      "target": "↑ {天文台}——走之字形山路\n→ {琥珀松高地} · ← {三姐妹}"
+    },
+    "E2A66330A23ED5EE29125475347B7D3C": {
+      "source": "Ah — a visitor, and on Starfall night! Mind the stones. The old observatory has been falling down for three hundred years; it is in no particular hurry.",
+      "target": "啊——有客人来了，还是在星落之夜！小心脚下的石头。这座老天文台已经塌了三百年了，它倒是一点也不着急。"
+    },
+    "E9AB4ED2FF882BFD015382E29C24A8E6": {
+      "source": "No, thank you",
+      "target": "不用了，谢谢"
+    },
+    "E63F5A2133DF473C76B3081A9466ECF0": {
+      "source": "Quite a view, isn't it? The whole vale laid out like a quilt, with the {Silverrun} stitching it together.",
+      "target": "风景不错吧？整个山谷像一床铺开的百衲被，{银流河}就是把它缝在一起的那条线。"
+    },
+    "E260C07F7DF28E753BFFE36EC1BABE78": {
+      "source": "Oh! You caught me mid-twirl. I'm practising the {Star Dance} — every step is a star falling. The spinning part is the lake. Or dizziness. It's hard to tell.",
+      "target": "哎呀！被你撞见我转圈了。我在练{星之舞}——每一步都是一颗落下的星星。转圈的部分是湖。也可能是头晕。说不太清。"
+    },
+    "E591F09AF8D87A51A4894295A75F806C": {
+      "source": "The old shaft. Nobody knows how deep it goes. Someone dropped a pebble in last spring; they are still listening.",
+      "target": "旧矿井。没人知道它有多深。去年春天有人丢了颗石子下去，到现在还在听回音。"
+    },
+    "E4382AF22301C5E4950C8AC7B9E98B3E": {
+      "source": "Tired already? Rest now and you will sleep right through the stars, mind.",
+      "target": "已经累了？现在睡下的话，可就要一觉睡过星星落下的时候了哦。"
+    },
+    "E622322056531E94BE0380E6EA22AB12": {
+      "source": "Keep to the paths after dark. The {Emberwood} is lovely by day and full of opinions by night.",
+      "target": "天黑以后别离开小路。{烬木林}白天风景宜人，到了夜里可就意见多得很。"
+    },
+    "EA358A79F6D01053294826E9E57FEE66": {
+      "source": "Stars are just rocks",
+      "target": "星星不过是石头"
+    },
+    "EB5CF4091E47AEE238103293C41D7523": {
+      "source": "Something inside goes tick, tock, whirr, clunk. Then, faintly: \"Oh, bother.\"",
+      "target": "屋里传来滴答、滴答、呼呼、咣当的声响。接着，隐约有人嘀咕：“唉，真是的。”"
+    },
+    "EC544CED2E660DDE35447F17D6378F9F": {
+      "source": "Rest until morning",
+      "target": "休息到天亮"
+    },
+    "EC1161AEAA6A0CE52CCCDE2F2FB7127A": {
+      "source": "If I stay awake",
+      "target": "如果我还醒着"
+    },
+    "EEBEEA45F7CCDF9F74DC1AC8F0D634B8": {
+      "source": "← the {Mount Lumen} plateau\n↓ {Mirror Falls} · the {North Shore}",
+      "target": "← {流明山}高原\n↓ {镜瀑} · {北岸}"
+    },
+    "EFC827BC35902C3FEAD75C55AB8BFD48": {
+      "source": "I am counting the sky. When {the Lantern of Lyra} climbs over the peak, the stars begin to fall. Tonight, just after dusk — unless the sky is feeling shy.",
+      "target": "我正在清点天空。等{天琴座之灯}爬过山峰，星星就会开始坠落。就在今晚，黄昏刚过——除非天空害羞了。"
+    },
+    "F0FD20175C86C79D9AC97FFD9AAB913B": {
+      "source": "I have walked a hundred roads, but I always come back for Starfall. Something about this place makes the sky feel closer.",
+      "target": "我走过上百条路，可每逢星落总会回来。这地方有种说不出的东西，让天空显得更近。"
+    },
+    "F4E194C24812545590DB408F6F1D7593": {
+      "source": "↑ {Mount Lumen} · the {Observatory}\n← {Goldenfield Farms} · → {Lake Mirrormere}\n↓ {Southgate} · {The Meadowlands}",
+      "target": "↑ {流明山} · {天文台}\n← {金田农庄} · → {镜湖}\n↓ {南门区} · {草甸}"
+    },
+    "F6CCD2C1B3D29214F240A032B67D7FC8": {
+      "source": "The end of the {Long Pier} is the best seat in the vale, after dusk. And nobody rows out to the little island — that glow is the stars' own.",
+      "target": "黄昏过后，{长栈桥}的尽头是全山谷最好的位子。还有，谁也不许划船去那座小岛——那片光是属于星星自己的。"
+    },
+    "F9C43FCEE3A9B760E4199EDC21F71603": {
+      "source": "Lean close and you can hear it: a low hum, like somebody far below practising a very old song.",
+      "target": "凑近些就能听见：一阵低沉的嗡鸣，仿佛有人在深深的井底练唱一首非常古老的歌。"
+    },
+    "F16E1F42297C3BE1E812467CDE363DFD": {
+      "source": "I danced with the {Wandering Lanterns} troupe once. Then I discovered I like sleeping in the same bed twice. Their camp is down the {King's Road}, south of the river.",
+      "target": "我以前跟着{流浪灯火}剧团跳过舞。后来发现，我还是喜欢连着两晚睡同一张床。他们的营地在{王之大道}那头，河的南边。"
+    },
+    "F17FB9F0A5705BC1D46A54F4D2FDA22A": {
+      "source": "Goldenfield Farms",
+      "target": "金田农庄"
+    },
+    "F4924FB6A31E1625F48F830C94B451CA": {
+      "source": "{Mirrormere Landing} — fresh fish, old stories.\n← {Hearthwick} · ↓ {Reedmouth}",
+      "target": "{镜湖码头}——鲜鱼与老故事。\n← {炉火镇} · ↓ {芦苇河口}"
+    },
+    "F994863613D857C4E095246A6287C7D2": {
+      "source": "A cup for the road?",
+      "target": "带一杯路上喝？"
+    },
+    "FA6AE27D0B683C63A9D63F99871489ED": {
+      "source": "Barley, windmills and wishes",
+      "target": "大麦、风车与心愿"
+    },
+    "FA213CCEF58D7E0C86473A6D42AC8447": {
+      "source": "Sit, sit. My bones are older than the pier, and the pier creaks less.",
+      "target": "坐，坐。我这把骨头比栈桥还老，栈桥嘎吱响得还没我厉害呢。"
+    },
+    "FAE53A1EC7C4810D2FFBCC5FE259BCD7": {
+      "source": "STARFALL VALE",
+      "target": "星落谷"
+    },
+    "FAE76398F5AFC2988473B2F00173D653": {
+      "source": "Did you know? If you drop a coin in the well on Starfall night, a star comes up instead of water.",
+      "target": "你知道吗？星落之夜往井里丢一枚硬币，打上来的就不是水，是星星哦！"
+    },
+    "FC0C88F11F9351CFB9D6E0F8B97863E2": {
+      "source": "I wouldn't miss it",
+      "target": "绝不会错过"
+    },
+    "FDA63A8E3CF500DAF7EBBFCFEA21F1FC": {
+      "source": "↑ {Amberpine Heights}\n↓ the {North Shore} of {Mirrormere}",
+      "target": "↑ {琥珀松高地}\n↓ {镜湖}{北岸}"
+    },
+    "FE9B897048B8EE2FE920A8BE6A271D92": {
+      "source": "When the sky calls, they answer — little lights rising under the water. I saw it first when I was younger than you, and every year since, and I weep every time. Don't tell the fishermen.",
+      "target": "天空一呼唤，它们就会回应——一点点小光从水下升起来。我第一次看到的时候比你还小，之后年年都看，每次都会掉眼泪。可别告诉那些渔夫。"
+    },
+    "FECA43310EEE799CCDF071D042CD5ACF": {
+      "source": "A pie cools on the windowsill, guarded by a very serious cat drawn in chalk on the wall.",
+      "target": "窗台上晾着一个馅饼，守着它的是墙上一只用粉笔画的、神情非常严肃的猫。"
+    },
+    "FF1D2FE40A35CC0ABB012FDCF17578E5": {
+      "source": "If you're off to the {Old Quarry}, tell {Dunstan} his pickaxe is mended. And that I've stopped believing his stories about star-glass. Mostly.",
+      "target": "你要是去{旧采石场}，告诉{邓斯坦}他的镐修好了。还有，我已经不信他那些星晶的故事了。基本上不信。"
+    },
+    "FFAB362261B2D809157ED37ADFDD27AD": {
+      "source": "I'd like to",
+      "target": "我愿意相信"
+    },
+    "FFF52B51D1166610E9A83AE84F147DA9": {
+      "source": "Somebody inside is arguing, very cheerfully, about which star will fall first.",
+      "target": "屋里有人正兴高采烈地争论着，哪颗星星会最先落下。"
+    }
+  }
+}

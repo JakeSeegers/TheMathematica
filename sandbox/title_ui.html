@@ -1,0 +1,21 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luminati · Title screen sandbox</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+    /* the title backdrop (the game with its UI hidden), 1280 × 720, covering larger windows */
+    #backdrop {
+      position: fixed; inset: 0; background: url("../docs/assets/screenshots/ui-backdrop-title.jpg") center / max(100vw, 177.78vh) auto no-repeat;
+    }
+    #app { position: fixed; inset: 0; }
+  </style>
+</head>
+<body>
+  <div id="backdrop"></div>
+  <div id="app"></div>
+  <script type="module" src="./title_ui.js"></script>
+</body>
+</html>

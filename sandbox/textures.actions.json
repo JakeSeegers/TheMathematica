@@ -1,0 +1,113 @@
+[
+  {
+    "eval": "JSON.stringify(window.__tex.check())"
+  },
+  {
+    "eval": "window.__tex.setLightAngle(2.2); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "gallery0_terrain"
+  },
+  {
+    "eval": "window.__tex.setView('gallery1'); 'ok'"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "gallery1_walls"
+  },
+  {
+    "eval": "window.__tex.setView('gallery2'); 'ok'"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "gallery2_roofs"
+  },
+  {
+    "eval": "window.__tex.setView('gallery3'); 'ok'"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "gallery3_props"
+  },
+  {
+    "eval": "window.__tex.setView('diorama'); 'ok'"
+  },
+  {
+    "wait": 600
+  },
+  {
+    "shot": "diorama_day"
+  },
+  {
+    "eval": "window.__tex.setNight(true); 'ok'"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "diorama_night"
+  },
+  {
+    "eval": "window.__tex.setNight(false); window.__tex.frame(-2.5, -1.5, 15); 'ok'"
+  },
+  {
+    "wait": 400
+  },
+  {
+    "shot": "diorama_close"
+  },
+  {
+    "eval": "window.__tex.setView('diorama'); window.__tex.frame(4, 2.5, 15); 'ok'"
+  },
+  {
+    "wait": 400
+  },
+  {
+    "shot": "diorama_close2"
+  },
+  {
+    "eval": "window.__tex.setNight(false); window.__tex.setView('atlas'); 'ok'"
+  },
+  {
+    "wait": 600
+  },
+  {
+    "shot": "atlas_top"
+  },
+  {
+    "eval": "window.scrollTo(0, 1100); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "atlas_mid"
+  },
+  {
+    "eval": "window.scrollTo(0, 2300); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "atlas_low"
+  },
+  {
+    "eval": "window.scrollTo(0, 3600); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "atlas_bottom"
+  }
+]

@@ -1,0 +1,13 @@
+[
+  {"eval": "(async () => { await window.__titleUi.ready; return JSON.stringify(await window.__titleUi.checks()); })()"},
+  {"eval": "(async () => { window.__titleUi.show('menu', { langs: true }); await new Promise((r) => setTimeout(r, 2900)); return JSON.stringify(window.__titleUi.checkLayout('menu')); })()"},
+  {"shot": "01_menu"},
+  {"eval": "(async () => { window.__titleUi.ui.title.hide(); await new Promise((r) => setTimeout(r, 1300)); window.__titleUi.show('chooser', { langs: true }); await new Promise((r) => setTimeout(r, 2900)); window.dispatchEvent(new KeyboardEvent('keydown', { code: 'ArrowRight', bubbles: true, cancelable: true })); await new Promise((r) => setTimeout(r, 100)); return JSON.stringify(window.__titleUi.checkLayout('changed')); })()"},
+  {"shot": "02_chooser_changed"},
+  {"eval": "(async () => { window.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyL', bubbles: true, cancelable: true })); await new Promise((r) => setTimeout(r, 100)); return JSON.stringify({ language: window.__titleUi.ui.title.language, layout: window.__titleUi.checkLayout('language focus') }); })()"},
+  {"shot": "03_language_focus"},
+  {"eval": "(async () => { window.dispatchEvent(new KeyboardEvent('keydown', { code: 'Escape', bubbles: true, cancelable: true })); window.__titleUi.ui.title.hide(); await new Promise((r) => setTimeout(r, 1300)); window.__titleUi.show('plain', { name: 'ferryman', langs: false }); await new Promise((r) => setTimeout(r, 2900)); return JSON.stringify(window.__titleUi.checkLayout('plain')); })()"},
+  {"shot": "04_plain"},
+  {"eval": "(async () => { window.__titleUi.ui.title.hide(); await new Promise((r) => setTimeout(r, 1300)); window.__titleUi.show('menu', { name: 'long', langs: true }); await new Promise((r) => setTimeout(r, 2900)); return JSON.stringify(window.__titleUi.checkLayout('long')); })()"},
+  {"shot": "05_long_title"}
+]

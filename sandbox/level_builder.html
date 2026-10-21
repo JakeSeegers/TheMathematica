@@ -1,0 +1,43 @@
+<!doctype html>
+<html><head><meta charset="utf-8"><title>Level builder smoke test</title></head>
+<body style="margin:0;background:#000;overflow:hidden">
+<script type="module">
+import * as THREE from 'three';
+import { TextureLibrary } from '../src/engine/pixel/Textures.js';
+import { createEmptyLevel, addObject, setTile, setHeightLevel } from '../src/engine/level/LevelFormat.js';
+import { OBJECT_TYPES } from '../src/engine/level/ObjectCatalog.js';
+import { LevelObjectBuilder, buildLevelTerrain } from '../src/engine/level/ObjectBuilder.js';
+
+const level = createEmptyLevel({ name: 'Smoke', width: 24, depth: 18 });
+for (let j = 0; j < 18; j++) { setTile(level, 12, j, '~'); setHeightLevel(level, 12, j, 1); setTile(level, 13, j, '~'); setHeightLevel(level, 13, j, 1); }
+for (let i = 3; i < 8; i++) for (let j = 3; j < 6; j++) setHeightLevel(level, i, j, 5);
+let x = 4;
+for (const type of Object.keys(OBJECT_TYPES)) {
+  if (['fence', 'bridge', 'region', 'waterfall'].includes(type)) continue;
+  addObject(level, type, (x % 11) + 1.5, 8 + Math.floor(x / 11) * 3.5); x += 2;
+}
+addObject(level, 'fence', 2, 15, { x1: 8, z1: 15 });
+addObject(level, 'bridge', 11.5, 10, { x1: 14.5, z1: 10 });
+const renderer = new THREE.WebGLRenderer(); renderer.setSize(innerWidth, innerHeight); renderer.shadowMap.enabled = true;
+document.body.appendChild(renderer.domElement);
+const scene = new THREE.Scene(); scene.background = new THREE.Color('#8fb3d9');
+const cam = new THREE.PerspectiveCamera(35, innerWidth / innerHeight, 0.5, 300);
+cam.position.set(12, 22, 34); cam.lookAt(12, 0, 9);
+scene.add(new THREE.HemisphereLight('#dfe8ff', '#5a4a3a', 1.2));
+const sun = new THREE.DirectionalLight('#fff0d8', 2.5); sun.position.set(-10, 20, 10); sun.castShadow = true; scene.add(sun);
+const textures = new TextureLibrary({ seed: 1337 });
+const t0 = performance.now();
+const terrain = buildLevelTerrain(level, { textures });
+scene.add(terrain.object);
+const tTerrain = performance.now() - t0;
+const builder = new LevelObjectBuilder({ textures });
+const built = [];
+for (const o of level.objects) { const b = builder.build(o, terrain.tileMap); if (b) { scene.add(b.object); built.push(b); } }
+for (const b of built) for (const l of b.lights) { const p = new THREE.PointLight(l.color, l.intensity, l.distance, 2); p.position.copy(l.position); scene.add(p); }
+const tAll = performance.now() - t0;
+window.__smoke = { built: built.length, objects: level.objects.length, tTerrain: Math.round(tTerrain), tAll: Math.round(tAll), lights: built.reduce((n, b) => n + b.lights.length, 0) };
+console.log('smoke', JSON.stringify(window.__smoke));
+// rebuild timing: terrain only
+const t1 = performance.now(); const t2 = buildLevelTerrain(level, { textures }); window.__smoke.rebuildMs = Math.round(performance.now() - t1); t2.dispose();
+renderer.setAnimationLoop((t) => { for (const b of built) b.update?.(1 / 60); renderer.render(scene, cam); });
+</script></body></html>

@@ -1,0 +1,15 @@
+[
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => m.ready()).then((r) => JSON.stringify(r))" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => JSON.stringify(m.equivalence({ trials: 300, seed: 1 })))" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => JSON.stringify(m.timing({ reps: 15 })))" },
+  { "shot": "01_cinderwatch" },
+  { "goto": "game.html?level=gildhaven&autostart=1" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => m.ready()).then((r) => JSON.stringify(r))" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => JSON.stringify(m.equivalence({ trials: 150, seed: 2 })))" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => JSON.stringify(m.timing({ reps: 15 })))" },
+  { "goto": "game.html?level=starfall-vale&autostart=1" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => m.ready()).then((r) => JSON.stringify(r))" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => JSON.stringify(m.equivalence({ trials: 150, seed: 3 })))" },
+  { "eval": "import('/sandbox/nav_rect.js').then((m) => JSON.stringify(m.timing({ reps: 15 })))" },
+  { "shot": "02_starfall" }
+]

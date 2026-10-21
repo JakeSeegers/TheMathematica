@@ -1,0 +1,11 @@
+{
+  // The Node tools (harness, generators, docs check, level API): the root config plus Node globals.
+  // The generators import src/ modules, which are checked here a second time under these globals.
+  // Only what they import comes in (src/engine/level/types.d.ts through ObjectCatalog.js); keep the
+  // browser graph out: src/game/combat/defs.js holds its types as JSDoc for that reason.
+  "extends": "../tsconfig.json",
+  "compilerOptions": {
+    "types": ["node", "vite/client"]
+  },
+  "include": ["./**/*.mjs", "./**/*.js"]
+}

@@ -1,0 +1,16 @@
+[
+  { "eval": "import('/sandbox/interior_room.js').then((m) => window.__luminati.playLocal(m.interiorRoomLevel(), 'furniture-test', 'autostart=1'))" },
+  { "wait": 9000 },
+  { "eval": "(() => { const g = window.__game; const s = g.state(); window.__p0 = g.engine.renderer.info.programs.length; return JSON.stringify({ src: window.__luminati.source, warnings: window.__luminati.warnings, drawCalls: s.drawCalls, triangles: s.triangles, lights: s.pointLights, programs: window.__p0, colliders: g.world.tileMap.colliders.length, lightDescriptors: g.world.stats.lightDescriptors }); })()" },
+  { "shot": "room_day" },
+  { "eval": "window.__game.teleport(8.5, 4.5); 'ok'" },
+  { "wait": 1200 },
+  { "shot": "room_north" },
+  { "eval": "window.__game.setTime(21.5); window.__game.teleport(8.5, 9); 'ok'" },
+  { "wait": 1500 },
+  { "shot": "room_night" },
+  { "eval": "window.__game.setTime(7); window.__game.teleport(3.5, 9.5); 'ok'" },
+  { "wait": 1500 },
+  { "eval": "(() => { const p = window.__game.engine.renderer.info.programs.length; if (p !== window.__p0) console.error('[interior_room] shader programs grew during play: ' + window.__p0 + ' → ' + p); return JSON.stringify({ programsAtLoad: window.__p0, programsNow: p, drawCalls: window.__game.state().drawCalls }); })()" },
+  { "eval": "localStorage.removeItem('luminati.level.furniture-test'); Object.keys(localStorage).filter((k) => k.includes('furniture-test')).join(',') || 'slot removed'" }
+]

@@ -1,0 +1,101 @@
+[
+ {
+  "eval": "window.__lighting.setView('close'); window.__lighting.setTime(18.2)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "close_1812"
+ },
+ {
+  "eval": "window.__lighting.setTime(12.5)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "close_1230"
+ },
+ {
+  "eval": "window.__lighting.setTime(7.0)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "close_0700"
+ },
+ {
+  "eval": "window.__lighting.setView('low'); window.__lighting.setTime(18.2)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "low_1812"
+ },
+ {
+  "eval": "window.__lighting.setView('default'); window.__lighting.setTime(21.5)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "t2130_night"
+ },
+ {
+  "eval": "window.__lighting.setTime(0)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "t0000_night"
+ },
+ {
+  "eval": "window.__lighting.setTime(5.4)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "t0524_predawn"
+ },
+ {
+  "eval": "window.__lighting.setTime(18.45)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "t1827_sunset"
+ },
+ {
+  "eval": "window.__lighting.setTime(15.5)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "t1530_afternoon"
+ },
+ {
+  "eval": "window.__lighting.setView('far'); window.__lighting.setTime(17.2)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "far_1720"
+ },
+ {
+  "eval": "window.__lighting.setTime(10)"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "far_1000"
+ }
+]

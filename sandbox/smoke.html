@@ -1,0 +1,13 @@
+<!doctype html>
+<html>
+<body style="margin:0;background:#000">
+<script type="module">
+import * as THREE from 'three';
+const r = new THREE.WebGLRenderer(); r.setSize(innerWidth, innerHeight); document.body.appendChild(r.domElement);
+const s = new THREE.Scene(); const c = new THREE.PerspectiveCamera(50, innerWidth / innerHeight, 0.1, 100); c.position.z = 3;
+const m = new THREE.Mesh(new THREE.BoxGeometry(), new THREE.MeshNormalMaterial()); s.add(m);
+r.setAnimationLoop((t) => { m.rotation.set(t / 1000, t / 700, 0); r.render(s, c); });
+console.log('smoke ok', THREE.REVISION);
+</script>
+</body>
+</html>

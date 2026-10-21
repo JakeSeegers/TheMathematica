@@ -1,0 +1,15 @@
+[
+  { "eval": "window.__core.analyzeAudio(24, { parts: ['music'] })" },
+  { "wait": 300 },
+  { "shot": "spec_music" },
+  { "eval": "window.__core.analyzeAudio(8, { parts: ['sfx'] })" },
+  { "wait": 300 },
+  { "shot": "spec_sfx" },
+  { "eval": "window.__core.analyzeAudio(8, { parts: ['ambience'], ambience: { wind: 1 }, draw: false })" },
+  { "eval": "window.__core.analyzeAudio(8, { parts: ['ambience'], ambience: { birds: 1 }, draw: false })" },
+  { "eval": "window.__core.analyzeAudio(8, { parts: ['ambience'], ambience: { crickets: 1 }, draw: false })" },
+  { "eval": "window.__core.analyzeAudio(8, { parts: ['ambience'], ambience: { fire: 1 }, draw: false })" },
+  { "eval": "window.__core.analyzeAudio(8, { parts: ['ambience'], ambience: { water: 1 } })" },
+  { "wait": 300 },
+  { "shot": "spec_water" }
+]

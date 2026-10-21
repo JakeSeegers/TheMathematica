@@ -1,0 +1,14 @@
+[
+  { "eval": "window.__terrain.setClock(3.0); window.__terrain.setView('diorama'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "diorama_day" },
+  { "eval": "window.__terrain.setView('cliffs'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "cliffs_day" },
+  { "eval": "window.__terrain.setView('waterfall'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "waterfall_day" },
+  { "eval": "window.__terrain.setView('pond'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "pond_day" }
+]

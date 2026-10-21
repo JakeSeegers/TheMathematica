@@ -1,0 +1,1016 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "levels/starfall-vale",
+  "extends": [],
+  "terms": {
+    "Amberpine Heights": "琥珀松の高地",
+    "Ansel Birchwood": "アンセル・バーチウッド",
+    "Barleycorn Farm": "バーリーコーン農場",
+    "Barnaby Crumb": "バーナビー・クラム",
+    "Bramble Hollow": "いばらの窪地",
+    "Chapel Row": "礼拝堂通り",
+    "Dunstan Flint": "ダンスタン・フリント",
+    "Emberwood": "熾火の森",
+    "Festival Ribbon": "お祭りリボン",
+    "Finn Ashdown": "フィン・アッシュダウン",
+    "Garrick Ironwell": "ギャリック・アイアンウェル",
+    "Goldenfield Farms": "黄金畑の農場",
+    "Goldenfield Orchard": "黄金畑の果樹園",
+    "Grandmother Isolde": "イゾルデおばあさん",
+    "Hearthwick": "ハースウィック",
+    "Hearthwick Square": "ハースウィック広場",
+    "Hollis Barleycorn": "ホリス・バーリーコーン",
+    "Kestrel": "ケストレル",
+    "Lake Mirrormere": "鏡湖",
+    "Lark Silverstring": "ラーク・シルバーストリング",
+    "Lumen Lookout": "ルーメン展望台",
+    "Marigold Fenn": "マリーゴールド・フェン",
+    "Marlow Tench": "マーロウ・テンチ",
+    "Master Casimir Vey": "カシミール・ヴェイ先生",
+    "Mayor Aldous Bramblecote": "オルダス・ブランブルコート町長",
+    "Mirror Falls": "鏡の滝",
+    "Mirrormere Landing": "鏡湖の船着き場",
+    "Moonpetal Tea": "月花茶",
+    "Mount Lumen": "ルーメン山",
+    "Old Gorse": "ゴースじいさん",
+    "Old Lumen": "旧ルーメン",
+    "Old Nell": "ネルばあさん",
+    "Old Thistle": "シスルじいさん",
+    "Paper Lantern": "紙灯籠",
+    "Poppy": "ポピー",
+    "Professor Ptolemy Marrow": "トレミー・マロウ教授",
+    "Quentin Fairweather": "クエンティン・フェアウェザー",
+    "Reedmouth": "葦の河口",
+    "Rowan the Wayfarer": "さすらいのローワン",
+    "Saffi": "サフィ",
+    "Sergeant Hobb Vane": "ホッブ・ヴェイン軍曹",
+    "Signor Orsino": "シニョール・オルシーノ",
+    "Silverspring": "銀の泉",
+    "Sister Amarantha": "シスター・アマランサ",
+    "Southgate": "南門町",
+    "Starbloom Garland": "星花の花輪",
+    "Stargazer's Steps": "星読みの石段",
+    "Starlight Bun": "星明かりパン",
+    "Tamsin Bloom": "タムシン・ブルーム",
+    "Tansy": "タンジー",
+    "The Foothills": "山麓",
+    "The Hidden Glade": "隠れ林",
+    "The High Terrace": "上の高台",
+    "The Lumen Observatory": "ルーメン天文台",
+    "The Meadowlands": "草原地帯",
+    "The North Shore": "北の岸辺",
+    "The Old Quarry": "旧採石場",
+    "The South Beach": "南の浜",
+    "The Three Sisters": "三姉妹",
+    "The Troupe Camp": "一座の野営地",
+    "The Windmill": "風車小屋",
+    "Warden Ivo": "衛士イーヴォ",
+    "Wendel the Miller": "粉屋ウェンデル",
+    "Wick Reed": "ウィック・リード",
+    "Woodcutter's Camp": "きこりの野営地"
+  },
+  "units": {
+    "0DFA00025042B02BE4699A2777D4D015": {
+      "source": "I have dropped eleven coins. Nothing yet. I think the stars are shy. Or saving up.",
+      "target": "あたし、もう十一枚も落としたの。まだなんにも出てこない。星って恥ずかしがり屋なんだと思う。それか、貯金してるのかも。"
+    },
+    "0E5E99320A92575653FC0B91DD624744": {
+      "source": "A brass plate on the door: \"M. CASIMIR VEY — ASTRONOMER. If out, look up.\"",
+      "target": "扉に真鍮の表札がある。「天文学者カシミール・ヴェイ。不在の折は空を見上げられたし」"
+    },
+    "0E48F6FF1BBD4A8473A703316BD525BE": {
+      "source": "Starfall Vale",
+      "target": "星降りの谷"
+    },
+    "0FA07868D7AB8114661ED4EF5F6C136C": {
+      "source": "Ever seen a star up close?",
+      "target": "星を間近で見たことはあるかい？"
+    },
+    "1ACE894205CA103D374F4D59C459A5E3": {
+      "source": "Not now",
+      "target": "今はいい"
+    },
+    "1C3FAD24F741C1856CBFAF043DAC41CF": {
+      "source": "Starfall Vale",
+      "target": "星降りの谷"
+    },
+    "1E2EDB4E9B1D0F564558DF63ECB69748": {
+      "source": "The old well still stands. They say it hums on Starfall night. I have brought a notebook, just in case it hums something important.",
+      "target": "古井戸はいまも残っています。星降りの夜にはうなるのだとか。何か大事なことをうなった場合に備えて、帳面を持ってきました。"
+    },
+    "1E92CC9DB40801916B6440722C57A9F4": {
+      "source": "A child's drawing is pinned to the door: a very large star falling on a very small house. It is labelled \"OURS\".",
+      "target": "扉に子どもの絵が留めてある。とても大きな星が、とても小さな家に落ちてくる絵だ。「うちの！」と書いてある。"
+    },
+    "2ACBE2349BB3AA46AC03E0767947798F": {
+      "source": "The roof of the vale",
+      "target": "谷の屋根"
+    },
+    "02AD3D1FDE31A324ACEF2BB898FC00B8": {
+      "source": "A hammer rings inside — clang, clang, pause, clang — like a heartbeat with opinions.",
+      "target": "中で槌が響いている――カーン、カーン、ひと呼吸おいて、カーン。まるで自己主張の強い心臓の鼓動だ。"
+    },
+    "2B5ED563A816AB2C7FC93BDED17BDCFD": {
+      "source": "Have you been up to see {Master Casimir} at the observatory?",
+      "target": "天文台の{カシミール先生}には、もうお会いになりましたかな？"
+    },
+    "2B08BCEDB9472689E9FE30B10BA20CF5": {
+      "source": "Do you believe it?",
+      "target": "あなたは、信じますか？"
+    },
+    "2BCBDEAB299339AE7CF98389445D97BC": {
+      "source": "{The Three Sisters}. Eldest, middle, youngest — stand still and you can hear them bicker.",
+      "target": "{三姉妹}。長女、次女、末っ子――立ち止まれば、姉妹げんかが聞こえてくる。"
+    },
+    "2D2D81264F5094E166FA61CFF5869342": {
+      "source": "The Meadowlands",
+      "target": "草原地帯"
+    },
+    "3A1E5FA96A2BE21A1ABE0387D5DB005D": {
+      "source": "Halt! Name and business— ah. Festival guest. You have the look: slightly lost, faintly hopeful.",
+      "target": "止まれ！　名前と用件を――ああ、祭りの客か。いかにもそんな顔をしている。少し迷っていて、ほんのり期待している顔だ。"
+    },
+    "3A99EDC1120D828C034152B623F053BC": {
+      "source": "↑ {The Old Quarry} · → {Hearthwick}\n↓ {Emberwood} · ↖ the {windmill}",
+      "target": "↑ {旧採石場}・→ {ハースウィック}\n↓ {熾火の森}・↖ {風車小屋}"
+    },
+    "3AA09E536EA5A1801F6F8A8339E7D7A4": {
+      "source": "The sleeping stars?",
+      "target": "眠る星の話？"
+    },
+    "3B4455D28471C078C6D3BC5397DC953C": {
+      "source": "Lake Mirrormere",
+      "target": "鏡湖"
+    },
+    "3BAB669CE2E52181A873385E4C13ABB6": {
+      "source": "Here's hoping. If one lands in this fire, though, it's mine. Those are the rules.",
+      "target": "そう願おう。ただし、この焚き火に落ちてきたやつは俺のもんだ。そういう決まりなんでね。"
+    },
+    "3BEC30ABF77FDED7E9E777292C5862A3": {
+      "source": "Welcome, welcome to {Hearthwick}! You have arrived on the best night of the year, traveller — tonight is the {Starfall Festival}.",
+      "target": "ようこそ、ようこそ{ハースウィック}へ！　旅人さん、あなたは一年でいちばんの夜にいらっしゃった――今夜は{星降り祭}ですぞ。"
+    },
+    "3CD5A6B8AD2A03477E2DF46AD90EA220": {
+      "source": "I came to Starfall to find a fallen star, sell it and retire. Then I saw the lake at dusk and forgot all about selling anything.",
+      "target": "星降りに来たのは、落ちた星を見つけて売っぱらって、隠居するためだった。ところが夕暮れの湖を見たら、売るなんてことはすっかり忘れちまった。"
+    },
+    "3E2A4EE33D86B935CAE8A6433710B5A2": {
+      "source": "A sign in the window: \"Festival shoes mended while you dance. Please stop dancing first.\"",
+      "target": "窓に貼り紙。「お祭りの靴、踊っている間に直します。まずは踊るのをやめてください」"
+    },
+    "3E243862FD37C83F2305C3F43F274A8B": {
+      "source": "Pines above the mirror",
+      "target": "鏡を見下ろす松"
+    },
+    "3F6CA22FD73E286623ED2101B97D6EE8": {
+      "source": "Don't step on that! Oh — it's just moss. Carry on. I am mapping the ruins of {Old Lumen}, the first town in the vale.",
+      "target": "それを踏まないで！　あ――ただの苔でした。どうぞお進みください。わたしは{旧ルーメン}の遺跡を測量しているのです。この谷で最初の町ですよ。"
+    },
+    "3F6E7B1B8DA15CF835040CB95AE9C2C7": {
+      "source": "Lake Mirrormere",
+      "target": "鏡湖"
+    },
+    "3FE25B8097E6A4C4FDB210D737A1E995": {
+      "source": "The barn smells of hay and patience. A cow regards you with polite indifference, then goes back to her thoughts.",
+      "target": "納屋は干し草と辛抱強さの匂いがする。牛が礼儀正しく無関心な目でこちらを見て、また物思いに戻った。"
+    },
+    "4AF8BC2AD5F3CDAEA1288073D042C24E": {
+      "source": "Not today",
+      "target": "今日はやめておく"
+    },
+    "4B7EC6BB6BDE6A30C016F8693A36680B": {
+      "source": "Mind the flour, friend — it gets everywhere this week. I found some in my eyebrows this morning. Both of them.",
+      "target": "粉に気をつけてね、お客さん――今週はどこもかしこも粉だらけさ。今朝なんて眉毛にまでついてた。両方ともだよ。"
+    },
+    "04B0667D9098FA8B4958807FD859906D": {
+      "source": "Moonpetal tea, dearie. The petals only open under starlight, so I pick them at night. My knees have filed a complaint.",
+      "target": "月花茶だよ、お若いの。この花びらは星明かりの下でしか開かんから、夜に摘むのさ。おかげで膝が苦情を申し立てておる。"
+    },
+    "4BCB7C3D8AEC3C6553B5BC4223C91512": {
+      "source": "From here you can see the whole of {Mirrormere}. Come back after dark: when the stars wake, the lake lights up as if someone spilled the sky into it.",
+      "target": "ここからは{鏡湖}が一望できる。暗くなったらまた来るといい。星が目覚めると、誰かが空をこぼしたように湖が光る。"
+    },
+    "4D43E2F55DF38D36595F2008AF71C566": {
+      "source": "A cup, please",
+      "target": "一杯ください"
+    },
+    "4E753E48D821C00EBDC9EA784062B2EA": {
+      "source": "Ribbons, charms and fortunes, my friend! The fortunes are free. The ribbons, alas, are also free — it is festival night and I am feeling generous.",
+      "target": "リボンにお守り、占いもあるよ、友よ！　占いはタダ。リボンも、嘆かわしいことにタダ――今宵は祭りの夜、わたしは気前がいいのさ。"
+    },
+    "4E50068FD4DB6D5985ABC0C3CCEF232A": {
+      "source": "One garland",
+      "target": "花輪をひとつ"
+    },
+    "4E803357D1C762911989AF2F32456EA7": {
+      "source": "If I catch her before the first star falls, I get a wish. Gran says that's not how wishes work. Gran hasn't met Duchess.",
+      "target": "最初の星が落ちる前につかまえたら、願いごとがかなうの。ばあちゃんは、願いごとってそういうものじゃないって言うけど。ばあちゃんは公爵夫人に会ったことないもん。"
+    },
+    "4EE7ADEF3DA0A2B4CB6FA9DBCE288910": {
+      "source": "Hearthwick",
+      "target": "ハースウィック"
+    },
+    "4F0F765CFBBA596C1325C00C8A4AC7EA": {
+      "source": "Just looking",
+      "target": "見てるだけ"
+    },
+    "5C78C0AE4FD837C3A602965CC8219627": {
+      "source": "Then climb the stairs north of the farm to the {Old Quarry}. Best view of the western sky, if you don't mind a little dust in your tea.",
+      "target": "なら、農場の北の石段を上って{旧採石場}へ行くといい。西の空がいちばんよく見える。お茶に少々砂ぼこりが入っても気にしなけりゃな。"
+    },
+    "5CA57A9506100487E55804178C43A6CF": {
+      "source": "Same as you, maybe",
+      "target": "あなたと同じかな"
+    },
+    "5D32ACD8C42A704F748467E53031FC88": {
+      "source": "No answer — then, from somewhere behind you: \"I'm not in. Try the stones.\"",
+      "target": "返事はない――と思ったら、背後のどこかから声がした。「留守じゃ。石のところへ行け」"
+    },
+    "5DAC94AAA71475F84143AB02B0CBEB1C": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "6A89CD88CA8E727641B1670A0294ED08": {
+      "source": "{The Hidden Glade}. Please knock. There is no door. Knock anyway.",
+      "target": "{隠れ林}。ノックをどうぞ。扉はありません。それでもノックを。"
+    },
+    "6A93A4A7BAB970A2EE9769DBC5158A0F": {
+      "source": "→ {Lake Mirrormere}\n← the {Wandering Lanterns} troupe",
+      "target": "→ {鏡湖}\n← {さすらいの灯}一座"
+    },
+    "6B3DE4199F9EC1A2A1A98E66ED841F4A": {
+      "source": "Where are you headed afterwards?",
+      "target": "君は、このあとどこへ向かうんだい？"
+    },
+    "6E6FBFCF2F5F70C750089AD2B41DBE25": {
+      "source": "The {Star Cairn}. Every pilgrim adds a stone. Nobody remembers who added the first one, but everybody agrees it was a very good stone.",
+      "target": "{星の石塚}。巡礼者はみな石をひとつ積んでいく。最初の石を誰が積んだかは誰も覚えていないが、とてもいい石だったという点では皆の意見が一致している。"
+    },
+    "6EB6043AB1AC780ED1ED5AB271C792ED": {
+      "source": "A Luminati 2.5D showcase · three.js",
+      "target": "Luminati 2.5D ショーケース・three.js"
+    },
+    "6FB3F55C0A2809653C73C1445E7AEAB6": {
+      "source": "The well of {Old Lumen}. They say it never ran dry, even in the long drought.",
+      "target": "{旧ルーメン}の井戸。長い日照りのときでさえ、一度も涸れなかったという。"
+    },
+    "7AAFB937E748055D69AA1F5F684CC3AD": {
+      "source": "This one is called {Where the Stars Come Home}. I wrote it on the shore of Mirrormere, the year the lake lit up so bright the fish got sunburnt.",
+      "target": "この曲は『{星たちの還る地}』っていうんだ。鏡湖のほとりで書いたのさ。湖があんまり明るく光って、魚が日焼けしちゃった年にね。"
+    },
+    "7B6FC316451D7237F98326DF13E1DB45": {
+      "source": "An axe leans by the door, polished to a mirror shine. A sign underneath: \"Do not touch the axe. The axe knows.\"",
+      "target": "扉のそばに斧が立てかけてある。鏡のように磨き上げられている。その下に札。「斧に触るべからず。斧はお見通しだ」"
+    },
+    "7B78406A2897796359B4FCB6BFD484DE": {
+      "source": "Fresh fish, old stories",
+      "target": "とれたての魚と昔話"
+    },
+    "7CB3BAEA19E6F0C73EDACEFE744C1F0E": {
+      "source": "There's an old glade south-west of here, down the steps past the big trees. The {hermit} lives there. Knock politely. Knock twice if you have brought biscuits.",
+      "target": "ここから南西、大木を過ぎて石段を下りた先に古い林がある。{隠者}が住んでるんだ。礼儀正しくノックしな。ビスケットを持ってるなら二回だ。"
+    },
+    "7F712BA35B6CBF71ACF95ADE10CF20C0": {
+      "source": "They built it up here to be closer to the sky. Then the winters reminded them why nobody lives closer to the sky, and they moved down to the river and called it {Hearthwick}.",
+      "target": "人々は空に近づくため、ここに町を築きました。やがて冬が、なぜ誰も空の近くに住まないのかを思い知らせまして。彼らは川べりへ下り、そこを{ハースウィック}と名づけたのです。"
+    },
+    "8A9AC302DAECF68B93D3884A28535A59": {
+      "source": "Nobody answers. A cat on the windowsill regards you with the calm of a creature who owns the house.",
+      "target": "返事はない。窓辺の猫が、この家の主のような落ち着きでこちらを眺めている。"
+    },
+    "8C342BA8CE9BD1E8526AB1A8D87983E1": {
+      "source": "↙ {The Hidden Glade}\n→ {The Meadowlands} · ↑ {Goldenfield Farms}",
+      "target": "↙ {隠れ林}\n→ {草原地帯}・↑ {黄金畑の農場}"
+    },
+    "8D2C49A3BE26ABBB015270527F75584B": {
+      "source": "↑ {Mirrormere Landing} · ← {The Meadowlands}\n↓ the {South Beach}",
+      "target": "↑ {鏡湖の船着き場}・← {草原地帯}\n↓ {南の浜}"
+    },
+    "9A798FDDF43F36431C148A43810F486E": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "9AEB194D5E8BF2C7598E818663B12050": {
+      "source": "One lantern, freshly folded?",
+      "target": "折りたての灯籠、ひとついかが？"
+    },
+    "9B9C2275E7480B5E05248E930494EE7C": {
+      "source": "Shh! I'm catching {Duchess Feathers}. She's the fat one. She's also the fastest, which is SO unfair.",
+      "target": "しーっ！　いま{羽毛の公爵夫人}をつかまえてるの。いちばん太っちょの子。なのにいちばん足が速いの。ほんっとにずるい！"
+    },
+    "09B6815F334955712847988C75F17F09": {
+      "source": "Our Stargazer. Follow the {King's Road} north, up the stairs past the falls. He will tell you when the first star is due. He has never once been wrong. Late, occasionally. Never wrong.",
+      "target": "わが町の星読みですよ。{王の街道}を北へ、滝を過ぎて石段を上った先です。最初の星がいつ落ちるか、教えてくれるでしょう。一度も外れたことがない。遅れることは、たまにありますがな。外れたことは、ない。"
+    },
+    "9F849D2EEBB60D18AF6913BA653EC18F": {
+      "source": "Peace be with you. Our little chapel keeps the {Star Register}: every star that has fallen on the vale, written down by candlelight.",
+      "target": "あなたに安らぎがありますように。この小さな礼拝堂では{星の記録簿}を守っています。谷に落ちたすべての星を、ろうそくの灯で書き記したものです。"
+    },
+    "9FF822CAB5E97FB97D5A022A011D7525": {
+      "source": "These stones mark where the first star fell, before the vale had a name. It didn't land here, mind — it landed in the lake — but the stones were stubborn about it and stayed anyway.",
+      "target": "この石は、谷にまだ名もなかったころ、最初の星が落ちた場所を示しておる。もっとも、星が落ちたのはここではない――湖じゃ。だが石どもは頑固でな、それでもここに居座っておるのよ。"
+    },
+    "026ACB0DFB52013076319BBB77DCD946": {
+      "source": "A notice is nailed to the door: \"{STARFALL FESTIVAL} — lanterns on the lake after dusk. Wishes at your own risk. — Mayor Bramblecote\"",
+      "target": "扉に貼り紙が打ちつけてある。「{星降り祭}――日暮れ後、湖にて灯籠流し。願いごとは自己責任で。――ブランブルコート町長」"
+    },
+    "37DCEB5F13F74C81FA737E7D1B103297": {
+      "source": "Hearthwick",
+      "target": "ハースウィック"
+    },
+    "40A4B999AEAB5888EBB134EF2F712DC9": {
+      "source": "Maybe later",
+      "target": "また今度"
+    },
+    "41C3E1B063E489E83B16B21AF9C7ECFA": {
+      "source": "The {Meadowlands} are south of the bridge. The travelling troupe has camped by the road; their bard has played the same song for three days. It is growing on me. Like moss.",
+      "target": "{草原地帯}は橋の南だ。旅の一座が街道沿いに野営していてな、吟遊詩人が三日間同じ歌を弾き続けている。だんだん癖になってきた。苔みたいに、じわじわとな。"
+    },
+    "42F50CBACCFC2F00A93BB8488CD5C5F9": {
+      "source": "Careful down here. The quarry is older than the town, and half as polite.",
+      "target": "この下は気をつけな。採石場は町より古くて、行儀は町の半分ほどだ。"
+    },
+    "43E4464EBD48A7F55751E76A66AC9C74": {
+      "source": "Shh — you'll scare the fish. Or I will. I have been talking to them all afternoon.",
+      "target": "しっ――魚が逃げる。いや、逃がすのは俺のほうか。昼からずっと魚に話しかけてたからな。"
+    },
+    "44A44474679A27BAE6F12E319172FB28": {
+      "source": "The goats won't come down tonight. They know. Animals always know when the sky is about to do something foolish.",
+      "target": "今夜はヤギどもが下りてこん。わかっとるんじゃ。空が何かばかなことをしでかす前には、獣は決まって気づくもんでな。"
+    },
+    "45F75AF9FD30C1DB9720E0C82BE60067": {
+      "source": "Ruins of the first town",
+      "target": "最初の町の遺跡"
+    },
+    "46E87544BA04754C482C0F6322D852C0": {
+      "source": "Will you watch tonight?",
+      "target": "今夜は見ていくかい？"
+    },
+    "47D7D9A607E70D4517BE7D22C0FEC787": {
+      "source": "The smell of smoked trout drifts under the door. Somebody inside is mending a net and humming the {Starfall} song, badly.",
+      "target": "扉の下から、マスの燻製の匂いが漂ってくる。中では誰かが網をつくろいながら、{星降り}の歌を調子っぱずれに口ずさんでいる。"
+    },
+    "48C413C9E6E1A8C523C39A679F1D0769": {
+      "source": "Mind the dog. {Biscuit} is friendly, but she herds anything that moves. Including, last spring, the mayor.",
+      "target": "犬に気をつけな。{ビスケット}は人なつこいが、動くものは何でも追い集めちまう。去年の春には町長までな。"
+    },
+    "54FD8586F00EF5C4AF4F0BEFEB4B9E12": {
+      "source": "The {Lumen Observatory}. Built to watch the sky; these days it mostly watches the weather.",
+      "target": "{ルーメン天文台}。空を観るために建てられたが、近ごろはもっぱら天気を観ている。"
+    },
+    "56AC0103C6A6EB0FAA7FA6FB5EA64159": {
+      "source": "Somewhere new",
+      "target": "まだ見ぬ場所へ"
+    },
+    "56C9AA1B379C127A4D1A776374ADA7A9": {
+      "source": "Evenin'. Or mornin'. Time goes funny in the woods. The leaves fall, I split logs, the leaves fall some more.",
+      "target": "ばんは。それとも、おはようか。森じゃ時間がおかしな進み方をする。葉が落ちて、薪を割って、また葉が落ちる。"
+    },
+    "58AFFCC7C0FC9B2767210A6D9EAACA51": {
+      "source": "A note pinned to the door: \"Gone fishing. If I am not back, I have caught something big. Send help. Or a bigger net.\"",
+      "target": "扉に書き置きが留めてある。「釣りに行ってくる。戻らなかったら大物がかかったってことだ。助けを寄こしてくれ。でなきゃ、もっとでかい網を」"
+    },
+    "61A8B53742FC54A7A0311BF501D071F6": {
+      "source": "Where the stars sleep",
+      "target": "星の眠るところ"
+    },
+    "62F8A10CB01AC5B2EBC7FCE8FFA65904": {
+      "source": "Pull up a log. The fire is warm and the company is... well, it's me, so it's adequate.",
+      "target": "そこの丸太にでも座りなよ。火はあったかいし、話し相手は……まあ、俺だから、そこそこってとこだ。"
+    },
+    "68FBCD95703D686E87B15B30809C96FC": {
+      "source": "The farm well. The bucket comes up with cold water, a leaf and a very surprised beetle.",
+      "target": "農場の井戸。つるべを引き上げると、冷たい水と葉っぱが一枚、それにひどく驚いた甲虫が一匹。"
+    },
+    "72C70C90F17F5E9A1EDB21CC3D373FF5": {
+      "source": "Lake Mirrormere",
+      "target": "鏡湖"
+    },
+    "74E17DE8AA0A3CA218EC8AAA82638830": {
+      "source": "→ {Mirrormere Landing} · the {East Road}\n↑ the {Chapel of the Fallen Stars}",
+      "target": "→ {鏡湖の船着き場}・{東の街道}\n↑ {落ちた星の礼拝堂}"
+    },
+    "80AD716F99DBEA5E52B0F3CECBA08B9E": {
+      "source": "Emberwood",
+      "target": "熾火の森"
+    },
+    "84A5BB0DE0158BBB62A8562701E32F56": {
+      "source": "Of course",
+      "target": "もちろん"
+    },
+    "84FEC9B9525347C8578B5879127B3E3F": {
+      "source": "Goldenfield Farms",
+      "target": "黄金畑の農場"
+    },
+    "85B950DCBD836EBFC75066699B63C094": {
+      "source": "Ducks have left very muddy footprints all over the doorstep. The ducks, apparently, live here now.",
+      "target": "戸口じゅうに、アヒルの泥だらけの足跡がついている。どうやら、いまはアヒルがここに住んでいるらしい。"
+    },
+    "92F8F73BA84A6C29CB8EA12A48BC8591": {
+      "source": "↑ the {Lumen Observatory} · ← {Lumen Lookout}\n→ the {Amberpine} stair",
+      "target": "↑ {ルーメン天文台}・← {ルーメン展望台}\n→ {琥珀松}の石段"
+    },
+    "113B7E3329E0EE282A29CAE59612116D": {
+      "source": "Lanterns! Paper lanterns! Half the vale floats one on {Lake Mirrormere} after dusk, and the sleeping stars rise to see who is knocking — or so the song goes.",
+      "target": "灯籠！　紙灯籠だよ！　日が暮れたら谷の半分が{鏡湖}に灯籠を流すんだ。すると眠っている星たちが、誰が戸を叩いてるのかと浮かんでくる――って歌にあるのさ。"
+    },
+    "154DC2BEE441D0EE6F2DF4616FF04FE1": {
+      "source": "{The Heron Spit}. The herons were here first. They would like that noted.",
+      "target": "{鷺の砂州}。先にいたのは鷺である。鷺はその点を明記してほしいそうだ。"
+    },
+    "217F3F1DAC8C6DBA915824014C609BF0": {
+      "source": "Stand clear of the forge, friend. The sparks don't care who you are, and neither, frankly, do I until I have finished this hinge.",
+      "target": "炉から離れてな。火の粉は相手が誰だろうとお構いなしだ。正直、この蝶番を仕上げるまでは、俺もお構いなしだがな。"
+    },
+    "220B11EB408BC69E176693522AC9EBEE": {
+      "source": "Caught nothing but an old boot and a very philosophical frog. The fish are all watching the sky tonight. Can't say I blame them.",
+      "target": "釣れたのは古いブーツと、やけに哲学的なカエルが一匹だけだ。今夜は魚もみんな空を見てるのさ。責める気にはなれないね。"
+    },
+    "256DAFC24340089B6171D84B3264DF08": {
+      "source": "{Grandmother Isolde} at the lake says the stars sleep under the water. That's silly. Stars can't swim. ...Can they?",
+      "target": "湖の{イゾルデおばあさん}はね、星は水の底で眠ってるって言うの。そんなのへんだよ。星は泳げないもん。……泳げないよね？"
+    },
+    "289E51EF13D0109F26B18CA582D7D6F5": {
+      "source": "Evening. Barley's in, hay's stacked, and the dog has been brushed for the festival. We are as ready as we will ever be.",
+      "target": "こんばんは。大麦は取り入れた、干し草は積んだ、犬も祭りに向けてブラシをかけた。これ以上ないくらい準備万端だ。"
+    },
+    "318BCEE5A9CC0477EC26C18D9437FD94": {
+      "source": "↑ {Hearthwick} · {The Meadowlands}\nWelcome to {Starfall Vale}!",
+      "target": "↑ {ハースウィック}・{草原地帯}\n{星降りの谷}へようこそ！"
+    },
+    "319FCAD38FA5659A243FC85CEEBF85FF": {
+      "source": "Off to watch the stars later?",
+      "target": "あとで星を見に行くのかい？"
+    },
+    "371FAF12058368CADC98F93D544B4102": {
+      "source": "Listen tonight, when the stars fall. Everything in the vale hums along — the lake, the woods, even the mayor, if he has had enough cider.",
+      "target": "今夜、星が降るときに耳をすませてみよ。谷のすべてが声を合わせて歌う――湖も、森も、シードルが回っておれば町長でさえな。"
+    },
+    "456AB981D2C847D5BEAFF4BD6D3E9CAA": {
+      "source": "The forest that remembers autumn",
+      "target": "秋を覚えている森"
+    },
+    "475C18E13567DE140463391A27183706": {
+      "source": "Grandmother Isolde says the sleeping stars are right under us. Twenty years I have fished here and never hooked one. Probably for the best. Imagine the paperwork.",
+      "target": "イゾルデおばあさんが言うには、眠る星はちょうど俺たちの真下にいるんだと。ここで二十年釣ってるが、一度も引っかけたことはない。そのほうがいいのかもな。釣れたら届け出の書類が大変だ。"
+    },
+    "501F52546AAAC2567AE398CC789C856B": {
+      "source": "Sit, listen — this one's for you.",
+      "target": "座って、聴いてってくれ――この歌は君に捧げるよ。"
+    },
+    "532DB31F542950E5855DA18BE34956EE": {
+      "source": "A note on the door: \"Out lighting lamps. Back when they are all lit. (Forty-one, if you are counting. I am.)\"",
+      "target": "扉に書き置きがある。「灯ともしに出ています。全部ともしたら戻ります。（全部で41本。数えている方のために。わたしは数えています）」"
+    },
+    "559A014F66FF99F7284C9B8CC0E085A0": {
+      "source": "...No?",
+      "target": "……いいえ？"
+    },
+    "693A686960C5649D9C31F9E6AC82EEF9": {
+      "source": "A ribbon for luck?",
+      "target": "幸運のリボン、ひとついかが？"
+    },
+    "706D44D317653D4A7702ED5375252154": {
+      "source": "I will stay up",
+      "target": "起きていよう"
+    },
+    "754F4883C04F8CCB59012CC174AA93B7": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "811D3F9E6E45EBF0B070887D0F55097D": {
+      "source": "The market town of the vale",
+      "target": "谷の市場町"
+    },
+    "882DECD570F4E0506E54B747F977F94D": {
+      "source": "You want the story. Everyone does, on Starfall. Very well: the stars that fell into {Mirrormere} long ago never went out. They sleep on the lakebed, curled up like cats in a sunbeam.",
+      "target": "あの話を聞きたいんじゃろう。星降りにはみんなそうじゃ。よかろう――昔々{鏡湖}に落ちた星は、消えはせなんだ。湖の底で眠っておる。日だまりの猫みたいに、丸くなってな。"
+    },
+    "897FBC745F7F920AB81F7F15ADB8BA6E": {
+      "source": "Garrick mended my pick, did he? Tell him the star-glass is real. And that he still owes me a hinge.",
+      "target": "ギャリックがつるはしを直してくれたって？　あいつに伝えてくれ、星硝子は本物だってな。それと、蝶番ひとつ貸しがあるってこともな。"
+    },
+    "946AB726D106167F2C7047A33E2DA5AA": {
+      "source": "Starblooms from the {Meadowlands}! Folk wear a garland on Starfall night, so the stars know who their friends are.",
+      "target": "{草原地帯}でつんだ星花だよ！　星降りの夜には花輪をつけるの。そうすれば、星たちに誰が友だちかわかるから。"
+    },
+    "2084CFCB800661395201BD23CA4FF76F": {
+      "source": "I don't hunt on Starfall, mind. Tonight the forest belongs to the fireflies. After dusk the whole {Emberwood} glows like the embers of a hearth.",
+      "target": "もっとも、星降りの日は狩りはしない。今夜の森は蛍のものだ。日が暮れると、{熾火の森}じゅうが炉の熾火のように光る。"
+    },
+    "2209C5E5D98D9DCA88F50F5E8433DB66": {
+      "source": "Those falls there — the {Three Sisters}, we call them. Eldest at the top, youngest at the bottom, and all three of them talking at once.",
+      "target": "あそこの滝――わしらは{三姉妹}と呼んどる。いちばん上が長女、いちばん下が末っ子。三人そろって、いっぺんにしゃべりおる。"
+    },
+    "2608FB4C4DF4B7B1499B31DB4647F679": {
+      "source": "Folded every one myself. I have not felt my thumbs since Tuesday.",
+      "target": "ひとつ残らず自分で折ったんだ。火曜から親指の感覚がないよ。"
+    },
+    "2807D64D0AA3D6F68CA574ABC6BA30AF": {
+      "source": "Where the first stones were cut",
+      "target": "最初の石が切り出されたところ"
+    },
+    "4347CCC5B1D7E3236833424BDDEE97CB": {
+      "source": "Welcome to the {Starlight Inn}! Every bed is spoken for tonight — but I always keep one aired for a traveller with tired feet.",
+      "target": "{星明かり亭}へようこそ！　今夜はどのベッドも埋まってるけど――足の疲れた旅人さんのために、いつもひとつ、風を通して空けてあるのよ。"
+    },
+    "4753A7AD8C7701195E87BE68A161DF93": {
+      "source": "Flowers as far as the lantern-light",
+      "target": "ランタンの灯の届くかぎり、花"
+    },
+    "5962EC0B20B85870E26681723B675965": {
+      "source": "↑ {Amberpine Heights} · the {Mirror Falls}\n↓ {Mirrormere Landing}",
+      "target": "↑ {琥珀松の高地}・{鏡の滝}\n↓ {鏡湖の船着き場}"
+    },
+    "6822CB7253C407C35B58F82BDD1D73A4": {
+      "source": "Three hundred and twelve, as of last year. Most of them fell into {Lake Mirrormere}. The old folk say the lake keeps them, sleeping under the water until they are needed.",
+      "target": "去年の時点で、三百十二。そのほとんどが{鏡湖}に落ちました。年寄りたちは言います。湖が星たちを預かっていて、必要とされるその日まで、水の底で眠らせているのだと。"
+    },
+    "6911C20DA3EB66921509E65B96703E2B": {
+      "source": "The mill is turning sweetly tonight. The wind always picks up before a Starfall — my brother says that's nonsense. My brother also says the dog understands poetry.",
+      "target": "今夜は風車が気持ちよく回ってる。星降りの前には決まって風が強くなるんだ――兄貴はそんなのでたらめだって言うがね。その兄貴は、犬が詩をわかるとも言ってる。"
+    },
+    "7086A07F817AEF846A37CB323A268A1C": {
+      "source": "See the glittery bits in the stone? {Star-glass}. You find it wherever a star has struck the ground. I keep a jar of it at home. My wife calls it a jar of gravel. We agree to disagree.",
+      "target": "石の中にきらきらしたのが見えるだろう？　{星硝子}だ。星が地面を打ったところなら、どこでも見つかる。うちには瓶いっぱいためてある。かみさんは砂利の瓶だと言う。そこはお互い譲らないことにしてる。"
+    },
+    "7711BE4B5A0D889AE8E3A5159F432B7C": {
+      "source": "{The Wishing Oak}. Folk tie a ribbon here and make a wish, and tell nobody — especially not the oak. It gossips.",
+      "target": "{願いの樫}。ここにリボンを結んで願いをかけ、誰にも言わないこと――とくに樫には。この木はおしゃべりだ。"
+    },
+    "8059D48A5913D73694A253E282C38812": {
+      "source": "Goldenfield Farms",
+      "target": "黄金畑の農場"
+    },
+    "8746C98EBE452B11884058277E0AC1A3": {
+      "source": "The King's Road, to the lowlands.\nSomeone has chalked underneath: \"The festival is the OTHER way.\"",
+      "target": "王の街道――低地方面。\nその下に誰かがチョークで書き足している。「祭りは反対側だってば！」"
+    },
+    "9181F1DC6F734B50BBA3066952DA95B8": {
+      "source": "The Wandering Lanterns",
+      "target": "さすらいの灯一座"
+    },
+    "9710CAE94EB4C9E27F7E0651DEFB4628": {
+      "source": "Hm. A visitor. The stones told me someone would come. Well — one of them did. The others are sulking.",
+      "target": "ふむ。客か。誰か来ると石が教えてくれた。いや――教えてくれたのはひとつだけじゃ。ほかの石はすねておる。"
+    },
+    "013150F8A905426988C848B0396A082C": {
+      "source": "The clack of a loom stops, then starts again. Someone is weaving star patterns into a festival banner, and losing count.",
+      "target": "機織りのカタンという音が止まり、また始まる。誰かが祭りの旗に星模様を織りこんでいるが、いくつ織ったかわからなくなっているらしい。"
+    },
+    "34531A4B094016EC8D58D8094328CF7F": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "38197F5982A25F1101EA49484F9BDD7F": {
+      "source": "Where the Stars Come Home",
+      "target": "星たちの還る地"
+    },
+    "40942E73FB16F37EA297B3F2B19D09C9": {
+      "source": "My granddad swore a star once landed in this very field. Grew the tallest wheat you ever saw. Tasted of pepper, mind. We don't talk about the pepper.",
+      "target": "じいさんは、昔この畑に星が落ちたって言い張ってた。見たこともないほど背の高い小麦が育ったそうだ。ただし胡椒の味がした。胡椒の件は、うちじゃ口にしないことになってる。"
+    },
+    "41355D85A01810C835CA5D0CD7ADE2AD": {
+      "source": "← {Emberwood} · the {Woodcutter's Camp}\n↑ {Hearthwick}",
+      "target": "← {熾火の森}・{きこりの野営地}\n↑ {ハースウィック}"
+    },
+    "61788FBFB3590A667847A044029B3F28": {
+      "source": "Hearthwick",
+      "target": "ハースウィック"
+    },
+    "74977C1A2CD64477E4405E54164ABF56": {
+      "source": "The Old Quarry",
+      "target": "旧採石場"
+    },
+    "86209CCFA26FDDDD2A5179CE83ADA3DA": {
+      "source": "Where the first star is remembered",
+      "target": "最初の星が語り継がれるところ"
+    },
+    "94733ABFA8B67FA2186440BEE23A38E9": {
+      "source": "I'll take one",
+      "target": "ひとつもらう"
+    },
+    "99193E58E7D1C0C3A6A239AD19799D72": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "193523A3A17273597772A40591F6E33D": {
+      "source": "{Mirror Falls}. Do not lean. The lake has enough stars.",
+      "target": "{鏡の滝}。身を乗り出さないこと。湖の星は、もう足りている。"
+    },
+    "497299B3C009F12D0BE51AED1972766D": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "521111E5FC5E42C8DEAF75E64902EB34": {
+      "source": "→ {Hearthwick}\n← {Goldenfield Farms}",
+      "target": "→ {ハースウィック}\n← {黄金畑の農場}"
+    },
+    "0795021BE8E94940357356518BAA438C": {
+      "source": "Go and see for yourself after dark. And ask {Grandmother Isolde} at the fishing hamlet — she has watched them rise more times than I have counted stars. Well. Nearly.",
+      "target": "暗くなったら、ご自分の目で確かめてごらんなさい。それから漁村の{イゾルデおばあさん}に聞いてみるといい――あの方は、わたしが星を数えた回数よりも多く、星が昇るのを見てきたのですから。まあ……ほぼ、ですが。"
+    },
+    "805814A0BEA2677F1C6286ABDD899FB9": {
+      "source": "Someone is practising the festival song on a tin whistle. They have reached the difficult bit. They are staying there.",
+      "target": "誰かがブリキの笛で祭りの歌を練習している。難しいところまで来たらしい。そこから一向に先へ進まない。"
+    },
+    "0962939D3646BB01590EA04EA9A2F24E": {
+      "source": "Do you know the old story? About the lake?",
+      "target": "古い言い伝えをご存じですか？　湖の話です。"
+    },
+    "972854F0C6238E9CC135D2D5AB117224": {
+      "source": "→ {Mount Lumen} terrace\n↓ {Goldenfield Farms}",
+      "target": "→ {ルーメン山}の高台\n↓ {黄金畑の農場}"
+    },
+    "978553B39420D78D555349B799785FE3": {
+      "source": "The stair below drops to the {North Shore}. Watch your step on the ledge — the pines have roots like tripwires.",
+      "target": "下の石段は{北の岸辺}へ続いている。岩棚では足もとに気をつけろ――松の根が罠の糸のように張っている。"
+    },
+    "1042600CF07E5FDA016511B9BAF8867D": {
+      "source": "I think I do",
+      "target": "聞こえる気がする"
+    },
+    "2230528B45E0CF4D45ABDFDA6959EAC7": {
+      "source": "The Plateau",
+      "target": "高原"
+    },
+    "3106298C17186AB32ED1A0B3E7559664": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "04642867C246E81BD77E1F7792E1F3B5": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "33507844A37FC970DBF0330356F15A38": {
+      "source": "Candlelight flickers behind the chapel door. Inside, a quill scratches away — someone is writing down the stars.",
+      "target": "礼拝堂の扉の向こうで、ろうそくの灯が揺れている。中では羽根ペンがさらさらと走る音――誰かが星を書き留めているのだ。"
+    },
+    "59546320C6C819C4ED8D8E43D64D5709": {
+      "source": "The millwheel was taken down years ago, but the house still smells of flour and river water.",
+      "target": "水車は何年も前に外されたが、家にはいまも粉と川の水の匂いが残っている。"
+    },
+    "70240823BFE2DEB00E7A0EB5B87944F8": {
+      "source": "Once a year the sky over the vale lets go of a few stars. Where they land is anyone's guess. Mostly the lake. Once, regrettably, my hat.",
+      "target": "年に一度、谷の空はいくつかの星を手放すのです。どこに落ちるかは誰にもわからない。たいていは湖ですな。一度など、まことに遺憾ながら、わたしの帽子に。"
+    },
+    "6444751773126C9B72D836C211B073F3": {
+      "source": "The water is so still tonight you could read your fortune in it. Mine says: more bait.",
+      "target": "今夜は水が静かすぎて、占いでもできそうだ。俺の運勢は――「餌を増やせ」だとさ。"
+    },
+    "A4A3B20FC833C4EEECB02A5371148279": {
+      "source": "Home of the Stargazer",
+      "target": "星読みの住まう地"
+    },
+    "A5B9A361F7DA2071FCD91B230700A5C9": {
+      "source": "Laughter, a fiddle and the smell of honey cake spill out of the {Starlight Inn}.",
+      "target": "{星明かり亭}から、笑い声とフィドルの調べ、はちみつケーキの甘い香りがこぼれてくる。"
+    },
+    "A05BF78CC8A5986F06297193176AD0F7": {
+      "source": "The Market Town",
+      "target": "市場町"
+    },
+    "A6C51F26B409C4F0B9696F8C2015CD7E": {
+      "source": "Yes, please",
+      "target": "お願いします"
+    },
+    "A07E26A27568A943A3AE990640B85C0C": {
+      "source": "{Starlight Buns}! Honey, cinnamon and a sugar star on top. Folk eat one when the lake first lights up. Tradition also says three beforehand, to be safe.",
+      "target": "{星明かりパン}だよ！　はちみつとシナモン、てっぺんには砂糖の星。湖が最初に光ったときにひとつ食べるのが習わしさ。念のため、その前に三つ食べるのも習わしでね。"
+    },
+    "A7EB212B80AB6D2940DC97D346A8B125": {
+      "source": "Yes, please",
+      "target": "お願いします"
+    },
+    "A8A23E6CED4261FF959C6D43A04D70A2": {
+      "source": "Belief is a lantern, friend. It does not change the dark — it only lets you see a little further into it.",
+      "target": "信じる心は灯りのようなものです。闇を変えはしません――ただ、その奥を少しだけ遠くまで見せてくれるのです。"
+    },
+    "A30E5A0DC4EEAE64FD185D103B436AF7": {
+      "source": "Two voices argue inside about whether stars are hot. Neither of them has touched one. Both of them are certain.",
+      "target": "中でふたりが、星は熱いかどうかで言い争っている。どちらも星に触れたことはない。どちらも自信満々だ。"
+    },
+    "A84F6F57249BBE4A982A397DB8CD4374": {
+      "source": "Maybe tonight",
+      "target": "今夜見られるかも"
+    },
+    "A696C2EF88384B9CCB5245FF294F2B2D": {
+      "source": "↑ {The Old Quarry} · ↖ the ruins of {Old Lumen}\nMind the edges. The edges do not mind you.",
+      "target": "↑ {旧採石場}・↖ {旧ルーメン}の遺跡\n縁に注意。縁はあなたに注意してくれない。"
+    },
+    "A846A0921A0FAA99E15EEDBAB8999C6F": {
+      "source": "Amberpine Heights",
+      "target": "琥珀松の高地"
+    },
+    "A1999DB9AD04C2EEF27AFF3509A58D98": {
+      "source": "Fishing nets hang drying by the door. The cottage smells pleasantly of tar and toast.",
+      "target": "扉の脇に漁網が干してある。小屋からはタールとトーストの心地よい匂いがする。"
+    },
+    "A577237FECD8F8D5113D666D224715EB": {
+      "source": "Lake Mirrormere",
+      "target": "鏡湖"
+    },
+    "A648343A493B46B163D55B25733FF8EB": {
+      "source": "Press any key",
+      "target": "何かキーを押してください"
+    },
+    "AA0A4C89C68DBDF951AC21FB33490D31": {
+      "source": "The Meadowlands",
+      "target": "草原地帯"
+    },
+    "AA8761CFC869C26D3BC3C2F0273B3372": {
+      "source": "Folk tie them to the old stones in the {Emberwood} glade and make a wish. The hermit pretends to disapprove. He is secretly delighted.",
+      "target": "みんな{熾火の森}の林にある古い石にリボンを結んで、願いごとをするのさ。隠者どのは渋い顔をしてみせるが、内心は大喜びだよ。"
+    },
+    "AE1C22FABD945E48745728A6954CBDBF": {
+      "source": "You found the {Mirror Falls}. Most folk never climb this far — they stop at the observatory and stare at the Stargazer.",
+      "target": "{鏡の滝}を見つけたか。たいていの者はここまで登ってこない――天文台で足を止めて、星読みを眺めて終わりだ。"
+    },
+    "AE3FBF3D259F72A2AF715BBBCABAD8C8": {
+      "source": "The farmhouse door is ajar. Inside, someone is singing to a pie. The pie does not seem to mind.",
+      "target": "農家の扉が少し開いている。中では誰かがパイに歌を聞かせている。パイのほうはまんざらでもなさそうだ。"
+    },
+    "AE65A7C74999DC5A00C288E4EC611CD5": {
+      "source": "The {South Beach}. The best seat in the vale for the far side of the sky.",
+      "target": "{南の浜}。空の向こう側を眺めるなら、谷いちばんの特等席。"
+    },
+    "AF0B42DACE30D7860465BF59AE61E9BD": {
+      "source": "Tell me",
+      "target": "聞かせてください"
+    },
+    "B3B147B6B99A7B2AE39318E474B6B6BE": {
+      "source": "{Signor Orsino} says I dance like a comet. I have decided that is a compliment.",
+      "target": "{シニョール・オルシーノ}は、あたしの踊りはほうき星みたいだって。ほめ言葉ってことにしておいたわ。"
+    },
+    "B6E90A59AE0922E0ADE5F581D1D541BC": {
+      "source": "↑ the {Observatory} on {Mount Lumen}\n↓ {Hearthwick} · ← the {Three Sisters}",
+      "target": "↑ {ルーメン山}の{天文台}\n↓ {ハースウィック}・← {三姉妹}"
+    },
+    "B70E4A7F62BFB17645570545DFDA4394": {
+      "source": "Mushrooms of every colour hang drying under the eaves. A note: \"The red ones are for looking at. NOT for soup.\"",
+      "target": "軒下に色とりどりのきのこが干してある。貼り紙がある。「赤いのは眺める用。スープには絶対に入れないこと」"
+    },
+    "BB3B453E1013782F09E79C4035332432": {
+      "source": "{Old Lumen} — the first town in the vale. Abandoned when the winters won the argument.",
+      "target": "{旧ルーメン}――谷で最初の町。冬との根比べに負けて、打ち捨てられた。"
+    },
+    "BC4E6917900ADE238217853A2CDDE7A8": {
+      "source": "Three falls, one river",
+      "target": "三つの滝、ひとつの川"
+    },
+    "BDA67C5C565D2BAB6A94625B94E564C1": {
+      "source": "Settles the stomach, calms the nerves and keeps a body awake for the falling stars. Also excellent for gossip.",
+      "target": "胃を落ち着け、気を静め、星が降るまで目を覚ましておいてくれる。うわさ話のお供にも最高じゃよ。"
+    },
+    "BE63FD3574BFE8BC24ABEF3E035C902A": {
+      "source": "The old well of {Hearthwick}. Coins glint far below — wishes from a hundred festivals.",
+      "target": "{ハースウィック}の古井戸。はるか底で硬貨がきらめいている――百回の祭りで投げこまれた願いごとだ。"
+    },
+    "BFDBFA7A80B3B3464704A415BF4FF508": {
+      "source": "Starfall Vale",
+      "target": "星降りの谷"
+    },
+    "C1A9DF852698659EBA326EBBAAA6F04D": {
+      "source": "From where?",
+      "target": "どこから？"
+    },
+    "C9A1C2C426ACC964D39B3BA4B43872BE": {
+      "source": "Where the Stars Come Home",
+      "target": "星たちの還る地"
+    },
+    "C9C8717AE6AF0A0F0A5C8555349BE013": {
+      "source": "Ha! Wherever the road goes, I'd wager we'll both be back next year, pretending we just happened to be passing.",
+      "target": "はは！　道がどこへ続こうと、賭けてもいい。来年もふたりそろってここに戻ってきて、たまたま通りかかっただけって顔をしてるさ。"
+    },
+    "C18E9AEA065F1420C495C5B7CEBA11BD": {
+      "source": "Sister Amarantha keeps a little bell up in the chapel rafters. My grandmother forged it from a fallen star. Or from a cooking pot. Depends which uncle you ask.",
+      "target": "シスター・アマランサが礼拝堂の梁に小さな鐘を吊るしててな。うちのばあさんが落ちた星から打った鐘だ。いや、鍋からだったか。どの叔父に聞くかで話が変わる。"
+    },
+    "C213E24C6947E5E6D3AACD47EF77C55A": {
+      "source": "Hollyhocks nod by the door. A voice inside calls, \"If that is the tax man, we are all out, including me.\"",
+      "target": "扉のそばでタチアオイが揺れている。中から声がした。「税の取り立てなら、みんな留守だよ。わたしも含めてね」"
+    },
+    "C569F3FA4CDBEF51073E66E3E2050826": {
+      "source": "Long ago a whole river of stars fell into {Lake Mirrormere}. They did not burn out. They sleep there still, and every Starfall a few of them wake and glimmer up through the water, to answer the sky.",
+      "target": "昔々、川のように連なる星々が{鏡湖}に降りそそぎました。星たちは燃え尽きることなく、いまもそこで眠っています。そして毎年の星降りに、そのうちいくつかが目を覚まし、空に応えて水の中から瞬きのぼってくるのです。"
+    },
+    "C602D78F6FC94F5645B0426BF6EF5351": {
+      "source": "Starfall Vale",
+      "target": "星降りの谷"
+    },
+    "C968CAED7D1F5584DD80A8747C065CB8": {
+      "source": "Above Mirrormere",
+      "target": "鏡湖の上手"
+    },
+    "C77740731F7069C268FDDCAC50652EEA": {
+      "source": "Half the vale is in town for the festival. The other half is pretending not to be, so they can arrive late and complain about the crowds.",
+      "target": "谷の半分がお祭りで町に来てるわ。残りの半分は来てないふりをしてるの。遅れてやって来て、人が多いって文句を言うためにね。"
+    },
+    "CAABA84ED9D3CE4F525B424E0B144E32": {
+      "source": "{Bramble Hollow}. Blackberries in autumn, nettles the rest of the year, and the quietest seat for the stars.",
+      "target": "{いばらの窪地}。秋はブラックベリー、それ以外はイラクサ。そして星を眺めるには、いちばん静かな特等席。"
+    },
+    "CB95EAC1016166D3A3000ABCB329F87E": {
+      "source": "Going up to see the Stargazer? Take the steps on the east side of the upland to the terrace. Saves you the long way round through town.",
+      "target": "星読みに会いに行くのか？　高地の東側の石段から高台へ上がるといい。町をぐるっと回る遠回りをしなくて済む。"
+    },
+    "CD39132DC8B9622DE99866671A2E81A0": {
+      "source": "Mount Lumen",
+      "target": "ルーメン山"
+    },
+    "CE0C3582AF6814678EB0FA1317E1191B": {
+      "source": "The hamlet well. The water tastes faintly of the lake, and faintly of starlight — whatever that tastes like. Cold, mostly.",
+      "target": "小さな集落の井戸。水はほのかに湖の味がして、ほのかに星明かりの味もする――それがどんな味かはともかく。だいたいは、冷たい味だ。"
+    },
+    "CEAFB4559847288F486FAF2B95474786": {
+      "source": "Emberwood",
+      "target": "熾火の森"
+    },
+    "CFC23628B5B4120050CF850FC1F0322E": {
+      "source": "The door is warm to the touch. Behind it: cinnamon, burnt sugar and a very busy oven.",
+      "target": "扉に触れると、ほんのり温かい。向こうからはシナモンと焦がし砂糖の香り、そして大忙しのかまどの気配。"
+    },
+    "CFD6D171A2D39EE0AFE51841FC434A0C": {
+      "source": "Who is he?",
+      "target": "どなたですか？"
+    },
+    "D4C76D037C937A5C8681BA5BE157DB77": {
+      "source": "Welcome, welcome! The {Wandering Lanterns}, at your service. I'm {Lark} — the one with the lute and the questionable singing voice.",
+      "target": "ようこそ、ようこそ！　{さすらいの灯}、なんなりとお申しつけを。ぼくは{ラーク}――リュートを抱えた、歌声のほうはちょっと怪しいやつさ。"
+    },
+    "D5F8244B512F86B790882133DAAA9E1D": {
+      "source": "Do you hear them singing?",
+      "target": "石の歌が聞こえるか？"
+    },
+    "D6F1A974DCA4542A32668FFBB57BA687": {
+      "source": "The tower door is propped open with a very old book. Up the winding stair, a brass telescope points at the sky, patient as a heron.",
+      "target": "塔の扉は、とても古い本をかませて開けてある。らせん階段の上では、真鍮の望遠鏡が鷺のように辛抱強く空を見上げている。"
+    },
+    "D026A77A45529345191B984BCE952B67": {
+      "source": "Every Starfall I build the big bonfire for the troupe. Three cartloads. Their bard sings me a song about it. It is mostly about my axe.",
+      "target": "毎年の星降りに、一座のために大きなかがり火を組むんだ。荷車三台ぶん。お礼に詩人が歌をうたってくれる。中身はほとんど俺の斧の話だがな。"
+    },
+    "D53ABED74A51362EF65BA35C7F555033": {
+      "source": "A garland, then?",
+      "target": "じゃあ、花輪をひとつどう？"
+    },
+    "D86C5E2EDEAAEB5FD37292707417118A": {
+      "source": "{Lumen Lookout}. On a clear night you can count every roof in {Hearthwick}. Please don't; it upsets the Stargazer.",
+      "target": "{ルーメン展望台}。晴れた夜には{ハースウィック}の屋根をひとつ残らず数えられる。数えないでください。星読みが機嫌を損ねます。"
+    },
+    "D7089951D64A599E3D2F74653B41C6C0": {
+      "source": "The stair east of here climbs to the {Observatory}. Mind the switchbacks. The last fellow who ran up them is still telling everyone about it.",
+      "target": "ここから東の石段を上れば{天文台}じゃ。つづら折りに気をつけな。この前そこを駆け上がった男は、いまだに会う者みんなにその話をしとるわい。"
+    },
+    "D30536927442ABAB40FA56EDB95C5103": {
+      "source": "Quiet. There's a stag in the birches that has been giving me the slip since summer. I think it's winning.",
+      "target": "静かに。白樺林に雄鹿がいてな、夏からずっと逃げられっぱなしだ。どうやら向こうが一枚上手らしい。"
+    },
+    "DAB364AB3D35F5ECBD6116A5FC583460": {
+      "source": "You make one of your own. Something in the deep water glimmers back. Probably a coin. Probably.",
+      "target": "あなたも願いをひとつかけた。深い水の底で、何かがきらりと応える。たぶん硬貨だ。たぶん。"
+    },
+    "DABFCC722E26639488746F687177D268": {
+      "source": "Care for one? Still warm.",
+      "target": "おひとついかが？　まだあったかいよ。"
+    },
+    "DE8E1F060F96E41A7C31B993D0AD12A3": {
+      "source": "Starfall Vale",
+      "target": "星降りの谷"
+    },
+    "E1C53C2A9B8630E75EF12616B4101478": {
+      "source": "↑ {Observatory} — by the switchbacks\n→ {Amberpine Heights} · ← {Three Sisters}",
+      "target": "↑ {天文台}――つづら折りを登る\n→ {琥珀松の高地}・← {三姉妹}"
+    },
+    "E2A66330A23ED5EE29125475347B7D3C": {
+      "source": "Ah — a visitor, and on Starfall night! Mind the stones. The old observatory has been falling down for three hundred years; it is in no particular hurry.",
+      "target": "おや――お客さまですか、それも星降りの夜に！　足もとの石にお気をつけて。この古い天文台は三百年かけて崩れかけているのですが、とくに急いではいないようです。"
+    },
+    "E9AB4ED2FF882BFD015382E29C24A8E6": {
+      "source": "No, thank you",
+      "target": "いえ、結構です"
+    },
+    "E63F5A2133DF473C76B3081A9466ECF0": {
+      "source": "Quite a view, isn't it? The whole vale laid out like a quilt, with the {Silverrun} stitching it together.",
+      "target": "いい眺めだろう？　谷じゅうがキルトみたいに広がって、{銀流川}がそれを縫い合わせてる。"
+    },
+    "E260C07F7DF28E753BFFE36EC1BABE78": {
+      "source": "Oh! You caught me mid-twirl. I'm practising the {Star Dance} — every step is a star falling. The spinning part is the lake. Or dizziness. It's hard to tell.",
+      "target": "わっ！　くるっと回ってる途中を見られちゃった。{星の舞}の練習中なの――一歩一歩が、落ちてくる星。くるくる回るところは湖。それか、ただの目まい。どっちなのか自分でもよくわからないの。"
+    },
+    "E591F09AF8D87A51A4894295A75F806C": {
+      "source": "The old shaft. Nobody knows how deep it goes. Someone dropped a pebble in last spring; they are still listening.",
+      "target": "古い縦坑。どこまで深いのか誰も知らない。去年の春、誰かが小石を落とした。その人はいまも耳をすませている。"
+    },
+    "E4382AF22301C5E4950C8AC7B9E98B3E": {
+      "source": "Tired already? Rest now and you will sleep right through the stars, mind.",
+      "target": "もうお疲れ？　でも今休んだら、星が降るのを寝過ごしちゃうわよ。"
+    },
+    "E622322056531E94BE0380E6EA22AB12": {
+      "source": "Keep to the paths after dark. The {Emberwood} is lovely by day and full of opinions by night.",
+      "target": "暗くなったら道を外れるな。{熾火の森}は昼はきれいなものだが、夜はやかましい。"
+    },
+    "EA358A79F6D01053294826E9E57FEE66": {
+      "source": "Stars are just rocks",
+      "target": "星はただの石だ"
+    },
+    "EB5CF4091E47AEE238103293C41D7523": {
+      "source": "Something inside goes tick, tock, whirr, clunk. Then, faintly: \"Oh, bother.\"",
+      "target": "中で何かがチク、タク、ウィーン、ガチャンと鳴った。それから、かすかに「あちゃあ……」。"
+    },
+    "EC544CED2E660DDE35447F17D6378F9F": {
+      "source": "Rest until morning",
+      "target": "朝まで休む"
+    },
+    "EC1161AEAA6A0CE52CCCDE2F2FB7127A": {
+      "source": "If I stay awake",
+      "target": "起きていられたら"
+    },
+    "EEBEEA45F7CCDF9F74DC1AC8F0D634B8": {
+      "source": "← the {Mount Lumen} plateau\n↓ {Mirror Falls} · the {North Shore}",
+      "target": "← {ルーメン山}の高原\n↓ {鏡の滝}・{北の岸辺}"
+    },
+    "EFC827BC35902C3FEAD75C55AB8BFD48": {
+      "source": "I am counting the sky. When {the Lantern of Lyra} climbs over the peak, the stars begin to fall. Tonight, just after dusk — unless the sky is feeling shy.",
+      "target": "空を数えているのです。{こと座の灯}が峰を越えたとき、星が降りはじめます。今夜、日が暮れてすぐに――空が恥ずかしがらなければ、ですが。"
+    },
+    "F0FD20175C86C79D9AC97FFD9AAB913B": {
+      "source": "I have walked a hundred roads, but I always come back for Starfall. Something about this place makes the sky feel closer.",
+      "target": "百の道を歩いてきたが、星降りには必ず戻ってくるんだ。ここにいると、なぜか空が近く感じられてね。"
+    },
+    "F4E194C24812545590DB408F6F1D7593": {
+      "source": "↑ {Mount Lumen} · the {Observatory}\n← {Goldenfield Farms} · → {Lake Mirrormere}\n↓ {Southgate} · {The Meadowlands}",
+      "target": "↑ {ルーメン山}・{天文台}\n← {黄金畑の農場}・→ {鏡湖}\n↓ {南門町}・{草原地帯}"
+    },
+    "F6CCD2C1B3D29214F240A032B67D7FC8": {
+      "source": "The end of the {Long Pier} is the best seat in the vale, after dusk. And nobody rows out to the little island — that glow is the stars' own.",
+      "target": "日が暮れたら、{長桟橋}の先っぽが谷いちばんの特等席じゃ。それと、小島へは誰も舟を出さん――あの光は、星たちだけのものじゃからな。"
+    },
+    "F9C43FCEE3A9B760E4199EDC21F71603": {
+      "source": "Lean close and you can hear it: a low hum, like somebody far below practising a very old song.",
+      "target": "身をかがめて耳を寄せると、聞こえてくる。低いうなり――はるか底で誰かが、とても古い歌を練習しているかのようだ。"
+    },
+    "F16E1F42297C3BE1E812467CDE363DFD": {
+      "source": "I danced with the {Wandering Lanterns} troupe once. Then I discovered I like sleeping in the same bed twice. Their camp is down the {King's Road}, south of the river.",
+      "target": "わたし、昔は{さすらいの灯}一座で踊ってたの。でも、同じベッドで二晩続けて寝るのが好きだって気づいちゃって。一座の野営地は{王の街道}を下った先、川の南よ。"
+    },
+    "F17FB9F0A5705BC1D46A54F4D2FDA22A": {
+      "source": "Goldenfield Farms",
+      "target": "黄金畑の農場"
+    },
+    "F4924FB6A31E1625F48F830C94B451CA": {
+      "source": "{Mirrormere Landing} — fresh fish, old stories.\n← {Hearthwick} · ↓ {Reedmouth}",
+      "target": "{鏡湖の船着き場}――とれたての魚と昔話。\n← {ハースウィック}・↓ {葦の河口}"
+    },
+    "F994863613D857C4E095246A6287C7D2": {
+      "source": "A cup for the road?",
+      "target": "道中のお供に一杯どうだい？"
+    },
+    "FA6AE27D0B683C63A9D63F99871489ED": {
+      "source": "Barley, windmills and wishes",
+      "target": "大麦と風車と願いごと"
+    },
+    "FA213CCEF58D7E0C86473A6D42AC8447": {
+      "source": "Sit, sit. My bones are older than the pier, and the pier creaks less.",
+      "target": "お座り、お座り。わしの骨はこの桟橋より古くてな、桟橋のほうがまだきしまんわい。"
+    },
+    "FAE53A1EC7C4810D2FFBCC5FE259BCD7": {
+      "source": "STARFALL VALE",
+      "target": "星降りの谷"
+    },
+    "FAE76398F5AFC2988473B2F00173D653": {
+      "source": "Did you know? If you drop a coin in the well on Starfall night, a star comes up instead of water.",
+      "target": "知ってる？　星降りの夜に井戸へ硬貨を落とすとね、水のかわりに星が上がってくるんだよ！"
+    },
+    "FC0C88F11F9351CFB9D6E0F8B97863E2": {
+      "source": "I wouldn't miss it",
+      "target": "必ず見ます"
+    },
+    "FDA63A8E3CF500DAF7EBBFCFEA21F1FC": {
+      "source": "↑ {Amberpine Heights}\n↓ the {North Shore} of {Mirrormere}",
+      "target": "↑ {琥珀松の高地}\n↓ {鏡湖}の{北の岸辺}"
+    },
+    "FE9B897048B8EE2FE920A8BE6A271D92": {
+      "source": "When the sky calls, they answer — little lights rising under the water. I saw it first when I was younger than you, and every year since, and I weep every time. Don't tell the fishermen.",
+      "target": "空が呼ぶと、星は応える――水の中を小さな光がのぼってくるんじゃ。初めて見たのはおまえさんより若いころ。それから毎年見とるが、そのたびに泣いてしまう。漁師どもには内緒じゃよ。"
+    },
+    "FECA43310EEE799CCDF071D042CD5ACF": {
+      "source": "A pie cools on the windowsill, guarded by a very serious cat drawn in chalk on the wall.",
+      "target": "窓辺でパイが冷ましてある。見張り番は、壁にチョークで描かれた、とても真剣な顔の猫だ。"
+    },
+    "FF1D2FE40A35CC0ABB012FDCF17578E5": {
+      "source": "If you're off to the {Old Quarry}, tell {Dunstan} his pickaxe is mended. And that I've stopped believing his stories about star-glass. Mostly.",
+      "target": "{旧採石場}へ行くなら、{ダンスタン}につるはしは直ったと伝えてくれ。それと、あいつの星硝子の話はもう信じちゃいないってな。まあ、ほとんどは。"
+    },
+    "FFAB362261B2D809157ED37ADFDD27AD": {
+      "source": "I'd like to",
+      "target": "信じたいです"
+    },
+    "FFF52B51D1166610E9A83AE84F147DA9": {
+      "source": "Somebody inside is arguing, very cheerfully, about which star will fall first.",
+      "target": "中では誰かが、どの星が最初に落ちるかで、やけに楽しそうに言い争っている。"
+    }
+  }
+}

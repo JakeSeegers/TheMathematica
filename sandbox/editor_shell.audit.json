@@ -1,0 +1,179 @@
+[
+ {
+  "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())"
+ },
+ {
+  "eval": "T.E.state.setView({ layout: '3d' }); T.sleep(300).then(() => import('/src/engine/level/LevelFormat.js')).then((m) => { T.E.state.replaceLevel(m.createEmptyLevel({ name: 'Audit', width: 48, depth: 40 })); return JSON.stringify({ needsFrame: T.E.view2d._needsFrame, w: T.E.view2d.width }); })"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.begin('Sample'); s.addObject('house', 10, 8); s.addObject('house', 16, 8, { rotation: 0 }); s.addObject('npc', 13, 12, { facing: 'down' }); s.addObject('emitter', 22, 16, { size: [8, 2, 4] }); s.addObject('region', 4, 16, { minX: 2, maxX: 8, minZ: 14, maxZ: 17 }); s.commit(); return T.summary().types; })()"
+ },
+ {
+  "eval": "T.E.state.setView({ layout: '2d' }); T.sleep(400).then(() => JSON.stringify({ zoom: T.E.view2d.zoomPercent, cx: +T.E.view2d.cx.toFixed(2), cz: +T.E.view2d.cz.toFixed(2), w: T.E.view2d.width }))"
+ },
+ {
+  "shot": "01-2d-after-3d-only"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.select(['npc_1']); T.key('r'); const a = s.getObject('npc_1').facing; T.key('r', { shift: true }); const b = s.getObject('npc_1').facing; return JSON.stringify({ afterR: a, afterShiftR: b }); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.select(['emitter_1']); T.key('r', { ctrl: true }); return JSON.stringify(s.getObject('emitter_1').size); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.select(['house_1', 'house_2', 'npc_1', 'spawn']); const n0 = s._undo.length; T.key('r', { ctrl: true }); const o = (id) => { const x = s.getObject(id); return [x.x, x.z, +(x.rotation ?? 0).toFixed(3), x.facing]; }; return JSON.stringify({ steps: s._undo.length - n0, h1: o('house_1'), h2: o('house_2'), npc: o('npc_1'), spawn: s.level.spawn }); })()"
+ },
+ {
+  "shot": "02-group-rotated"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.undo(); const x = s.getObject('house_1'); return JSON.stringify({ h1: [x.x, x.z, x.rotation], sel: s.selection }); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.select(['region_1']); T.key('r', { ctrl: true }); T.key('r', { ctrl: true }); const r = s.getObject('region_1'); return JSON.stringify([r.minX, r.maxX, r.minZ, r.maxZ]); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.select(['house_1']); return T.sleep(100).then(() => { T.setInput(T.field('Width'), '100'); T.setInput(T.field('Rotation'), '270'); const o = s.getObject('house_1'); return JSON.stringify({ width: o.opts.width, rotDeg: Math.round(o.rotation * 180 / Math.PI), shown: T.field('Rotation').value }); }); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; const inp = document.querySelector('.le-obj-id input'); T.setInput(inp, 'town_hall'); const a = JSON.stringify(s.selection); s.undo(); const b = JSON.stringify(s.selection); s.redo(); const c = JSON.stringify(s.selection); return a + ' | undo ' + b + ' | redo ' + c; })()"
+ },
+ {
+  "shot": "03-inspector-renamed"
+ },
+ {
+  "eval": "(() => { const v = T.E.view2d; v._render(performance.now()); const s = T.E.state; s.moveObjects(['town_hall'], 1, 0); s.undo(); return JSON.stringify({ terrainDirtyAfterObjectUndo: v._terrainDirty }); })()"
+ },
+ {
+  "eval": "(() => { const rows0 = [...document.querySelectorAll('.le-outliner .le-row-item')]; const s = T.E.state; s.moveObjects(['house_2'], 2, 0); return T.sleep(80).then(() => { const rows1 = [...document.querySelectorAll('.le-outliner .le-row-item')]; const same = rows0.length === rows1.length && rows0.every((r, k) => r === rows1[k]); const meta = rows1.find((r) => r.dataset.id === 'house_2')?.querySelector('.le-row-meta')?.textContent; return JSON.stringify({ sameNodes: same, meta }); }); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.setTool('paint'); s.setToolOption('tile', 'c'); T.fire('pointermove', 5, 5); T.fire('pointerdown', 5, 5); T.fire('pointermove', 7, 5, { down: true }); const inTx = s.inTransaction; document.querySelector('.le-map2d-canvas').dispatchEvent(new PointerEvent('lostpointercapture', { pointerId: 7, bubbles: true })); return JSON.stringify({ inTxBefore: inTx, inTxAfter: s.inTransaction, canUndo: s.canUndo, label: s.undoLabel }); })()"
+ },
+ {
+  "eval": "(() => { T.E.state.setTool('select'); T.E.app.projectApi = false; T.E.state.fileRef = { kind: 'project', name: 'whatever' }; T.E.app.saveAs(); return T.sleep(200).then(() => { const a = document.querySelector('.le-dest-card.is-active')?.textContent; T.key('Escape'); T.E.app.projectApi = true; T.E.state.fileRef = { kind: 'new', name: '' }; return a; }); })()"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "eval": "(T.E.app.commands['level.resize'].run(), 'opened')"
+ },
+ {
+  "eval": "(() => { const inputs = document.querySelectorAll('.le-dialog .le-num'); T.setInput(inputs[0], '64'); T.setInput(inputs[1], '48'); T.clickText('.le-dialog .le-btn', 'Resize'); return T.sleep(600).then(() => JSON.stringify({ size: T.E.state.level.width + 'x' + T.E.state.level.depth, zoom: T.E.view2d.zoomPercent, cx: +T.E.view2d.cx.toFixed(1) })); })()"
+ },
+ {
+  "shot": "04-resized-framed"
+ },
+ {
+  "eval": "T.E.state.undo(); T.sleep(500).then(() => JSON.stringify({ size: T.E.state.level.width + 'x' + T.E.state.level.depth, zoom: T.E.view2d.zoomPercent }))"
+ },
+ {
+  "eval": "(() => { T.E.state.setTool('place'); T.E.state.setToolOption('objectType', 'tree'); const a = T.screen(20.5, 5.5); const b = T.screen(25.5, 20.5); const c = T.screen(14, 20); return JSON.stringify([[Math.round(a.clientX), Math.round(a.clientY)], [Math.round(b.clientX), Math.round(b.clientY)], [Math.round(c.clientX), Math.round(c.clientY)]]); })()"
+ },
+ {
+  "click": [
+   729,
+   189
+  ]
+ },
+ {
+  "click": [
+   825,
+   477
+  ]
+ },
+ {
+  "eval": "JSON.stringify(T.E.state.level.objects.filter((o) => o.type === 'tree').map((o) => [o.id, o.x, o.z]))"
+ },
+ {
+  "press": "KeyV"
+ },
+ {
+  "click": [
+   729,
+   189
+  ]
+ },
+ {
+  "eval": "JSON.stringify({ tool: T.E.state.toolId, sel: T.E.state.selection })"
+ },
+ {
+  "press": "Delete"
+ },
+ {
+  "eval": "JSON.stringify({ sel: T.E.state.selection, trees: T.E.state.level.objects.filter((o) => o.type === 'tree').length, undo: T.E.state.undoLabel })"
+ },
+ {
+  "eval": "T.E.state.setToolOption('tile', 'c'); 'tile'"
+ },
+ {
+  "press": "KeyB"
+ },
+ {
+  "click": [
+   605,
+   467
+  ]
+ },
+ {
+  "eval": "JSON.stringify({ tool: T.E.state.toolId, tile: T.E.state.level.tiles[20][14], undo: T.E.state.undoLabel })"
+ },
+ {
+  "eval": "T.E.state.addObject('emitter', 30, 30, { size: [10, 2, 6] }); T.E.state.addObject('critters', 36, 28); T.E.state.addObject('npc', 32, 24, { wander: 2.5 }); T.E.state.clearSelection(); T.E.view2d.focusOn(31, 27, { scale: 34, animate: false }); 'markers'"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "shot": "05-markers-on-grass"
+ },
+ {
+  "press": "Digit1"
+ },
+ {
+  "wait": 600
+ },
+ {
+  "eval": "JSON.stringify({ layout: T.E.state.view.layout })"
+ },
+ {
+  "shot": "06-split"
+ },
+ {
+  "click": [
+   241,
+   19
+  ]
+ },
+ {
+  "wait": 250
+ },
+ {
+  "shot": "07-file-menu-real-click"
+ },
+ {
+  "eval": "JSON.stringify({ open: T.E.app.menubar.isOpen, items: document.querySelectorAll('.le-menu-popup.is-open .le-menu-item').length })"
+ },
+ {
+  "press": "Escape"
+ },
+ {
+  "click": [
+   24,
+   236
+  ]
+ },
+ {
+  "eval": "JSON.stringify({ tool: T.E.state.toolId, menuOpen: T.E.app.menubar.isOpen })"
+ },
+ {
+  "eval": "(() => { const b = [...document.querySelectorAll('.le-tool-btn')].find((x) => x.getAttribute('aria-label')?.startsWith('Place')); const r = b.getBoundingClientRect(); return JSON.stringify([Math.round(r.left + r.width / 2), Math.round(r.top + r.height / 2)]); })()"
+ },
+ {
+  "eval": "(() => { const s = T.E.state; s.setView({ layout: '2d' }); s.setTool('paint'); s.setToolOption('tile', 'F'); s.setToolOption('brushSize', 1); const before = s.level.tiles[30]; const n0 = s._undo.length; T.fire('pointermove', 20.5, 30.5); T.fire('pointerdown', 20.5, 30.5); T.fire('pointermove', 24.5, 30.5, { down: true }); const mid = s.level.tiles[30].slice(18, 28); T.key('Escape'); T.fire('pointermove', 28.5, 30.5, { down: true }); T.fire('pointerup', 28.5, 30.5); return JSON.stringify({ mid, after: s.level.tiles[30].slice(18, 30), restored: s.level.tiles[30] === before, steps: s._undo.length - n0, inTx: s.inTransaction }); })()"
+ },
+ {
+  "eval": "T.E.state.markSaved(); 'clean'"
+ }
+]

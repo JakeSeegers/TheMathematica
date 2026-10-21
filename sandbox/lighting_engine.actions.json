@@ -1,0 +1,12 @@
+[
+  { "eval": "window.__lightEngine.shadowLag()" },
+  { "wait": 200 },
+  { "eval": "window.__lightEngine.shadowLag()" },
+  { "shot": "golden" },
+  { "eval": "window.__lightEngine.setTime(12.5)" }, { "wait": 400 }, { "shot": "noon" },
+  { "eval": "window.__lightEngine.setTime(18.2)" }, { "wait": 400 }, { "shot": "sunset" },
+  { "eval": "window.__lightEngine.setTime(21.5)" }, { "wait": 400 }, { "shot": "night" },
+  { "eval": "window.__lightEngine.programs()" },
+  { "eval": "window.__lightEngine.setTime(17.2); window.__lightEngine.rig.distanceTarget = 36; 1" }, { "wait": 1500 }, { "shot": "golden_far" },
+  { "eval": "window.__lightEngine.programs()" }
+]

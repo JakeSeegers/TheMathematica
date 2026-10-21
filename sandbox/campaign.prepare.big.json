@@ -1,0 +1,19 @@
+[
+  {"eval": "(async () => { await import('/sandbox/campaign_prepare.js'); await CP.ready(); const L = await (await fetch('/levels/gildhaven.json')).json(); return window.__luminati.playLocal(L, 'cmp01-gildhaven', 'campaign=ferrymans-lantern&as=mill-road&autostart=1'); })()"},
+  {"wait": 1500},
+  {"eval": "(async () => { await import('/sandbox/campaign_prepare.js'); const loadMs = await CP.ready(); const s = __game.state(); return JSON.stringify({ loadMs, level: s.campaign.level, file: s.campaign.file, size: [__game.level.width, __game.level.depth], objects: __game.level.objects.length, phases: __game.world.stats.phases, load: __game.game.loadStats }); })()"},
+  {"eval": "CP.travel('millbrook', { x: 64, z: 121.5, wait: 1500, label: 'gildhaven→millbrook' }).then(JSON.stringify)"},
+  {"eval": "CP.walk('right', 4200, { from: [21, 16.5] }).then(JSON.stringify)"},
+  {"eval": "CP.travel('mill-road', { x: 31, z: 16.5, wait: 20000, hash: true, label: 'millbrook→gildhaven' }).then(JSON.stringify)"},
+  {"shot": "01-gildhaven"},
+  {"eval": "CP.travel('millbrook', { x: 64, z: 121.5, wait: 1500, label: 'gildhaven→millbrook' }).then(JSON.stringify)"},
+  {"eval": "CP.walk('right', 4200, { from: [21, 16.5] }).then(JSON.stringify)"},
+  {"eval": "CP.travel('mill-road', { x: 31, z: 16.5, wait: 20000, hash: true, label: 'millbrook→gildhaven' }).then(JSON.stringify)"},
+  {"eval": "CP.travel('millbrook', { x: 64, z: 121.5, wait: 1500, label: 'gildhaven→millbrook' }).then(JSON.stringify)"},
+  {"eval": "CP.walk('right', 4200, { from: [21, 16.5] }).then(JSON.stringify)"},
+  {"eval": "CP.travel('mill-road', { x: 31, z: 16.5, wait: 20000, hash: true, label: 'millbrook→gildhaven' }).then(JSON.stringify)"},
+  {"eval": "CP.travel('millbrook', { x: 64, z: 121.5, wait: 1500, label: 'gildhaven→millbrook' }).then(JSON.stringify)"},
+  {"eval": "CP.walk('right', 4200, { from: [21, 16.5] }).then(JSON.stringify)"},
+  {"eval": "CP.travel('mill-road', { x: 31, z: 16.5, wait: 20000, hash: true, label: 'millbrook→gildhaven' }).then(JSON.stringify)"},
+  {"eval": "JSON.stringify(CP.summary())"}
+]

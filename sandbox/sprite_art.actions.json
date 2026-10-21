@@ -1,0 +1,59 @@
+[
+  {
+    "eval": "window.__sprites.buildMs"
+  },
+  {
+    "eval": "Object.keys(window.__sprites.sheets).length + ' chars / ' + Object.keys(window.__sprites.custom).length + ' custom / ' + Object.keys(window.__sprites.creatures).length + ' creatures / ' + Object.keys(window.__sprites.props).length + ' props'"
+  },
+  {
+    "eval": "(() => { const s = window.__sprites.sheets.traveler; const t = s.texture; return { fw: s.frameWidth, fh: s.frameHeight, cols: s.columns, rows: s.rows, ppu: s.pixelsPerUnit, anchor: s.anchor, mag: t.magFilter, min: t.minFilter, mips: t.generateMipmaps, cs: t.colorSpace, wrap: [t.wrapS, t.wrapT], anims: Object.keys(s.animations).length }; })()"
+  },
+  {
+    "eval": "(() => { const p = window.__sprites.props.campfire; return { w: p.width, h: p.height, frames: p.frames, fps: p.fps, sheetW: p.sheetWidth, canvasW: p.canvas.width }; })()"
+  },
+  {
+    "eval": "(() => { const S = window.__sprites; const all = { ...S.sheets, ...S.custom, ...S.creatures }; const content = [], outline = {}; for (const [name, sh] of Object.entries(all)) { const d = sh.canvas.getContext('2d').getImageData(0, 0, sh.canvas.width, sh.canvas.height).data; const W = sh.canvas.width; for (let r = 0; r < sh.rows; r++) for (let c = 0; c < sh.columns; c++) { let hc = 0; for (let y = 0; y < sh.frameHeight; y++) for (let x = 0; x < sh.frameWidth; x++) { const top = y === 0, side = x === 0 || x === sh.frameWidth - 1; if (!top && !side) continue; const i = ((r * sh.frameHeight + y) * W + c * sh.frameWidth + x) * 4; if (!d[i + 3]) continue; if (d[i] === 20 && d[i + 1] === 15 && d[i + 2] === 23) { const k = name + (top ? ':top' : ':side'); outline[k] = (outline[k] || 0) + 1; } else hc++; } if (hc) content.push(name + ' r' + r + 'c' + c + ':' + hc); } } return { contentClipped: content.length ? content : 'none', outlineTouching: outline }; })()"
+  },
+  {
+    "eval": "(async () => { const m = await import('/src/engine/pixel/CharacterSprites.js'); const P = await import('/src/engine/pixel/PropSprites.js'); const out = {}; const a = m.createCharacterSheet(); out.defaultName = a.name; out.unknown = m.createCharacterSheet({ preset: 'nope' }).canvas.width; const odd = m.createCharacterSheet({ hair: '#c04040', skin: '#e0b090', beard: '#ffffff', cape: true, hat: 'helmet', weapon: 'lute', hairStyle: 'weird', outfit: { top: '#223344' } }); out.odd = [odd.canvas.width, odd.canvas.height, odd.spec.hairStyle, odd.spec.beard]; out.creatureFallback = m.createCreatureSheet('dragon').frameWidth; const d1 = m.createCharacterSheet({ preset: 'bard', seed: 42 }).canvas.toDataURL(); const d2 = m.createCharacterSheet({ preset: 'bard', seed: 42 }).canvas.toDataURL(); const d3 = m.createCharacterSheet({ preset: 'bard', seed: 43 }).canvas.toDataURL(); out.deterministic = d1 === d2; out.seedVaries = d1 !== d3; const p1 = P.createPropSprite('bush', { seed: 3 }).canvas.toDataURL(), p2 = P.createPropSprite('bush', { seed: 3 }).canvas.toDataURL(); out.propDeterministic = p1 === p2; try { P.createPropSprite('nope'); out.throws = false; } catch (e) { out.throws = String(e.message); } const tex = {}; for (const k of P.PROP_SPRITE_KINDS) { const s = P.createPropSprite(k); tex[k] = [s.texture.magFilter === 1003 ? 'N' : 'L', s.texture.colorSpace, s.texture.wrapS === 1001, s.texture.generateMipmaps, s.anchor.join(','), s.frames || 0]; s.dispose(); } out.props = tex; a.dispose(); return out; })()"
+  },
+  {
+    "eval": "(async () => { const m = await import('/src/engine/pixel/CharacterSprites.js'); const P = await import('/src/engine/pixel/PropSprites.js'); const px = (s, x, y) => Array.from(s.canvas.getContext('2d').getImageData(x, y, 1, 1).data); const out = {}; const a = m.createCharacterSheet({ preset: 'villager', outfit: { top: 0xff0000 } }); const b = m.createCharacterSheet({ preset: 'villager', outfit: { top: '#ff0000' } }); out.numberHexEqualsString = a.canvas.toDataURL() === b.canvas.toDataURL(); const n = m.createCharacterSheet({ preset: 'villager', outfit: { top: 'teal' } }); out.cssName = n.canvas.toDataURL() !== m.createCharacterSheet({ preset: 'villager', outfit: { top: 'nonsense' } }).canvas.toDataURL(); out.nullSpec = m.createCharacterSheet(null).name; out.stringPreset = m.createCharacterSheet('guard').name; out.undefinedKeepsPreset = m.createCharacterSheet({ preset: 'guard', hat: undefined, outfit: { top: undefined } }).canvas.toDataURL() === m.createCharacterSheet('guard').canvas.toDataURL(); out.beardNone = m.createCharacterSheet({ preset: 'elder', beard: 'none' }).spec.beard; out.badHat = m.createCharacterSheet({ hat: 'toString', hairStyle: 'constructor' }).spec.hat; out.stringSeed = m.createCharacterSheet({ preset: 'bard', seed: 'abc' }).spec.seed; out.creatureNull = m.createCreatureSheet('dog', null).frameWidth; out.creatureUndef = m.createCreatureSheet('cat', { fur: undefined }).canvas.toDataURL() === m.createCreatureSheet('cat').canvas.toDataURL(); const cf = P.createPropSprite('campfire', null); out.campfire = { rows: cf.rows, idle: cf.animations.idle && cf.animations.idle.frames.length, fps: cf.animations.idle && cf.animations.idle.fps, w: cf.width }; out.grassAnims = Object.keys(P.createPropSprite('grass_tuft').animations).length; out.propStringSeed = P.createPropSprite('bush', { seed: 'x' }).canvas.toDataURL() === P.createPropSprite('bush', { seed: 'x' }).canvas.toDataURL(); const cl = m.createCharacterSheet('cleric'); let gem = 0; const d = cl.canvas.getContext('2d').getImageData(0, 0, cl.canvas.width, cl.canvas.height).data; const gemRamp = m.materialRamp('blue'); for (let r = 0; r < 4; r++) for (let c = 0; c < 6; c++) { let f = 0; for (let y = 0; y < 12; y++) for (let x = 0; x < 32; x++) { const i = ((r * 32 + y) * cl.canvas.width + c * 32 + x) * 4; if (gemRamp.some((g) => g[0] === d[i] && g[1] === d[i + 1] && g[2] === d[i + 2])) f++; } if (f >= 2) gem++; } out.clericFramesWithVisibleGem = gem + '/24'; return out; })()"
+  },
+  {
+    "eval": "window.scrollTo(0, 640)"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "chars1"
+  },
+  {
+    "eval": "document.querySelectorAll('h2')[2].scrollIntoView()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "custom"
+  },
+  {
+    "eval": "document.querySelectorAll('h2')[3].scrollIntoView()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "creatures"
+  },
+  {
+    "eval": "document.querySelectorAll('h2')[4].scrollIntoView()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "props"
+  }
+]

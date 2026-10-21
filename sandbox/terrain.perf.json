@@ -1,0 +1,4 @@
+[
+  { "eval": "(() => { const T = window.__terrain; const t0 = performance.now(); const tm = new T.tileMap.constructor(T.map, { textures: T.lib }); const t1 = performance.now(); const s = tm.stats; tm.dispose(); const t2 = performance.now(); const w = new (T.water.constructor)(T.tileMap, { flow: [0, 0.55] }); const t3 = performance.now(); w.dispose(); return { tileMapMs: +(t1 - t0).toFixed(1), stats: s, waterMs: +(t3 - t2).toFixed(1) }; })()" },
+  { "eval": "(() => { const T = window.__terrain; let n = 0; const t0 = performance.now(); let p = { x: 12.5, z: 9.5 }; for (let k = 0; k < 20000; k++) { p = T.tileMap.move(p, Math.sin(k) * 0.05, Math.cos(k * 0.7) * 0.05); n++; } const t1 = performance.now(); for (let k = 0; k < 100000; k++) T.tileMap.getHeight(5 + (k % 200) * 0.1, 3 + (k % 130) * 0.1); const t2 = performance.now(); return { movesPerMs: +(n / (t1 - t0)).toFixed(0), getHeightPerMs: +(100000 / (t2 - t1)).toFixed(0) }; })()" }
+]

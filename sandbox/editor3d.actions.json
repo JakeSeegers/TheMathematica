@@ -1,0 +1,193 @@
+[
+  {
+    "eval": "JSON.stringify(window.__vp.info())"
+  },
+  {
+    "eval": "window.__vp.vp.frameLevel({ instant: true }); window.__vp.frames(4).then(() => 'framed')"
+  },
+  {
+    "shot": "01_overview"
+  },
+  {
+    "fps": 2000,
+    "label": "overview"
+  },
+  {
+    "eval": "window.__vp.view({ x: 21, z: 35, distance: 40, pitch: 45, yaw: 0 }).then(r => JSON.stringify(r))"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "02_village"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const S = v.vp.surface; await v.view({ x: 30, z: 20, distance: 26, pitch: 25, yaw: 0 }); const res = []; for (const [x, y, z] of [[30.5, 2.0, 16.0], [30.5, 2.8, 16.0], [30.5, 3.0, 15.5], [30.5, 1.0, 17.5]]) { const p = v.toScreen(x, y, z); const ev = v.vp.pickAt(p.x, p.y); res.push({ at: [x, y, z], i: ev.i, j: ev.j, face: ev.face, y: ev.y }); } return JSON.stringify(res); })()"
+  },
+  {
+    "shot": "02b_cliff_pick"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const c = v.vp.canvas; const r = c.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; const y0 = v.vp.cam.yawTarget, p0 = v.vp.cam.pitchTarget, d0 = v.vp.cam.distanceTarget, f0 = v.vp.cam.focusTarget.clone(); v.fire('pointerdown', cx, cy, { button: 2, buttons: 2, id: 77 }); for (let k = 1; k <= 6; k++) { v.fire('pointermove', cx + k * 20, cy + k * 6, { button: -1, buttons: 2, id: 77 }); await v.frames(1); } v.fire('pointerup', cx + 120, cy + 36, { button: 2, buttons: 0, id: 77 }); const y1 = v.vp.cam.yawTarget, p1 = v.vp.cam.pitchTarget; v.fire('pointerdown', cx, cy, { button: 1, buttons: 4, id: 78 }); for (let k = 1; k <= 6; k++) { v.fire('pointermove', cx - k * 25, cy - k * 10, { button: -1, buttons: 4, id: 78 }); await v.frames(1); } v.fire('pointerup', cx - 150, cy - 60, { button: 1, buttons: 0, id: 78 }); const f1 = v.vp.cam.focusTarget.clone(); c.dispatchEvent(new WheelEvent('wheel', { clientX: cx + 200, clientY: cy, deltaY: -300, bubbles: true, cancelable: true })); const d1 = v.vp.cam.distanceTarget; let menu = null; v.vp.root.addEventListener('le-contextmenu', (e) => { menu = e.detail.ev; }, { once: true }); v.fire('pointerdown', cx, cy, { button: 2, buttons: 2, id: 79 }); v.fire('pointerup', cx, cy, { button: 2, buttons: 0, id: 79 }); await v.frames(3); return JSON.stringify({ orbit: [+(y1 - y0).toFixed(3), +(p1 - p0).toFixed(3)], pan: [+(f1.x - f0.x).toFixed(2), +(f1.z - f0.z).toFixed(2)], zoom: [+d0.toFixed(1), +d1.toFixed(1)], menu: menu && { i: menu.i, j: menu.j, button: menu.button } }); })()"
+  },
+  {
+    "wait": 600
+  },
+  {
+    "shot": "02c_camera_moved"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const c = v.vp.canvas; const r = c.getBoundingClientRect(); const cx = r.left + r.width / 2, cy = r.top + r.height / 2; const f0 = v.vp.cam.focusTarget.clone(); v.fire('pointerdown', cx, cy, { button: 2, buttons: 2, id: 91 }); const kd = new KeyboardEvent('keydown', { code: 'KeyW', key: 'w', bubbles: true, cancelable: true }); window.dispatchEvent(kd); await v.wait(350); window.dispatchEvent(new KeyboardEvent('keyup', { code: 'KeyW', key: 'w', bubbles: true })); const f1 = v.vp.cam.focusTarget.clone(); window.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyE', key: 'e', bubbles: true, cancelable: true })); const y0 = v.vp.cam.yawTarget; await v.wait(300); window.dispatchEvent(new KeyboardEvent('keyup', { code: 'KeyE', key: 'e', bubbles: true })); const y1 = v.vp.cam.yawTarget; v.fire('pointerup', cx, cy, { button: 2, buttons: 0, id: 91 }); const kd2 = new KeyboardEvent('keydown', { code: 'KeyW', key: 'w', bubbles: true, cancelable: true }); window.dispatchEvent(kd2); window.dispatchEvent(new KeyboardEvent('keyup', { code: 'KeyW', key: 'w', bubbles: true })); v.state.setView({ cameraMode: 'game' }); await v.wait(200); v.fire('pointermove', cx, cy, { button: -1, buttons: 0 }); c.dispatchEvent(new PointerEvent('pointerenter', { clientX: cx, clientY: cy })); const g0 = v.vp.cam.yawTarget; window.dispatchEvent(new KeyboardEvent('keydown', { code: 'KeyQ', key: 'q', bubbles: true, cancelable: true })); await v.wait(300); window.dispatchEvent(new KeyboardEvent('keyup', { code: 'KeyQ', key: 'q', bubbles: true })); const g1 = v.vp.cam.yawTarget; v.state.setView({ cameraMode: 'edit' }); await v.wait(300); return JSON.stringify({ flyMoved: +Math.hypot(f1.x - f0.x, f1.z - f0.z).toFixed(2), flyPrevented: kd.defaultPrevented, turn: +(y1 - y0).toFixed(3), noFlyPrevented: kd2.defaultPrevented, gameQ: +(g1 - g0).toFixed(3) }); })()"
+  },
+  {
+    "fps": 2000,
+    "label": "village"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; await v.view({ x: 42, z: 44, distance: 30, pitch: 50, yaw: 0.3 }); v.state.setTool('paint'); v.state.setToolOption('tile', 'c'); v.state.setToolOption('brushSize', 3); const r = await v.strokeWorld([[36,42],[38,42.5],[40,43],[42,43.5],[44,44],[46,44.5],[48,45]]); await v.hoverWorld(48, 48); return JSON.stringify({ r, terrain: v.vp.terrain.stats, stats: v.vp.stats.terrainMs }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "03_paint"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setTool('height'); v.state.setToolOption('heightMode', 'raise'); v.state.setToolOption('brushSize', 3); const out = []; for (let k = 0; k < 3; k++) out.push(await v.strokeWorld([[41,50],[42,50],[43,50],[44,50],[45,50]], { stepMs: 20 })); const lat = []; for (let k = 0; k < 4; k++) lat.push(await v.brushLatency(46 + k, 40, { size: 3 })); await v.hoverWorld(43, 50); return JSON.stringify({ out, lat }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "04_height"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const near = v.state.level.objects.filter(o => o.x != null && Math.hypot(o.x - 52, o.z - 46) < 4.5).map(o => o.id); v.state.removeObjects(near); v.state.setTool('place'); v.state.setToolOption('objectType', 'house'); v.state.setToolOption('rotation', 0.4); await v.view({ x: 50, z: 46, distance: 28, pitch: 48, yaw: 0 }); await v.hoverWorld(52, 46); await v.frames(4); return JSON.stringify({ removed: near.length, ghost: !!v.vp.ghost._built, hover: v.state.hover }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "05_ghost_house"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const n = v.state.level.objects.length; await v.clickWorld(52, 46); await v.frames(4); return JSON.stringify({ added: v.state.level.objects.length - n, sel: v.state.selection, props: v.vp.props.count }); })()"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; await v.view({ x: 42, z: 52, distance: 26, pitch: 48, yaw: 0 }); v.state.setToolOption('objectType', 'fence'); await v.clickWorld(37.5, 53); await v.hoverWorld(46.5, 55); await v.frames(4); return JSON.stringify({ line: !!v.vp.ghost._built }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "06_fence_preview"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; await v.clickWorld(46.5, 55); v.state.setToolOption('objectType', 'npc'); await v.view({ x: 40, z: 50, distance: 18, pitch: 40, yaw: 0 }); await v.hoverWorld(40.5, 50.5); await v.frames(4); return JSON.stringify({ n: v.state.level.objects.filter(o => o.type === 'fence').length, sprite: !!v.vp.ghost._sprite }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "07_npc_ghost"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setTool('select'); const h = v.state.level.objects.filter(o => o.type === 'house').pop(); await v.view({ x: h.x - 3, z: h.z, distance: 30, pitch: 48, yaw: 0 }); const sel = await v.clickWorld(h.x, h.z); await v.frames(3); return JSON.stringify({ id: h.id, sel }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "08_selected"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const id = v.state.selection[0]; const h = v.state.getObject(id); const from = [h.x, h.z]; const pts = []; for (let k = 0; k <= 12; k++) pts.push([from[0] - k * 0.5, from[1] - k * 0.25]); const r = await v.strokeWorld(pts, { stepMs: 30 }); await v.frames(6); const h2 = v.state.getObject(id); return JSON.stringify({ r, from, to: [h2.x, h2.z], exact: v.vp.props.get(id)?.exact }); })()"
+  },
+  {
+    "wait": 400
+  },
+  {
+    "shot": "09_moved"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setTool('place'); v.state.setToolOption('objectType', 'region'); await v.view({ x: 40, z: 57, distance: 28, pitch: 55, yaw: 0 }); await v.strokeWorld([[36, 55], [40, 57], [44, 59]]); v.state.setTool('select'); const r = v.state.level.objects.filter(o => o.type === 'region').pop(); v.state.select([r.id, 'fence_6']); await v.frames(4); return JSON.stringify(r); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "10_region"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const near = v.state.level.objects.filter(o => o.x != null && Math.hypot(o.x - 44.5, o.z - 47.5) < 6).map(o => o.id); v.state.removeObjects(near); v.state.setSpawn(44.5, 47.5); await v.frames(3); const s = v.state.level.spawn; await v.view({ x: s.x, z: s.z, distance: 12, pitch: 68, yaw: -20 }); v.state.setTool('select'); const p = v.toScreen(s.x, v.vp.surface.groundAt(s.x, s.z) + 1.0, s.z); v.fire('pointermove', p.x, p.y, { buttons: 0, button: -1, id: 120 }); v.fire('pointerdown', p.x, p.y, { id: 120 }); v.fire('pointerup', p.x, p.y, { buttons: 0, id: 120 }); await v.frames(4); return JSON.stringify({ sel: v.state.selection, hitSpawn: v.vp._lastEv.hitSpawn }); })()"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "10b_spawn_selected"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setView({ hiddenTypes: ['tree', 'region'] }); await v.frames(4); const hidden = [...v.vp.props.entries.values()].filter(e => e.obj.type === 'tree' && e.root.visible).length; v.state.setView({ showMarkers: false }); await v.frames(3); const a = { treesVisible: hidden, spawnVisible: v.vp.actors.spawn.sprite.visible }; v.state.setView({ hiddenTypes: [], showMarkers: true }); await v.frames(3); return JSON.stringify(a); })()"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.vp.setActive(false); await v.wait(300); const off = v.vp.engine.running; v.vp.setActive(true); await v.wait(300); return JSON.stringify({ off, on: v.vp.engine.running }); })()"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.select([]); v.state.setTool('select'); await v.view({ x: 21, z: 35 }); v.state.setView({ cameraMode: 'game' }); await v.wait(1500); return JSON.stringify({ mode: v.vp.cam.mode, pitch: v.vp.cam.pitch * 57.3, d: v.vp.cam.distance, fov: v.vp.camera.fov }); })()"
+  },
+  {
+    "shot": "11_game_camera"
+  },
+  {
+    "fps": 2000,
+    "label": "game"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setView({ postfx: true }); for (let k = 0; k < 100 && !v.vp._postfxReady; k++) await v.wait(100); await v.wait(1200); return JSON.stringify({ ready: v.vp._postfxReady, stats: v.vp.stats }); })()"
+  },
+  {
+    "shot": "12_postfx"
+  },
+  {
+    "fps": 2000,
+    "label": "postfx"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setView({ atmosphere: true, timeOfDay: 17.2 }); await v.wait(2500); return JSON.stringify({ emitters: v.vp.particles?.emitters.length, rays: v.vp.godRays?.shafts.length }); })()"
+  },
+  {
+    "shot": "13_atmosphere_golden"
+  },
+  {
+    "fps": 2000,
+    "label": "atmosphere"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setView({ timeOfDay: 21.5 }); await v.wait(1500); return JSON.stringify({ night: v.vp.lighting.nightFactor, lights: v.vp.stats.lights }); })()"
+  },
+  {
+    "shot": "14_night"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setLevelProps({ environment: { weather: 'rain' } }); v.state.setView({ timeOfDay: 15 }); await v.wait(1500); return JSON.stringify({ precip: v.vp._precip?.preset, rays: v.vp.godRays.shafts.length }); })()"
+  },
+  {
+    "shot": "14b_rain"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.undo(); await v.wait(400); return JSON.stringify({ precip: v.vp._precip?.preset ?? null, rays: v.vp.godRays.shafts.length }); })()"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; v.state.setView({ cameraMode: 'edit', postfx: false, atmosphere: false, timeOfDay: 14 }); v.vp.frameLevel({ instant: true }); await v.wait(600); return JSON.stringify(v.info()); })()"
+  },
+  {
+    "shot": "15_back_to_edit"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const n0 = v.state.level.objects.length; for (let k = 0; k < 6; k++) v.state.undo(); await v.frames(6); const u = v.info(); for (let k = 0; k < 6; k++) v.state.redo(); await v.frames(6); return JSON.stringify({ n0, afterUndo: u.objects, terrain: u.terrain, afterRedo: v.state.level.objects.length }); })()"
+  },
+  {
+    "eval": "(async () => { const v = window.__vp; const g0 = v.vp.renderer.info.memory.geometries; v.vp.dispose(); await v.wait(200); return JSON.stringify({ g0, disposed: v.vp._disposed, canvas: !!document.querySelector('canvas') }); })()"
+  }
+]

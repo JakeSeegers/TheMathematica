@@ -1,0 +1,5 @@
+[
+  { "eval": "(async () => { for (let k = 0; k < 600 && !(window.__luminati && window.__luminati.loadMs && window.__game && window.__game.world); k++) await new Promise((r) => setTimeout(r, 100)); const g = window.__game, W = g.world, s = g.state(); return JSON.stringify({ drawCalls: s.drawCalls, triangles: s.triangles, lights: s.pointLights, programs: g.engine.renderer.info.programs.length, stats: { ...W.stats, buildMs: undefined, phases: undefined }, colliders: W.tileMap.colliders.length, story: !!g.story, storyHook: !!window.__game.story, journalKey: !!g.engine.input.bindings.journal }); })()" },
+  { "eval": "(async () => { const g = window.__game; g.lighting.timeSpeed = 0; g.setTime(17.2); g.rig.setAngles(0); g.rig.snap(); g.photo(true); await new Promise((r) => setTimeout(r, 1500)); return 'ok'; })()" },
+  { "shot": "golden" }
+]

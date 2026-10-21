@@ -1,0 +1,14 @@
+[
+  {"eval":"(async () => { const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); for (let i = 0; i < 300 && !window.__luminati?.loadMs; i++) await sleep(100); const G = window.__game; G.campaign.setFlag('miller-key'); await G.campaign.travel('mill-road'); G.campaign.save(); return JSON.stringify(G.state().campaign.level); })()"},
+  {"goto":"game.html?campaign=ferrymans-lantern"},
+  {"wait":5500},
+  {"shot":"title-continue"},
+  {"eval":"(() => JSON.stringify({ title: document.querySelector('.lu-title__name')?.textContent, dest: document.querySelector('.lu-title__dest-label')?.textContent, hint: document.querySelector('.lu-title__dest-hint')?.textContent, level: window.__game?.state().campaign.level }))()"},
+  {"press":"ArrowRight"},
+  {"wait":400},
+  {"shot":"title-new"},
+  {"eval":"(() => JSON.stringify({ dest: document.querySelector('.lu-title__dest-label')?.textContent, prompt: document.querySelector('.lu-title__prompt')?.textContent }))()"},
+  {"press":"Enter"},
+  {"eval":"(async () => { const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); for (let i = 0; i < 150; i++) { const s = window.__game.state(); if (s.mode === 'play' && s.campaign.level === 'millbrook' && !s.campaign.traveling) break; await sleep(100); } await sleep(1500); const s = window.__game.state(); return JSON.stringify({ mode: s.mode, level: s.campaign.level, flags: s.campaign.flags, player: s.player, save: localStorage.getItem('luminati.campaign.ferrymans-lantern') ? 'saved' : 'none' }); })()"},
+  {"shot":"new-journey"}
+]

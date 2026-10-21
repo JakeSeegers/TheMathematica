@@ -1,0 +1,18 @@
+[
+  { "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())" },
+  { "eval": "import('/src/engine/level/LevelFormat.js').then((m) => { const big = m.resizeLevel(T.E.state.level, 64, 64, { anchor: 'nw' }); for (let k = 0; k < 64; k++) m.addObject(big, 'tree', 50 + (k % 8) * 1.5, 6 + Math.floor(k / 8) * 1.7, { opts: { kind: k % 3 ? 'oak' : 'pine', height: 4.5, seed: k + 1 } }); T.E.state.replaceLevel(big, { kind: 'new', name: '' }); T.E.state.setView({ layout: 'split' }); return big.objects.length; })" },
+  { "wait": 4000 },
+  { "eval": "window.__stroke = async (kind) => { const s = T.E.state; const times = []; let last = performance.now(); let cpu = 0; const pts = []; for (let k = 0; k <= 60; k++) pts.push([10 + k * 0.5, 30 + Math.sin(k / 6) * 6]); if (kind === 'paint') { s.setTool('paint'); s.setToolOption('tile', 'c'); s.setToolOption('brushSize', 3); } else if (kind === 'height') { s.setTool('height'); s.setToolOption('heightMode', 'raise'); s.setToolOption('brushSize', 3); } else { s.setTool('select'); const h = s.getObject('inn'); pts.length = 0; for (let k = 0; k <= 60; k++) pts.push([h.x + k * 0.25, h.z + Math.sin(k / 8) * 3]); } T.fire('pointermove', pts[0][0], pts[0][1]); T.fire('pointerdown', pts[0][0], pts[0][1]); for (const p of pts.slice(1)) { await new Promise((r) => requestAnimationFrame(r)); const t = performance.now(); times.push(t - last); last = t; const c0 = performance.now(); T.fire('pointermove', p[0], p[1], { down: true }); cpu += performance.now() - c0; } T.fire('pointerup', pts[pts.length - 1][0], pts[pts.length - 1][1]); times.sort((a, b) => a - b); return JSON.stringify({ kind, frames: times.length, p50: +times[times.length >> 1].toFixed(1), p95: +times[Math.floor(times.length * 0.95)].toFixed(1), max: +times[times.length - 1].toFixed(1), eventCpuMs: +(cpu / times.length).toFixed(2), undo: s.undoLabel }); }; 'ok'" },
+  { "eval": "window.__stroke('paint')" },
+  { "eval": "window.__stroke('height')" },
+  { "eval": "window.__stroke('move')" },
+  { "fps": 2000, "label": "split-idle-64" },
+  { "shot": "01-split-64" },
+  { "eval": "(() => { const t0 = performance.now(); for (let k = 0; k < 10; k++) { T.E.state.undo(); } const u = performance.now() - t0; const t1 = performance.now(); for (let k = 0; k < 10; k++) { T.E.state.redo(); } return JSON.stringify({ undo10Ms: +u.toFixed(1), redo10Ms: +(performance.now() - t1).toFixed(1) }); })()" },
+  { "eval": "T.E.state.setView({ layout: '2d' }); 'ok'" },
+  { "wait": 800 },
+  { "eval": "window.__stroke('paint')" },
+  { "eval": "window.__stroke('move')" },
+  { "fps": 2000, "label": "2d-idle-64" },
+  { "eval": "T.E.state.markSaved(); 'ok'" }
+]

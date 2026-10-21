@@ -1,0 +1,1253 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Luminati Documentation — a 2.5D pixel-art engine for three.js</title>
+<meta name="description" content="Documentation for Luminati, a 2.5D pixel-art engine for three.js with procedural game art and audio, lit 3D environments, dynamic shadows and depth of field. Explore six levels, two campaigns and a visual level editor.">
+<meta name="color-scheme" content="light dark">
+<link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' rx='3' fill='%230e1424'/%3E%3Cpath fill='%23c9a45c' d='M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z'/%3E%3Cpath fill='%23f59a2e' d='M7 5h2v2h1v3H9v1H7v-1H6V7h1z'/%3E%3Cpath fill='%23fff6d0' d='M7 8h2v2H7z'/%3E%3C/svg%3E">
+<script>
+  /* Apply a remembered theme before the first paint (storage may be unavailable, e.g. file:// in some browsers). */
+  (function () {
+    try {
+      var t = localStorage.getItem('luminati-docs-theme');
+      if (t === 'light' || t === 'dark') document.documentElement.setAttribute('data-theme', t);
+    } catch (e) { /* no storage: follow the system */ }
+  })();
+</script>
+<style>
+  /* ------------------------------------------------------------------------------------------
+     Tokens. Light is the default; dark follows the system unless a theme was chosen.
+     ------------------------------------------------------------------------------------------ */
+  :root {
+    --navy-950: #070b16;
+    --navy-900: #0a0f1c;
+    --navy: #0e1424;
+    --navy-2: #1a2238;
+    --navy-3: #26314f;
+    --gold: #c9a45c;
+    --gold-hi: #f2d990;
+    --gold-lo: #8a6a2c;
+    --ember: #f59a2e;
+
+    --bg: #f4efe4;
+    --bg-2: #ebe3d2;
+    --surface: #fffcf6;
+    --surface-2: #f7f1e5;
+    --ink: #151c30;
+    --ink-2: #3d465f;
+    --ink-3: #676e83;
+    --accent: #8a6722;
+    --accent-2: #6f521a;
+    --line: rgba(21, 28, 48, 0.12);
+    --line-2: rgba(21, 28, 48, 0.2);
+    --line-gold: rgba(138, 103, 34, 0.38);
+    --chip: rgba(138, 103, 34, 0.1);
+    --code-bg: #efe7d6;
+    --pressed-bg: #1a2238;
+    --pressed-ink: #f0d28e;
+    --pressed-line: rgba(201, 164, 92, 0.6);
+    --shadow: 0 1px 2px rgba(14, 20, 36, 0.06), 0 10px 28px rgba(14, 20, 36, 0.09);
+    --shadow-lift: 0 2px 4px rgba(14, 20, 36, 0.08), 0 18px 40px rgba(14, 20, 36, 0.16);
+
+    --display: "Cinzel", "Trajan Pro", "Palatino Linotype", "Book Antiqua", Palatino, "URW Palladio L", Georgia, serif;
+    --serif: "Crimson Pro", "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    --sans: system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+    --mono: ui-monospace, "Cascadia Mono", "SFMono-Regular", Consolas, Menlo, monospace;
+
+    --gutter: clamp(16px, 4vw, 48px);
+    --maxw: 1320px;
+    --radius: 10px;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0a0f1c;
+      --bg-2: #0e1424;
+      --surface: #121a2e;
+      --surface-2: #182139;
+      --ink: #ede5d2;
+      --ink-2: #b9bfcf;
+      --ink-3: #8b92a7;
+      --accent: #dcb86f;
+      --accent-2: #f0d28e;
+      --line: rgba(201, 164, 92, 0.14);
+      --line-2: rgba(201, 164, 92, 0.24);
+      --line-gold: rgba(201, 164, 92, 0.42);
+      --chip: rgba(201, 164, 92, 0.12);
+      --code-bg: #0c1222;
+      --pressed-bg: #c9a45c;
+      --pressed-ink: #161004;
+      --pressed-line: #e2c27b;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+      --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.45), 0 22px 48px rgba(0, 0, 0, 0.5);
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0a0f1c;
+    --bg-2: #0e1424;
+    --surface: #121a2e;
+    --surface-2: #182139;
+    --ink: #ede5d2;
+    --ink-2: #b9bfcf;
+    --ink-3: #8b92a7;
+    --accent: #dcb86f;
+    --accent-2: #f0d28e;
+    --line: rgba(201, 164, 92, 0.14);
+    --line-2: rgba(201, 164, 92, 0.24);
+    --line-gold: rgba(201, 164, 92, 0.42);
+    --chip: rgba(201, 164, 92, 0.12);
+    --code-bg: #0c1222;
+    --pressed-bg: #c9a45c;
+    --pressed-ink: #161004;
+    --pressed-line: #e2c27b;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.4), 0 12px 32px rgba(0, 0, 0, 0.35);
+    --shadow-lift: 0 2px 6px rgba(0, 0, 0, 0.45), 0 22px 48px rgba(0, 0, 0, 0.5);
+  }
+
+  /* ------------------------------------------------------------------------------------------
+     Base
+     ------------------------------------------------------------------------------------------ */
+  *, *::before, *::after { box-sizing: border-box; }
+  html { scroll-behavior: smooth; scroll-padding-top: 72px; -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 var(--sans);
+    overflow-x: hidden;
+  }
+  img { display: block; max-width: 100%; height: auto; }
+  a { color: var(--accent); text-decoration-thickness: 1px; text-underline-offset: 3px; }
+  a:hover { color: var(--accent-2); }
+  :focus-visible { outline: 2px solid var(--gold); outline-offset: 3px; border-radius: 4px; }
+  code, kbd, .mono { font-family: var(--mono); font-size: 0.86em; }
+  code { background: var(--code-bg); border: 1px solid var(--line); border-radius: 5px; padding: 0.08em 0.38em; }
+  .wrap { width: 100%; max-width: var(--maxw); margin: 0 auto; padding: 0 var(--gutter); }
+  .skip { position: absolute; left: -999px; top: 8px; z-index: 100; background: var(--navy); color: #f3e7c6; padding: 8px 14px; border-radius: 6px; }
+  .skip:focus { left: 12px; }
+  .sr-only { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0); white-space: nowrap; }
+
+  /* ------------------------------------------------------------------------------------------
+     Top bar
+     ------------------------------------------------------------------------------------------ */
+  .topbar {
+    position: sticky; top: 0; z-index: 40;
+    background: rgba(10, 15, 28, 0.82);
+    -webkit-backdrop-filter: saturate(1.2) blur(10px);
+    backdrop-filter: saturate(1.2) blur(10px);
+    border-bottom: 1px solid rgba(201, 164, 92, 0.22);
+  }
+  .topbar .wrap { display: flex; align-items: center; gap: 20px; height: 60px; }
+  .brand { display: flex; align-items: center; gap: 10px; color: #efe3c2; text-decoration: none; flex: none; }
+  .brand:hover { color: #fff3d2; }
+  .brand svg { width: 26px; height: 26px; flex: none; }
+  .brand b { font: 600 17px/1 var(--display); letter-spacing: 0.22em; }
+  .brand span { font: italic 15px/1 var(--serif); color: #c9a45c; letter-spacing: 0.02em; }
+  .nav { display: flex; gap: 4px; margin-left: auto; align-items: center; }
+  .nav a {
+    color: #cfd3de; text-decoration: none; font-size: 14px; padding: 7px 11px; border-radius: 6px;
+    letter-spacing: 0.02em;
+  }
+  .nav a:hover { color: #f2d990; background: rgba(201, 164, 92, 0.1); }
+  .theme-btn {
+    margin-left: 6px; flex: none; width: 36px; height: 36px; border-radius: 8px;
+    display: grid; place-items: center; cursor: pointer;
+    background: transparent; color: #e7d6a8; border: 1px solid rgba(201, 164, 92, 0.35);
+  }
+  .theme-btn:hover { background: rgba(201, 164, 92, 0.12); }
+  .theme-btn svg { width: 18px; height: 18px; }
+  .theme-btn .i-sun { display: none; }
+  :root[data-theme="dark"] .theme-btn .i-sun { display: block; }
+  :root[data-theme="dark"] .theme-btn .i-moon { display: none; }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) .theme-btn .i-sun { display: block; }
+    :root:not([data-theme="light"]) .theme-btn .i-moon { display: none; }
+  }
+  @media (max-width: 760px) { .nav a.opt { display: none; } }
+  @media (max-width: 520px) { .nav a { display: none; } .brand span { display: none; } }
+
+  /* ------------------------------------------------------------------------------------------
+     Hero (always the dark diorama band, in both themes)
+     ------------------------------------------------------------------------------------------ */
+  .hero {
+    position: relative; isolation: isolate; overflow: hidden;
+    background: radial-gradient(120% 90% at 78% 20%, #1c2544 0%, #0e1424 45%, #070b16 100%);
+    color: #ece3cc;
+    padding: clamp(40px, 7vw, 96px) 0 clamp(48px, 7vw, 88px);
+  }
+  .hero::before {
+    /* the same frame, far out of focus: the tilt-shift look as a backdrop */
+    content: ""; position: absolute; inset: -60px; z-index: -2;
+    background: url("assets/screenshots/starfall-lake-night.jpg") center / cover no-repeat;
+    filter: blur(38px) saturate(1.25);
+    opacity: 0.32;
+  }
+  .hero::after {
+    content: ""; position: absolute; inset: 0; z-index: -1;
+    background:
+      linear-gradient(180deg, rgba(7, 11, 22, 0.55) 0%, rgba(7, 11, 22, 0.1) 30%, rgba(7, 11, 22, 0.1) 70%, rgba(7, 11, 22, 0.85) 100%),
+      radial-gradient(60% 60% at 20% 50%, rgba(7, 11, 22, 0.75), transparent 70%);
+  }
+  .motes { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+  .motes i {
+    position: absolute; border-radius: 50%;
+    background: radial-gradient(circle, rgba(255, 214, 140, 0.55) 0%, rgba(255, 190, 110, 0.18) 45%, transparent 70%);
+    filter: blur(1px);
+  }
+  .hero-grid { display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); gap: clamp(28px, 4vw, 64px); align-items: center; }
+  .eyebrow {
+    display: inline-flex; align-items: center; gap: 10px;
+    font: 600 12px/1.2 var(--sans); letter-spacing: 0.24em; text-transform: uppercase; color: var(--gold);
+  }
+  .eyebrow::before { content: ""; width: 7px; height: 7px; background: var(--gold); transform: rotate(45deg); flex: none; }
+  .hero h1 {
+    margin: 18px 0 6px;
+    font: 600 clamp(3rem, 7.2vw, 6.2rem)/0.95 var(--display);
+    letter-spacing: 0.14em;
+    color: #e7c77c;
+    background: linear-gradient(180deg, #fbeabb 0%, #e3bf6f 48%, #a57c33 100%);
+    -webkit-background-clip: text; background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 0 0 transparent;
+    filter: drop-shadow(0 6px 22px rgba(0, 0, 0, 0.55));
+  }
+  .ornament { display: block; width: min(320px, 70%); height: 14px; margin: 14px 0 20px; color: var(--gold); }
+  .tagline { font: italic clamp(1.25rem, 2.1vw, 1.7rem)/1.35 var(--serif); color: #f1e6c8; margin: 0 0 14px; max-width: 30ch; }
+  .lede { color: #c2c7d4; margin: 0 0 26px; max-width: 46ch; font-size: 1.02rem; }
+  .lede strong { color: #efe3c2; font-weight: 600; }
+  .cta { display: flex; flex-wrap: wrap; gap: 12px; }
+  .btn {
+    display: inline-flex; align-items: center; gap: 9px;
+    padding: 11px 18px; border-radius: 8px; text-decoration: none;
+    font: 600 14px/1 var(--sans); letter-spacing: 0.04em;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, transform 0.2s;
+  }
+  .btn svg { width: 16px; height: 16px; }
+  .btn-gold { background: linear-gradient(180deg, #e2c27b, #b98f45); color: #1a1407; border: 1px solid #f3d995; box-shadow: 0 6px 18px rgba(201, 164, 92, 0.25); }
+  .btn-gold:hover { color: #120d04; background: linear-gradient(180deg, #edd08e, #c79c50); transform: translateY(-1px); }
+  .btn-ghost { color: #efe3c2; border: 1px solid rgba(201, 164, 92, 0.5); background: rgba(14, 20, 36, 0.35); }
+  .btn-ghost:hover { color: #fff1cc; background: rgba(201, 164, 92, 0.12); }
+  .meta { margin-top: 22px; display: flex; flex-wrap: wrap; gap: 8px 16px; font-size: 13px; color: #9aa2b7; }
+  .meta span { display: inline-flex; align-items: center; gap: 7px; }
+  .meta span::before { content: ""; width: 4px; height: 4px; background: #c9a45c; transform: rotate(45deg); }
+
+  /* Ornate frame: thin gold double border with diamond corners, like the in-game dialog window */
+  .frame {
+    position: relative; padding: 7px;
+    background: linear-gradient(180deg, rgba(26, 34, 56, 0.9), rgba(10, 15, 28, 0.95));
+    border: 1px solid rgba(201, 164, 92, 0.75);
+    box-shadow: 0 30px 80px rgba(0, 0, 0, 0.55), 0 0 0 1px rgba(0, 0, 0, 0.4);
+  }
+  .frame::before {
+    content: ""; position: absolute; inset: 3px; border: 1px solid rgba(201, 164, 92, 0.32); pointer-events: none; z-index: 2;
+  }
+  .frame::after {
+    content: ""; position: absolute; inset: -6px; pointer-events: none; z-index: 3;
+    background-image:
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .6 11.4 6 6 11.4.6 6z' fill='%23c9a45c' stroke='%231a1208' stroke-width='1'/%3E%3Cpath d='M6 3 9 6 6 9 3 6z' fill='%23f7e4ab'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .6 11.4 6 6 11.4.6 6z' fill='%23c9a45c' stroke='%231a1208' stroke-width='1'/%3E%3Cpath d='M6 3 9 6 6 9 3 6z' fill='%23f7e4ab'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .6 11.4 6 6 11.4.6 6z' fill='%23c9a45c' stroke='%231a1208' stroke-width='1'/%3E%3Cpath d='M6 3 9 6 6 9 3 6z' fill='%23f7e4ab'/%3E%3C/svg%3E"),
+      url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12'%3E%3Cpath d='M6 .6 11.4 6 6 11.4.6 6z' fill='%23c9a45c' stroke='%231a1208' stroke-width='1'/%3E%3Cpath d='M6 3 9 6 6 9 3 6z' fill='%23f7e4ab'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: 12px 12px;
+    background-position: 0 0, 100% 0, 0 100%, 100% 100%;
+  }
+  .frame img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; }
+  .hero-shot figcaption {
+    margin-top: 14px; display: flex; justify-content: space-between; gap: 12px; flex-wrap: wrap;
+    font: italic 15px/1.4 var(--serif); color: #b8bfcf;
+  }
+  .hero-shot figcaption b { font: 600 11px/1.4 var(--sans); letter-spacing: 0.2em; text-transform: uppercase; color: var(--gold); font-style: normal; }
+
+  /* Stats ribbon */
+  .stats { background: var(--navy-950); border-top: 1px solid rgba(201, 164, 92, 0.25); border-bottom: 1px solid rgba(201, 164, 92, 0.25); }
+  .stats ul { list-style: none; margin: 0 auto; padding: 22px var(--gutter); max-width: var(--maxw); display: grid; grid-template-columns: repeat(6, minmax(0, 1fr)); gap: 16px; }
+  .stats li { text-align: center; color: #aab1c3; font-size: 13px; line-height: 1.35; }
+  .stats b { display: block; font: 600 clamp(1.6rem, 2.6vw, 2.2rem)/1.1 var(--display); color: #e8c77f; letter-spacing: 0.04em; margin-bottom: 4px; }
+
+  /* ------------------------------------------------------------------------------------------
+     Sections
+     ------------------------------------------------------------------------------------------ */
+  section.block { padding: clamp(56px, 7vw, 96px) 0 0; }
+  .sec-head { display: grid; gap: 10px; margin-bottom: clamp(24px, 3vw, 36px); max-width: 780px; }
+  .sec-head .eyebrow { color: var(--accent); }
+  .sec-head .eyebrow::before { background: var(--accent); }
+  .sec-head h2 { margin: 0; font: 600 clamp(1.7rem, 3vw, 2.4rem)/1.15 var(--display); letter-spacing: 0.06em; color: var(--ink); }
+  .sec-head p { margin: 0; color: var(--ink-2); font-size: 1.04rem; }
+  .rule { display: block; width: 180px; height: 12px; color: var(--accent); margin-top: 2px; }
+
+  /* Quick paths */
+  .paths { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .path {
+    position: relative; display: flex; flex-direction: column; gap: 12px;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    padding: 22px 20px 20px; box-shadow: var(--shadow);
+  }
+  .path::before {
+    content: ""; position: absolute; left: 20px; right: 20px; top: 0; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--gold), transparent);
+  }
+  .path-icon {
+    width: 44px; height: 44px; display: grid; place-items: center; flex: none;
+    border-radius: 10px; background: var(--navy-2); color: var(--gold); border: 1px solid rgba(201, 164, 92, 0.45);
+  }
+  .path-icon svg { width: 22px; height: 22px; }
+  .path h3 { margin: 0; font: 600 1.28rem/1.2 var(--display); letter-spacing: 0.05em; }
+  .path p { margin: 0; color: var(--ink-2); font-size: 0.95rem; }
+  .path pre {
+    margin: 0; padding: 10px 12px; border-radius: 7px; overflow-x: auto;
+    background: var(--code-bg); border: 1px solid var(--line); color: var(--ink);
+    font: 12.5px/1.5 var(--mono);
+  }
+  .path pre code { background: none; border: 0; padding: 0; font-size: inherit; color: inherit; }
+  .path ul { list-style: none; margin: auto 0 0; padding: 12px 0 0; border-top: 1px solid var(--line); display: grid; gap: 6px; }
+  .path li a { display: flex; align-items: baseline; gap: 8px; text-decoration: none; font-weight: 500; font-size: 0.95rem; }
+  .path li a::before { content: "›"; color: var(--gold); font-weight: 700; }
+  .path li a:hover span { text-decoration: underline; }
+  .path li small { color: var(--ink-3); font-family: var(--mono); font-size: 11.5px; margin-left: auto; white-space: nowrap; }
+
+  /* Architecture strip */
+  .stack { display: grid; gap: 10px; }
+  .stack-row { display: grid; gap: 10px; }
+  .stack-row.fronts { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  .layer {
+    border: 1px solid var(--line-2); border-radius: 9px; background: var(--surface);
+    padding: 14px 16px; display: grid; gap: 4px; text-decoration: none; color: var(--ink);
+    transition: border-color 0.2s, transform 0.2s, box-shadow 0.2s;
+  }
+  a.layer:hover { border-color: var(--line-gold); transform: translateY(-1px); box-shadow: var(--shadow); color: var(--ink); }
+  .layer b { font: 600 1.05rem/1.25 var(--display); letter-spacing: 0.04em; }
+  .layer span { color: var(--ink-3); font: 12.5px/1.45 var(--mono); }
+  .layer.data { background: repeating-linear-gradient(135deg, var(--surface-2) 0 12px, var(--surface) 12px 24px); text-align: center; }
+  .layer.engine { background: var(--navy-2); border-color: rgba(201, 164, 92, 0.45); color: #ece3cc; }
+  .layer.engine b { color: #f0d28e; }
+  .layer.engine span { color: #aab1c3; }
+  .chips { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 8px; }
+  .chips a {
+    font: 12.5px/1 var(--mono); color: #e9dcb8; text-decoration: none;
+    padding: 7px 10px; border-radius: 6px; border: 1px solid rgba(201, 164, 92, 0.38); background: rgba(10, 15, 28, 0.5);
+  }
+  .chips a:hover { color: #fff1c8; border-color: #c9a45c; background: rgba(201, 164, 92, 0.15); }
+  .layer.base { text-align: center; background: transparent; border-style: dashed; }
+  .layer.launcher { text-align: center; }
+  .arrow-row { display: flex; justify-content: center; color: var(--accent); height: 14px; }
+  .arrow-row svg { width: 14px; height: 14px; }
+
+  /* Feature tiles */
+  .tiles { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .tile {
+    position: relative; display: flex; flex-direction: column; overflow: hidden;
+    background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+    text-decoration: none; color: var(--ink); box-shadow: var(--shadow);
+    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+  }
+  .tile:hover { transform: translateY(-3px); box-shadow: var(--shadow-lift); border-color: var(--line-gold); color: var(--ink); }
+  .tile .media { position: relative; aspect-ratio: 16 / 9; overflow: hidden; background: var(--navy); }
+  .tile .media img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.5s ease; }
+  .tile:hover .media img { transform: scale(1.04); }
+  .tile .media::after { content: ""; position: absolute; inset: 0; box-shadow: inset 0 -40px 40px -30px rgba(7, 11, 22, 0.55); pointer-events: none; }
+  .tile .body { padding: 14px 16px 16px; display: grid; gap: 6px; }
+  .tile h3 { margin: 0; font: 600 1.08rem/1.25 var(--display); letter-spacing: 0.04em; }
+  .tile p { margin: 0; color: var(--ink-2); font-size: 0.92rem; line-height: 1.5; }
+  .tile .tag { font: 11.5px/1.3 var(--mono); color: var(--ink-3); }
+  .tile .media.art { display: grid; place-items: center; background: radial-gradient(110% 90% at 30% 20%, #1f2a4a, #0b1122 70%); }
+  .tile .media.art svg { width: 100%; height: 100%; }
+  .tile.wide { grid-column: 1 / -1; flex-direction: row; }
+  .tile.wide .media { flex: 0 0 50%; }
+  .tile.wide .body { align-content: center; padding: 22px 26px; }
+  .tile.wide h3 { font-size: 1.3rem; }
+  .tile.wide p { font-size: 1rem; }
+  .term {
+    width: 100%; height: 100%; padding: 12px 14px; margin: 0;
+    background: #070b16; color: #b9c2d6; font: 11px/1.55 var(--mono); overflow: hidden; white-space: pre;
+  }
+  .term .p { color: #e3bf6f; }
+  .term .ok { color: #8fd18f; }
+  .term .dim { color: #6c7489; }
+
+  /* Levels */
+  .levels { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
+  .level {
+    display: flex; flex-direction: column; background: var(--surface); border: 1px solid var(--line);
+    border-radius: var(--radius); overflow: hidden; box-shadow: var(--shadow);
+  }
+  .level .media { position: relative; aspect-ratio: 16 / 9; background: var(--navy); overflow: hidden; }
+  .level .media img, .level .media svg { width: 100%; height: 100%; object-fit: cover; display: block; }
+  .level .badge {
+    position: absolute; left: 10px; top: 10px; font: 600 10.5px/1 var(--sans); letter-spacing: 0.16em; text-transform: uppercase;
+    color: #1a1407; background: #e2c27b; padding: 5px 8px; border-radius: 4px;
+  }
+  .level .badge.soft { background: rgba(10, 15, 28, 0.78); color: #e9d7a6; border: 1px solid rgba(201, 164, 92, 0.5); }
+  .level .body { padding: 16px; display: grid; gap: 8px; flex: 1; align-content: start; }
+  .level h3 { margin: 0; font: 600 1.15rem/1.2 var(--display); letter-spacing: 0.05em; }
+  .level .sub { margin: -4px 0 0; font: italic 1rem/1.3 var(--serif); color: var(--accent); }
+  .level dl { margin: 2px 0 0; display: flex; flex-wrap: wrap; gap: 6px; }
+  .level dl div { flex: 1 1 auto; }
+  .level dl div { background: var(--surface-2); border: 1px solid var(--line); border-radius: 6px; padding: 5px 7px; }
+  .level dt { font: 600 9.5px/1.2 var(--sans); letter-spacing: 0.08em; text-transform: uppercase; color: var(--ink-3); }
+  .level dd { margin: 2px 0 0; font: 600 0.94rem/1.2 var(--sans); color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+  .level p { margin: 0; color: var(--ink-2); font-size: 0.92rem; }
+  .level p code { white-space: nowrap; }
+  .level .foot { display: flex; flex-wrap: wrap; gap: 8px 14px; align-items: center; justify-content: space-between; margin-top: 4px; }
+  .level .foot code { font-size: 11.5px; }
+  .level .foot a { font-size: 0.9rem; font-weight: 600; text-decoration: none; }
+  .level .foot a:hover { text-decoration: underline; }
+
+  /* Gallery */
+  .filters { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 18px; }
+  .filters button {
+    font: 500 13.5px/1 var(--sans); color: var(--ink-2); background: var(--surface); cursor: pointer;
+    border: 1px solid var(--line-2); border-radius: 999px; padding: 9px 14px;
+  }
+  .filters button:hover { border-color: var(--line-gold); color: var(--ink); }
+  .filters button[aria-pressed="true"] { background: var(--pressed-bg); color: var(--pressed-ink); border-color: var(--pressed-line); }
+  .filters button span { color: var(--ink-3); margin-left: 4px; font-variant-numeric: tabular-nums; }
+  .filters button[aria-pressed="true"] span { color: inherit; opacity: 0.75; }
+  .gallery { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 14px; }
+  .gallery figure { margin: 0; }
+  .gallery figure[hidden] { display: none; }
+  .gallery a { display: block; position: relative; border-radius: 8px; overflow: hidden; background: var(--navy); border: 1px solid var(--line); }
+  .gallery img { width: 100%; aspect-ratio: 16 / 9; object-fit: cover; transition: transform 0.45s ease, filter 0.3s ease; }
+  .gallery a:hover img { transform: scale(1.05); }
+  .gallery a::after {
+    content: ""; position: absolute; right: 8px; bottom: 8px; width: 26px; height: 26px; border-radius: 6px;
+    background: rgba(10, 15, 28, 0.72) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23e8c77f' stroke-width='2' stroke-linecap='round'%3E%3Cpath d='M15 3h6v6M9 21H3v-6M21 3l-7 7M3 21l7-7'/%3E%3C/svg%3E") center / 14px no-repeat;
+    opacity: 0; transition: opacity 0.2s;
+  }
+  .gallery a:hover::after, .gallery a:focus-visible::after { opacity: 1; }
+  .gallery figcaption { margin-top: 7px; font-size: 13px; line-height: 1.4; color: var(--ink-2); }
+  .gallery figcaption b { color: var(--ink); font-weight: 600; }
+
+  /* Contents */
+  .toc { columns: 3 300px; column-gap: 18px; }
+  .toc-group { break-inside: avoid; -webkit-column-break-inside: avoid; display: inline-block; width: 100%; margin: 0 0 18px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 18px 14px; box-shadow: var(--shadow); }
+  .toc-group h3 { margin: 0 0 2px; font: 600 1.04rem/1.25 var(--display); letter-spacing: 0.05em; }
+  .toc-group .path-label { font: 12px/1.4 var(--mono); color: var(--accent); margin: 0 0 10px; }
+  .toc-group ul { list-style: none; margin: 0; padding: 0; display: grid; }
+  .toc-group li { padding: 7px 0; border-top: 1px solid var(--line); }
+  .toc-group li:first-child { border-top: 0; }
+  .toc-group li a { font-weight: 600; text-decoration: none; font-size: 0.95rem; }
+  .toc-group li a:hover { text-decoration: underline; }
+  .toc-group li .d { display: block; margin-top: 1px; color: var(--ink-3); font-size: 0.86rem; line-height: 1.45; }
+  .toc-group .pill { display: inline-block; font: 600 9.5px/1 var(--sans); letter-spacing: 0.12em; text-transform: uppercase; padding: 3px 6px; border-radius: 4px; margin-left: 6px; vertical-align: 2px; background: var(--chip); color: var(--accent); border: 1px solid var(--line-gold); }
+
+  /* Footer */
+  footer { margin-top: clamp(64px, 8vw, 110px); background: var(--navy-950); color: #9aa2b7; border-top: 1px solid rgba(201, 164, 92, 0.25); }
+  footer .wrap { padding-top: 34px; padding-bottom: 38px; display: grid; gap: 14px; justify-items: center; text-align: center; }
+  footer .brand b { font-size: 15px; }
+  footer p { margin: 0; font-size: 13.5px; max-width: 760px; }
+  footer a { color: #d9bd7c; }
+  footer code { background: rgba(201, 164, 92, 0.1); border-color: rgba(201, 164, 92, 0.3); color: #e9dcb8; }
+  footer a:hover { color: #f2d990; }
+
+  /* Lightbox */
+  .lightbox {
+    position: fixed; inset: 0; z-index: 90; display: none;
+    background: rgba(5, 8, 16, 0.92);
+    padding: clamp(12px, 3vw, 40px);
+    align-items: center; justify-content: center;
+  }
+  .lightbox.open { display: flex; }
+  .lb-inner { position: relative; width: min(1280px, 100%); display: grid; gap: 12px; }
+  .lb-inner .frame img { aspect-ratio: auto; max-height: calc(100vh - 150px); object-fit: contain; background: #000; }
+  .lb-cap { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; color: #d8d2c0; font: italic 16px/1.4 var(--serif); }
+  .lb-cap small { font: 12px/1 var(--mono); color: #8b92a7; font-style: normal; white-space: nowrap; }
+  .lb-btn {
+    position: absolute; top: 50%; transform: translateY(-50%); width: 44px; height: 44px; border-radius: 50%;
+    display: grid; place-items: center; cursor: pointer; color: #f0d28e;
+    background: rgba(14, 20, 36, 0.85); border: 1px solid rgba(201, 164, 92, 0.55);
+  }
+  .lb-btn:hover { background: rgba(201, 164, 92, 0.2); }
+  .lb-btn svg { width: 20px; height: 20px; }
+  .lb-prev { left: -14px; }
+  .lb-next { right: -14px; }
+  .lb-close { top: -10px; right: -10px; transform: none; width: 38px; height: 38px; }
+
+  /* ------------------------------------------------------------------------------------------
+     Responsive
+     ------------------------------------------------------------------------------------------ */
+  @media (max-width: 1180px) {
+    .paths { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .tiles { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+    .levels { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gallery { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+  }
+  @media (max-width: 980px) {
+    .hero-grid { grid-template-columns: minmax(0, 1fr); }
+    .tagline, .lede { max-width: 60ch; }
+    .stats ul { grid-template-columns: repeat(3, minmax(0, 1fr)); row-gap: 20px; }
+  }
+  @media (max-width: 860px) {
+    .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .stack-row.fronts { grid-template-columns: minmax(0, 1fr); }
+  }
+  @media (max-width: 600px) {
+    .paths, .tiles, .levels { grid-template-columns: minmax(0, 1fr); }
+    .tile.wide { flex-direction: column; }
+    .stats ul { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    .gallery { grid-template-columns: minmax(0, 1fr); }
+    .lb-prev { left: 4px; } .lb-next { right: 4px; } .lb-close { right: 4px; top: -6px; }
+    .path li small { display: none; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    html { scroll-behavior: auto; }
+    *, *::before, *::after { transition: none !important; animation: none !important; }
+  }
+  @media print {
+    .topbar, .filters, .lightbox, .motes, .theme-btn { display: none !important; }
+    .hero { background: #0e1424; }
+  }
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<!-- Reusable SVG symbols -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true" focusable="false">
+  <symbol id="ember" viewBox="0 0 16 16"><rect width="16" height="16" rx="3" fill="#0e1424"/><path fill="#c9a45c" d="M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z"/><path fill="#f59a2e" d="M7 5h2v2h1v3H9v1H7v-1H6V7h1z"/><path fill="#fff6d0" d="M7 8h2v2H7z"/></symbol>
+  <symbol id="orn" viewBox="0 0 320 14"><path d="M0 7h128M192 7h128" stroke="currentColor" stroke-width="1" opacity=".75"/><path d="M160 1.5 165.5 7 160 12.5 154.5 7z" fill="currentColor"/><path d="M143 7 147 3.5 151 7 147 10.5z M169 7 173 3.5 177 7 173 10.5z" fill="none" stroke="currentColor" stroke-width="1"/><circle cx="135" cy="7" r="1.4" fill="currentColor"/><circle cx="185" cy="7" r="1.4" fill="currentColor"/></symbol>
+  <symbol id="i-play" viewBox="0 0 24 24"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></symbol>
+  <symbol id="i-brush" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="8" height="8" rx="1"/><rect x="13" y="3" width="8" height="8" rx="1" opacity=".5"/><rect x="3" y="13" width="8" height="8" rx="1" opacity=".5"/><path d="M14 20l6-6M17 13l4 4"/></symbol>
+  <symbol id="i-layers" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M12 3 2.5 8 12 13l9.5-5z"/><path d="M2.5 12.5 12 17.5l9.5-5"/><path d="M2.5 16.5 12 21.5l9.5-5" opacity=".6"/></symbol>
+  <symbol id="i-agent" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2.5 14 9.5 21.5 12 14 14.5 12 21.5 10 14.5 2.5 12 10 9.5z"/><circle cx="12" cy="12" r="1.6" fill="currentColor"/></symbol>
+  <symbol id="i-book" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linejoin="round"><path d="M4 4.5h6a2 2 0 0 1 2 2V20a2 2 0 0 0-2-2H4z"/><path d="M20 4.5h-6a2 2 0 0 0-2 2V20a2 2 0 0 1 2-2h6z"/></symbol>
+  <symbol id="i-left" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M15 5l-7 7 7 7"/></symbol>
+  <symbol id="i-right" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></symbol>
+  <symbol id="i-x" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M6 6l12 12M18 6 6 18"/></symbol>
+  <symbol id="i-down" viewBox="0 0 14 14"><path d="M7 2v9M3.5 7.5 7 11l3.5-3.5" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<header class="topbar">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Luminati documentation, back to top">
+      <svg aria-hidden="true"><use href="#ember"/></svg>
+      <b>LUMINATI</b><span>documentation</span>
+    </a>
+    <nav class="nav" aria-label="Page sections">
+      <a href="#start">Start</a>
+      <a href="#features">Features</a>
+      <a class="opt" href="#levels">Levels</a>
+      <a class="opt" href="#gallery">Gallery</a>
+      <a href="#contents">Contents</a>
+      <button class="theme-btn" type="button" id="themeBtn" aria-label="Switch between light and dark theme">
+        <svg class="i-moon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z"/></svg>
+        <svg class="i-sun" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.5M12 19v2.5M2.5 12H5M19 12h2.5M5.3 5.3l1.8 1.8M16.9 16.9l1.8 1.8M5.3 18.7l1.8-1.8M16.9 7.1l1.8-1.8"/></svg>
+      </button>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <!-- ======================================================================================
+       Hero
+       ====================================================================================== -->
+  <section class="hero" id="top" aria-labelledby="hero-title">
+    <div class="motes" aria-hidden="true">
+      <i style="left:6%;top:18%;width:90px;height:90px;opacity:.35"></i>
+      <i style="left:31%;top:72%;width:46px;height:46px;opacity:.4"></i>
+      <i style="left:47%;top:10%;width:28px;height:28px;opacity:.55"></i>
+      <i style="left:88%;top:78%;width:120px;height:120px;opacity:.22"></i>
+      <i style="left:70%;top:4%;width:60px;height:60px;opacity:.3"></i>
+      <i style="left:18%;top:88%;width:24px;height:24px;opacity:.5"></i>
+    </div>
+    <div class="wrap hero-grid">
+      <div>
+        <span class="eyebrow">2.5D pixel-art engine · three.js r186</span>
+        <h1 id="hero-title">Luminati</h1>
+        <svg class="ornament" aria-hidden="true"><use href="#orn"/></svg>
+        <p class="tagline">An engine combining pixel-art sprites with lit 3D environments, dynamic shadows and depth of field. Inspired by Square Enix's HD-2D games.</p>
+        <p class="lede">Every texture, character sheet, particle, sound effect and song is <strong>generated at runtime</strong>. The repository ships the engine, a playable game that runs level files, a <strong>128 × 128</strong> showcase world and a <strong>visual level editor</strong> with a live diorama preview.</p>
+        <div class="cta">
+          <a class="btn btn-gold" href="user/GETTING_STARTED.md"><svg aria-hidden="true"><use href="#i-play"/></svg>Get started</a>
+          <a class="btn btn-ghost" href="features/FEATURES.md"><svg aria-hidden="true"><use href="#i-book"/></svg>Feature catalogue</a>
+        </div>
+        <div class="meta" aria-label="Technology">
+          <span>Plain JavaScript ES modules</span>
+          <span>Vite dev server</span>
+          <span>WebGL2 · WebAudio</span>
+          <span>Procedural game art and audio</span>
+        </div>
+      </div>
+      <figure class="hero-shot" style="margin:0">
+        <div class="frame">
+          <img src="assets/screenshots/starfall-hearthwick-golden-hour.jpg" width="1280" height="720" fetchpriority="high"
+               alt="Hearthwick Square in Starfall Vale at golden hour: market stalls, a well and villagers on cobblestones, the foreground roofs and background houses blurred by the tilt-shift depth of field; the HUD shows the location plate, the clock at 17:24 and the minimap.">
+        </div>
+        <figcaption><span>Hearthwick Square, Starfall Vale, at golden hour. An unedited engine frame.</span><b>Starfall Vale · 128 × 128</b></figcaption>
+      </figure>
+    </div>
+  </section>
+
+  <div class="stats" aria-label="Luminati in numbers">
+    <ul>
+      <li><b>46</b>procedural world textures</li>
+      <li><b>14</b>character presets &amp; 4 creatures</li>
+      <li><b>42</b>level object types</li>
+      <li><b>128²</b>tiles in the largest level</li>
+      <li><b>12</b>point lights at most, shared by any number of lanterns</li>
+      <li><b>3</b>languages: English, Japanese and Simplified Chinese</li>
+    </ul>
+  </div>
+
+  <!-- ======================================================================================
+       Quick paths
+       ====================================================================================== -->
+  <section class="block" id="start" aria-labelledby="start-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Start here</span>
+        <h2 id="start-title">Choose your path</h2>
+        <svg class="rule" aria-hidden="true" viewBox="0 0 320 14"><use href="#orn"/></svg>
+        <p>Four reading paths through the docs. Each one starts with the page that gets you working fastest.</p>
+      </div>
+      <div class="paths">
+        <article class="path">
+          <div class="path-icon"><svg aria-hidden="true"><use href="#i-play"/></svg></div>
+          <h3>Play</h3>
+          <p>Install once, start the dev server, then pick a campaign or a level on the launcher: walk Emberfall or the whole of Starfall Vale.</p>
+          <pre><code># Node.js 24 recommended (minimum 22.12)
+npm ci
+npm run dev
+# http://127.0.0.1:5173/  the launcher
+# /game.html?level=starfall-vale</code></pre>
+          <ul>
+            <li><a href="user/GETTING_STARTED.md"><span>Getting started</span></a></li>
+            <li><a href="user/PLAYING_THE_GAME.md"><span>Playing the game</span></a></li>
+            <li><a href="user/shortcuts.html"><span>Controls cheat sheet</span></a></li>
+          </ul>
+        </article>
+        <article class="path">
+          <div class="path-icon"><svg aria-hidden="true"><use href="#i-brush"/></svg></div>
+          <h3>Make a level</h3>
+          <p>Paint terrain, place houses and villagers, save to the project and play-test with F5.</p>
+          <pre><code># with npm run dev running
+/editor.html?open=emberfall
+/editor.html?new</code></pre>
+          <ul>
+            <li><a href="user/LEVEL_EDITOR_GUIDE.md"><span>Level editor guide</span></a></li>
+            <li><a href="specs/LEVEL_FORMAT.md"><span>Level format</span></a></li>
+            <li><a href="specs/OBJECT_CATALOG.md"><span>Object catalog</span></a></li>
+            <li><a href="design/LEVEL_DESIGN_GUIDE.md"><span>Level design guide</span></a></li>
+          </ul>
+        </article>
+        <article class="path">
+          <div class="path-icon"><svg aria-hidden="true"><use href="#i-layers"/></svg></div>
+          <h3>Understand the code</h3>
+          <p>The engine modules, the render pipeline, the game's frame and the editor's incremental 3D preview.</p>
+          <pre><code>src/engine/  the engine
+src/game/    the game
+src/editor/  the level editor</code></pre>
+          <ul>
+            <li><a href="architecture/OVERVIEW.md"><span>Architecture overview</span></a></li>
+            <li><a href="architecture/RENDER_PIPELINE.md"><span>Render pipeline</span></a></li>
+            <li><a href="architecture/modules/README.md"><span>Module reference</span></a></li>
+            <li><a href="architecture/diagrams.html"><span>Diagrams</span></a></li>
+          </ul>
+        </article>
+        <article class="path">
+          <div class="path-icon"><svg aria-hidden="true"><use href="#i-agent"/></svg></div>
+          <h3>For AI agents</h3>
+          <p>A start-of-session briefing, the invariants that are easy to break, task playbooks and known issues.</p>
+          <pre><code>npm run check -- --page=game.html \
+  --query=autostart=1 --out=game</code></pre>
+          <ul>
+            <li><a href="ai/AGENT_ONBOARDING.md"><span>Agent onboarding</span></a></li>
+            <li><a href="ai/TASK_PLAYBOOKS.md"><span>Task playbooks</span></a></li>
+            <li><a href="ai/KNOWN_ISSUES.md"><span>Known issues</span></a></li>
+            <li><a href="../AGENTS.md"><span>AGENTS.md</span><small>repo root</small></a></li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================================
+       How it fits together
+       ====================================================================================== -->
+  <section class="block" id="stack" aria-labelledby="stack-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">At the core</span>
+        <h2 id="stack-title">One engine, three front ends</h2>
+        <svg class="rule" aria-hidden="true" viewBox="0 0 320 14"><use href="#orn"/></svg>
+        <p>The game and the editor load the same plain-JSON level files and build them with the same engine code; the launcher in front lists them all. Click a module to open its reference.</p>
+      </div>
+      <div class="stack">
+        <a class="layer launcher" href="user/GETTING_STARTED.md#44-the-launcher"><b>The launcher</b><span>index.html · every campaign and level, with links into the game and the editor · written by tools/vite-launcher.js</span></a>
+        <div class="arrow-row" aria-hidden="true"><svg><use href="#i-down"/></svg></div>
+        <div class="stack-row fronts">
+          <a class="layer" href="architecture/GAME.md"><b>The game</b><span>game.html → src/main.js → src/game/</span></a>
+          <a class="layer" href="architecture/EDITOR.md"><b>Level editor</b><span>editor.html → src/editor/</span></a>
+          <a class="layer" href="development/TESTING_AND_VERIFICATION.md"><b>Module sandboxes</b><span>sandbox/*.html · tools/check.mjs</span></a>
+        </div>
+        <div class="arrow-row" aria-hidden="true"><svg><use href="#i-down"/></svg></div>
+        <a class="layer data" href="specs/LEVEL_FORMAT.md"><b>Level files: “luminati-level” JSON v1</b><span>public/levels/*.json · browser storage · downloads</span></a>
+        <div class="arrow-row" aria-hidden="true"><svg><use href="#i-down"/></svg></div>
+        <div class="layer engine">
+          <b>Engine: src/engine/</b>
+          <span>public API re-exported by src/engine/index.js (level/ is imported directly) · modules share render/GlobalUniforms.js</span>
+          <nav class="chips" aria-label="Engine modules">
+            <a href="architecture/modules/core.md">core</a>
+            <a href="architecture/modules/audio.md">audio</a>
+            <a href="architecture/modules/render.md">render</a>
+            <a href="architecture/modules/pixel.md">pixel</a>
+            <a href="architecture/modules/sprite.md">sprite</a>
+            <a href="architecture/modules/fx.md">fx</a>
+            <a href="architecture/modules/lighting.md">lighting</a>
+            <a href="architecture/modules/world.md">world</a>
+            <a href="architecture/modules/level.md">level</a>
+            <a href="architecture/modules/ui.md">ui</a>
+          </nav>
+        </div>
+        <div class="layer base"><span>three.js r186 · WebGL2 · WebAudio · DOM overlay · Vite 8</span></div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================================
+       Feature tiles
+       ====================================================================================== -->
+  <section class="block" id="features" aria-labelledby="features-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">What it does</span>
+        <h2 id="features-title">Features at a glance</h2>
+        <svg class="rule" aria-hidden="true" viewBox="0 0 320 14"><use href="#orn"/></svg>
+        <p>Each tile opens its section of the <a href="features/FEATURES.md">feature catalogue</a>, which lists the code path, the in-depth doc and the status of every feature.</p>
+      </div>
+      <div class="tiles">
+        <a class="tile" href="features/FEATURES.md#rendering-and-post-processing">
+          <div class="media"><img loading="lazy" src="assets/screenshots/module-postfx-sandbox.jpg" width="1280" height="720" alt="Two characters in a sharp focus band while lamps in the blurred foreground and background turn into bokeh discs"></div>
+          <div class="body"><h3>Tilt-shift diorama</h3><p>Half-resolution golden-angle bokeh with highlight scatter, soft-knee bloom, ACES tone mapping and a live display grade.</p><span class="tag">src/engine/render/PostFX.js</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#lighting-and-time-of-day">
+          <div class="media"><img loading="lazy" src="assets/screenshots/emberfall-campfire-dusk.jpg" width="1280" height="720" alt="Two villagers lit by a campfire in a flower meadow at dusk"></div>
+          <div class="body"><h3>A 24-hour light</h3><p>13 keyframes from pink dawn to blue night, sun and moon shadows, flickering lanterns, glowing windows and god rays.</p><span class="tag">src/engine/lighting/</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#weather">
+          <div class="media"><img loading="lazy" src="assets/screenshots/emberfall-grove-rain.jpg" width="1280" height="720" alt="Rain streaks and blowing autumn leaves over a grove with a footbridge"></div>
+          <div class="body"><h3>Weather</h3><p>Clear, rain and snow blend light, fog, wind and grade. Snow settles on the ground, the grass and the roofs. The editor previews each weather.</p><span class="tag">src/game/Weather.js</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#pixel-art-generation">
+          <div class="media"><img loading="lazy" src="assets/screenshots/module-character-sprites.jpg" width="1280" height="720" alt="Generated character sprite sheets: traveler, swordsman, merchant and cleric in four directions"></div>
+          <div class="body"><h3>Procedural pixel art</h3><p>46 world textures with normal maps, 14 character presets, 4 creatures, 23 prop sprites, 8 enemy sheets and a combat effects atlas, all painted by code at runtime.</p><span class="tag">src/engine/pixel/</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#world-building">
+          <div class="media"><img loading="lazy" src="assets/screenshots/module-props-gallery.jpg" width="1280" height="720" alt="A gallery lot of procedural props: houses with different roofs, trees, a windmill, a market stall, a bridge and a well"></div>
+          <div class="body"><h3>A world of tiles and props</h3><p>Terrain with cliffs and stairs, houses, trees, a windmill, bridges and fences, merged into a few dozen draw calls.</p><span class="tag">src/engine/world/</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#water">
+          <div class="media"><img loading="lazy" src="assets/screenshots/starfall-three-sisters-falls.jpg" width="1280" height="720" alt="Stepped waterfalls with mist and foam falling between grassy terraces"></div>
+          <div class="body"><h3>Water and falls</h3><p>Flow-mapped pixel ripples, shore foam, depth tint and HDR glints, plus waterfalls that churn into their pools.</p><span class="tag">src/engine/world/Water.js</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#particles-and-atmosphere">
+          <div class="media"><img loading="lazy" src="assets/screenshots/starfall-lake-night.jpg" width="1280" height="720" alt="A lake at night with a blue glow and rising lights off the end of a pier"></div>
+          <div class="body"><h3>Particles and atmosphere</h3><p>12 GPU presets, one draw call per emitter: fireflies, embers, smoke, leaves, petals, mist, rain, snow and sparkles.</p><span class="tag">src/engine/fx/</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#gameplay">
+          <div class="media"><img loading="lazy" src="assets/screenshots/emberfall-dialogue.jpg" width="1280" height="720" alt="The pixel-art dialogue window with Elder Maren's portrait and name plate over the village square"></div>
+          <div class="body"><h3>Villagers and dialogue</h3><p>Villagers wander, stand at posts, perform and chase. Dialogue types out with the speaker's portrait and choices, and villagers can offer rest, a shop item or music.</p><span class="tag">src/game/</span></div>
+        </a>
+        <a class="tile" href="specs/PIXEL_UI.md">
+          <div class="media"><img loading="lazy" src="assets/screenshots/emberfall-title-ja.jpg" width="1280" height="720" alt="The Emberfall title screen in Japanese: エンバーフォール in gilded pixel type, the language row EN · 日本語 · 中文"></div>
+          <div class="body"><h3>Pixel UI in three languages</h3><p>Every frame, gem and keycap painted as pixel art at whole device pixels, pixel type, and the whole game in English, Japanese and Simplified Chinese — fonts from Google first, else from the build.</p><span class="tag">src/engine/ui/ · PIXEL_UI.md · I18N.md</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#big-level-systems">
+          <div class="media"><img loading="lazy" src="assets/screenshots/starfall-world-map.jpg" width="1280" height="720" alt="The world map overlay of Starfall Vale with region names and a legend"></div>
+          <div class="body"><h3>Built for big worlds</h3><p>A light pool, k-d batching, box culling and shadow proxies for 128 × 128 levels, plus a pixel-art minimap and world map on every level.</p><span class="tag">LightPool · SpatialSplit · Minimap</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#level-editor">
+          <div class="media"><img loading="lazy" src="assets/screenshots/editor-split-view.jpg" width="1280" height="720" alt="The level editor with a live 3D preview, a textured 2D map, the inspector and the outliner"></div>
+          <div class="body"><h3>Visual level editor</h3><p>A live 3D diorama preview beside a textured 2D map, 10 tools, an inspector, undo, autosave and one-key play-testing.</p><span class="tag">src/editor/</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#audio-and-music">
+          <div class="media art" aria-hidden="true">
+            <svg viewBox="0 0 320 180" preserveAspectRatio="xMidYMid slice">
+              <defs>
+                <linearGradient id="wg" x1="0" x2="1"><stop offset="0" stop-color="#c9a45c" stop-opacity="0"/><stop offset=".25" stop-color="#e8c77f"/><stop offset=".75" stop-color="#e8c77f"/><stop offset="1" stop-color="#c9a45c" stop-opacity="0"/></linearGradient>
+              </defs>
+              <path d="M0 96 C 20 70, 30 70, 40 96 S 60 122, 80 96 S 100 58, 120 96 S 140 136, 160 96 S 180 46, 200 96 S 220 126, 240 96 S 260 76, 280 96 S 300 110, 320 96" fill="none" stroke="url(#wg)" stroke-width="2.2"/>
+              <path d="M0 96 C 25 84, 35 84, 55 96 S 85 110, 110 96 S 140 80, 165 96 S 195 112, 220 96 S 250 82, 275 96 S 300 104, 320 96" fill="none" stroke="#7fa2d8" stroke-opacity=".55" stroke-width="1.4"/>
+              <g fill="#f2d990">
+                <ellipse cx="96" cy="46" rx="7" ry="5" transform="rotate(-20 96 46)"/><rect x="101.5" y="18" width="2" height="27"/>
+                <ellipse cx="224" cy="54" rx="7" ry="5" transform="rotate(-20 224 54)"/><rect x="229.5" y="26" width="2" height="27"/>
+                <ellipse cx="248" cy="48" rx="7" ry="5" transform="rotate(-20 248 48)"/><rect x="253.5" y="20" width="2" height="27"/><rect x="229.5" y="20" width="26" height="4"/>
+              </g>
+              <g font-family="ui-monospace, Consolas, monospace" font-size="9" fill="#9aa2b7">
+                <text x="22" y="150">wind</text><text x="78" y="150">birds</text><text x="138" y="150">crickets</text><text x="208" y="150">fire</text><text x="262" y="150">water</text>
+              </g>
+              <g fill="#c9a45c">
+                <rect x="22" y="156" width="36" height="4" rx="2" opacity=".85"/><rect x="78" y="156" width="28" height="4" rx="2" opacity=".6"/><rect x="138" y="156" width="44" height="4" rx="2" opacity=".4"/><rect x="208" y="156" width="20" height="4" rx="2" opacity=".75"/><rect x="262" y="156" width="34" height="4" rx="2" opacity=".55"/>
+              </g>
+            </svg>
+          </div>
+          <div class="body"><h3>Procedural audio</h3><p>A 72 bpm harp, pad and flute folk loop, 8 sound effects and 5 ambience layers — plus 35 combat sounds and battle and boss music on combat levels — all synthesised with WebAudio.</p><span class="tag">src/engine/audio/AudioSystem.js</span></div>
+        </a>
+        <a class="tile" href="features/FEATURES.md#tooling">
+          <div class="media art" aria-hidden="true">
+<pre class="term"><span class="p">$</span> npm run check -- --page=game.html \
+    --query=autostart=1 --out=game
+<span class="dim">GPU: &lt;detected WebGL renderer&gt;</span>
+Page errors <span class="ok">(0)</span>:
+Console errors <span class="ok">(0)</span>:
+Console warnings <span class="ok">(0)</span>:
+Failed requests <span class="ok">(0)</span>:
+Screenshots: .check/game/initial.png</pre>
+          </div>
+          <div class="body"><h3>Headless verification</h3><p>A harness that drives Chrome on the real GPU with scripted keys, mouse drags and screenshots, plus 16 module sandboxes.</p><span class="tag">tools/check.mjs · sandbox/</span></div>
+        </a>
+        <a class="tile wide" href="features/FEATURES.md#combat">
+          <div class="media"><img loading="lazy" src="assets/screenshots/cinderwatch-ruins-fight.jpg" width="1280" height="720" alt="A fight in the Bramble Ruins: goblins close in on the traveler, with damage numbers, enemy health bars and the combat HUD"></div>
+          <div class="body"><h3>Real-time combat</h3><p>A sword combo with hit-stop, a dodge roll with a perfect-dodge slow motion, three skills and a lock-on; eight enemy kinds whose every attack is telegraphed — a wind-up glow and a red marker draped over the terrain; loot, levels, waystones and chests; and Cinderheart, a three-phase boss behind a wall of embers. It exists only on levels with enemies: the demo is Cinderwatch Pass.</p><span class="tag">src/game/combat/ · COMBAT.md</span></div>
+        </a>
+        <a class="tile wide" href="specs/STORY_SCRIPT.md">
+          <div class="media"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-bridge-built.jpg" width="1280" height="720" alt="A cutscene at the Wolf Ford: the bridge Hollis has just built, in letterbox, with his line in the dialog window"></div>
+          <div class="body"><h3>The story as data</h3><p>A small line-based story language: conversations that follow the story and branch, conditions, items, gold and quests in a journal, events that run on Space, on walking in, on arriving, when a condition turns true, at an hour or after a fight; cutscenes with a directed camera, walking actors and emotes; objects that come and go while the player watches. Checked by the editor and <code>level:check</code>, loaded only where there is a story.</p><span class="tag">src/game/story/ · STORY_SCRIPT.md</span></div>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================================
+       Levels
+       ====================================================================================== -->
+  <section class="block" id="levels" aria-labelledby="levels-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Shipped worlds</span>
+        <h2 id="levels-title">Six levels and two campaigns</h2>
+        <svg class="rule" aria-hidden="true" viewBox="0 0 320 14"><use href="#orn"/></svg>
+        <p>Six standalone levels live in <code>public/levels/</code>, and two campaigns join places into stories or connected interiors. The launcher lists them all. Use the query shown with <code>game.html</code>, on the dev server or in a production build.</p>
+      </div>
+      <div class="levels">
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/emberfall-title.jpg" width="1280" height="720" alt="The Emberfall title screen over the live village"><span class="badge">The demo</span></div>
+          <div class="body">
+            <h3>Emberfall</h3>
+            <p class="sub">Riverside Village</p>
+            <dl><div><dt>Size</dt><dd>48 × 40</dd></div><div><dt>Objects</dt><dd>137</dd></div><div><dt>Villagers</dt><dd>8</dd></div></dl>
+            <p>A dense village at golden hour, with Windmill Hill, two waterfalls, a river with bridges, a farm and an autumn grove. The villagers speak hand-written scripts.</p>
+            <div class="foot"><code>game.html</code><a href="design/levels/emberfall.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/starfall-title.jpg" width="1280" height="720" alt="The Starfall Vale title screen over the fishing hamlet and its piers"><span class="badge">Flagship</span></div>
+          <div class="body">
+            <h3>Starfall Vale</h3>
+            <p class="sub">Where the Stars Come Home</p>
+            <dl><div><dt>Size</dt><dd>128 × 128</dd></div><div><dt>Objects</dt><dd>875</dd></div><div><dt>Villagers</dt><dd>29</dd></div></dl>
+            <p>The night of the Starfall Festival across a whole vale, from a market town to an observatory, a lake and a hidden glade. Generated and validated by <code>tools/make-starfall-vale.mjs</code>.</p>
+            <div class="foot"><code>?level=starfall-vale</code><a href="design/levels/starfall-vale.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/brightwater-golden-hour.jpg" width="1280" height="720" alt="Brightwater Crossing at golden hour: a signpost dialog beside a campfire and cottages"><span class="badge soft">Built in the editor</span></div>
+          <div class="body">
+            <h3>Brightwater Crossing</h3>
+            <p class="sub">A Riverside Hamlet</p>
+            <dl><div><dt>Size</dt><dd>36 × 28</dd></div><div><dt>Objects</dt><dd>68</dd></div><div><dt>Villagers</dt><dd>4</dd></div></dl>
+            <p>Built only through the editor UI: Miller's Hill with a windmill, falls into a plunge pool, a square with an inn, and a farm with a chicken yard.</p>
+            <div class="foot"><code>?level=brightwater-crossing</code><a href="design/levels/brightwater-crossing.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media" role="img" aria-label="Pixel-art illustration of Willowmere: a raised orchard terrace, three cottages around a green and a pond">
+            <svg viewBox="0 0 64 36" preserveAspectRatio="xMidYMid slice" shape-rendering="crispEdges" aria-hidden="true">
+              <rect width="64" height="36" fill="#4f7d3b"/>
+              <rect y="0" width="64" height="9" fill="#5d8c45"/>
+              <rect y="9" width="64" height="1" fill="#6b5236"/>
+              <rect y="10" width="64" height="1" fill="#3f6630"/>
+              <rect x="30" y="9" width="4" height="3" fill="#9c8a6c"/><rect x="30" y="10" width="4" height="1" fill="#7e6e55"/>
+              <g fill="#2e5a2a"><rect x="4" y="2" width="5" height="4"/><rect x="13" y="1" width="5" height="4"/><rect x="45" y="2" width="5" height="4"/><rect x="54" y="1" width="5" height="4"/><rect x="22" y="2" width="4" height="3"/></g>
+              <g fill="#3f7a35"><rect x="5" y="2" width="3" height="2"/><rect x="14" y="1" width="3" height="2"/><rect x="46" y="2" width="3" height="2"/><rect x="55" y="1" width="3" height="2"/></g>
+              <g fill="#c8433a"><rect x="6" y="4" width="1" height="1"/><rect x="16" y="3" width="1" height="1"/><rect x="47" y="4" width="1" height="1"/></g>
+              <rect x="31" y="12" width="2" height="24" fill="#b89a6a"/>
+              <rect x="12" y="21" width="40" height="2" fill="#b89a6a"/>
+              <rect x="27" y="18" width="10" height="8" fill="#a98c5e"/>
+              <rect x="30" y="20" width="4" height="4" fill="#7c8a96"/><rect x="31" y="21" width="2" height="2" fill="#3b6ea8"/>
+              <rect x="9" y="13" width="9" height="3" fill="#a8453a"/><rect x="9" y="16" width="9" height="4" fill="#e6dac0"/><rect x="13" y="18" width="2" height="2" fill="#5a3a24"/><rect x="10" y="17" width="2" height="1" fill="#f2c96a"/>
+              <rect x="44" y="12" width="10" height="3" fill="#3c5a8a"/><rect x="44" y="15" width="10" height="4" fill="#d9c9a6"/><rect x="48" y="17" width="2" height="2" fill="#5a3a24"/><rect x="51" y="16" width="2" height="1" fill="#f2c96a"/>
+              <rect x="8" y="26" width="9" height="3" fill="#b8943e"/><rect x="8" y="29" width="9" height="4" fill="#e6dac0"/><rect x="11" y="31" width="2" height="2" fill="#5a3a24"/>
+              <rect x="40" y="25" width="19" height="9" fill="#cdb57a"/>
+              <rect x="41" y="26" width="17" height="7" fill="#3b6ea8"/>
+              <rect x="43" y="27" width="13" height="5" fill="#2f5c94"/>
+              <g fill="#9cc8f0"><rect x="45" y="28" width="2" height="1"/><rect x="51" y="30" width="2" height="1"/><rect x="49" y="27" width="1" height="1"/></g>
+              <g fill="#e8f25a" opacity=".9"><rect x="42" y="24" width="1" height="1"/><rect x="57" y="24" width="1" height="1"/><rect x="53" y="33" width="1" height="1"/></g>
+              <g fill="#2e5a2a"><rect x="20" y="27" width="4" height="4"/><rect x="2" y="17" width="4" height="4"/><rect x="58" y="16" width="4" height="4"/></g>
+              <g fill="#3f7a35"><rect x="21" y="27" width="2" height="2"/><rect x="3" y="17" width="2" height="2"/><rect x="59" y="16" width="2" height="2"/></g>
+            </svg>
+            <span class="badge soft">Illustration</span>
+          </div>
+          <div class="body">
+            <h3>Willowmere</h3>
+            <p class="sub">A Hamlet by the Pond</p>
+            <dl><div><dt>Size</dt><dd>28 × 22</dd></div><div><dt>Objects</dt><dd>38</dd></div><div><dt>Villagers</dt><dd>3</dd></div></dl>
+            <p>The compact sample level (<code>sample-hamlet.json</code>): a green with a well, three cottages, a firefly pond and a raised orchard terrace.</p>
+            <div class="foot"><code>?level=sample-hamlet</code><a href="design/levels/sample-hamlet.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/cinderwatch-title.jpg" width="1280" height="720" alt="The Cinderwatch Pass title screen over the Hollow Mire, with the level-destination row under the prompt"><span class="badge">Combat</span></div>
+          <div class="body">
+            <h3>Cinderwatch Pass</h3>
+            <p class="sub">Where the Old Fires Wake</p>
+            <dl><div><dt>Size</dt><dd>96 × 120</dd></div><div><dt>Objects</dt><dd>283</dd></div><div><dt>Enemies</dt><dd>58</dd></div></dl>
+            <p>The ARPG level: a camp with training dummies, a glade of slimes, the Bramble Ruins or the Hollow Mire, the Cinder Quarry and the boss Cinderheart in its caldera. Three villagers join your party — Sister Ilse and Rook at the camp, Sela at the crossroads — and the pass is balanced for that party of four. Generated and validated by <code>tools/make-cinderwatch-pass.mjs</code>.</p>
+            <div class="foot"><code>?level=cinderwatch-pass</code><a href="design/levels/cinderwatch-pass.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/gildhaven-title.jpg" width="1280" height="720" alt="Gildhaven's title screen over its walled market town"><span class="badge soft">Market town</span></div>
+          <div class="body">
+            <h3>Gildhaven</h3>
+            <p class="sub">Market Day on the River Gild</p>
+            <dl><div><dt>Size</dt><dd>128 × 128</dd></div><div><dt>Objects</dt><dd>518</dd></div><div><dt>Villagers</dt><dd>68</dd></div></dl>
+            <p>A walled river town with a market square, high-town abbey, harbour, waterfall and fairground. Generated and validated by <code>tools/make-gildhaven.mjs</code>.</p>
+            <div class="foot"><code>?level=gildhaven</code><a href="design/levels/gildhaven.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/emberfall-interiors-taproom.jpg" width="1280" height="720" alt="The furnished inn taproom in Emberfall — Open Doors"><span class="badge">Campaign</span></div>
+          <div class="body">
+            <h3>Emberfall — Open Doors</h3>
+            <p class="sub">A room behind every door</p>
+            <dl><div><dt>Places</dt><dd>11</dd></div><div><dt>Rooms</dt><dd>10</dd></div></dl>
+            <p>Explore Emberfall's furnished cottages, inn, windmill and barn, including their upper floors. Connected entrances and retained rooms make returning through a door quick.</p>
+            <div class="foot"><code>?campaign=emberfall-interiors</code><a href="design/campaigns/emberfall-interiors.md">Design notes ›</a></div>
+          </div>
+        </article>
+        <article class="level">
+          <div class="media"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-wolf-ford.jpg" width="1280" height="720" alt="The Wolf Ford on the Mill Road in The Ferryman's Lantern, with the mended bridge across the river"><span class="badge">Campaign</span></div>
+          <div class="body">
+            <h3>The Ferryman's Lantern</h3>
+            <p class="sub">A Short Tale of Millbrook</p>
+            <dl><div><dt>Places</dt><dd>4</dd></div><div><dt>Chapters</dt><dd>2</dd></div><div><dt>Story flags</dt><dd>3</dd></div></dl>
+            <p>The demo campaign: Millbrook, the Mill Road and the Wolf Ford, the Old Quarry (combat) and the cellar under the mill, played in one page — seams, doors, a locked way, story flags, a second chapter at dusk, saved games and a campaign world map. Generated and checked by <code>tools/make-ferrymans-lantern.mjs</code>.</p>
+            <div class="foot"><code>?campaign=ferrymans-lantern</code><a href="design/campaigns/ferrymans-lantern.md">Design notes ›</a></div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================================
+       Gallery
+       ====================================================================================== -->
+  <section class="block" id="gallery" aria-labelledby="gallery-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Gallery</span>
+        <h2 id="gallery-title">Frames from the engine</h2>
+        <svg class="rule" aria-hidden="true" viewBox="0 0 320 14"><use href="#orn"/></svg>
+        <p>These screenshots show the engine, game and editor in use. Select a thumbnail to enlarge it, and use the arrow keys to browse. Appearance and performance vary with the scene, settings and browser.</p>
+      </div>
+      <div class="filters" role="toolbar" aria-label="Filter screenshots">
+        <button type="button" data-filter="all" aria-pressed="true">All<span data-count="all"></span></button>
+        <button type="button" data-filter="starfall" aria-pressed="false">Starfall Vale<span data-count="starfall"></span></button>
+        <button type="button" data-filter="emberfall" aria-pressed="false">Emberfall<span data-count="emberfall"></span></button>
+        <button type="button" data-filter="brightwater" aria-pressed="false">Brightwater<span data-count="brightwater"></span></button>
+        <button type="button" data-filter="cinderwatch" aria-pressed="false">Cinderwatch Pass<span data-count="cinderwatch"></span></button>
+        <button type="button" data-filter="ferryman" aria-pressed="false">Ferryman's Lantern<span data-count="ferryman"></span></button>
+        <button type="button" data-filter="editor" aria-pressed="false">Level editor<span data-count="editor"></span></button>
+        <button type="button" data-filter="modules" aria-pressed="false">Module sandboxes<span data-count="modules"></span></button>
+      </div>
+      <div class="gallery" id="galleryGrid">
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-hearthwick-golden-hour.jpg"><img loading="lazy" src="assets/screenshots/starfall-hearthwick-golden-hour.jpg" width="1280" height="720" alt="Hearthwick Square at golden hour with market stalls and the minimap"></a><figcaption><b>Hearthwick Square</b> · golden hour</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-hearthwick-night.jpg"><img loading="lazy" src="assets/screenshots/starfall-hearthwick-night.jpg" width="1280" height="720" alt="Hearthwick at night with the lanterns around the player lit by the light pool"></a><figcaption><b>Hearthwick</b> · night, lit by the light pool</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-three-sisters-falls.jpg"><img loading="lazy" src="assets/screenshots/starfall-three-sisters-falls.jpg" width="1280" height="720" alt="The Three Sisters waterfalls stepping down Mount Lumen"></a><figcaption><b>The Three Sisters</b> · Mount Lumen</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-observatory.jpg"><img loading="lazy" src="assets/screenshots/starfall-observatory.jpg" width="1280" height="720" alt="The Lumen Observatory on the summit of Mount Lumen"></a><figcaption><b>The Lumen Observatory</b></figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-lake-night.jpg"><img loading="lazy" src="assets/screenshots/starfall-lake-night.jpg" width="1280" height="720" alt="Lake Mirrormere at night: the sleeping stars glimmer off the end of the pier, with an area banner"></a><figcaption><b>Lake Mirrormere</b> · the Starfall night</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-hidden-glade.jpg"><img loading="lazy" src="assets/screenshots/starfall-hidden-glade.jpg" width="1280" height="720" alt="The Hidden Glade in the autumn Emberwood with standing stones and petals"></a><figcaption><b>The Hidden Glade</b> · Emberwood</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-troupe-camp-night.jpg"><img loading="lazy" src="assets/screenshots/starfall-troupe-camp-night.jpg" width="1280" height="720" alt="The travelling troupe's camp in the Meadowlands at night"></a><figcaption><b>The Troupe Camp</b> · Meadowlands at night</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-dialogue.jpg"><img loading="lazy" src="assets/screenshots/starfall-dialogue.jpg" width="1280" height="720" alt="Talking to Master Casimir Vey at the observatory"></a><figcaption><b>Master Casimir Vey</b> · dialogue</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-world-map.jpg"><img loading="lazy" src="assets/screenshots/starfall-world-map.jpg" width="1280" height="720" alt="The world map overlay with every region name of Starfall Vale"></a><figcaption><b>World map</b> · N / Tab</figcaption></figure>
+        <figure data-cat="starfall"><a href="assets/screenshots/starfall-title.jpg"><img loading="lazy" src="assets/screenshots/starfall-title.jpg" width="1280" height="720" alt="The Starfall Vale title screen"></a><figcaption><b>Starfall Vale</b> · title screen</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-golden-hour.jpg"><img loading="lazy" src="assets/screenshots/emberfall-golden-hour.jpg" width="1280" height="720" alt="Emberfall village square at golden hour with the arrival banner"></a><figcaption><b>Village Square</b> · arrival at golden hour</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-dawn-plateau.jpg"><img loading="lazy" src="assets/screenshots/emberfall-dawn-plateau.jpg" width="1280" height="720" alt="Windmill Hill at dawn with the spring cascade and a footbridge"></a><figcaption><b>Windmill Hill</b> · dawn</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-area-banner.jpg"><img loading="lazy" src="assets/screenshots/emberfall-area-banner.jpg" width="1280" height="720" alt="The Windmill Hill area banner"></a><figcaption><b>Area banner</b> · Windmill Hill</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-dialogue.jpg"><img loading="lazy" src="assets/screenshots/emberfall-dialogue.jpg" width="1280" height="720" alt="Elder Maren welcomes the traveler"></a><figcaption><b>Elder Maren</b> · dialogue</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-campfire-dusk.jpg"><img loading="lazy" src="assets/screenshots/emberfall-campfire-dusk.jpg" width="1280" height="720" alt="The campfire meadow at dusk"></a><figcaption><b>Campfire Meadow</b> · dusk</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-plaza-night.jpg"><img loading="lazy" src="assets/screenshots/emberfall-plaza-night.jpg" width="1280" height="720" alt="The village square at night with an interaction prompt at the inn door"></a><figcaption><b>Village Square</b> · night</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-grove-rain.jpg"><img loading="lazy" src="assets/screenshots/emberfall-grove-rain.jpg" width="1280" height="720" alt="Amberleaf Grove in the rain"></a><figcaption><b>Amberleaf Grove</b> · rain</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-snow.jpg"><img loading="lazy" src="assets/screenshots/emberfall-snow.jpg" width="1280" height="720" alt="The village square under snow at midday"></a><figcaption><b>Village Square</b> · snow at midday</figcaption></figure>
+        <figure data-cat="emberfall"><a href="assets/screenshots/emberfall-title.jpg"><img loading="lazy" src="assets/screenshots/emberfall-title.jpg" width="1280" height="720" alt="The Emberfall title screen"></a><figcaption><b>Emberfall</b> · title screen</figcaption></figure>
+        <figure data-cat="brightwater"><a href="assets/screenshots/brightwater-golden-hour.jpg"><img loading="lazy" src="assets/screenshots/brightwater-golden-hour.jpg" width="1280" height="720" alt="Brightwater Crossing at golden hour, reading a signpost"></a><figcaption><b>Brightwater Square</b> · reading a signpost</figcaption></figure>
+        <figure data-cat="brightwater"><a href="assets/screenshots/brightwater-night.jpg"><img loading="lazy" src="assets/screenshots/brightwater-night.jpg" width="1280" height="720" alt="Brightwater Crossing square at night"></a><figcaption><b>Brightwater Square</b> · night</figcaption></figure>
+        <figure data-cat="cinderwatch"><a href="assets/screenshots/cinderwatch-camp.jpg"><img loading="lazy" src="assets/screenshots/cinderwatch-camp.jpg" width="1280" height="720" alt="The Waystone Camp at golden hour: the lodge, the campfire square, three straw training dummies, the waystone and the combat HUD"></a><figcaption><b>Waystone Camp</b> · the combat HUD at rest</figcaption></figure>
+        <figure data-cat="cinderwatch"><a href="assets/screenshots/cinderwatch-ruins-fight.jpg"><img loading="lazy" src="assets/screenshots/cinderwatch-ruins-fight.jpg" width="1280" height="720" alt="A fight in the Bramble Ruins: goblins close in on the traveler, with damage numbers, enemy health bars and the combat HUD"></a><figcaption><b>Bramble Ruins</b> · damage numbers and enemy bars</figcaption></figure>
+        <figure data-cat="cinderwatch"><a href="assets/screenshots/cinderwatch-boss.jpg"><img loading="lazy" src="assets/screenshots/cinderwatch-boss.jpg" width="1280" height="720" alt="Cinderheart in the caldera: a magma pool under the traveler, the four braziers, the ember wall across the gate and the boss bar"></a><figcaption><b>Cinderheart</b> · the boss bar and a magma pool</figcaption></figure>
+        <figure data-cat="cinderwatch"><a href="assets/screenshots/cinderwatch-title.jpg"><img loading="lazy" src="assets/screenshots/cinderwatch-title.jpg" width="1280" height="720" alt="The Cinderwatch Pass title screen with the level-destination row"></a><figcaption><b>Cinderwatch Pass</b> · title screen</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-title.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-title.jpg" width="1280" height="720" alt="The Ferryman's Lantern title screen over Millbrook green: the gilded logo, Press any key and the language row"></a><figcaption><b>The Ferryman's Lantern</b> · title screen</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-ford-cutscene.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-ford-cutscene.jpg" width="1280" height="720" alt="The ford cutscene in letterbox: the camera on Hollis at the broken bridge"></a><figcaption><b>The ford cutscene</b> · a story event</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-journal.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-journal.jpg" width="1280" height="720" alt="The journal: the quest The Missing Ferryman with its objectives and log"></a><figcaption><b>The journal</b> · quests and items</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-wolf-ford.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-wolf-ford.jpg" width="1280" height="720" alt="The Wolf Ford on the Mill Road with the mended bridge"></a><figcaption><b>Wolf Ford</b> · the bridge, by story flag</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-world-map.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-world-map.jpg" width="1280" height="720" alt="The campaign world map: Millbrook, the Mill Road and the Old Quarry side by side, unvisited places dimmed"></a><figcaption><b>Campaign world map</b> · every outdoor level</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-lanterns-home.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-lanterns-home.jpg" width="1280" height="720" alt="Chapter Two: Millbrook at dusk with lanterns over the green"></a><figcaption><b>Lanterns Home</b> · chapter two at dusk</figcaption></figure>
+        <figure data-cat="ferryman"><a href="assets/screenshots/ferrymans-lantern-mill-cellar.jpg"><img loading="lazy" src="assets/screenshots/ferrymans-lantern-mill-cellar.jpg" width="1280" height="720" alt="The cellar under the mill: an interior lit by a lantern and a torch"></a><figcaption><b>Mill cellar</b> · an interior with its own hour</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-combat-boss-arena.jpg"><img loading="lazy" src="assets/screenshots/editor-combat-boss-arena.jpg" width="1280" height="720" alt="The editor with Cinderwatch Pass open and the boss group selected: arena and gate in the 3D preview and on the 2D map"></a><figcaption><b>Enemy groups</b> · the boss arena and gate</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-split-view.jpg"><img loading="lazy" src="assets/screenshots/editor-split-view.jpg" width="1280" height="720" alt="Level editor split view with the 3D preview, the 2D map, the inspector and the outliner"></a><figcaption><b>Split view</b> · 3D preview + 2D map</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-3d-preview-postfx.jpg"><img loading="lazy" src="assets/screenshots/editor-3d-preview-postfx.jpg" width="1280" height="720" alt="The editor 3D preview with the gameplay camera and diorama post effects"></a><figcaption><b>3D preview</b> · game camera and post FX</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-2d-map.jpg"><img loading="lazy" src="assets/screenshots/editor-2d-map.jpg" width="1280" height="720" alt="The textured 2D map layout of the editor"></a><figcaption><b>2D map</b> · textured top-down view</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-inspector-npc.jpg"><img loading="lazy" src="assets/screenshots/editor-inspector-npc.jpg" width="1280" height="720" alt="The inspector editing a villager's dialogue and action"></a><figcaption><b>Inspector</b> · a villager's dialogue</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-placing.jpg"><img loading="lazy" src="assets/screenshots/editor-placing.jpg" width="1280" height="720" alt="Placing a lamppost with the translucent ghost preview"></a><figcaption><b>Place tool</b> · ghost preview</figcaption></figure>
+        <figure data-cat="editor"><a href="assets/screenshots/editor-open-dialog.jpg"><img loading="lazy" src="assets/screenshots/editor-open-dialog.jpg" width="1280" height="720" alt="The editor's Open dialog"></a><figcaption><b>Open dialog</b> · project, browser, file</figcaption></figure>
+        <figure data-cat="modules"><a href="assets/screenshots/module-postfx-sandbox.jpg"><img loading="lazy" src="assets/screenshots/module-postfx-sandbox.jpg" width="1280" height="720" alt="The PostFX sandbox page"></a><figcaption><b>PostFX sandbox</b> · sandbox/postfx.html</figcaption></figure>
+        <figure data-cat="modules"><a href="assets/screenshots/module-props-gallery.jpg"><img loading="lazy" src="assets/screenshots/module-props-gallery.jpg" width="1280" height="720" alt="The props sandbox gallery lot"></a><figcaption><b>Props gallery</b> · sandbox/props.html</figcaption></figure>
+        <figure data-cat="modules"><a href="assets/screenshots/module-character-sprites.jpg"><img loading="lazy" src="assets/screenshots/module-character-sprites.jpg" width="1280" height="720" alt="Character sprite sheets in the sprite art sandbox"></a><figcaption><b>Character sheets</b> · sandbox/sprite_art.html</figcaption></figure>
+      </div>
+    </div>
+  </section>
+
+  <!-- ======================================================================================
+       Full table of contents
+       ====================================================================================== -->
+  <section class="block" id="contents" aria-labelledby="contents-title">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Every document</span>
+        <h2 id="contents-title">Table of contents</h2>
+        <svg class="rule" aria-hidden="true" viewBox="0 0 320 14"><use href="#orn"/></svg>
+        <p>The complete docs tree. <a href="README.md">docs/README.md</a> is the text index and lists reading paths. <em>Binding</em> marks the contracts that code changes must respect.</p>
+      </div>
+      <div class="toc">
+        <div class="toc-group">
+          <h3>Start</h3>
+          <p class="path-label">docs/ · repository root</p>
+          <ul>
+            <li><a href="README.md">Docs index</a><span class="d">Every document, with reading paths for players, level makers, engine developers and agents.</span></li>
+            <li><a href="index.html">This landing page</a><span class="d">Screenshots, feature tiles and quick links.</span></li>
+            <li><a href="GLOSSARY.md">Glossary</a><span class="d">The project's vocabulary, including the words with two meanings.</span></li>
+            <li><a href="../README.md">Project README</a><span class="d">Features, controls, editor workflow and performance numbers.</span></li>
+            <li><a href="../ARCHITECTURE.md">ARCHITECTURE.md</a> <span class="pill">Binding</span><span class="d">The visual target, engine conventions and module contracts.</span></li>
+            <li><a href="../AGENTS.md">AGENTS.md</a><span class="d">Shared guidance, engineering safeguards and verification for coding agents.</span></li>
+            <li><a href="../CLAUDE.md">CLAUDE.md</a><span class="d">The Claude Code entry point to the shared guidance.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>For AI agents</h3>
+          <p class="path-label">docs/ai/</p>
+          <ul>
+            <li><a href="ai/AGENT_ONBOARDING.md">Agent onboarding</a><span class="d">What to read first, the invariants, and how to verify a change.</span></li>
+            <li><a href="ai/TASK_PLAYBOOKS.md">Task playbooks</a><span class="d">Step-by-step recipes for common changes.</span></li>
+            <li><a href="ai/KNOWN_ISSUES.md">Known issues</a><span class="d">Limitations and open problems, with where they come from.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>User guides</h3>
+          <p class="path-label">docs/user/</p>
+          <ul>
+            <li><a href="user/GETTING_STARTED.md">Getting started</a><span class="d">Install, run, build and open the game and the editor.</span></li>
+            <li><a href="user/PLAYING_THE_GAME.md">Playing the game</a><span class="d">Controls, time and weather, the maps and the levels.</span></li>
+            <li><a href="user/LEVEL_EDITOR_GUIDE.md">Level editor guide</a><span class="d">Views, tools, objects, saving and play-testing.</span></li>
+            <li><a href="user/shortcuts.html">Shortcuts cheat sheet</a><span class="d">Every game and editor key on one printable page.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Features</h3>
+          <p class="path-label">docs/features/</p>
+          <ul>
+            <li><a href="features/FEATURES.md">Feature catalogue</a><span class="d">Every feature by area, with its code path, docs and status.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Specifications</h3>
+          <p class="path-label">docs/specs/</p>
+          <ul>
+            <li><a href="specs/LEVEL_FORMAT.md">Level format</a><span class="d">The luminati-level JSON, field by field. The canonical readable spec.</span></li>
+            <li><a href="specs/OBJECT_CATALOG.md">Object catalog</a><span class="d">Every object type, its fields, defaults and game behaviour.</span></li>
+            <li><a href="specs/INPUT_AND_CONTROLS.md">Input and controls</a><span class="d">Actions, keyboard and gamepad bindings.</span></li>
+            <li><a href="specs/AUTOMATION_API.md">Automation API</a><span class="d">The <code>window.__game</code>, <code>__luminati</code> and <code>__editor</code> hooks for scripts and tests.</span></li>
+            <li><a href="specs/CAMPAIGN_FORMAT.md">Campaign format</a><span class="d">Connected levels, entrances, exits, chapters and saved games.</span></li>
+            <li><a href="specs/STORY_SCRIPT.md">Story scripts</a><span class="d">Dialogue, quests, conditions, cutscenes and live story state.</span></li>
+            <li><a href="specs/PARTY.md">Party</a><span class="d">Recruitment, following, companion combat and tactics.</span></li>
+            <li><a href="specs/PIXEL_UI.md">Pixel UI</a><span class="d">Art scale, type, layout and component contracts.</span></li>
+            <li><a href="specs/I18N.md">Internationalization</a><span class="d">Languages, fonts, text keys and translation tooling.</span></li>
+            <li><a href="specs/I18N_GLOSSARY.md">Translation glossary</a><span class="d">Shared names and terms across languages.</span></li>
+            <li><a href="specs/LEVEL_STORAGE_API.md">Level storage API</a><span class="d">The project folder REST API, browser slots, files and level URLs.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Architecture</h3>
+          <p class="path-label">docs/architecture/</p>
+          <ul>
+            <li><a href="architecture/OVERVIEW.md">Overview</a><span class="d">The front ends, the engine layers and how a frame runs.</span></li>
+            <li><a href="architecture/RENDER_PIPELINE.md">Render pipeline</a><span class="d">The HDR scene, DOF, bloom, tone mapping, grade and shader warm-up.</span></li>
+            <li><a href="architecture/PERFORMANCE.md">Performance</a><span class="d">Budgets, measurements and the big-level design.</span></li>
+            <li><a href="architecture/GAME.md">The game</a><span class="d">src/game/: world build, player, villagers, weather and audio direction.</span></li>
+            <li><a href="architecture/EDITOR.md">The editor</a><span class="d">EditorState, tools, views and the incremental 3D preview.</span></li>
+            <li><a href="architecture/diagrams.html">Diagrams</a><span class="d">Visual maps of the modules, the frame and the data flow.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Engine modules</h3>
+          <p class="path-label">docs/architecture/modules/</p>
+          <ul>
+            <li><a href="architecture/modules/README.md">Module index</a><span class="d">What each module owns and how they talk.</span></li>
+            <li><a href="architecture/modules/core.md">core</a><span class="d">Engine, Input, CameraRig, EventEmitter.</span></li>
+            <li><a href="architecture/modules/audio.md">audio</a><span class="d">AudioSystem: sound effects, ambience, music.</span></li>
+            <li><a href="architecture/modules/render.md">render</a><span class="d">PostFX, GlobalUniforms, shaders.</span></li>
+            <li><a href="architecture/modules/pixel.md">pixel</a><span class="d">PixelCanvas, Palette, TextureLibrary, sprite generators.</span></li>
+            <li><a href="architecture/modules/sprite.md">sprite</a><span class="d">Sprite3D, SpriteManager, BlobBatch, Foliage.</span></li>
+            <li><a href="architecture/modules/fx.md">fx</a><span class="d">Particles, GodRays.</span></li>
+            <li><a href="architecture/modules/lighting.md">lighting</a><span class="d">LightingSystem, LightPool, Sky.</span></li>
+            <li><a href="architecture/modules/world.md">world</a><span class="d">TileMap, Water, PropFactory, SpatialSplit, ShadowCasters.</span></li>
+            <li><a href="architecture/modules/level.md">level</a><span class="d">LevelFormat, ObjectCatalog, ObjectBuilder, LevelStorage, LevelMap.</span></li>
+            <li><a href="architecture/modules/ui.md">ui</a><span class="d">UI (the pixel-art interface), DialogBox, Banner, TitleScreen, HUD, maps, DebugPanel.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Design</h3>
+          <p class="path-label">docs/design/ · docs/design/levels/</p>
+          <ul>
+            <li><a href="design/VISUAL_DESIGN.md">Visual design</a><span class="d">The 2.5D pixel-art look, the palette, the lighting mood and the UI style.</span></li>
+            <li><a href="design/LEVEL_DESIGN_GUIDE.md">Level design guide</a><span class="d">Making levels that read well from the diorama camera.</span></li>
+            <li><a href="design/levels/emberfall.md">Emberfall</a><span class="d">The demo village, area by area.</span></li>
+            <li><a href="design/levels/starfall-vale.md">Starfall Vale</a><span class="d">The 128 × 128 showcase and its generator.</span></li>
+            <li><a href="design/levels/cinderwatch-pass.md">Cinderwatch Pass</a><span class="d">The 96 × 120 combat level and its generator.</span></li>
+            <li><a href="design/levels/brightwater-crossing.md">Brightwater Crossing</a><span class="d">The level built in the editor.</span></li>
+            <li><a href="design/levels/gildhaven.md">Gildhaven</a><span class="d">The 128 × 128 market town and its generator.</span></li>
+            <li><a href="design/campaigns/ferrymans-lantern.md">The Ferryman’s Lantern</a><span class="d">The story campaign and its connected places.</span></li>
+            <li><a href="design/campaigns/emberfall-interiors.md">Emberfall — Open Doors</a><span class="d">The town with furnished rooms behind its doors.</span></li>
+            <li><a href="design/levels/sample-hamlet.md">Willowmere (sample hamlet)</a><span class="d">The small example level.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Development</h3>
+          <p class="path-label">docs/development/</p>
+          <ul>
+            <li><a href="development/DEVELOPMENT_WORKFLOW.md">Development workflow</a><span class="d">Dev server, build, generators and the level API.</span></li>
+            <li><a href="development/TESTING_AND_VERIFICATION.md">Testing and verification</a><span class="d">The check harness, action scripts, sandboxes and regression checks.</span></li>
+            <li><a href="development/CONVENTIONS.md">Conventions</a><span class="d">Units, axes, colour management, determinism and disposal.</span></li>
+          </ul>
+        </div>
+        <div class="toc-group">
+          <h3>Contracts</h3>
+          <p class="path-label">docs/contracts/</p>
+          <ul>
+            <li><a href="contracts/README.md">Contracts index</a><span class="d">What is binding, and how to change it (additively).</span></li>
+            <li><a href="contracts/LEVEL_EDITOR.md">LEVEL_EDITOR.md</a> <span class="pill">Binding</span><span class="d">The level format, catalog, builder, storage and editor contract.</span></li>
+            <li><a href="contracts/COMBAT.md">COMBAT.md</a> <span class="pill">Binding</span><span class="d">The ARPG combat: rules, enemies, the boss, interfaces, Cinderwatch Pass.</span></li>
+            <li><a href="contracts/MODULE_NOTES.md">MODULE_NOTES.md</a><span class="d">Supplementary implementation notes; use the module references for current behavior.</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Back to top"><svg aria-hidden="true"><use href="#ember"/></svg><b>LUMINATI</b></a>
+    <svg class="rule" aria-hidden="true" viewBox="0 0 320 14" style="color:#c9a45c"><use href="#orn"/></svg>
+    <p>A 2.5D pixel-art engine on three.js r186 with a demo game and a visual level editor. Every texture, sprite, sound and song is generated at runtime; UI fonts load from Google Fonts with bundled npm copies available. The repository also contains documentation screenshots and UI sandbox backdrops.</p>
+    <p>This page is self-contained: it works opened from disk or from the dev server at <code>/docs/index.html</code>. Links to <code>.md</code> files open the Markdown source. Start a dev server with <code>npm run dev</code> and open <code>http://127.0.0.1:5173/</code>: the launcher lists every campaign and level to play or edit.</p>
+    <p><a href="README.md">Docs index</a> · <a href="features/FEATURES.md">Features</a> · <a href="../README.md">Project README</a> · <a href="../ARCHITECTURE.md">Architecture contract</a> · <a href="../AGENTS.md">Agent guidance</a></p>
+  </div>
+</footer>
+
+<div class="lightbox" id="lightbox" role="dialog" aria-modal="true" aria-label="Screenshot viewer" hidden>
+  <div class="lb-inner">
+    <div class="frame"><img id="lbImg" alt=""></div>
+    <div class="lb-cap"><span id="lbCap"></span><small id="lbCount"></small></div>
+    <button class="lb-btn lb-prev" type="button" id="lbPrev" aria-label="Previous screenshot"><svg aria-hidden="true"><use href="#i-left"/></svg></button>
+    <button class="lb-btn lb-next" type="button" id="lbNext" aria-label="Next screenshot"><svg aria-hidden="true"><use href="#i-right"/></svg></button>
+    <button class="lb-btn lb-close" type="button" id="lbClose" aria-label="Close viewer"><svg aria-hidden="true"><use href="#i-x"/></svg></button>
+  </div>
+</div>
+
+<script>
+(function () {
+  'use strict';
+  var root = document.documentElement;
+
+  /* Theme toggle: flips the effective theme and remembers it (when storage is available). */
+  var themeBtn = document.getElementById('themeBtn');
+  function effectiveTheme() {
+    var t = root.getAttribute('data-theme');
+    if (t === 'light' || t === 'dark') return t;
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+  }
+  themeBtn.addEventListener('click', function () {
+    var next = effectiveTheme() === 'dark' ? 'light' : 'dark';
+    root.setAttribute('data-theme', next);
+    try { localStorage.setItem('luminati-docs-theme', next); } catch (e) { /* no storage */ }
+  });
+
+  /* Gallery filters */
+  var grid = document.getElementById('galleryGrid');
+  var figures = Array.prototype.slice.call(grid.querySelectorAll('figure'));
+  var buttons = Array.prototype.slice.call(document.querySelectorAll('.filters button'));
+  var counts = { all: figures.length };
+  figures.forEach(function (f) { var c = f.getAttribute('data-cat'); counts[c] = (counts[c] || 0) + 1; });
+  document.querySelectorAll('[data-count]').forEach(function (s) { s.textContent = ' ' + (counts[s.getAttribute('data-count')] || 0); });
+  buttons.forEach(function (b) {
+    b.addEventListener('click', function () {
+      var cat = b.getAttribute('data-filter');
+      buttons.forEach(function (o) { o.setAttribute('aria-pressed', o === b ? 'true' : 'false'); });
+      figures.forEach(function (f) { f.hidden = !(cat === 'all' || f.getAttribute('data-cat') === cat); });
+    });
+  });
+
+  /* Lightbox over the visible gallery items */
+  var lb = document.getElementById('lightbox');
+  var lbImg = document.getElementById('lbImg');
+  var lbCap = document.getElementById('lbCap');
+  var lbCount = document.getElementById('lbCount');
+  var current = -1;
+  var lastFocus = null;
+  function visible() { return figures.filter(function (f) { return !f.hidden; }); }
+  function show(i) {
+    var list = visible();
+    if (!list.length) return;
+    current = (i + list.length) % list.length;
+    var fig = list[current];
+    var a = fig.querySelector('a');
+    var img = fig.querySelector('img');
+    lbImg.src = a.getAttribute('href');
+    lbImg.alt = img.getAttribute('alt');
+    lbCap.textContent = fig.querySelector('figcaption').textContent;
+    lbCount.textContent = (current + 1) + ' / ' + list.length;
+  }
+  function open(fig) {
+    lastFocus = document.activeElement;
+    show(visible().indexOf(fig));
+    lb.hidden = false;
+    lb.classList.add('open');
+    document.getElementById('lbClose').focus();
+  }
+  function close() {
+    lb.classList.remove('open');
+    lb.hidden = true;
+    lbImg.removeAttribute('src');
+    if (lastFocus && lastFocus.focus) lastFocus.focus();
+  }
+  figures.forEach(function (fig) {
+    fig.querySelector('a').addEventListener('click', function (e) {
+      if (e.ctrlKey || e.metaKey || e.shiftKey || e.button !== 0) return; /* let "open in new tab" work */
+      e.preventDefault();
+      open(fig);
+    });
+  });
+  document.getElementById('lbPrev').addEventListener('click', function () { show(current - 1); });
+  document.getElementById('lbNext').addEventListener('click', function () { show(current + 1); });
+  document.getElementById('lbClose').addEventListener('click', close);
+  lb.addEventListener('click', function (e) { if (e.target === lb) close(); });
+  document.addEventListener('keydown', function (e) {
+    if (lb.hidden) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); }
+    else if (e.key === 'ArrowLeft') { e.preventDefault(); show(current - 1); }
+    else if (e.key === 'ArrowRight') { e.preventDefault(); show(current + 1); }
+    else if (e.key === 'Tab') {
+      /* keep focus inside the viewer */
+      var f = [document.getElementById('lbPrev'), document.getElementById('lbNext'), document.getElementById('lbClose')];
+      var i = f.indexOf(document.activeElement);
+      e.preventDefault();
+      f[(i + (e.shiftKey ? f.length - 1 : 1) + f.length) % f.length].focus();
+    }
+  });
+})();
+</script>
+</body>
+</html>

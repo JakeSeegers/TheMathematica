@@ -1,0 +1,136 @@
+/* The launcher (index.html): the campaigns, the levels and the editor. A plain English page in the
+   style of the sandbox gallery (sandbox/index.html); the list is written by tools/vite-launcher.js. */
+@import '@fontsource/cinzel/600.css';
+@import '@fontsource/crimson-pro/400.css';
+@import '@fontsource/crimson-pro/400-italic.css';
+
+:root {
+  --bg: #0b0a10;
+  --panel: #15121c;
+  --panel-2: #1b1724;
+  --line: rgba(201, 164, 92, 0.28);
+  --gold: #c9a45c;
+  --gold-hi: #f2d072;
+  --text: #e8dcc0;
+  --muted: #a79a80;
+  --dim: #8d8270;
+  --chip: rgba(201, 164, 92, 0.12);
+  --ember: #f59a2e;
+  color-scheme: dark;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; background: var(--bg); color: var(--text); }
+html { scroll-behavior: smooth; }
+body {
+  min-height: 100vh;
+  font: 400 17px/1.5 'Crimson Pro', Georgia, 'Times New Roman', serif;
+  background:
+    radial-gradient(ellipse 80% 50% at 50% -10%, rgba(245, 154, 46, 0.12), transparent 70%),
+    radial-gradient(ellipse 60% 40% at 90% 110%, rgba(106, 143, 214, 0.08), transparent 70%),
+    var(--bg);
+}
+main { max-width: 1180px; margin: 0 auto; padding: 56px 24px 72px; }
+code { font: 13px/1.4 ui-monospace, Consolas, monospace; color: #b9a67a; }
+a { color: var(--gold-hi); }
+
+/* ---- header ---- */
+.lu-head { text-align: center; margin-bottom: 48px; }
+.lu-ember {
+  width: 10px; height: 10px; margin: 0 auto 18px; transform: rotate(45deg);
+  background: var(--ember); box-shadow: 0 0 12px 3px rgba(245, 154, 46, 0.5);
+}
+h1 {
+  margin: 0; font: 600 clamp(32px, 6vw, 52px)/1.1 'Cinzel', Georgia, serif;
+  letter-spacing: 0.22em; color: #efe0b4; text-transform: uppercase;
+}
+.lu-rule {
+  width: min(420px, 70%); height: 1px; margin: 18px auto 16px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+.lu-tagline { margin: 0 0 10px; color: var(--gold); font-style: italic; font-size: 20px; }
+.lu-intro { margin: 0 auto; max-width: 620px; color: var(--muted); }
+.lu-jump { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px 22px; margin-top: 24px; }
+.lu-jump a {
+  color: var(--text); text-decoration: none; font: 600 13px/1 'Cinzel', Georgia, serif;
+  letter-spacing: 0.18em; text-transform: uppercase; padding: 6px 2px;
+  border-bottom: 1px solid transparent;
+}
+.lu-jump a:hover, .lu-jump a:focus-visible { color: var(--gold-hi); border-bottom-color: var(--gold); outline: none; }
+
+/* ---- sections ---- */
+.lu-section { margin-top: 52px; scroll-margin-top: 24px; }
+.lu-section h2 {
+  display: flex; align-items: center; gap: 12px; margin: 0 0 6px;
+  font: 600 22px/1.2 'Cinzel', Georgia, serif; letter-spacing: 0.12em; color: #f1e3bb;
+}
+.lu-section h2::after { content: ''; flex: 1; height: 1px; background: linear-gradient(90deg, var(--line), transparent); }
+.lu-count {
+  font: 12px/1 ui-monospace, Consolas, monospace; letter-spacing: 0; color: var(--gold-hi);
+  background: var(--chip); border: 1px solid rgba(201, 164, 92, 0.2); padding: 4px 7px;
+}
+.lu-lead { margin: 0 0 18px; color: var(--muted); font-style: italic; }
+.lu-empty { color: var(--dim); }
+
+/* ---- cards ---- */
+.lu-grid {
+  display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 18px;
+  margin: 0; padding: 0; list-style: none;
+}
+.lu-card {
+  position: relative; display: flex; flex-direction: column; padding: 20px 22px 18px;
+  background: linear-gradient(180deg, var(--panel-2), var(--panel));
+  border: 1px solid var(--line); box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+}
+.lu-card::before { content: ''; position: absolute; inset: 4px; border: 1px solid rgba(201, 164, 92, 0.1); pointer-events: none; }
+.lu-card--campaign { border-color: rgba(242, 208, 114, 0.45); }
+/* (a campaign card opens its level list: the others keep their own height) */
+.lu-grid--campaigns { align-items: start; }
+.lu-card h3 { margin: 0 0 2px; font: 600 18px/1.3 'Cinzel', Georgia, serif; letter-spacing: 0.07em; color: #f1e3bb; }
+.lu-sub { margin: 0 0 10px; color: var(--gold); font-style: italic; }
+.lu-desc {
+  margin: 0 0 12px; color: #d4c7aa; font-size: 16px;
+  display: -webkit-box; -webkit-line-clamp: 3; line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden;
+}
+.lu-meta { margin: 0 0 16px; color: var(--dim); font-size: 15px; }
+.lu-meta code { margin-left: 4px; color: #8d8270; }
+.lu-tag {
+  font: 12px/1 ui-monospace, Consolas, monospace; color: var(--ember); background: rgba(245, 154, 46, 0.1);
+  border: 1px solid rgba(245, 154, 46, 0.35); padding: 3px 6px; vertical-align: 1px;
+}
+
+/* ---- actions ---- */
+.lu-actions { display: flex; flex-wrap: wrap; gap: 10px; margin-top: auto; }
+.lu-section > .lu-actions { margin-top: 0; }
+.lu-btn {
+  display: inline-flex; align-items: center; padding: 9px 18px;
+  border: 1px solid var(--line); color: var(--text); text-decoration: none;
+  font: 600 12px/1 'Cinzel', Georgia, serif; letter-spacing: 0.18em; text-transform: uppercase;
+  background: rgba(201, 164, 92, 0.04); transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.lu-btn:hover, .lu-btn:focus-visible { background: rgba(201, 164, 92, 0.18); border-color: var(--gold-hi); color: #fff3d2; outline: none; }
+.lu-btn--play {
+  border-color: var(--gold); color: #fff3d2;
+  background: linear-gradient(180deg, rgba(201, 164, 92, 0.28), rgba(201, 164, 92, 0.1));
+}
+.lu-btn--play:hover, .lu-btn--play:focus-visible { background: linear-gradient(180deg, rgba(242, 208, 114, 0.4), rgba(201, 164, 92, 0.18)); }
+
+/* ---- a campaign's level files (for the editor) ---- */
+.lu-files { margin-top: 14px; font-size: 15px; }
+.lu-files summary { cursor: pointer; color: var(--muted); width: fit-content; }
+.lu-files summary:hover, .lu-files summary:focus-visible { color: var(--gold-hi); outline: none; }
+.lu-files ul { margin: 8px 0 0; padding: 0; list-style: none; display: grid; gap: 4px; }
+.lu-files a { color: var(--gold); text-decoration: none; border-bottom: 1px dotted rgba(201, 164, 92, 0.5); }
+.lu-files a:hover, .lu-files a:focus-visible { color: var(--gold-hi); outline: none; }
+.lu-files code { font-size: 12px; color: var(--dim); }
+
+/* ---- dev links, files not listed ---- */
+.lu-section--dev h2 { font-size: 18px; color: var(--muted); }
+.lu-skipped { margin-top: 44px; padding: 12px 16px; border: 1px dashed rgba(245, 154, 46, 0.4); color: var(--muted); font-size: 15px; }
+.lu-skipped p { margin: 0 0 6px; color: var(--ember); }
+.lu-skipped ul { margin: 0; padding-left: 18px; }
+
+@media (max-width: 480px) {
+  main { padding: 40px 16px 56px; }
+  .lu-grid { grid-template-columns: 1fr; }
+  h1 { letter-spacing: 0.14em; }
+}

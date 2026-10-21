@@ -1,0 +1,21 @@
+[
+  { "eval": "JSON.stringify(window.__props.info())" },
+  { "eval": "JSON.stringify(window.__props.check())" },
+  { "shot": "overview_day" },
+  { "eval": "window.__props.setNight(true); 'ok'" },
+  { "wait": 400 },
+  { "shot": "overview_night" },
+  { "eval": "window.__props.setNight(false); window.__props.frame('house'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "close_house" },
+  { "eval": "window.__props.frame('windmill'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "close_windmill" },
+  { "eval": "JSON.stringify({calls: window.__props.renderer.info.render.calls})" },
+  { "eval": "window.__props.setNight(true); window.__props.frame('torch'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "torch_night" },
+  { "eval": "window.__props.frame('campfire'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "night_campfire" }
+]

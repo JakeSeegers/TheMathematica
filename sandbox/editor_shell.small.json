@@ -1,0 +1,16 @@
+[
+  { "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())" },
+  { "eval": "(() => { const h = T.E.state.level.objects.find((o) => o.type === 'house'); T.E.state.select([h.id]); return h.id; })()" },
+  { "wait": 400 },
+  { "eval": "document.querySelector('.le-inspector .le-panel-body').scrollTop = 400; 'scrolled'" },
+  { "wait": 200 },
+  { "shot": "01-house-inspector" },
+  { "eval": "(T.E.app.commands['file.saveAs'].run(), 'opened')" },
+  { "wait": 400 },
+  { "shot": "02-save-as" },
+  { "press": "Escape" },
+  { "eval": "(T.E.app.commands['file.open'].run(), 'opened')" },
+  { "wait": 700 },
+  { "shot": "03-open" },
+  { "press": "Escape" }
+]

@@ -1,0 +1,188 @@
+[
+  {
+    "eval": "window.__sb.stats()"
+  },
+  {
+    "eval": "window.__sb.setView('plaza')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "plaza_day"
+  },
+  {
+    "eval": "window.__sb.setView('rowFar')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "row_far_day"
+  },
+  {
+    "eval": "window.__sb.setView('rowMid')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "row_mid_day"
+  },
+  {
+    "eval": "window.__sb.setView('rowNear')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "row_near_day"
+  },
+  {
+    "eval": "window.__sb.setView('dust')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "closeup_dust_day"
+  },
+  {
+    "eval": "window.__sb.setView('rain')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "closeup_rain_day"
+  },
+  {
+    "eval": "window.__sb.setNight(1)"
+  },
+  {
+    "eval": "window.__sb.setView('overview')"
+  },
+  {
+    "wait": 700
+  },
+  {
+    "shot": "overview_night"
+  },
+  {
+    "eval": "window.__sb.setView('lantern')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "lantern_night"
+  },
+  {
+    "eval": "window.__sb.setView('fireflies')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "closeup_fireflies_night"
+  },
+  {
+    "eval": "window.__sb.setView('embers')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "closeup_embers_night"
+  },
+  {
+    "eval": "window.__sb.setView('rowNear')"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "row_near_night"
+  },
+  {
+    "eval": "window.__sb.setNight(0)"
+  },
+  {
+    "eval": "window.__sb.setView('rotated')"
+  },
+  {
+    "wait": 700
+  },
+  {
+    "shot": "rotated_day"
+  },
+  {
+    "eval": "window.__sb.weather('rain')"
+  },
+  {
+    "eval": "window.__sb.setView('overview')"
+  },
+  {
+    "wait": 700
+  },
+  {
+    "shot": "weather_rain"
+  },
+  {
+    "eval": "window.__sb.weather('snow')"
+  },
+  {
+    "wait": 700
+  },
+  {
+    "shot": "weather_snow"
+  },
+  {
+    "eval": "window.__sb.weather(null)"
+  },
+  {
+    "eval": "window.__sb.showSheet(true)"
+  },
+  {
+    "wait": 200
+  },
+  {
+    "shot": "sheet"
+  },
+  {
+    "eval": "window.__sb.showSheet(false)"
+  },
+  {
+    "eval": "window.__sb.testEmitterToggles()"
+  },
+  {
+    "eval": "window.__sb.testDirectionPhase()"
+  },
+  {
+    "eval": "window.__sb.testPlaySemantics()"
+  },
+  {
+    "eval": "(() => { const r = window.__sb.testRegistryAndWarnings(); if (!r.ok) setTimeout(() => { throw new Error('[sprite_runtime] ' + r.fails.join('; ') + ' ' + JSON.stringify(r)); }); return JSON.stringify(r); })()"
+  },
+  {
+    "eval": "(window.__sb.foliage.castShadow = true, window.__sb.setView('plaza'))"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "shot": "plaza_foliage_shadows"
+  },
+  {
+    "eval": "(window.__sb.foliage.castShadow = false, true)"
+  },
+  {
+    "eval": "window.__sb.spawnSprites(10)"
+  },
+  {
+    "eval": "window.__sb.textureStats()"
+  },
+  {
+    "eval": "window.__sb.stats()"
+  }
+]

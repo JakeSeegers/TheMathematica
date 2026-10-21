@@ -1,0 +1,116 @@
+[
+  {
+    "eval": "JSON.stringify(window.__terrain.runTests())"
+  },
+  {
+    "eval": "JSON.stringify(window.__terrain.stats())"
+  },
+  {
+    "eval": "window.__terrain.setClock(3.0); window.__terrain.setView('diorama'); 'ok'"
+  },
+  {
+    "wait": 400
+  },
+  {
+    "shot": "diorama_day"
+  },
+  {
+    "eval": "window.__terrain.setView('overview'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "overview_day"
+  },
+  {
+    "eval": "window.__terrain.setView('cliffs'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "cliffs_day"
+  },
+  {
+    "eval": "window.__terrain.setView('waterfall'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "waterfall_day"
+  },
+  {
+    "eval": "window.__terrain.setView('edge'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "edge_day"
+  },
+  {
+    "eval": "window.__terrain.setView('pond'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "pond_day"
+  },
+  {
+    "eval": "window.__terrain.setView('terrace'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "terrace_day"
+  },
+  {
+    "eval": "window.__terrain.setTime('golden'); window.__terrain.setView('diorama'); 'ok'"
+  },
+  {
+    "wait": 400
+  },
+  {
+    "shot": "diorama_golden"
+  },
+  {
+    "eval": "window.__terrain.setTime('night'); window.__terrain.setView('diorama'); 'ok'"
+  },
+  {
+    "wait": 400
+  },
+  {
+    "shot": "diorama_night"
+  },
+  {
+    "eval": "window.__terrain.setTime('day'); window.__terrain.setCamera({ focus: [15, 0.9, 9.5], distance: 22, yaw: -38, pitch: 30 }); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "yaw_day"
+  },
+  {
+    "eval": "window.__terrain.setTime('golden'); window.__terrain.setView('waterfall'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "waterfall_golden"
+  },
+  {
+    "eval": "window.__terrain.setTime('night'); window.__terrain.setView('pond'); 'ok'"
+  },
+  {
+    "wait": 300
+  },
+  {
+    "shot": "pond_night"
+  }
+]

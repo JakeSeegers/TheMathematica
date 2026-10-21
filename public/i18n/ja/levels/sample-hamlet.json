@@ -1,0 +1,94 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "levels/sample-hamlet",
+  "extends": [],
+  "terms": {
+    "Honey Cake": "はちみつケーキ",
+    "Mira": "ミラ",
+    "Mirror Pond": "鏡池",
+    "Old Fen": "フェンじいさん",
+    "Orchard Terrace": "果樹園の高台",
+    "Tilda": "ティルダ",
+    "Willowmere Green": "ウィロウミアの草地"
+  },
+  "units": {
+    "1FF85A1D38837A784793090E0101751B": {
+      "source": "Your reflection looks back — a little tired, but content.",
+      "target": "水面の自分が見つめ返してくる――少し疲れているが、満ち足りた顔だ。"
+    },
+    "4E3BB0DABEE484E854B827AC8942E231": {
+      "source": "Where the old trees keep watch",
+      "target": "古木の見守るところ"
+    },
+    "5C81F5E3A97DF5D50F7E6EED058E4CB5": {
+      "source": "They are lovely",
+      "target": "きれいだよね"
+    },
+    "6F9832E8CB1D0529263EEE53AE820187": {
+      "source": "The water is clear and very cold.",
+      "target": "水は澄んでいて、とても冷たい。"
+    },
+    "33EAF2513D234466BB483DF284F59F46": {
+      "source": "Willowmere",
+      "target": "ウィロウミア"
+    },
+    "62B2F944CF63F488D9D0F218138EB6ED": {
+      "source": "Warm light and the clink of mugs behind the door. The inn is full tonight.",
+      "target": "扉の向こうから、温かな灯りとジョッキの触れ合う音。今夜の宿は満員だ。"
+    },
+    "77DB2D458E068F03BA0E6499B7D32576": {
+      "source": "The carrots are late this year.",
+      "target": "今年はにんじんの育ちが遅くてのう。"
+    },
+    "797FBC173A238590359D94F832AD4CED": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "5490C902CAED9FC7B1CDD98782F33083": {
+      "source": "A Hamlet by the Pond",
+      "target": "池のほとりの小村"
+    },
+    "A47E05FC78C1F220DB7D1ED373ECE401": {
+      "source": "Willowmere",
+      "target": "ウィロウミア"
+    },
+    "ADFE3FBED1E5C791B3B73D5F287B555B": {
+      "source": "Willowmere",
+      "target": "ウィロウミア"
+    },
+    "BD9A34F0CE250BD9CD7868103140D73D": {
+      "source": "Mind the chickens. They think the road is theirs.",
+      "target": "ニワトリに気をつけるんじゃぞ。道は自分らのもんだと思っとる。"
+    },
+    "C5B5464DE1D002F30114396B4D3B5540": {
+      "source": "Lavender hangs drying by the door. Someone inside is humming.",
+      "target": "扉のそばにラベンダーが干してある。中で誰かが鼻歌を歌っている。"
+    },
+    "C05295C9556338B8414497490E72ACC2": {
+      "source": "Nobody answers. A cat flap swings gently in the breeze.",
+      "target": "返事はない。猫用の小さな扉が、そよ風に静かに揺れている。"
+    },
+    "D40B54AF1589FF5ECC22806E4908857D": {
+      "source": "Have you seen the fireflies over {Mirror Pond}?",
+      "target": "{鏡池}の上を飛ぶホタル、もう見た？"
+    },
+    "DA8FA51D93705ABF189185DF0ABF52BB": {
+      "source": "Come back after dark — they are brightest then.",
+      "target": "暗くなってからまた来てね。そのころがいちばん明るく光るの。"
+    },
+    "E30C0ABFEFD45B0C51EB750012FF71DC": {
+      "source": "↑ {Orchard Terrace} · → {Mirror Pond}\n← {Rosehip Cottage}",
+      "target": "↑ {果樹園の高台}・→ {鏡池}\n← {ローズヒップ荘}"
+    },
+    "FC65E1D8812CC818600168FB88D7D41C": {
+      "source": "Fresh from the oven! Honey from the orchard hives.",
+      "target": "焼きたてだよ！　果樹園の巣箱で採れたはちみつ入りさ。"
+    },
+    "FF1489A58488ABBA0794FAA6034591E5": {
+      "source": "Welcome to {Willowmere}! We are small, but the pond makes up for it.",
+      "target": "{ウィロウミア}へようこそ！　小さな村だけど、そのぶん池が自慢なの。"
+    }
+  }
+}

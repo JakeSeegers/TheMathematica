@@ -1,0 +1,272 @@
+/**
+ * UI strings, namespace 'combat' (docs/specs/I18N.md §2): the combat's own words — enemy names by
+ * kind (defs.js stays English: the level generators import it), skill names by id, the shop's wares
+ * by id (`shopWare` / `buy` / `priceOf` / the `purchase` event keep the English names), the loot
+ * feed, level-ups, the results card, the death screen, waystones, the combat legend rows (by the
+ * `id` of bindings.js) and the pad hint. Registered by `CombatSystem`'s constructor before
+ * `ui.enableCombat()` (never at import: CombatSystem's chunk is the combat chunk), so a peaceful
+ * level never holds it. Owner: B-combat (docs/specs/PIXEL_UI.md §8).
+ *
+ * Import-free and Node-safe: `tools/lib/i18n.mjs` (`uiGlossary`) imports it in Node. Keys are ids;
+ * each language a table of key → string (`{var}` slots), `{ one, other }` (English counts, `tn`) or
+ * a function (English articles). The terms follow the glossary (docs/specs/I18N_GLOSSARY.md
+ * §3.4, §3.13, §4.4, §4.13): Cinderheart シンダーハート / 烬心, Healing Draught 回復薬 /
+ * 治疗药水, Whirl Slash 旋風斬り / 旋风斩 … A skill name carries U+200B where the HUD may break it
+ * under its slot (旋風​斬り, 光辉​新星); the mark is invisible everywhere else.
+ *
+ * The wares' gains are templates filled from rules.js (`{n}`: SHOP_WARES' amount, DRAUGHT_HEAL in
+ * per cent: `shopOffers`); an upgrade's toast is a sentence per language (`upgraded.*`, not
+ * `obtained` round the loot feed's "最大HP +20"). The floating 'Guard' / 'Perfect!' words are the
+ * world labels' ('worldfx' namespace); the combat passes them in English.
+ */
+
+const ZW = '​';
+
+/**
+ * A place with the English article: 'the camp' stays, 'Crossroads Waystone' → 'the Crossroads
+ * Waystone' (the English templates only).
+ * @param {unknown} place
+ */
+const the = (place) => {
+  const s = String(place ?? '');
+  return /^the /i.test(s) ? s : `the ${s}`;
+};
+
+/** @type {{ en: Record<string, any>, ja: Record<string, any>, zh: Record<string, any> }} */
+const table = {
+  en: {
+    // enemies (ENEMY_DEFS by kind) and the boss's epithet; an elite of a kind without a name
+    'enemy.slime': 'Moss Slime',
+    'enemy.goblin': 'Bramble Goblin',
+    'enemy.archer': 'Thorn Archer',
+    'enemy.shaman': 'Hex Shaman',
+    'enemy.bat': 'Cinder Bat',
+    'enemy.boar': 'Ironhide Boar',
+    'enemy.dummy': 'Straw Dummy',
+    'enemy.golem': 'Cinderheart',
+    'epithet.golem': 'The Last Fire of the Pass',
+    elite: 'Elite {name}',
+    // skills (rules.js SKILLS by id) and the draught slot
+    'skill.skill1': 'Whirl Slash',
+    'skill.skill2': 'Ember Bolt',
+    'skill.skill3': 'Radiant Nova',
+    'skill.draught': 'Healing Draught',
+    // the shop's wares (rules.js SHOP_WARES by id: shown, never looked up)
+    'ware.draught.name': 'Healing Draught',
+    'ware.draught.gain': 'heals {n} %',
+    'ware.whetstone.name': 'Whetstone',
+    'ware.whetstone.gain': 'ATK +{n}',
+    'ware.tonic.name': 'Ironbark Tonic',
+    'ware.tonic.gain': 'Max HP +{n}',
+    'ware.charm.name': 'Warding Charm',
+    'ware.charm.gain': 'DEF +{n}',
+    // the loot feed and the upgrade toast
+    'loot.gold': '+{n} gold',
+    'loot.heart': 'Heart +{n} HP',
+    'loot.mana': 'Mana mote +{n} MP',
+    'loot.draught': 'Healing Draught',
+    'upgrade.maxHp': 'Max HP +{n}',
+    'upgrade.maxMp': 'Max MP +{n}',
+    'upgrade.attack': 'ATK +{n}',
+    'upgrade.core': 'Cinderheart Core',
+    'upgrade.other': 'Upgrade',
+    obtained: 'Obtained: {item}',
+    // an upgrade's toast (a chest's, the core's)
+    'upgraded.maxHp': 'Obtained: Max HP +{n}',
+    'upgraded.maxMp': 'Obtained: Max MP +{n}',
+    'upgraded.attack': 'Obtained: ATK +{n}',
+    'upgraded.core': 'Obtained: {item} · Max HP +{n}',
+    'draught.full': 'Already at full health',
+    // the level-up card
+    'level.title': 'Level {n}',
+    'gain.maxHp': 'Max HP +{n}',
+    'gain.atk': 'ATK +{n}',
+    'gain.learned': '{skill} learned',
+    // the boss: its banner, the victory, the results card
+    'victory.title': 'Victory',
+    'victory.sub': 'The fires of the pass are quiet',
+    'results.title': '{place} — Cleared',
+    'results.foes': { one: '{n} foe', other: '{n} foes' },
+    'results.falls': { one: '{n} fall', other: '{n} falls' },
+    'results.dodges': { one: '{n} perfect dodge', other: '{n} perfect dodges' },
+    'results.lv': 'Lv {n}',
+    // the death screen and the respawn
+    'death.title': 'You Have Fallen',
+    'death.prompt': (v) => `Press any key to rise at ${the(v.place)}`,
+    'death.risen': (v) => `You rise at ${the(v.place)}`,
+    // the level's spawn as a checkpoint (Waystones.js: 'camp' near a waystone, else 'start')
+    'place.camp': 'the camp',
+    'place.start': 'the start',
+    // waystones
+    'waystone.attuned': '{place} attuned',
+    'waystone.silent': 'The stone is silent while foes are near',
+    'waystone.rested': (v) => `Rested at ${the(v.place)}`,
+    // the combat legend (bindings.js rows by id) and the one-time pad hint
+    'controls.move': 'Move',
+    'controls.run': 'Run',
+    'controls.attack': 'Attack (combo)',
+    'controls.dodge': 'Dodge roll',
+    'controls.skills': 'Skills (or 1-3)',
+    'controls.skillsPad': 'Skills',
+    'controls.draught': 'Healing Draught',
+    'controls.lock': 'Lock on / next',
+    'controls.interact': 'Talk / Rest / Open',
+    'controls.rotate': 'Rotate camera',
+    'controls.zoom': 'Zoom (or wheel)',
+    'controls.zoomPad': 'Zoom',
+    'controls.map': 'World map',
+    'controls.toggles': 'Time / Weather / Photo / Music',
+    'controls.photo': 'Photo',
+    padHint: 'Pad: X attack · B roll · LT+X/Y/B skills · Y draught · RS lock · right stick zoom · LS click photo',
+  },
+  ja: {
+    'enemy.slime': 'コケスライム',
+    'enemy.goblin': 'イバラゴブリン',
+    'enemy.archer': '棘の弓兵',
+    'enemy.shaman': '呪術シャーマン',
+    'enemy.bat': '火の粉コウモリ',
+    'enemy.boar': 'アイアンハイドボア',
+    'enemy.dummy': '稽古人形',
+    'enemy.golem': 'シンダーハート',
+    'epithet.golem': '峠に残りし最後の火',
+    elite: '精鋭の{name}',
+    'skill.skill1': `旋風${ZW}斬り`,
+    'skill.skill2': '火炎弾',
+    'skill.skill3': `光輝${ZW}ノヴァ`,
+    'skill.draught': '回復薬',
+    'ware.draught.name': '回復薬',
+    'ware.draught.gain': 'HPを{n}%回復',
+    'ware.whetstone.name': '砥石',
+    'ware.whetstone.gain': '攻撃力 +{n}',
+    'ware.tonic.name': '鉄木の強壮薬',
+    'ware.tonic.gain': '最大HP +{n}',
+    'ware.charm.name': '守りの護符',
+    'ware.charm.gain': '防御力 +{n}',
+    'loot.gold': '+{n}G',
+    'loot.heart': 'ハート HP +{n}',
+    'loot.mana': 'マナの欠片 MP +{n}',
+    'loot.draught': '回復薬',
+    'upgrade.maxHp': '最大HP +{n}',
+    'upgrade.maxMp': '最大MP +{n}',
+    'upgrade.attack': '攻撃力 +{n}',
+    'upgrade.core': 'シンダーハートの核',
+    'upgrade.other': '強化',
+    obtained: '{item}を手に入れた',
+    'upgraded.maxHp': '最大HPが{n}上がった',
+    'upgraded.maxMp': '最大MPが{n}上がった',
+    'upgraded.attack': '攻撃力が{n}上がった',
+    'upgraded.core': '{item}を手に入れた・最大HPが{n}上がった',
+    'draught.full': 'HPは満タンだ',
+    'level.title': 'レベル {n}',
+    'gain.maxHp': '最大HP +{n}',
+    'gain.atk': '攻撃力 +{n}',
+    'gain.learned': '{skill}を習得',
+    'victory.title': '勝利',
+    'victory.sub': '峠の火は静まった',
+    'results.title': '{place} 踏破',
+    'results.foes': '撃破 {n}',
+    'results.falls': '戦闘不能 {n}',
+    'results.dodges': 'ジャスト回避 {n}',
+    'results.lv': 'Lv {n}',
+    'death.title': '力尽きた',
+    'death.prompt': '何かキーを押すと{place}で立ち上がる',
+    'death.risen': '{place}で目を覚ました',
+    'place.camp': '野営地',
+    'place.start': '出発地点',
+    'waystone.attuned': '{place}と共鳴した',
+    'waystone.silent': '敵が近くにいる間、石は沈黙している',
+    'waystone.rested': '{place}で休んだ',
+    'controls.move': '移動',
+    'controls.run': 'ダッシュ',
+    'controls.attack': '攻撃（連続技）',
+    'controls.dodge': '回避ロール',
+    'controls.skills': 'スキル（1〜3でも可）',
+    'controls.skillsPad': 'スキル',
+    'controls.draught': '回復薬',
+    'controls.lock': 'ロックオン／次へ',
+    'controls.interact': '話す／休む／開ける',
+    'controls.rotate': 'カメラ回転',
+    'controls.zoom': 'ズーム（ホイールも可）',
+    'controls.zoomPad': 'ズーム',
+    'controls.map': 'ワールドマップ',
+    'controls.toggles': '時間帯／天気／フォトモード／音楽',
+    'controls.photo': 'フォトモード',
+    padHint: 'パッド：X 攻撃・B 回避・LT+X/Y/B スキル・Y 回復薬・RS ロックオン・右スティック ズーム・LS押し込み 写真',
+  },
+  zh: {
+    'enemy.slime': '苔藓史莱姆',
+    'enemy.goblin': '荆棘哥布林',
+    'enemy.archer': '棘刺弓手',
+    'enemy.shaman': '咒术萨满',
+    'enemy.bat': '烬火蝙蝠',
+    'enemy.boar': '铁皮野猪',
+    'enemy.dummy': '稻草假人',
+    'enemy.golem': '烬心',
+    'epithet.golem': '隘口最后之火',
+    elite: '精英{name}',
+    'skill.skill1': '旋风斩',
+    'skill.skill2': '烬火弹',
+    'skill.skill3': `光辉${ZW}新星`,
+    'skill.draught': `治疗${ZW}药水`,
+    'ware.draught.name': '治疗药水',
+    'ware.draught.gain': '恢复{n}% HP',
+    'ware.whetstone.name': '磨刀石',
+    'ware.whetstone.gain': '攻击 +{n}',
+    'ware.tonic.name': '铁木补药',
+    'ware.tonic.gain': '最大HP +{n}',
+    'ware.charm.name': '守护护符',
+    'ware.charm.gain': '防御 +{n}',
+    'loot.gold': '+{n} G',
+    'loot.heart': '红心 HP +{n}',
+    'loot.mana': '魔力碎片 MP +{n}',
+    'loot.draught': '治疗药水',
+    'upgrade.maxHp': '最大HP +{n}',
+    'upgrade.maxMp': '最大MP +{n}',
+    'upgrade.attack': '攻击 +{n}',
+    'upgrade.core': '烬心之核',
+    'upgrade.other': '强化',
+    obtained: '获得：{item}',
+    'upgraded.maxHp': '最大HP提升{n}',
+    'upgraded.maxMp': '最大MP提升{n}',
+    'upgraded.attack': '攻击提升{n}',
+    'upgraded.core': '获得：{item} · 最大HP提升{n}',
+    'draught.full': 'HP已满',
+    'level.title': '升至 {n} 级',
+    'gain.maxHp': '最大HP +{n}',
+    'gain.atk': '攻击 +{n}',
+    'gain.learned': '习得{skill}',
+    'victory.title': '胜利',
+    'victory.sub': '隘口之火已然平息',
+    'results.title': '{place} 已肃清',
+    'results.foes': '击败 {n}',
+    'results.falls': '倒下 {n} 次',
+    'results.dodges': '完美闪避 {n}',
+    'results.lv': 'Lv {n}',
+    'death.title': '你倒下了',
+    'death.prompt': '按任意键在{place}复活',
+    'death.risen': '你在{place}醒来',
+    'place.camp': '营地',
+    'place.start': '出发点',
+    'waystone.attuned': '已与{place}共鸣',
+    'waystone.silent': '敌人在附近时，石碑沉默不语',
+    'waystone.rested': '在{place}休息了',
+    'controls.move': '移动',
+    'controls.run': '奔跑',
+    'controls.attack': '攻击（连招）',
+    'controls.dodge': '翻滚闪避',
+    'controls.skills': '技能（或 1-3）',
+    'controls.skillsPad': '技能',
+    'controls.draught': '治疗药水',
+    'controls.lock': '锁定／切换',
+    'controls.interact': '交谈／休息／打开',
+    'controls.rotate': '旋转镜头',
+    'controls.zoom': '缩放（或滚轮）',
+    'controls.zoomPad': '缩放',
+    'controls.map': '世界地图',
+    'controls.toggles': '时段／天气／拍照模式／音乐',
+    'controls.photo': '拍照模式',
+    padHint: '手柄：X 攻击 · B 翻滚 · LT+X/Y/B 技能 · Y 药水 · RS 锁定 · 右摇杆 缩放 · 按下 LS 拍照',
+  },
+};
+
+export default table;

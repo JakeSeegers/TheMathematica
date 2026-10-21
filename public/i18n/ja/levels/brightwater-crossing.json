@@ -1,0 +1,137 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "levels/brightwater-crossing",
+  "extends": [],
+  "terms": {
+    "Brightwater Falls": "ブライトウォーターの滝",
+    "Brightwater Square": "ブライトウォーター広場",
+    "Elda": "エルダ",
+    "Honey Bun": "はちみつパン",
+    "Lily Pond": "睡蓮の池",
+    "Marigold": "マリーゴールド",
+    "Miller's Hill": "粉屋の丘",
+    "Posy": "ポージー",
+    "Tamsin": "タムシン",
+    "Tamsin's Farm": "タムシンの農場"
+  },
+  "units": {
+    "0D3209B803E7FE355A2B1CCD168B7BA3": {
+      "source": "↑ {Brightwater Square} · ↖ {Miller's Hill}\n← {Lily Pond} · → {Old Bridge} & {Tamsin's Farm}",
+      "target": "↑ {ブライトウォーター広場}・↖ {粉屋の丘}\n← {睡蓮の池}・→ {古橋}と{タムシンの農場}"
+    },
+    "3C9FE01F9840813D4E19AD69E115EB01": {
+      "source": "Where the sails turn even when the wind forgets",
+      "target": "風が忘れても、羽根の回るところ"
+    },
+    "5AB72CC295E50B821D032E813D0DA85A": {
+      "source": "Brightwater Crossing",
+      "target": "ブライトウォーターの渡し"
+    },
+    "5AC5727A78A1F7003BC12331CC256025": {
+      "source": "Someone has added, in smaller letters: \"Mind the chickens. They bite.\"",
+      "target": "その下に、誰かが小さな字で書き足している。「ニワトリにご注意。かみつきます」"
+    },
+    "5B0555EA280BE604C18901A94E112CB4": {
+      "source": "Will you rest until morning?",
+      "target": "朝まで休んでいきますか？"
+    },
+    "5D4C608E9B11E3174BB747B18DB78669": {
+      "source": "Most of them stay for supper. A few stay for good.",
+      "target": "たいていは夕飯を食べていくだけ。でも何人かは、そのまま住みついちまうのさ。"
+    },
+    "9BBD7F9867A75A7EBEDD3FEB1DD5A79D": {
+      "source": "Honey buns! Still warm from the oven, and sweet as a summer evening.",
+      "target": "はちみつパンだよ！　焼きたてでまだあったかくて、夏の夕暮れみたいに甘いんだ。"
+    },
+    "9C64C16B2A9E91FD817820A7E22BA96A": {
+      "source": "Laughter and the smell of fresh bread spill out of the {Brightwater Inn}.",
+      "target": "{ブライトウォーター亭}から、笑い声と焼きたてのパンの香りがあふれてくる。"
+    },
+    "47D30A1A59B6D4C8078E42137A1FFFC0": {
+      "source": "A loom clacks steadily inside. A note pinned to the door reads: {Back after supper}.",
+      "target": "中から、機織りの音が規則正しく響いてくる。扉に留められた書き付けには{夕食後に戻ります}とある。"
+    },
+    "80A5492CC78AB4B4BAF13DCBB0431AEA": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "116AF332B2966622F1457B4193F64D83": {
+      "source": "The door is latched. Somewhere inside, a kettle begins to sing.",
+      "target": "扉には掛け金が下りている。中のどこかで、やかんが鳴りはじめた。"
+    },
+    "883F946C3EABCC59097B7422B0E16F5D": {
+      "source": "Brightwater Crossing",
+      "target": "ブライトウォーターの渡し"
+    },
+    "6762F22EDE152FCA73BDE8496B46392D": {
+      "source": "Flour dust on the doorstep and bread cooling on the sill. The miller is out chasing the wind.",
+      "target": "戸口には小麦粉がうっすら積もり、窓辺ではパンが冷ましてある。粉屋は風を追いかけて出かけているようだ。"
+    },
+    "8004B99B75010DD7842359B48FE6F7D6": {
+      "source": "Climb the stairs to {Miller's Hill} at sunset — the falls turn to gold.",
+      "target": "夕暮れどきに階段を上って{粉屋の丘}へ行ってごらん。滝が金色に染まるよ。"
+    },
+    "9574F833055EBF04A955839AAB853E56": {
+      "source": "If you see one wandering off toward the river, give her a gentle nudge home, would you?",
+      "target": "もし一羽でも川のほうへふらふら行くのを見かけたら、そっと家のほうへ追い返してくれる？"
+    },
+    "9814BEEF7A5CCA7A0D2DA8DCF330044B": {
+      "source": "Brightwater Crossing",
+      "target": "ブライトウォーターの渡し"
+    },
+    "A30F3431C17B90A8624F879F1C0A80E6": {
+      "source": "Brightwater Crossing",
+      "target": "ブライトウォーターの渡し"
+    },
+    "AC9E67E595E685BC7B72A4A5E07B304C": {
+      "source": "The hens have been laying like mad since the lantern festival.",
+      "target": "ランタン祭りからこっち、うちのめんどりたちがやたらと卵を産むのよ。"
+    },
+    "B6B764BBD99044ABC795EA1622B1DD19": {
+      "source": "Welcome to the {Brightwater Inn}! Soft beds, hot stew, and the river to sing you to sleep.",
+      "target": "{ブライトウォーター亭}へいらっしゃい！　ふかふかのベッドに熱いシチュー、子守唄は川が歌ってくれるよ。"
+    },
+    "B650DD1538549F8BC514A7FCE3EAFBA5": {
+      "source": "Brightwater Crossing",
+      "target": "ブライトウォーターの渡し"
+    },
+    "BCED3DC52BBA7B28AB5C1FB80C2EDB31": {
+      "source": "{Miller's Hill}. On a clear evening you can watch the falls turn gold from here.",
+      "target": "{粉屋の丘}。晴れた夕方には、ここから滝が金色に染まるのが見える。"
+    },
+    "BF9D563289EEC7810055EE893E899903": {
+      "source": "Welcome to {Brightwater Crossing}, traveler! The river has carried folk past our door for a hundred years.",
+      "target": "{ブライトウォーターの渡し}へようこそ、旅人さん！　この川は百年ものあいだ、うちの戸口の前を通る人たちを運んできたんだよ。"
+    },
+    "C6F7B45786845C6BEFB8346B90ECD5E4": {
+      "source": "A Riverside Hamlet",
+      "target": "川辺の小さな集落"
+    },
+    "C48F14BE0DC508603C0E515F702E9249": {
+      "source": "Where the river bends and the lanterns glow",
+      "target": "川が曲がり、灯のともるところ"
+    },
+    "D1D2FA8512E14235C2B307FED23AEE96": {
+      "source": "The water is clear and cold. Far below, a copper coin glints.",
+      "target": "水は澄んでいて冷たい。はるか底で、銅貨がきらりと光った。"
+    },
+    "E95A3F5BABA2F9EED93B5BC36B75F62E": {
+      "source": "Muddy boots by the door, and a chalk sign: {Fresh eggs — ask Tamsin}.",
+      "target": "扉のそばには泥だらけの長靴と、チョークで書いた札。{産みたて卵あり――タムシンまで}"
+    },
+    "FA29C8B6012991008FA4F8738E3489EF": {
+      "source": "{Tamsin's Farm}. Fresh eggs daily.",
+      "target": "{タムシンの農場}。産みたて卵、毎日あります。"
+    },
+    "FC5A04FC9EB4EF9EC84F6DF8251E0F3D": {
+      "source": "You make a small wish of your own.",
+      "target": "あなたも、ささやかな願いをひとつかけた。"
+    },
+    "FF3D2F445771ABF2516E5134582D7F91": {
+      "source": "Rest until morning",
+      "target": "朝まで休む"
+    }
+  }
+}

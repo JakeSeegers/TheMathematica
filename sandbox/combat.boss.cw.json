@@ -1,0 +1,12 @@
+[
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => m.ready(90000)).then(() => window.__luminati.loadMs)" },
+  { "wait": 1500 },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => { m.use(m.cinderwatch); return m.tests.boss(); }).then((r) => JSON.stringify(r))" },
+  { "shot": "01_boss_defeated" },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => { m.use(m.cinderwatch); return JSON.stringify(m.tests.greedy()); })" },
+  { "wait": 2000 },
+  { "shot": "02_greedy_victory" },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => { m.use(m.cinderwatch); return JSON.stringify(m.tests.greedy({ level: 5, upgrades: { attack: 5, maxHp: 35, maxMp: 10, def: 3 } })); })" },
+  { "eval": "import('/sandbox/combat_fixture.js').then((m) => { m.use(m.cinderwatch); return JSON.stringify(m.tests.labelsBoss()); })" },
+  { "eval": "JSON.stringify(window.__game.combat.stats())" }
+]

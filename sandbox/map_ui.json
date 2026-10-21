@@ -1,0 +1,22 @@
+[
+  {"eval": "(async () => { await window.__map.ready; return 'ready'; })()"},
+  {"wait": 600},
+  {"eval": "(() => { const n = document.querySelector('.lu-worldmap')?.childElementCount; if (n !== 0) throw new Error('world map: laid out before it opened (' + n + ' children): setMap must only store'); return 'world map not laid out yet'; })()"},
+  {"shot": "01_minimap"},
+  {"eval": "(() => { const h = window.__map.hashes(); if (!(h.miniNone === h.miniEmpty && h.miniParty !== h.miniNone)) throw new Error('minimap: no party and an empty party must draw the same, a party must add its dot ' + JSON.stringify(h)); return JSON.stringify(h); })()"},
+  {"eval": "(() => { window.__map.open(true); return JSON.stringify(window.__map.info()); })()"},
+  {"wait": 700},
+  {"shot": "02_worldmap"},
+  {"eval": "(() => { const c = window.__map.clear(); if (!c.layered) throw new Error('world map: the live markers must draw over the region names ' + JSON.stringify(c)); return JSON.stringify(c); })()"},
+  {"eval": "(() => { window.__map.party(2); return 'party'; })()"},
+  {"wait": 400},
+  {"eval": "(() => { const i = window.__map.info(); if (!i.legend.includes(document.querySelector('.lu-wm-key--party')?.parentElement?.textContent ?? '?')) throw new Error('no companion legend row'); return JSON.stringify(i.legend); })()"},
+  {"shot": "03_worldmap_party"},
+  {"eval": "(() => { window.__map.party(0); return JSON.stringify(window.__map.at(window.__map.state.markers.some((m) => m.kind === 'boss') ? 'boss' : 'fire')); })()"},
+  {"wait": 400},
+  {"eval": "(() => { const c = window.__map.clear(); if (!c.layered) throw new Error('world map: the live markers must draw over the region names ' + JSON.stringify(c)); return JSON.stringify(c); })()"},
+  {"shot": "03b_worldmap_moved"},
+  {"eval": "(() => { window.__map.open(false); for (const [x, z] of [[1, -1], [1, 1], [-1, 1], [-1, -1]]) window.__map.face(x, z); window.__map.face(1, -1); return 'faced'; })()"},
+  {"wait": 300},
+  {"shot": "04_minimap_ne"}
+]

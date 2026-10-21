@@ -1,0 +1,923 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Luminati Architecture Diagrams</title>
+<meta name="description" content="Hand-drawn architecture figures of the Luminati 2.5D pixel-art engine: module dependencies, the frame loop, the render pipeline, the level build pipeline, the editor data flow and the point-light pool." />
+<style>
+  :root {
+    --bg: #f4efe3;
+    --panel: #fffdf8;
+    --ink: #1a2238;
+    --ink2: #2c3553;
+    --muted: #5b6179;
+    --rule: #d8ccb0;
+    --gold: #93712c;
+    --gold-soft: rgba(201, 164, 92, 0.16);
+    --gold-glow: rgba(201, 164, 92, 0.35);
+    --node: #fbf7ee;
+    --node-line: #c9bb98;
+    --lane: #efe7d5;
+    --warn: #b0402f;
+    --off: #a3a7b6;
+    --shadow: 0 1px 2px rgba(26, 34, 56, 0.06), 0 6px 24px rgba(26, 34, 56, 0.07);
+    color-scheme: light;
+  }
+  @media (prefers-color-scheme: dark) {
+    :root:not([data-theme="light"]) {
+      --bg: #0e1424;
+      --panel: #1a2238;
+      --ink: #ece5d3;
+      --ink2: #d9d2bf;
+      --muted: #a4a9bd;
+      --rule: #333c5a;
+      --gold: #c9a45c;
+      --gold-soft: rgba(201, 164, 92, 0.13);
+      --gold-glow: rgba(201, 164, 92, 0.32);
+      --node: #141b2e;
+      --node-line: #3d4666;
+      --lane: #121a2d;
+      --warn: #e0674f;
+      --off: #5d6480;
+      --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
+      color-scheme: dark;
+    }
+  }
+  :root[data-theme="dark"] {
+    --bg: #0e1424;
+    --panel: #1a2238;
+    --ink: #ece5d3;
+    --ink2: #d9d2bf;
+    --muted: #a4a9bd;
+    --rule: #333c5a;
+    --gold: #c9a45c;
+    --gold-soft: rgba(201, 164, 92, 0.13);
+    --gold-glow: rgba(201, 164, 92, 0.32);
+    --node: #141b2e;
+    --node-line: #3d4666;
+    --lane: #121a2d;
+    --warn: #e0674f;
+    --off: #5d6480;
+    --shadow: 0 1px 2px rgba(0, 0, 0, 0.3), 0 8px 28px rgba(0, 0, 0, 0.35);
+    color-scheme: dark;
+  }
+
+  * { box-sizing: border-box; }
+  html { -webkit-text-size-adjust: 100%; }
+  body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font: 16px/1.6 system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  }
+  a { color: var(--gold); text-underline-offset: 2px; }
+  a:hover { color: var(--ink); }
+  code { font: 0.9em ui-monospace, "Cascadia Code", Consolas, monospace; }
+
+  .page { max-width: 1120px; margin: 0 auto; padding: 32px 16px 64px; }
+  header.top { text-align: center; padding: 12px 0 8px; }
+  .kicker {
+    font: 600 12px/1 ui-monospace, "Cascadia Code", Consolas, monospace;
+    letter-spacing: 0.28em; text-transform: uppercase; color: var(--gold);
+  }
+  h1, h2 { font-family: "Cinzel", Georgia, "Times New Roman", serif; font-weight: 600; }
+  h1 { font-size: clamp(28px, 4.6vw, 44px); line-height: 1.15; margin: 10px 0 6px; letter-spacing: 0.02em; }
+  .ornament { display: flex; align-items: center; justify-content: center; gap: 12px; color: var(--gold); margin: 10px 0 14px; }
+  .ornament::before, .ornament::after { content: ""; height: 1px; width: min(160px, 26vw); background: linear-gradient(90deg, transparent, var(--gold)); }
+  .ornament::after { background: linear-gradient(90deg, var(--gold), transparent); }
+  .ornament i { width: 8px; height: 8px; transform: rotate(45deg); border: 1px solid var(--gold); display: block; }
+  .lede { max-width: 720px; margin: 0 auto; color: var(--muted); }
+
+  nav.toc { margin: 26px auto 8px; display: flex; flex-wrap: wrap; gap: 8px; justify-content: center; }
+  nav.toc a {
+    text-decoration: none; color: var(--ink); border: 1px solid var(--rule); background: var(--panel);
+    padding: 6px 12px; border-radius: 999px; font-size: 14px;
+  }
+  nav.toc a:hover { border-color: var(--gold); }
+  nav.toc b { color: var(--gold); font-weight: 600; margin-right: 6px; }
+
+  section.fig {
+    margin-top: 36px; background: var(--panel); border: 1px solid var(--rule); border-radius: 14px;
+    box-shadow: var(--shadow); overflow: hidden;
+  }
+  section.fig > header { padding: 20px 22px 4px; }
+  section.fig h2 { margin: 0; font-size: clamp(20px, 2.6vw, 26px); }
+  section.fig h2 .n { color: var(--gold); margin-right: 10px; }
+  section.fig .claim { margin: 6px 0 0; color: var(--muted); }
+  figure { margin: 0; }
+  .scroll { overflow-x: auto; padding: 10px 14px 4px; }
+  svg.dg { display: block; width: 100%; min-width: 760px; height: auto; color: var(--ink); }
+  figcaption { padding: 6px 22px 20px; font-size: 15px; }
+  figcaption p { margin: 8px 0; }
+  figcaption .meta { font-size: 13.5px; color: var(--muted); }
+  .hint { display: none; font-size: 12.5px; color: var(--muted); padding: 0 22px; }
+  @media (max-width: 800px) { .hint { display: block; } }
+
+  footer.bottom { margin-top: 40px; text-align: center; color: var(--muted); font-size: 14px; }
+
+  /* ---- SVG vocabulary (shared by every figure) ---- */
+  .n  { fill: var(--node); stroke: var(--node-line); stroke-width: 1.2; }
+  .ng { fill: var(--gold-soft); stroke: var(--gold); stroke-width: 1.3; }
+  .nd { fill: none; stroke: var(--node-line); stroke-width: 1.2; stroke-dasharray: 5 4; }
+  .grp { fill: none; stroke: var(--gold); stroke-width: 1.1; stroke-dasharray: 2 5; }
+  .lane { fill: var(--lane); }
+  .t  { font: 600 13px Georgia, "Times New Roman", serif; fill: var(--ink); }
+  .s  { font: 11px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--muted); }
+  .g  { font: 600 10.5px ui-monospace, "Cascadia Code", Consolas, monospace; fill: var(--gold); }
+  .c  { font: 11px ui-monospace, "Cascadia Code", Consolas, monospace; fill: var(--ink2); }
+  .w  { font: 600 11px system-ui, -apple-system, "Segoe UI", sans-serif; fill: var(--warn); }
+  .mid { text-anchor: middle; }
+  .end { text-anchor: end; }
+  .ar { fill: none; stroke: var(--ink2); stroke-width: 1.4; }
+  .ar.gold { stroke: var(--gold); }
+  .ar.dash { stroke-dasharray: 5 4; }
+  .ar.warn { stroke: var(--warn); stroke-dasharray: 4 4; }
+  .mk { fill: var(--ink2); }
+  .mk-gold { fill: var(--gold); }
+  .mk-warn { fill: var(--warn); }
+  .axis { stroke: var(--muted); stroke-width: 1; fill: none; }
+  .curve { stroke: var(--gold); stroke-width: 2.2; fill: none; }
+  .frus { fill: var(--gold-soft); stroke: var(--gold); stroke-width: 1.2; stroke-dasharray: 6 4; }
+  .lit { fill: var(--gold); stroke: var(--gold); }
+  .glow { fill: var(--gold-glow); }
+  .cand { fill: var(--panel); stroke: var(--gold); stroke-width: 1.8; }
+  .off { fill: var(--off); }
+  .range { fill: none; stroke: var(--gold); stroke-width: 1; stroke-dasharray: 3 3; }
+  .gridl { stroke: var(--rule); stroke-width: 0.6; }
+  .num { fill: var(--gold); }
+  .numt { font: 700 11px system-ui, sans-serif; fill: var(--panel); text-anchor: middle; }
+</style>
+</head>
+<body>
+<div class="page">
+
+<header class="top">
+  <div class="kicker">Luminati · 2.5D pixel-art engine · architecture</div>
+  <h1>Architecture Diagrams</h1>
+  <div class="ornament"><i></i></div>
+  <p class="lede">Six hand-drawn figures of how Luminati is put together: who imports whom, what one frame
+    runs, how a frame is rendered, how a level file becomes a diorama, how the editor keeps its views
+    in sync, and how at most 12 point lights serve the 95 light sources of a big level. The prose versions (with every number
+    checked against the code) are in <a href="OVERVIEW.md">OVERVIEW.md</a>,
+    <a href="RENDER_PIPELINE.md">RENDER_PIPELINE.md</a> and <a href="PERFORMANCE.md">PERFORMANCE.md</a>.</p>
+  <nav class="toc" aria-label="Figures">
+    <a href="#modules"><b>1</b>Module dependencies</a>
+    <a href="#frame-loop"><b>2</b>Frame loop</a>
+    <a href="#render-pipeline"><b>3</b>Render pipeline</a>
+    <a href="#level-pipeline"><b>4</b>Level build</a>
+    <a href="#editor-flow"><b>5</b>Editor data flow</a>
+    <a href="#light-pool"><b>6</b>LightPool</a>
+  </nav>
+</header>
+
+<!-- =============================================================== 1. MODULES -->
+<section class="fig" id="modules">
+  <header>
+    <h2><span class="n">1</span>Module dependencies</h2>
+    <p class="claim">Applications depend on the engine; the engine depends only on its foundation and three.js — never the other way round.</p>
+  </header>
+  <p class="hint">Scroll the figure sideways on a narrow screen.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 960 570" role="img" aria-label="Dependency layers: the game, the level editor, the sandboxes and the Node tools import the engine; the editor also reuses five game modules; inside the engine, level imports world and world and fx import pixel; every module imports the foundation files, which sit on three.js, lil-gui and fontsource. The engine never imports the game or the editor.">
+        <defs>
+          <marker id="m1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="m1w" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-warn"/></marker>
+          <marker id="m1g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-gold"/></marker>
+        </defs>
+
+        <!-- applications -->
+        <text class="g" x="40" y="20">APPLICATIONS &amp; TOOLS</text>
+        <rect class="ng" x="40" y="30" width="210" height="60" rx="8"/>
+        <text class="t mid" x="145" y="55">Game</text>
+        <text class="s mid" x="145" y="74">src/main.js · src/game/</text>
+        <rect class="ng" x="330" y="30" width="210" height="60" rx="8"/>
+        <text class="t mid" x="435" y="55">Level editor</text>
+        <text class="s mid" x="435" y="74">src/editor/</text>
+        <rect class="n" x="590" y="30" width="160" height="60" rx="8"/>
+        <text class="t mid" x="670" y="55">Sandboxes</text>
+        <text class="s mid" x="670" y="74">sandbox/*.js</text>
+        <rect class="n" x="780" y="30" width="150" height="60" rx="8"/>
+        <text class="t mid" x="855" y="55">Node tools</text>
+        <text class="s mid" x="855" y="74">tools/*.mjs</text>
+
+        <!-- editor reuses five game modules -->
+        <path class="ar dash" d="M330 62 L254 62" marker-end="url(#m1)"/>
+        <text class="s mid" x="292" y="54">reuses</text>
+
+        <!-- the forbidden direction -->
+        <path class="ar warn" d="M80 148 L80 94" marker-end="url(#m1w)"/>
+        <path d="M73 114 L87 128 M87 114 L73 128" stroke="var(--warn)" stroke-width="2"/>
+        <text class="w" x="94" y="117">never imports</text>
+        <text class="w" x="94" y="131">game / editor</text>
+
+        <!-- apps → engine -->
+        <path class="ar" d="M220 90 L250 187" marker-end="url(#m1)"/>
+        <text class="s" x="244" y="128">barrel + deep</text>
+        <path class="ar" d="M420 90 L405 187" marker-end="url(#m1)"/>
+        <text class="s" x="420" y="128">deep imports</text>
+        <path class="ar" d="M670 90 L670 148" marker-end="url(#m1)"/>
+        <text class="s" x="680" y="112">tests any module</text>
+        <path class="ar" d="M855 90 L848 187" marker-end="url(#m1)"/>
+        <text class="s end" x="844" y="140">pure level modules</text>
+
+        <!-- engine container -->
+        <rect class="grp" x="20" y="150" width="920" height="280" rx="12"/>
+        <text class="g end" x="928" y="168">src/engine/</text>
+
+        <!-- engine row 1 -->
+        <rect class="ng" x="40" y="190" width="420" height="52" rx="8"/>
+        <text class="t mid" x="250" y="212">index.js — public API barrel</text>
+        <text class="s mid" x="250" y="230">re-exports the modules below except level/ (deep imports)</text>
+        <rect class="n" x="490" y="190" width="270" height="52" rx="8"/>
+        <text class="t mid" x="625" y="212">ui/</text>
+        <text class="s mid" x="625" y="230">DOM overlay · imports lil-gui, @fontsource</text>
+        <rect class="n" x="790" y="190" width="130" height="52" rx="8"/>
+        <text class="t mid" x="855" y="212">level/</text>
+        <text class="s mid" x="855" y="230">format · builder</text>
+
+        <!-- engine row 2 -->
+        <rect class="n" x="40" y="280" width="130" height="52" rx="8"/>
+        <text class="t mid" x="105" y="302">core/</text>
+        <text class="s mid" x="105" y="320">Engine · Input · Rig</text>
+        <rect class="n" x="190" y="280" width="130" height="52" rx="8"/>
+        <text class="t mid" x="255" y="302">audio/</text>
+        <text class="s mid" x="255" y="320">AudioSystem</text>
+        <rect class="n" x="340" y="280" width="130" height="52" rx="8"/>
+        <text class="t mid" x="405" y="302">lighting/</text>
+        <text class="s mid" x="405" y="320">Lighting · Pool · Sky</text>
+        <rect class="n" x="490" y="280" width="130" height="52" rx="8"/>
+        <text class="t mid" x="555" y="302">sprite/</text>
+        <text class="s mid" x="555" y="320">Sprite3D · Foliage</text>
+        <rect class="n" x="640" y="280" width="130" height="52" rx="8"/>
+        <text class="t mid" x="705" y="302">fx/</text>
+        <text class="s mid" x="705" y="320">Particles · GodRays</text>
+        <rect class="n" x="790" y="280" width="130" height="52" rx="8"/>
+        <text class="t mid" x="855" y="302">world/</text>
+        <text class="s mid" x="855" y="320">TileMap · Water · props</text>
+
+        <!-- engine row 3 -->
+        <rect class="n" x="340" y="370" width="280" height="46" rx="8"/>
+        <text class="t mid" x="480" y="390">render/</text>
+        <text class="s mid" x="480" y="406">PostFX + shaders (three/addons passes)</text>
+        <rect class="n" x="640" y="370" width="280" height="46" rx="8"/>
+        <text class="t mid" x="780" y="390">pixel/</text>
+        <text class="s mid" x="780" y="406">TextureLibrary · character &amp; prop sprites</text>
+
+        <!-- engine-internal edges (beyond the foundation) -->
+        <path class="ar" d="M855 242 L855 278" marker-end="url(#m1)"/>
+        <text class="s end" x="848" y="264">ObjectBuilder</text>
+        <path class="ar dash" d="M855 332 L855 368" marker-end="url(#m1)"/>
+        <text class="s end" x="848" y="354">PixelCanvas · Palette</text>
+        <path class="ar dash" d="M705 332 L705 368" marker-end="url(#m1)"/>
+        <text class="s end" x="698" y="354">PixelCanvas</text>
+
+        <!-- foundation -->
+        <path class="ar gold" d="M180 431 L180 458" marker-end="url(#m1g)"/>
+        <path class="ar gold" d="M480 431 L480 458" marker-end="url(#m1g)"/>
+        <path class="ar gold" d="M780 431 L780 458" marker-end="url(#m1g)"/>
+        <text class="s" x="490" y="449">every module imports</text>
+        <rect class="ng" x="20" y="460" width="920" height="44" rx="8"/>
+        <text class="t mid" x="480" y="479">Foundation</text>
+        <text class="c mid" x="480" y="496">constants.js · utils/math.js · render/GlobalUniforms.js · pixel/PixelCanvas.js · pixel/Palette.js</text>
+        <path class="ar" d="M480 504 L480 522" marker-end="url(#m1)"/>
+        <rect class="n" x="20" y="524" width="920" height="36" rx="8"/>
+        <text class="c mid" x="480" y="547">three r186 + three/addons · lil-gui (ui/DebugPanel.js) · @fontsource/* (ui/UI.js)</text>
+      </svg>
+    </div>
+    <figcaption>
+      <p>The one rule that matters: <strong>nothing under <code>src/engine/</code> imports the game or the editor</strong> (red, crossed).
+        The editor deliberately reuses five game modules — <code>src/game/config.js</code> (camera, sun path, palette overrides, sprite look),
+        <code>Scenery.js</code>, <code>GroundDetail.js</code>, <code>WeatherLook.js</code> (the weather look) and <code>SnowCover.js</code> — so its preview matches the game. The Node tools import only DOM-free level modules
+        (<code>LevelFormat</code>, <code>ObjectCatalog</code>, <code>utils/math</code>). Inside the engine the only import between modules that bypasses the foundation is
+        <code>level → world</code> (the object builder, solid arrow); the dashed <code>world</code> / <code>fx → pixel</code> arrows reach only
+        pixel's foundation files <code>PixelCanvas</code> and <code>Palette</code> — a <code>TextureLibrary</code> is passed in, never imported.</p>
+      <p class="meta">Details: <a href="OVERVIEW.md#2-layering-and-dependency-rules">OVERVIEW §2</a> ·
+        <a href="modules/README.md">module references</a> · Source: <code>src/engine/index.js</code></p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =============================================================== 2. FRAME LOOP -->
+<section class="fig" id="frame-loop">
+  <header>
+    <h2><span class="n">2</span>The frame loop</h2>
+    <p class="claim">One <code>Engine</code> tick in the game: systems by order, then the late pass, then the shared time, then PostFX — and which step writes which global uniform.</p>
+  </header>
+  <p class="hint">Scroll the figure sideways on a narrow screen.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 960 380" role="img" aria-label="Eight steps per frame: tick and input; LightingSystem update writes uNight, uSunDirection, uSunColor and uFogColor; Game.update moves the player, NPCs and camera rig and writes uCameraYaw, uCameraPosition, uWind and uWindStrength; AudioSystem update; late update re-centres the shadow frustum and updates the UI; uTime is written; the render function runs PostFX; after render the debug stats update and input ends the frame.">
+        <defs>
+          <marker id="m2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+        </defs>
+        <text class="g" x="20" y="32">TICK</text>
+        <text class="g" x="255" y="32">UPDATE PASS — systems in ascending order</text>
+
+        <!-- top row -->
+        <rect class="n" x="20" y="44" width="210" height="104" rx="8"/>
+        <text class="t" x="32" y="68">1 · Tick</text>
+        <text class="s" x="32" y="88">dt = min(realDt, 1/20)</text>
+        <text class="s" x="32" y="104">     × time.timeScale</text>
+        <text class="c" x="32" y="124">input.update()</text>
+
+        <rect class="n" x="255" y="44" width="210" height="104" rx="8"/>
+        <text class="t" x="267" y="68">2 · LightingSystem (−10)</text>
+        <text class="s" x="267" y="86">clock, palette, sun, fog,</text>
+        <text class="s" x="267" y="102">exposure, light intensities</text>
+        <text class="g" x="267" y="122">uNight · uSunDirection</text>
+        <text class="g" x="267" y="138">uSunColor · uFogColor</text>
+
+        <rect class="ng" x="490" y="44" width="210" height="104" rx="8"/>
+        <text class="t" x="502" y="68">3 · Game.update (0)</text>
+        <text class="s" x="502" y="86">player, NPCs, camera rig,</text>
+        <text class="s" x="502" y="102">weather, world, particles, HUD</text>
+        <text class="g" x="502" y="122">uCameraYaw · uCameraPosition</text>
+        <text class="g" x="502" y="138">uWind · uWindStrength</text>
+
+        <rect class="n" x="725" y="44" width="210" height="104" rx="8"/>
+        <text class="t" x="737" y="68">4 · AudioSystem (20)</text>
+        <text class="s" x="737" y="86">schedules music notes and</text>
+        <text class="s" x="737" y="102">ambience on the audio clock</text>
+
+        <path class="ar" d="M230 96 L253 96" marker-end="url(#m2)"/>
+        <path class="ar" d="M465 96 L488 96" marker-end="url(#m2)"/>
+        <path class="ar" d="M700 96 L723 96" marker-end="url(#m2)"/>
+        <path class="ar" d="M830 148 L830 234" marker-end="url(#m2)"/>
+        <text class="s" x="840" y="195">'update' event,</text>
+        <text class="s" x="840" y="209">then late pass</text>
+
+        <!-- bottom row (right to left) -->
+        <rect class="n" x="725" y="236" width="210" height="104" rx="8"/>
+        <text class="t" x="737" y="260">5 · lateUpdate</text>
+        <text class="s" x="737" y="278">LightingSystem.lateUpdate:</text>
+        <text class="s" x="737" y="294">re-centre + snap shadow box</text>
+        <text class="c" x="737" y="316">'lateUpdate' → ui.update()</text>
+
+        <rect class="n" x="490" y="236" width="210" height="104" rx="8"/>
+        <text class="t" x="502" y="260">6 · Shared time</text>
+        <text class="g" x="502" y="280">uTime = time.elapsed</text>
+        <text class="s" x="502" y="298">scaled game time; every</text>
+        <text class="s" x="502" y="314">animated shader reads it</text>
+
+        <rect class="ng" x="255" y="236" width="210" height="104" rx="8"/>
+        <text class="t" x="267" y="260">7 · Render function</text>
+        <text class="c" x="267" y="280">postfx.setFocus(player)</text>
+        <text class="c" x="267" y="298">postfx.render(dt)</text>
+        <text class="s" x="267" y="318">scene → DOF → bloom → grade</text>
+
+        <rect class="n" x="20" y="236" width="210" height="104" rx="8"/>
+        <text class="t" x="32" y="260">8 · afterRender</text>
+        <text class="c" x="32" y="280">DebugStats.update()</text>
+        <text class="c" x="32" y="298">input.endFrame()</text>
+
+        <path class="ar" d="M725 288 L702 288" marker-end="url(#m2)"/>
+        <path class="ar" d="M490 288 L467 288" marker-end="url(#m2)"/>
+        <path class="ar" d="M255 288 L232 288" marker-end="url(#m2)"/>
+        <path class="ar dash" d="M125 236 L125 150" marker-end="url(#m2)"/>
+        <text class="s" x="135" y="190">next rAF tick</text>
+
+        <text class="g" x="255" y="366">RENDER — 'beforeRender' → render fn → 'afterRender'</text>
+      </svg>
+    </div>
+    <figcaption>
+      <p>Order is the contract. <strong>Lighting runs before the game</strong>, so <code>Weather</code> can grey the colours the palette just computed
+        (they are recomputed every frame, nothing accumulates) and the <code>LightPool</code>, running inside <code>Game.update</code>, fades lights the
+        lighting system already set. <strong>The shadow frustum moves in the late pass</strong>, after the camera rig moved, so shadows never lag the
+        view. <code>uTime</code> is written just before rendering. A system that throws is logged once and the loop keeps going.</p>
+      <p>On a <strong>combat level</strong> step 3 also runs the combat system: <code>combat.update</code> (input buffer, player actions, enemies,
+        projectiles, hits — in sub-steps of at most 1/60 s) before <code>player.update</code>, <code>combat.afterPlayer</code> (separation, pickups,
+        lock-on, HUD) after it, and <code>combat.applyLook</code> after <code>weather.update</code>. Its hit-stop and slow motion are combat-local:
+        <code>time.timeScale</code> in step 1 is never touched, so shake, particles and <code>uTime</code> keep running
+        (<a href="../contracts/COMBAT.md#42-frame-order-gameupdate-srcgamegamejs">COMBAT.md §4.2</a>).</p>
+      <p class="meta">Details: <a href="OVERVIEW.md#4-the-frame-loop">OVERVIEW §4</a> · <a href="OVERVIEW.md#5-shared-global-uniforms">§5 uniforms</a> ·
+        Source: <code>src/engine/core/Engine.js</code> (<code>_frame</code>), <code>src/game/Game.js</code> (<code>init</code>, <code>update</code>)</p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =============================================================== 3. RENDER PIPELINE -->
+<section class="fig" id="render-pipeline">
+  <header>
+    <h2><span class="n">3</span>Render pipeline</h2>
+    <p class="claim">The scene renders once into a linear HDR multisampled target; depth of field works at half resolution; tone mapping happens exactly once, in <code>OutputPass</code>.</p>
+  </header>
+  <p class="hint">Scroll the figure sideways on a narrow screen.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 1000 400" role="img" aria-label="Render pipeline: the shadow pass and scene render write the MSAA HDR scene target; at half resolution the DOF prefilter, gather, tent and bokeh sprite passes build blurred layers; the full-resolution composite mixes them over the sharp scene; bloom, OutputPass with ACES tone mapping and sRGB, and the grade follow before the canvas. With PostFX disabled the scene is drawn straight to the canvas.">
+        <defs>
+          <marker id="m3" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="m3g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-gold"/></marker>
+        </defs>
+        <!-- lanes -->
+        <rect class="lane" x="10" y="22" width="980" height="96" rx="8"/>
+        <text class="g" x="20" y="38">FULL RES · linear HDR (HalfFloat)</text>
+        <rect class="lane" x="10" y="150" width="980" height="96" rx="8"/>
+        <text class="g" x="20" y="166">½ RES · dofScale 0.5</text>
+        <rect class="lane" x="10" y="278" width="980" height="100" rx="8"/>
+        <text class="g" x="20" y="294">FULL RES → DISPLAY</text>
+
+        <!-- row 1 -->
+        <rect class="n" x="20" y="52" width="124" height="52" rx="8"/>
+        <text class="t mid" x="82" y="74">shadow pass</text>
+        <text class="s mid" x="82" y="92">sun · 2048² · PCF</text>
+        <rect class="n" x="170" y="52" width="124" height="52" rx="8"/>
+        <text class="t mid" x="232" y="74">scene render</text>
+        <text class="s mid" x="232" y="92">opaque → sky → fx</text>
+        <rect class="ng" x="320" y="52" width="124" height="52" rx="8"/>
+        <text class="t mid" x="382" y="74">sceneRT</text>
+        <text class="s mid" x="382" y="92">MSAA + DepthTexture</text>
+        <path class="ar" d="M144 78 L168 78" marker-end="url(#m3)"/>
+        <path class="ar" d="M294 78 L318 78" marker-end="url(#m3)"/>
+        <text class="g end" x="224" y="115">timer: scene</text>
+
+        <!-- sharp scene path -->
+        <path class="ar gold" d="M444 78 L960 78 L960 330 L896 330" marker-end="url(#m3g)"/>
+        <text class="s mid" x="700" y="70">sharp scene + depth (full res) — in-focus pixels stay exact</text>
+
+        <!-- row 2 -->
+        <path class="ar" d="M382 104 L382 176" marker-end="url(#m3)"/>
+        <text class="s" x="390" y="142">colour + depth</text>
+        <path class="ar dash" d="M232 104 L232 302" marker-end="url(#m3)"/>
+        <text class="s" x="240" y="142">settings.enabled = false</text>
+
+        <rect class="n" x="320" y="178" width="124" height="52" rx="8"/>
+        <text class="t mid" x="382" y="200">prefilter (MRT)</text>
+        <text class="s mid" x="382" y="218">CoC · highlights</text>
+        <rect class="n" x="470" y="178" width="124" height="52" rx="8"/>
+        <text class="t mid" x="532" y="200">gather</text>
+        <text class="s mid" x="532" y="218">48 / 64 / 96 taps</text>
+        <rect class="n" x="620" y="178" width="124" height="52" rx="8"/>
+        <text class="t mid" x="682" y="200">tent 3 × 3</text>
+        <text class="s mid" x="682" y="218">hides sampling</text>
+        <rect class="n" x="770" y="178" width="124" height="52" rx="8"/>
+        <text class="t mid" x="832" y="200">bokeh sprites</text>
+        <text class="s mid" x="832" y="218">highlight discs</text>
+        <path class="ar" d="M444 204 L468 204" marker-end="url(#m3)"/>
+        <path class="ar" d="M594 204 L618 204" marker-end="url(#m3)"/>
+        <path class="ar" d="M744 204 L768 204" marker-end="url(#m3)"/>
+        <text class="g mid" x="607" y="172">timer: dof</text>
+
+        <!-- row 3 (right to left) -->
+        <path class="ar" d="M832 230 L832 302" marker-end="url(#m3)"/>
+        <text class="s" x="840" y="268">blurred layers</text>
+        <rect class="ng" x="770" y="304" width="124" height="52" rx="8"/>
+        <text class="t mid" x="832" y="326">composite</text>
+        <text class="s mid" x="832" y="344">by CoC → hdrRT</text>
+        <rect class="n" x="620" y="304" width="124" height="52" rx="8"/>
+        <text class="t mid" x="682" y="326">bloom</text>
+        <text class="s mid" x="682" y="344">soft knee · 5 mips</text>
+        <rect class="n" x="470" y="304" width="124" height="52" rx="8"/>
+        <text class="t mid" x="532" y="326">OutputPass</text>
+        <text class="s mid" x="532" y="344">ACES tone map + sRGB</text>
+        <rect class="n" x="320" y="304" width="124" height="52" rx="8"/>
+        <text class="t mid" x="382" y="326">grade</text>
+        <text class="s mid" x="382" y="344">display-space look</text>
+        <rect class="ng" x="170" y="304" width="124" height="52" rx="8"/>
+        <text class="t mid" x="232" y="326">canvas</text>
+        <text class="s mid" x="232" y="344">+ DOM UI overlay</text>
+        <path class="ar" d="M770 330 L746 330" marker-end="url(#m3)"/>
+        <path class="ar" d="M620 330 L596 330" marker-end="url(#m3)"/>
+        <path class="ar" d="M470 330 L446 330" marker-end="url(#m3)"/>
+        <path class="ar" d="M320 330 L296 330" marker-end="url(#m3)"/>
+        <text class="g mid" x="682" y="298">timer: bloom</text>
+        <text class="g mid" x="457" y="298">timer: output</text>
+        <text class="s" x="330" y="372">exposure, white balance, contrast, saturation, split toning, vignette, grain, dither</text>
+      </svg>
+    </div>
+    <figcaption>
+      <p>The gold path is why the diorama stays crisp: the composite mixes the blurred half-resolution layers over the <em>untouched</em> full-resolution
+        scene by each pixel's circle of confusion, so the focus band around the player is pixel-exact while foreground and background dissolve into
+        bokeh. Highlights too bright for the gather become anti-aliased disc sprites. Bloom only takes energy above its threshold (1.05 in the game),
+        <code>OutputPass</code> applies ACES with <code>LightingSystem</code>'s exposure and encodes sRGB, and the grade works in display space.
+        The dashed path is the fallback with PostFX off: the renderer tone-maps straight to the canvas. <code>timer:</code> labels are the stage names
+        of <code>postfx.timings</code>.</p>
+      <p class="meta">Details: <a href="RENDER_PIPELINE.md#8-the-postfx-chain">RENDER_PIPELINE §8</a> ·
+        Source: <code>src/engine/render/PostFX.js</code>, <code>src/engine/render/shaders/</code></p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =============================================================== 4. LEVEL PIPELINE -->
+<section class="fig" id="level-pipeline">
+  <header>
+    <h2><span class="n">4</span>Level build pipeline</h2>
+    <p class="claim">A level is plain JSON: it is normalised, then <code>World.build</code> turns it into a scene in nine steps, wiring every built object's descriptors into the systems that own them.</p>
+  </header>
+  <p class="hint">Scroll the figure sideways on a narrow screen.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 1000 500" role="img" aria-label="Level loading and building: a level from the project folder, browser storage or the Emberfall default is parsed, normalised and validated, then Game creates World, whose build runs nine steps from painting textures to culling. Each prop object goes through LevelObjectBuilder.build to a BuiltObject whose colliders, walk rectangles, emissives, lights, emitters, update function, interactables and prop result are wired into TileMap, LightingSystem, LightPool, Particles, the world updaters and the static mesh merge. NPCs, critters, emitters and regions are not built as props.">
+        <defs>
+          <marker id="m4" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="m4g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-gold"/></marker>
+        </defs>
+        <text class="g" x="20" y="20">LOAD (src/main.js)</text>
+        <text class="g" x="270" y="20">World.build — progress label · fraction</text>
+        <text class="g" x="640" y="20">WIRING (World._build)</text>
+
+        <!-- sources -->
+        <rect class="n" x="20" y="30" width="200" height="48" rx="8"/>
+        <text class="c" x="32" y="50">?level=&lt;name&gt;</text>
+        <text class="s" x="32" y="68">fetch levels/&lt;name&gt;.json</text>
+        <rect class="n" x="20" y="90" width="200" height="48" rx="8"/>
+        <text class="c" x="32" y="110">?level=local:&lt;slot&gt;</text>
+        <text class="s" x="32" y="128">localStorage luminati.level.&lt;slot&gt;</text>
+        <rect class="n" x="20" y="150" width="200" height="48" rx="8"/>
+        <text class="c" x="32" y="170">(no query)</text>
+        <text class="s" x="32" y="188">levels/emberfall.json</text>
+        <path class="ar" d="M220 54 L238 54 M220 114 L238 114 M220 174 L238 174 M238 54 L238 258 L222 258" marker-end="url(#m4)"/>
+
+        <rect class="ng" x="20" y="230" width="200" height="56" rx="8"/>
+        <text class="t" x="32" y="252">normalizeLevel</text>
+        <text class="s" x="32" y="272">defaults · fixes · warnings</text>
+        <path class="ar" d="M120 286 L120 304" marker-end="url(#m4)"/>
+        <rect class="n" x="20" y="306" width="200" height="48" rx="8"/>
+        <text class="t" x="32" y="327">validateLevel</text>
+        <text class="s" x="32" y="344">console warnings only</text>
+        <path class="ar" d="M120 354 L120 372" marker-end="url(#m4)"/>
+        <rect class="ng" x="20" y="374" width="200" height="56" rx="8"/>
+        <text class="t" x="32" y="396">new Game(level).init()</text>
+        <text class="s" x="32" y="416">→ new World(…).build()</text>
+        <path class="ar" d="M220 402 L248 402 L248 51 L268 51" marker-end="url(#m4)"/>
+
+        <!-- build steps -->
+        <g>
+          <rect class="n" x="270" y="30" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="51" r="11"/><text class="numt" x="288" y="55">1</text>
+          <text class="t" x="308" y="48">Painting textures</text><text class="s" x="308" y="64">TextureLibrary.preload()</text>
+          <text class="g end" x="590" y="48">0.08</text>
+
+          <rect class="n" x="270" y="78" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="99" r="11"/><text class="numt" x="288" y="103">2</text>
+          <text class="t" x="308" y="96">Raising the land</text><text class="s" x="308" y="112">TileMap + Water (deferShore) · chunk merge*</text>
+          <text class="g end" x="590" y="96">0.18</text>
+
+          <rect class="ng" x="270" y="126" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="147" r="11"/><text class="numt" x="288" y="151">3</text>
+          <text class="t" x="308" y="144">Building the village</text><text class="s" x="308" y="160">every prop → build → wire (sliced, 12 ms)</text>
+          <text class="g end" x="590" y="144">0.30</text>
+
+          <rect class="n" x="270" y="174" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="195" r="11"/><text class="numt" x="288" y="199">4</text>
+          <text class="t" x="308" y="192">Planting the forest</text><text class="s" x="308" y="208">trees · border · outer world · shore worker*</text>
+          <text class="g end" x="590" y="192">0.45</text>
+
+          <rect class="n" x="270" y="222" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="243" r="11"/><text class="numt" x="288" y="247">5</text>
+          <text class="t" x="308" y="240">Letting the water run</text><text class="s" x="308" y="256">waterfalls · shore bake (small levels)</text>
+          <text class="g end" x="590" y="240">0.58</text>
+
+          <rect class="n" x="270" y="270" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="291" r="11"/><text class="numt" x="288" y="295">6</text>
+          <text class="t" x="308" y="288">Growing the meadow</text><text class="s" x="308" y="304">instanced ground foliage fields</text>
+          <text class="g end" x="590" y="288">0.68</text>
+
+          <rect class="n" x="270" y="318" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="339" r="11"/><text class="numt" x="288" y="343">7</text>
+          <text class="t" x="308" y="336">Lighting the lanterns</text><text class="s" x="308" y="352">LightPool (≤ 12) · particle areas · god rays</text>
+          <text class="g end" x="590" y="336">0.80</text>
+
+          <rect class="n" x="270" y="366" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="387" r="11"/><text class="numt" x="288" y="391">8</text>
+          <text class="t" x="308" y="384">Merging meshes</text><text class="s" x="308" y="400">mergeStatic (+ shadow proxies*) · await shore*</text>
+          <text class="g end" x="590" y="384">0.88</text>
+
+          <rect class="n" x="270" y="414" width="330" height="42" rx="7"/>
+          <circle class="num" cx="288" cy="435" r="11"/><text class="numt" x="288" y="439">9</text>
+          <text class="t" x="308" y="432">Snow cover &amp; culling</text><text class="s" x="308" y="448">chain snow patch · cullByBox on batches*</text>
+          <text class="g end" x="590" y="432">—</text>
+        </g>
+        <text class="s" x="270" y="478">* big levels only (either side &gt; 64 tiles) — World.BIG_LEVEL_BATCHING</text>
+
+        <!-- builder -->
+        <path class="ar gold" d="M600 147 L638 140" marker-end="url(#m4g)"/>
+        <rect class="n" x="640" y="110" width="150" height="56" rx="8"/>
+        <text class="t mid" x="715" y="132">LevelObjectBuilder</text>
+        <text class="c mid" x="715" y="152">.build(obj, tileMap)</text>
+        <path class="ar" d="M715 166 L715 198" marker-end="url(#m4)"/>
+        <rect class="ng" x="640" y="200" width="150" height="56" rx="8"/>
+        <text class="t mid" x="715" y="222">BuiltObject</text>
+        <text class="s mid" x="715" y="242">object + descriptor lists</text>
+
+        <rect class="nd" x="640" y="290" width="150" height="92" rx="8"/>
+        <text class="c" x="652" y="310">build() → null for</text>
+        <text class="s" x="652" y="328">npc, critters → Game</text>
+        <text class="s" x="652" y="344">emitter → step 7 areas</text>
+        <text class="s" x="652" y="360">region → HUD, banners,</text>
+        <text class="s" x="652" y="374">world map</text>
+
+        <!-- targets -->
+        <g>
+          <path class="ar" d="M790 228 L828 50" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 102" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 154" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 206" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 258" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 310" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 362" marker-end="url(#m4)"/>
+          <path class="ar" d="M790 228 L828 414" marker-end="url(#m4)"/>
+
+          <rect class="n" x="830" y="30" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="46">colliders</text><text class="s" x="840" y="62">→ TileMap.addCollider</text>
+          <rect class="n" x="830" y="82" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="98">walkRects</text><text class="s" x="840" y="114">→ addWalkSurface</text>
+          <rect class="n" x="830" y="134" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="150">emissives</text><text class="s" x="840" y="166">→ registerEmissive</text>
+          <rect class="ng" x="830" y="186" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="202">lights (+priority)</text><text class="s" x="840" y="218">→ LightPool (≤ 12)</text>
+          <rect class="n" x="830" y="238" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="254">emitters</text><text class="s" x="840" y="270">→ createEmitter</text>
+          <rect class="n" x="830" y="290" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="306">update</text><text class="s" x="840" y="322">→ World.updaters</text>
+          <rect class="n" x="830" y="342" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="358">interact · text</text><text class="s" x="840" y="374">→ interactables</text>
+          <rect class="n" x="830" y="394" width="150" height="40" rx="7"/>
+          <text class="g" x="840" y="410">propResult</text><text class="s" x="840" y="426">→ mergeStatic / Trees</text>
+        </g>
+      </svg>
+    </div>
+    <figcaption>
+      <p>Loading never produces a blank page: an unknown tile char becomes grass, a duplicate id is renamed, and a missing file is reported on the
+        loading screen. <code>World.build</code> yields to the browser between steps (the numbers are the progress-bar fractions) and records CPU
+        milliseconds per step in <code>world.stats.phases</code> (<code>Game.init</code> scales the fractions by 0.9 for the loading bar). Each of
+        the 20 prop-kind object types is built by one factory call (<code>PropFactory</code>; waterfalls through <code>createWaterfall</code>,
+        a <code>light</code> object only yields a descriptor) and its descriptors are handed to their owners — most importantly
+        <strong>lights become descriptors, not lights</strong>: the <code>LightPool</code> creates one light per descriptor up to 12, and with
+        more it decides which descriptors the 12 shared lights draw.</p>
+      <p class="meta">Details: <a href="OVERVIEW.md#6-the-level-pipeline">OVERVIEW §6</a> · <a href="../specs/LEVEL_FORMAT.md">LEVEL_FORMAT</a> ·
+        Source: <code>src/main.js</code>, <code>src/engine/level/</code>, <code>src/game/World.js</code></p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =============================================================== 5. EDITOR FLOW -->
+<section class="fig" id="editor-flow">
+  <header>
+    <h2><span class="n">5</span>Editor data flow</h2>
+    <p class="claim">Every edit goes through <code>EditorState</code> in a transaction; the views only translate input and redraw from change events.</p>
+  </header>
+  <p class="hint">Scroll the figure sideways on a narrow screen.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 1000 470" role="img" aria-label="Editor data flow: the 2D map and the 3D viewport turn pointer input into PointerEv events for the active tool; the tool and the panels call EditorState methods inside a transaction; EditorState records undo steps and emits change, selection, tool, view, hover, preview, history and dirty events to the same views, the panels and EditorApp; saving writes the serialised level to the project folder, browser storage, a file, or the play-test slot.">
+        <defs>
+          <marker id="m5" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+          <marker id="m5g" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk-gold"/></marker>
+        </defs>
+        <text class="g" x="20" y="28">INPUT</text>
+        <text class="g" x="760" y="28">LISTENERS (the same objects)</text>
+
+        <!-- inputs -->
+        <rect class="n" x="20" y="40" width="190" height="50" rx="8"/>
+        <text class="t" x="32" y="61">Map2DView</text>
+        <text class="s" x="32" y="79">2D canvas · textured map</text>
+        <rect class="n" x="20" y="110" width="190" height="50" rx="8"/>
+        <text class="t" x="32" y="131">Viewport3D</text>
+        <text class="s" x="32" y="149">real engine · terrain picking</text>
+        <rect class="n" x="20" y="190" width="190" height="70" rx="8"/>
+        <text class="t" x="32" y="211">Panels &amp; keys</text>
+        <text class="s" x="32" y="229">Inspector · Outliner</text>
+        <text class="s" x="32" y="245">ToolOptions · menus · shortcuts</text>
+
+        <!-- tool -->
+        <text class="c" x="262" y="62">PointerEv {i, j, x, z…}</text>
+        <path class="ar" d="M210 65 L258 96" marker-end="url(#m5)"/>
+        <path class="ar" d="M210 135 L258 122" marker-end="url(#m5)"/>
+        <rect class="ng" x="260" y="70" width="170" height="76" rx="8"/>
+        <text class="t" x="272" y="92">active tool</text>
+        <text class="c" x="272" y="112">pointerDown/Move/Up</text>
+        <text class="c" x="272" y="130">preview(state)</text>
+
+        <path class="ar gold" d="M430 108 L478 108" marker-end="url(#m5g)"/>
+        <text class="s mid" x="454" y="100">edits</text>
+        <path class="ar" d="M210 225 L478 225" marker-end="url(#m5)"/>
+        <text class="s mid" x="344" y="217">updateObject · setLevelProps · setTool · setView</text>
+
+        <!-- state -->
+        <rect class="ng" x="480" y="40" width="230" height="300" rx="10"/>
+        <text class="t" x="496" y="66">EditorState</text>
+        <text class="s" x="496" y="86">level — the document</text>
+        <text class="s" x="496" y="102">selection · toolId · toolOptions</text>
+        <text class="s" x="496" y="118">view · hover · fileRef · dirty</text>
+        <rect class="n" x="496" y="136" width="198" height="72" rx="7"/>
+        <text class="c" x="506" y="156">begin(label) … commit()</text>
+        <text class="s" x="506" y="174">one stroke or drag = one step</text>
+        <text class="s" x="506" y="190">cancel() restores the snapshot</text>
+        <rect class="n" x="496" y="222" width="198" height="72" rx="7"/>
+        <text class="c" x="506" y="242">undo / redo stacks</text>
+        <text class="s" x="506" y="260">JSON before / after · max 200</text>
+        <text class="s" x="506" y="276">revision vs saved → dirty</text>
+        <text class="s" x="496" y="322">never mutated by views directly</text>
+
+        <!-- events bus -->
+        <path class="ar gold" d="M710 170 L736 170" />
+        <path class="ar gold" d="M736 65 L736 273"/>
+        <path class="ar gold" d="M736 65 L758 65" marker-end="url(#m5g)"/>
+        <path class="ar gold" d="M736 137 L758 137" marker-end="url(#m5g)"/>
+        <path class="ar gold" d="M736 209 L758 209" marker-end="url(#m5g)"/>
+        <path class="ar gold" d="M736 273 L758 273" marker-end="url(#m5g)"/>
+
+        <rect class="n" x="760" y="40" width="220" height="50" rx="8"/>
+        <text class="t" x="772" y="61">Map2DView</text>
+        <text class="s" x="772" y="79">repaints the changed tiles</text>
+        <rect class="n" x="760" y="104" width="220" height="66" rx="8"/>
+        <text class="t" x="772" y="125">Viewport3D</text>
+        <text class="s" x="772" y="143">dirty flags → _syncAll (once/frame)</text>
+        <text class="s" x="772" y="159">→ time-sliced mesh job queue</text>
+        <rect class="n" x="760" y="184" width="220" height="50" rx="8"/>
+        <text class="t" x="772" y="205">Inspector · Outliner</text>
+        <text class="s" x="772" y="223">StatusBar · ToolOptions</text>
+        <rect class="n" x="760" y="248" width="220" height="50" rx="8"/>
+        <text class="t" x="772" y="269">EditorApp</text>
+        <text class="s" x="772" y="287">title · dirty dot · undo buttons</text>
+
+        <text class="g" x="760" y="316">'change' {source, terrain, rect,</text>
+        <text class="g" x="760" y="330">          objects, ids, meta}</text>
+        <text class="s" x="760" y="346">also 'selection' 'tool' 'toolOptions'</text>
+        <text class="s" x="760" y="360">'view' 'hover' 'preview' (from tools)</text>
+        <text class="s" x="760" y="374">'history' 'dirty'</text>
+
+        <!-- storage -->
+        <path class="ar" d="M595 340 L595 388"/>
+        <path class="ar" d="M130 388 L860 388"/>
+        <path class="ar" d="M130 388 L130 402" marker-end="url(#m5)"/>
+        <path class="ar" d="M370 388 L370 402" marker-end="url(#m5)"/>
+        <path class="ar" d="M610 388 L610 402" marker-end="url(#m5)"/>
+        <path class="ar" d="M860 388 L860 402" marker-end="url(#m5)"/>
+        <text class="s end" x="587" y="378">save · autosave (20 s) · play-test — serializeLevel, byte-stable</text>
+        <rect class="n" x="20" y="404" width="220" height="50" rx="8"/>
+        <text class="t" x="32" y="425">Project folder (dev)</text>
+        <text class="c" x="32" y="443">PUT /api/levels/&lt;name&gt;</text>
+        <rect class="n" x="260" y="404" width="220" height="50" rx="8"/>
+        <text class="t" x="272" y="425">Browser storage</text>
+        <text class="c" x="272" y="443">luminati.level.&lt;slot&gt;</text>
+        <rect class="n" x="500" y="404" width="220" height="50" rx="8"/>
+        <text class="t" x="512" y="425">File</text>
+        <text class="s" x="512" y="443">download .json · open / drag &amp; drop</text>
+        <rect class="ng" x="740" y="404" width="240" height="50" rx="8"/>
+        <text class="t" x="752" y="425">Play-test (F5)</text>
+        <text class="c" x="752" y="443">local:__playtest__ → game.html</text>
+      </svg>
+    </div>
+    <figcaption>
+      <p>Unidirectional flow: the 2D map and the 3D view appear twice because they play two roles — they translate pointer input into a
+        view-agnostic <code>PointerEv</code> for the active tool, and they redraw when <code>EditorState</code> tells them what changed. Change events
+        carry the changed tile rectangle and object ids, so the 3D preview updates the level <em>data</em> at once and lets the <em>meshes</em> follow
+        in time slices; an undo step replays the same information. A transaction that is still open (a stroke in progress) also throttles the
+        shadow map and the view that is not being drawn in.</p>
+      <p class="meta">Details: <a href="OVERVIEW.md#7-editor-data-flow">OVERVIEW §7</a> · <a href="EDITOR.md">EDITOR.md</a> ·
+        <a href="PERFORMANCE.md#310-editor-job-queue-and-chunk-batching">job queue</a> · Source: <code>src/editor/EditorState.js</code>,
+        <code>src/editor/viewport3d/Viewport3D.js</code>, <code>src/editor/map2d/Map2DView.js</code></p>
+    </figcaption>
+  </figure>
+</section>
+
+<!-- =============================================================== 6. LIGHT POOL -->
+<section class="fig" id="light-pool">
+  <header>
+    <h2><span class="n">6</span>LightPool assignment</h2>
+    <p class="claim">Twelve real point lights serve every lantern of a big level: the ones near the player and in view get them, and a light only ever moves while it is dark.</p>
+  </header>
+  <p class="hint">Scroll the figure sideways on a narrow screen.</p>
+  <figure>
+    <div class="scroll">
+      <svg class="dg" viewBox="0 0 1000 440" role="img" aria-label="Top-down view of the camera frustum over a town: twelve lanterns nearest the player focus hold a light, other lanterns in view are ranked lower and stay unlit, lanterns outside the view are not scored, and one light is fading out to move. Every 0.2 seconds the pool tests each light's sphere against the frustum, scores candidates by distance, priority and daylight, keeps the twelve best and hands a light over by fading it out over 0.35 seconds, moving it while dark and fading it in over 0.35 seconds.">
+        <defs>
+          <marker id="m6" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" class="mk"/></marker>
+        </defs>
+
+        <!-- map panel -->
+        <rect class="lane" x="20" y="20" width="480" height="400" rx="10"/>
+        <g>
+          <line class="gridl" x1="20" y1="100" x2="500" y2="100"/><line class="gridl" x1="20" y1="180" x2="500" y2="180"/>
+          <line class="gridl" x1="20" y1="260" x2="500" y2="260"/><line class="gridl" x1="20" y1="340" x2="500" y2="340"/>
+          <line class="gridl" x1="100" y1="20" x2="100" y2="420"/><line class="gridl" x1="180" y1="20" x2="180" y2="420"/>
+          <line class="gridl" x1="260" y1="20" x2="260" y2="420"/><line class="gridl" x1="340" y1="20" x2="340" y2="420"/>
+          <line class="gridl" x1="420" y1="20" x2="420" y2="420"/>
+        </g>
+        <text class="g" x="32" y="40">TOP-DOWN · north (−Z) up</text>
+        <polygon class="frus" points="60,70 480,70 320,380 180,380"/>
+        <polygon points="250,396 240,414 260,414" fill="var(--ink2)"/>
+        <text class="s" x="266" y="412">camera (yaw 0, looking −Z)</text>
+        <text class="s" x="330" y="64">camera frustum on the ground</text>
+
+        <!-- out of view: never scored -->
+        <circle class="off" cx="40" cy="250" r="5"/>
+        <circle class="off" cx="40" cy="120" r="5"/>
+        <circle class="off" cx="468" cy="212" r="5"/>
+        <circle class="off" cx="478" cy="304" r="5"/>
+        <circle class="off" cx="440" cy="380" r="5"/>
+
+        <!-- candidate just outside: its sphere touches the view -->
+        <circle class="range" cx="132" cy="300" r="34"/>
+        <circle class="cand" cx="132" cy="300" r="5.5"/>
+
+        <!-- in view but ranked below the 12 -->
+        <circle class="cand" cx="120" cy="110" r="5.5"/>
+        <circle class="cand" cx="400" cy="110" r="5.5"/>
+        <circle class="cand" cx="250" cy="92" r="5.5"/>
+        <circle class="cand" cx="412" cy="170" r="5.5"/>
+        <circle class="cand" cx="112" cy="152" r="5.5"/>
+
+        <!-- fading (handing over) -->
+        <circle class="cand" cx="366" cy="132" r="6"/>
+        <path d="M366 126 A6 6 0 0 1 366 138 Z" class="lit"/>
+        <text class="s" x="376" y="146">fading out</text>
+
+        <!-- the 12 lit -->
+        <g>
+          <circle class="glow" cx="215" cy="210" r="12"/><circle class="lit" cx="215" cy="210" r="5.5"/>
+          <circle class="glow" cx="292" cy="214" r="12"/><circle class="lit" cx="292" cy="214" r="5.5"/>
+          <circle class="glow" cx="250" cy="290" r="12"/><circle class="lit" cx="250" cy="290" r="5.5"/>
+          <circle class="glow" cx="198" cy="262" r="12"/><circle class="lit" cx="198" cy="262" r="5.5"/>
+          <circle class="glow" cx="312" cy="268" r="12"/><circle class="lit" cx="312" cy="268" r="5.5"/>
+          <circle class="glow" cx="168" cy="222" r="12"/><circle class="lit" cx="168" cy="222" r="5.5"/>
+          <circle class="glow" cx="334" cy="196" r="12"/><circle class="lit" cx="334" cy="196" r="5.5"/>
+          <circle class="glow" cx="242" cy="168" r="12"/><circle class="lit" cx="242" cy="168" r="5.5"/>
+          <circle class="glow" cx="284" cy="160" r="12"/><circle class="lit" cx="284" cy="160" r="5.5"/>
+          <circle class="glow" cx="212" cy="320" r="12"/><circle class="lit" cx="212" cy="320" r="5.5"/>
+          <circle class="glow" cx="300" cy="330" r="12"/><circle class="lit" cx="300" cy="330" r="5.5"/>
+          <circle class="glow" cx="152" cy="180" r="12"/><circle class="lit" cx="152" cy="180" r="5.5"/>
+        </g>
+
+        <!-- focus -->
+        <path d="M250 228 L253 237 L262 237 L255 243 L258 252 L250 246 L242 252 L245 243 L238 237 L247 237 Z" fill="var(--ink)"/>
+        <text class="t" x="264" y="246">focus</text>
+
+        <!-- legend -->
+        <circle class="glow" cx="40" cy="344" r="10"/><circle class="lit" cx="40" cy="344" r="5"/>
+        <text class="s" x="56" y="348">holds a light (12)</text>
+        <circle class="cand" cx="40" cy="364" r="5"/>
+        <text class="s" x="56" y="368">in view, ranked 13+</text>
+        <circle class="off" cx="40" cy="384" r="5"/>
+        <text class="s" x="56" y="388">outside: not scored</text>
+        <circle class="range" cx="40" cy="404" r="6"/>
+        <text class="s" x="56" y="408">range + margin 4</text>
+
+        <!-- algorithm -->
+        <text class="g" x="530" y="40">EVERY 0.2 s (interval) — pooled when descriptors &gt; 12</text>
+        <rect class="n" x="530" y="52" width="450" height="50" rx="8"/>
+        <circle class="num" cx="548" cy="77" r="11"/><text class="numt" x="548" y="81">1</text>
+        <text class="t" x="568" y="73">View test</text>
+        <text class="s" x="568" y="91">sphere(position, distance + margin 4) intersects the camera frustum</text>
+        <path class="ar" d="M548 102 L548 114" marker-end="url(#m6)"/>
+
+        <rect class="ng" x="530" y="116" width="450" height="50" rx="8"/>
+        <circle class="num" cx="548" cy="141" r="11"/><text class="numt" x="548" y="145">2</text>
+        <text class="t" x="568" y="137">Score (lower is better)</text>
+        <text class="g" x="568" y="155">|p − focus| + priority×1.5 + (1 − bright)×10 − (lit ? 2 : 0)</text>
+        <path class="ar" d="M548 166 L548 178" marker-end="url(#m6)"/>
+
+        <rect class="n" x="530" y="180" width="450" height="58" rx="8"/>
+        <circle class="num" cx="548" cy="205" r="11"/><text class="numt" x="548" y="209">3</text>
+        <text class="t" x="568" y="201">Keep the 12 best</text>
+        <text class="s" x="568" y="218">owners still wanted keep their slot; free slots, darkest first,</text>
+        <text class="s" x="568" y="232">take the newcomers (priority: campfire 0 · torch 1 · lamppost 2 · door 3)</text>
+        <path class="ar" d="M548 238 L548 250" marker-end="url(#m6)"/>
+
+        <rect class="n" x="530" y="252" width="450" height="50" rx="8"/>
+        <circle class="num" cx="548" cy="277" r="11"/><text class="numt" x="548" y="281">4</text>
+        <text class="t" x="568" y="273">Hand-over — never moves a lit light</text>
+        <text class="s" x="568" y="291">fade out 0.35 s → retarget while dark → fade in 0.35 s (smoothstep)</text>
+
+        <!-- slot intensity timeline -->
+        <path class="axis" d="M560 406 L975 406 M560 406 L560 316" marker-end="url(#m6)"/>
+        <text class="s" x="566" y="324">slot intensity</text>
+        <text class="s end" x="554" y="336">1</text>
+        <text class="s end" x="554" y="410">0</text>
+        <path class="curve" d="M560 332 L660 332 C700 332 700 406 740 406 C780 406 780 332 820 332 L965 332"/>
+        <line x1="740" y1="318" x2="740" y2="412" stroke="var(--warn)" stroke-width="1.2" stroke-dasharray="3 3"/>
+        <text class="w mid" x="740" y="314">retarget (dark)</text>
+        <text class="s mid" x="610" y="348">lantern A</text>
+        <text class="s mid" x="890" y="348">lantern B</text>
+        <text class="g mid" x="700" y="424">0.35 s</text>
+        <text class="g mid" x="780" y="424">0.35 s</text>
+        <text class="s end" x="975" y="424">time →</text>
+      </svg>
+    </div>
+    <figcaption>
+      <p>Changing the number of point lights recompiles every lit shader, so the count is fixed before the first frame. With 12 or fewer
+        light descriptors each gets a permanent light (small levels look exactly as hand-wired: sample-hamlet has 6, Emberfall 12); with more
+        (Starfall Vale has 95) exactly 12 are created and the pool re-ranks them every 0.2 s — the case drawn here. A lantern just outside the view still counts when its light sphere reaches into it, so lights come on before they scroll
+        in; lanterns that are dark by day (<code>nightOnly</code>) yield to torches and campfires that burn; the 2-point hysteresis stops a light
+        from flickering between two owners. A teleport calls <code>snap()</code>: re-rank at once, no fades.</p>
+      <p class="meta">Details: <a href="PERFORMANCE.md#35-lightpool">PERFORMANCE §3.5</a> ·
+        <a href="RENDER_PIPELINE.md#63-point-lights-the-pool-and-emissives">RENDER_PIPELINE §6.3</a> ·
+        Source: <code>src/engine/lighting/LightPool.js</code>, <code>src/game/World.js</code> (<code>_wireLights</code>),
+        <code>src/engine/level/ObjectBuilder.js</code> (<code>LIGHT_PRIORITY</code>)</p>
+    </figcaption>
+  </figure>
+</section>
+
+<footer class="bottom">
+  <div class="ornament"><i></i></div>
+  <p>Part of the Luminati documentation · <a href="../README.md">docs index</a> · <a href="OVERVIEW.md">architecture overview</a> ·
+    <a href="../index.html">docs home</a></p>
+</footer>
+
+</div>
+</body>
+</html>

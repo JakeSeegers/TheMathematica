@@ -1,0 +1,533 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "campaigns/ferrymans-lantern",
+  "extends": [],
+  "terms": {
+    "Cellar Key": "地窖钥匙",
+    "Elder Wren": "雷恩长老",
+    "Ferry Chart": "渡船水路图",
+    "Ferry Lantern": "渡船提灯",
+    "Ferryman's Ledge": "摆渡人岩台",
+    "Festival Bun": "节庆面包",
+    "Gwil the Peddler": "货郎格威尔",
+    "Hollis": "霍利斯",
+    "Ilse": "伊尔莎",
+    "Mill Hill": "磨坊丘",
+    "Mill Road": "磨坊路",
+    "Millbrook": "磨溪村",
+    "Millbrook Green": "磨溪村绿地",
+    "Miller Odo": "磨坊主奥多",
+    "Notice": "告示",
+    "Oak Plank": "橡木板",
+    "Pip": "皮普",
+    "Quarry Gate": "采石场之门",
+    "Tamsin": "塔姆辛",
+    "The East Road": "东大路",
+    "The Ferryman's Lantern": "摆渡人的提灯",
+    "The Mill Cellar": "磨坊地窖",
+    "The Missing Ferryman": "失踪的摆渡人",
+    "The Old Quarry": "旧采石场",
+    "Watchman Bran": "哨兵布兰",
+    "Wolf Ford": "狼渡"
+  },
+  "units": {
+    "0D09B575C03BC8F2C4E27A1C0534FDD1": {
+      "source": "The ford bridge? The spring flood took the middle span clean away.",
+      "target": "渡口那座桥？春天的洪水把中间那段桥身整个冲走了。"
+    },
+    "0E80B7710E105A2CB467FEAB42E343FB": {
+      "source": "Miller Odo keeps the key on his belt.",
+      "target": "钥匙挂在磨坊主奥多的腰带上。"
+    },
+    "0F9CDF58B2ECDF1C69A3C6ECB7EEC559": {
+      "source": "The bridge is back! I'll be over it by supper.",
+      "target": "桥修好啦！晚饭前我就能过去了。"
+    },
+    "1AA3265E31292C56723013F58DE52682": {
+      "source": "Ilse's lantern. It has not gone out since the flood.",
+      "target": "伊尔莎的提灯。自那场洪水以来，它从未熄灭。"
+    },
+    "1CC50FEBC77F31136B93B31AD8759B89": {
+      "source": "Mind the flour.",
+      "target": "小心别沾一身面粉。"
+    },
+    "1EBA4F29C036486BAE79B3B8AA57F2FE": {
+      "source": "Chapter Two",
+      "target": "第二章"
+    },
+    "2A4E7CDC0BA793064C1F0103BF904CDF": {
+      "source": "Good as new. Better, even. Go and find her.",
+      "target": "跟新的一样。不，比新的还好。快去找她吧。"
+    },
+    "2D1E7B6A3302575E219AB56949AF790A": {
+      "source": "Lanterns Home",
+      "target": "灯火归途"
+    },
+    "3C188D7ED23408AD64AA16E7763C83AB": {
+      "source": "Mind the slimes",
+      "target": "当心史莱姆"
+    },
+    "4C6621992A7299CDA47014BFF0B5275E": {
+      "source": "Rats?",
+      "target": "老鼠？"
+    },
+    "4D66368FEF8317E8B318D6C63F1274FD": {
+      "source": "An old chart of the river, pinned to a beam. A note in Ilse's hand:",
+      "target": "横梁上钉着一张旧河道图。上面有伊尔莎亲笔写的一行字："
+    },
+    "4E7803B69703EBCB43224D1BE7F09492": {
+      "source": "Ah, a traveller. Millbrook has a favour to ask of you.",
+      "target": "啊，来了位旅人。磨溪村有件事想拜托你。"
+    },
+    "4F2D24DCCC01D2B1EE348EF102CAE518": {
+      "source": "The Broken Ford",
+      "target": "断绝的渡口"
+    },
+    "4FBDADF12CCA067B5A8539F054CE011A": {
+      "source": "You've been to ${visited-count} places? I've been to the well. Twice.",
+      "target": "你去过${visited-count}个地方？我去过井边哦。两次！"
+    },
+    "5AB4399D25FD18AB2DACDF73EA557104": {
+      "source": "Slime trails glisten on the quarry floor.",
+      "target": "采石场的地面上，史莱姆爬过的痕迹泛着湿光。"
+    },
+    "5C18D5E4F45CCF4432E3F73B80DF81C7": {
+      "source": "Miller Odo's iron key to the mill cellar.",
+      "target": "磨坊主奥多的铁钥匙，能打开磨坊地窖。"
+    },
+    "6B4EC59719432D525F498B81CEFD31FC": {
+      "source": "A song for the ferryman? I know just the one.",
+      "target": "给摆渡人唱首歌？我正好知道一首合适的。"
+    },
+    "6C30D6B0998C150DB196ED215DB0424B": {
+      "source": "Oak planks for Hollis (${item:plank} of 3)",
+      "target": "给霍利斯的橡木板（${item:plank}/3）"
+    },
+    "6D2B7A0D615B0F4E7214CC0B4F363B78": {
+      "source": "Luminati 2.5D Pixel-Art Engine · three.js",
+      "target": "Luminati 2.5D 像素艺术引擎 · three.js"
+    },
+    "6E2BC0A2E7E5366F5077E1A162C71B3D": {
+      "source": "Elder Wren asked me to find Ilse. The bridge on the Mill Road is out — Hollis the carpenter might help.",
+      "target": "雷恩长老托我寻找伊尔莎。磨坊路上的桥断了——木匠霍利斯或许能帮上忙。"
+    },
+    "6E253B000987B2E3A5A8F06340A64268": {
+      "source": "Hollis will mend the bridge, but the flood took his timber: he needs three oak planks from the stack by the east road.",
+      "target": "霍利斯愿意修桥，但洪水冲走了他的木料：他需要东大路旁木堆里的三块橡木板。"
+    },
+    "6F93281C5968734B91AB8A70D3F82FC0": {
+      "source": "A Mill by the Brook",
+      "target": "溪边的磨坊"
+    },
+    "7BF4A5F67EBE6F70ED5FA4618E559EBA": {
+      "source": "The beam where the chart hung is bare.",
+      "target": "原先挂着水路图的横梁，如今空空如也。"
+    },
+    "7D76577ED50AFE0D3B02193F0C1191E3": {
+      "source": "Three {oak planks}, from the stack by the east road. You have ${item:plank}.",
+      "target": "三块{橡木板}，就在东大路旁的木堆里。你现在有${item:plank}块。"
+    },
+    "7DFD012BE0DE9FB400096BF9864CEEF0": {
+      "source": "The ford is lit again. If you are ever this way after dark, I will row you over myself.",
+      "target": "渡口又亮起灯了。哪天你天黑后路过这里，我亲自划船送你过去。"
+    },
+    "8AEBBB53AA22322C50B0140C7A19C444": {
+      "source": "Ilse the ferryman rowed east to the {Old Quarry} three nights ago, with the {ferry lantern}. She has not come back.",
+      "target": "三天前的夜里，摆渡人伊尔莎带着{渡船提灯}，划船东去{旧采石场}。她到现在还没回来。"
+    },
+    "8D8BB9E94BCAD56DC419F8D853802705": {
+      "source": "\"Mind the ford, traveller!\" — Elder Wren",
+      "target": "“过渡口要当心啊，旅人！”——雷恩长老"
+    },
+    "9AE4DFA922AFD8EBDEB185A86FEEF3BF": {
+      "source": "Millbrook",
+      "target": "磨溪村"
+    },
+    "9B0CB1A26E35865B143ECD594D36CE3D": {
+      "source": "The way east lies open.",
+      "target": "通往东边的路打开了。"
+    },
+    "9C6C6FC3039BF625695E89FFF2A768F2": {
+      "source": "You came all this way? The slimes cornered me up here when the flood came through.",
+      "target": "你一路找到这儿来了？洪水冲过来的时候，史莱姆把我困在了这上面。"
+    },
+    "9C6731088D23670DEB41427627BD11D9": {
+      "source": "East of the Wolf Ford",
+      "target": "狼渡以东"
+    },
+    "9ED0F13308600087AF8FE8ECEE95889D": {
+      "source": "Not today",
+      "target": "今天就算了"
+    },
+    "9F43FE46DD116C2813A442FD92C4107A": {
+      "source": "Good day.",
+      "target": "告辞了"
+    },
+    "23DDB35B08A948EE98BFFE1FB363681D": {
+      "source": "Where the river runs wide",
+      "target": "河面开阔之处"
+    },
+    "26AC166EC427FA2E99CC447599A9C4B5": {
+      "source": "Slimes have crept into the old quarry since the rain. Keep your blade handy past the ford.",
+      "target": "下雨以后，史莱姆就爬进了旧采石场。过了渡口，兵刃别离手。"
+    },
+    "26E8F4703623E68501AC57E136AF302E": {
+      "source": "Without the lantern nobody crosses the Wolf Ford after dark.",
+      "target": "没有那盏提灯，天黑以后谁也过不了狼渡。"
+    },
+    "28F2DD2E85D9EDC21190A231E328994E": {
+      "source": "The Old Quarry",
+      "target": "旧采石场"
+    },
+    "36F9860E1264D23C92906D0BB0AACBF8": {
+      "source": "Hollis mended the bridge at the Wolf Ford. The Old Quarry lies beyond it.",
+      "target": "霍利斯修好了狼渡的桥。过了桥就是旧采石场。"
+    },
+    "41B42607132150571AB86A5FA14525A0": {
+      "source": "Millbrook",
+      "target": "磨溪村"
+    },
+    "48A9CBE2728B4FC3A20F1031130C38F4": {
+      "source": "Down to the Wolf Ford",
+      "target": "前往狼渡"
+    },
+    "51EEEE9C02A09875C2C1E94ED599BD8E": {
+      "source": "Sawdust drifts out under the door. A plane rasps somewhere inside.",
+      "target": "门缝底下飘出木屑。屋里某处传来刨子推木头的沙沙声。"
+    },
+    "54A968F2B077295486112C0BF1D13950": {
+      "source": "Any word of Ilse? The ford first, then the {Old Quarry}.",
+      "target": "有伊尔莎的消息了吗？先过渡口，再去{旧采石场}。"
+    },
+    "67ED3E16976DE76616B42E4E112C1B98": {
+      "source": "Hollis? Slow as a mule, sure as one too.",
+      "target": "霍利斯？慢得像头骡子，可也跟骡子一样靠得住。"
+    },
+    "68DB4DD02440007F4449F537A6EC5983": {
+      "source": "For Ilse's sake I'll mend it. But the flood took my timber too.",
+      "target": "看在伊尔莎的分上，我会修的。可洪水把我的木料也冲走了。"
+    },
+    "77DF12DD2F768F489C1270430D902BBA": {
+      "source": "Millbrook",
+      "target": "磨溪村"
+    },
+    "78D0E5170EAF6CC458AFD37C90C29DBF": {
+      "source": "I will find her",
+      "target": "我会找到她"
+    },
+    "093D60DB1F3D7698C21599DF930AA26A": {
+      "source": "Honey from the elder's own bees!",
+      "target": "蜂蜜是长老家自己养的蜂酿的！"
+    },
+    "146AE80A2A5C8DE434DFBBE6E61C6A07": {
+      "source": "Where the sails turn",
+      "target": "风车转动之处"
+    },
+    "148A5883D8B89A13E19CDA7A8596F933": {
+      "source": "Do slimes taste like jam? Hollis says no, but he won't say how he knows.",
+      "target": "史莱姆尝起来像果酱吗？霍利斯说不像，可他不肯说他是怎么知道的。"
+    },
+    "232AA7B8644C88F815EF1036B67CA447": {
+      "source": "The lantern! I'm ringing the bell!",
+      "target": "是提灯！我去敲钟啦！"
+    },
+    "347F79411C8DA25A0F7CCC9B07CD9C5D": {
+      "source": "Three good oak planks! That will do it.",
+      "target": "三块上好的橡木板！这就够了。"
+    },
+    "363D3D46E3D0B85B30B740DC691C9CCB": {
+      "source": "I rang the bell! Did you hear it? I rang it SO loud.",
+      "target": "我敲钟啦！你听见了吗？我敲得超——级——响！"
+    },
+    "376FBFE4466F4A06FB6B4941955FC509": {
+      "source": "Ilse was on the quarry ledge, the lantern still burning. Time to bring her home.",
+      "target": "伊尔莎就在采石场的岩台上，提灯依然亮着。该带她回家了。"
+    },
+    "513C85508F423F76B11EBE65616FADCC": {
+      "source": "Up here! The stair is round the east side of the rock.",
+      "target": "在上面！台阶在岩石东边，绕过去就是！"
+    },
+    "558BD7A1C1D1C16547A29649265FCD69": {
+      "source": "Where the Lantern Went",
+      "target": "提灯的去向"
+    },
+    "604DBE235D76956F11649981CC27FBDF": {
+      "source": "Nobody answers. Through the window: a cat asleep on a chair.",
+      "target": "无人应门。透过窗户，能看见一只猫在椅子上睡觉。"
+    },
+    "638E50AAE16C1B33532B5964955D9D91": {
+      "source": "WOLF FORD — the bridge is out.",
+      "target": "狼渡——桥已断，无法通行。"
+    },
+    "764C9A6793C99C1099055BFCCAC13940": {
+      "source": "I said I would bring it home, didn't I?",
+      "target": "我说过会把它带回来的，对吧？"
+    },
+    "797D78A63C1F58ECEBFE4B52105B879B": {
+      "source": "She'll hold. I built that span to outlast me.",
+      "target": "这桥结实着呢。我造它的时候，就打算让它比我活得还久。"
+    },
+    "890BAF0DC5C62B00C49972177495EE6C": {
+      "source": "Ilse rowed east to the Old Quarry with the ferry lantern three nights ago and has not come back.",
+      "target": "三天前的夜里，伊尔莎带着渡船提灯划船东去旧采石场，至今未归。"
+    },
+    "0957D2029292F960DA799BE00CF9D990": {
+      "source": "Would you look for her?",
+      "target": "你愿意去找找她吗？"
+    },
+    "957DA0D16B591BF48CF9AEAA55D4D9DE": {
+      "source": "↑ Somewhere nice",
+      "target": "↑ 某个好地方"
+    },
+    "963E9D98F62390688E86F1957E9404DE": {
+      "source": "Another night, then.",
+      "target": "那就改天吧。"
+    },
+    "975E0E7BE1BB09E75D9107A33C9AFEDF": {
+      "source": "Festival buns! Fresh from the oven!",
+      "target": "节庆面包！刚出炉的！"
+    },
+    "1220AD7CAB67DF2E7D04AB98EFBEE68B": {
+      "source": "Ask {Hollis} in Millbrook. — Elder Wren",
+      "target": "请找磨溪村的{霍利斯}。——雷恩长老"
+    },
+    "1607ACD857E1F131673060450A4522D7": {
+      "source": "La la la, the lantern's on the hill…",
+      "target": "啦啦啦，提灯挂在山丘上……"
+    },
+    "05419DB370BF1D3BE893B77CE4D015D8": {
+      "source": "The planks are in the water and the pegs are cut. Walk up to the bank when you're ready.",
+      "target": "木板已经下水，木钉也削好了。准备好了就到岸边来。"
+    },
+    "05426E8D2A5191B0A476FCF3AEE8958D": {
+      "source": "A Luminati campaign",
+      "target": "Luminati 冒险"
+    },
+    "5813A1E094954E3933CBD10C3664096A": {
+      "source": "Bring me three {oak planks}: the miller stacks them by the east road to dry.",
+      "target": "给我拿三块{橡木板}来：磨坊主把它们堆在东大路旁晾着呢。"
+    },
+    "6518B087C800A90ECD77162FEE9E26C5": {
+      "source": "Let's take it home. Millbrook will want to see it burning.",
+      "target": "我们把它带回家吧。磨溪村的人一定想看看它还亮着。"
+    },
+    "7407BF3AB0FF4BE9E3476AB1BE5487AD": {
+      "source": "Not much point mending it with nobody to cross.",
+      "target": "没人要过河，修了也没多大用。"
+    },
+    "8266B5C43B77CFA2A7EB2F89ADDD8E6A": {
+      "source": "Let's take it home. Millbrook will want to see it burning.",
+      "target": "我们把它带回家吧。磨溪村的人一定想看看它还亮着。"
+    },
+    "9862CFC2726CBE2A0DF94F0D4AD8B29E": {
+      "source": "Mind the ford, friend — the water's still high.",
+      "target": "过渡口当心点，朋友——水还涨着呢。"
+    },
+    "12740D46D77E1CD2F2ECB5B816D6F5CF": {
+      "source": "Resting my feet. Nobody gets over the ford these days.",
+      "target": "歇歇脚。这些日子谁也过不了渡口。"
+    },
+    "25483E7C0FBD9E588F73A092435716C7": {
+      "source": "Flour, flour, always flour. And rats in the cellar, which is why I keep it locked.",
+      "target": "面粉，面粉，成天都是面粉。地窖里还闹老鼠，所以我才把它锁上了。"
+    },
+    "48418F3E351D0FCBF5CDE2ADF50B526B": {
+      "source": "The Night of Lanterns",
+      "target": "提灯之夜"
+    },
+    "52995AC53016DF4A896CB8644BA67C24": {
+      "source": "Buttons! Ribbons! Nobody? Nobody.",
+      "target": "纽扣！缎带！没人要？……没人啊。"
+    },
+    "61244B9651AC6099781E2E3336E31A8A": {
+      "source": "The lamps of Millbrook are lit.",
+      "target": "磨溪村的灯火亮起来了。"
+    },
+    "071219C20CBBA2DDEF4DDC2017ACE7D9": {
+      "source": "Oak planks, stacked to dry. Hollis said three would do.",
+      "target": "一堆正在晾干的橡木板。霍利斯说过，三块就够了。"
+    },
+    "77170E96C53CD698EAC068EF5DA0891B": {
+      "source": "Hollis will see to the bridge. He is slow, but he is sure.",
+      "target": "桥的事霍利斯会料理的。他做事慢，但靠得住。"
+    },
+    "584273F049EDEB5C43FFF023ABC397D4": {
+      "source": "Chapter One",
+      "target": "第一章"
+    },
+    "701427B116FC1EFE783E06CDFF305DBE": {
+      "source": "THE FERRYMAN'S LANTERN",
+      "target": "摆渡人的提灯"
+    },
+    "24929021F3DB9B54360A321D2458CB03": {
+      "source": "There you are! Stand back from the bank.",
+      "target": "你来啦！离岸边远一点。"
+    },
+    "A4C1AC16737D42D9C701038C80B7FAD5": {
+      "source": "Search",
+      "target": "搜寻"
+    },
+    "A5F9D59A502EF6180B45AB7CFB8EE683": {
+      "source": "Between Millbrook and the Old Quarry",
+      "target": "磨溪村与旧采石场之间"
+    },
+    "A9F11163588E9C978A65F1FA586D064C": {
+      "source": "The {ferry lantern} is safe — I kept it lit the whole time. Look.",
+      "target": "{渡船提灯}没事——我一直让它亮着。你看。"
+    },
+    "A25C8C7710907251ECB645AC376C90B0": {
+      "source": "Ilse? She keeps an old ferry chart pinned up in my cellar. Here — the {cellar key}.",
+      "target": "伊尔莎？她在我家地窖里钉着一张旧水路图。给——{地窖钥匙}。"
+    },
+    "A7055D80AF2C7FB2B56ACCB47D799C81": {
+      "source": "Ilse! Thank the river.",
+      "target": "伊尔莎！感谢河神保佑。"
+    },
+    "A7625EF82670979367851A1607F87ED6": {
+      "source": "← {Millbrook}",
+      "target": "← {磨溪村}"
+    },
+    "A8023FD2F8ECE135C3C6132130904229": {
+      "source": "Then the ford stays dark. Come back if your feet change their mind.",
+      "target": "那渡口就只能一直黑着了。哪天你的脚改了主意，再回来吧。"
+    },
+    "A317161C1CBE745521300E98FEFA3D61": {
+      "source": "Millbrook flour, the elder's honey.",
+      "target": "磨溪村的面粉，加上长老的蜂蜜。"
+    },
+    "A824558566EBB65E4B6971531F57A49A": {
+      "source": "→ {Wolf Ford} · {the Old Quarry}",
+      "target": "→ {狼渡} · {旧采石场}"
+    },
+    "AD1CFFFBC830E7E409190E97FBA27E6B": {
+      "source": "The whole village owes you, traveller. Look at the green!",
+      "target": "全村都欠你一份情啊，旅人。快看看那片绿地！"
+    },
+    "B03EE70B6C39FD6CD921FE1ECA242F0B": {
+      "source": "Will you row me across tonight?",
+      "target": "今晚能送我过河吗？"
+    },
+    "B6A8DBE943D4F3B6EAB67DB1742F3D29": {
+      "source": "Mill Road",
+      "target": "磨坊路"
+    },
+    "B8D16CB28D69C0DF5533D7B276271104": {
+      "source": "A sprig of rosemary hangs over the door. The elder is out on the green.",
+      "target": "门楣上挂着一枝迷迭香。长老出门去了村里的绿地。"
+    },
+    "B36A4A3FD271C5D0AECC5B5001CF5912": {
+      "source": "Hold on, traveller — Elder Wren was asking for you. On the green.",
+      "target": "等一下，旅人——雷恩长老在找你。就在绿地那边。"
+    },
+    "B72979172F2A4F008126EF5D50AAF6AF": {
+      "source": "Climb up",
+      "target": "爬上去"
+    },
+    "BB711C24AB3EA6D0EF043C3AE8F085DA": {
+      "source": "Millbrook",
+      "target": "磨溪村"
+    },
+    "BBB49BD62AD27311A97DB7811850DE22": {
+      "source": "A short tale of Millbrook",
+      "target": "磨溪村的小故事"
+    },
+    "BC6C899F66F9058B6AB998B37C336BA9": {
+      "source": "Ilse and the lantern are home. Millbrook has lit every window.",
+      "target": "伊尔莎和提灯都回家了。磨溪村家家户户的窗口都亮起了灯。"
+    },
+    "BC7B8780DCB13D94F02F51589697C3C3": {
+      "source": "Ilse lets me ring the {ferry bell}!",
+      "target": "伊尔莎让我敲{渡口的钟}哦！"
+    },
+    "BD5F55EB90CAACD2293B88606AA95A11": {
+      "source": "Under the Mill House",
+      "target": "磨坊之下"
+    },
+    "C2A4F22D16D035436EB5DC4BAF1EA64D": {
+      "source": "Ilse lets me ring the ferry bell! When she comes back, I mean.",
+      "target": "伊尔莎让我敲渡口的钟哦！我是说……等她回来以后。"
+    },
+    "C6B2FD28F21C15E4FD321BA19DE3B264": {
+      "source": "The Lantern Home",
+      "target": "提灯归家"
+    },
+    "C15D4CD012D93DB64B12B74E6DA5E8BB": {
+      "source": "Ilse's chart of the river. \"If the ford floods, wait it out on the quarry ledge.\"",
+      "target": "伊尔莎的河道水路图。“渡口涨水时，就到采石场的岩台上等水退去。”"
+    },
+    "C697A18645A02E1264261A6403E17A57": {
+      "source": "Meet me at the Wolf Ford. Mind you don't fall in before I've finished.",
+      "target": "到狼渡等我。我修好之前，你可别掉进水里。"
+    },
+    "C763E461BF7833146EA8A937ECF15704": {
+      "source": "{\"If the ford floods, wait it out on the quarry ledge.\"}",
+      "target": "{“渡口涨水时，就到采石场的岩台上等水退去。”}"
+    },
+    "C794901A345A5C11296097A0972AD8C8": {
+      "source": "I'm looking for Ilse.",
+      "target": "我在找伊尔莎"
+    },
+    "CDF453BBFA0A3C5717208029895F612F": {
+      "source": "Ilse? Saw her lantern bobbing up toward the {Old Quarry} the night of the flood.",
+      "target": "伊尔莎？发大水那天夜里，我看见她的提灯一晃一晃地往{旧采石场}那边去了。"
+    },
+    "D02AAA1DEB07E747ED7F97DB1027E637": {
+      "source": "What brings you to the mill?",
+      "target": "来磨坊有什么事呀？"
+    },
+    "D53CFB03AA621F3D6D0458F813BBA9F2": {
+      "source": "Festival buns, fresh from the oven — the flour is mine, the honey is Wren's.",
+      "target": "节庆面包，刚出炉的——面粉是我磨的，蜂蜜是雷恩的。"
+    },
+    "D86E6CCE29659D0C0B3427378E343530": {
+      "source": "Big as cats. Bigger than {my} cat, anyway.",
+      "target": "个头跟猫差不多。反正比{我家}那只猫大。"
+    },
+    "D69309B5C62D9F3B0A99558C7729C08F": {
+      "source": "Race you to the well!",
+      "target": "看谁先跑到井边！"
+    },
+    "E3D7EFE16310CF3C7A9117806AC0AE7B": {
+      "source": "The cellar door is locked.",
+      "target": "地窖的门锁着。"
+    },
+    "E8D87B48D181D35E0B7B331CEDC0E317": {
+      "source": "Another night.",
+      "target": "改天吧"
+    },
+    "E58A3A06EDE45E18164EED1404551725": {
+      "source": "Bless you. The bridge on the Mill Road is out — ask {Hollis} at his workshop.",
+      "target": "谢谢你，好心人。磨坊路上的桥断了——去工坊问问{霍利斯}吧。"
+    },
+    "F7A3D1C3146F349E603812120E754F74": {
+      "source": "A sound oak plank from the stack by Millbrook's east road.",
+      "target": "取自磨溪村东大路旁木堆的一块结实橡木板。"
+    },
+    "F7AF98651BA833BF157E85C295ECAB7E": {
+      "source": "A lantern still burns",
+      "target": "提灯仍亮着"
+    },
+    "F9E1A06B8C9B5687FF77017A84FF9DFB": {
+      "source": "A copper for news of the east road!",
+      "target": "谁有东大路的消息？一枚铜板换！"
+    },
+    "F11E0258C9A618E5234B5D78949E25BC": {
+      "source": "→ {Mill Road} · {Wolf Ford} · {the Old Quarry}",
+      "target": "→ {磨坊路} · {狼渡} · {旧采石场}"
+    },
+    "F6042F3E8884F3ECD0B4F9276B53E3AF": {
+      "source": "Tonight? Under all these lanterns? Climb in.",
+      "target": "今晚？在这么多灯火底下？上船吧。"
+    },
+    "F976026CF5103E5F64868C29D314CE1B": {
+      "source": "← {Millbrook Green}",
+      "target": "← {磨溪村绿地}"
+    },
+    "FE83D26596C66FDC54A6DA81EEF0302E": {
+      "source": "The rope is new. Hollis must have seen to it.",
+      "target": "井绳是新换的。想必是霍利斯打理的。"
+    }
+  }
+}

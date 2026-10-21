@@ -1,0 +1,14 @@
+[
+  { "eval": "window.__postfx.freeze(true); window.__postfx.postfx.enableTimings(true)" },
+  { "wait": 4000 },
+  { "eval": "'default min ' + JSON.stringify(window.__postfx.postfx.timingsMin)" },
+  { "eval": "window.__postfx.set('dof.bokehSprites', false); window.__postfx.postfx.enableTimings(true)" },
+  { "wait": 4000 },
+  { "eval": "'noSprites min ' + JSON.stringify(window.__postfx.postfx.timingsMin)" },
+  { "eval": "window.__postfx.reset(); window.__postfx.set('dof.maxBlur', 28); window.__postfx.postfx.enableTimings(true)" },
+  { "wait": 4000 },
+  { "eval": "'strong min ' + JSON.stringify(window.__postfx.postfx.timingsMin) + ' taps ' + window.__postfx.postfx.taps" },
+  { "eval": "window.__postfx.reset(); window.__postfx.postfx.enableTimings(true)" },
+  { "wait": 4000 },
+  { "eval": "'default again min ' + JSON.stringify(window.__postfx.postfx.timingsMin)" }
+]

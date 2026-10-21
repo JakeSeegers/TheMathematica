@@ -1,0 +1,495 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "levels/cinderwatch-pass",
+  "extends": [],
+  "terms": {
+    "Bram": "ブラム",
+    "Bramble Ruins": "いばらの遺跡",
+    "Camp Waystone": "野営地の道標石",
+    "Captain Maren": "マレン隊長",
+    "Cinder Quarry": "シンダー採石場",
+    "Cinder Ridge": "シンダー尾根",
+    "Cinderheart": "シンダーハート",
+    "Crossroads Waystone": "四つ辻の道標石",
+    "Hollow Mire": "窪地の沼",
+    "Mossy Glade": "苔むす林",
+    "Odo": "オド",
+    "Old Ironhide": "古豪アイアンハイド",
+    "Pip": "ピップ",
+    "Quarry Waystone": "採石場の道標石",
+    "Rook": "ルーク",
+    "Sela": "セラ",
+    "Sister Ilse": "シスター・イルゼ",
+    "The Caldera": "カルデラ",
+    "The Crossroads": "四つ辻",
+    "Waystone Camp": "道標石の野営地"
+  },
+  "units": {
+    "1DF4ABDBB5DBBD1EC7EF795B4C627B40": {
+      "source": "Tactics…",
+      "target": "作戦…"
+    },
+    "1F806047FB25286E73049FAE6271A2CB": {
+      "source": "Your company's full. Come back for me if one of them heads home.",
+      "target": "一行はもう満員みたいだな。誰かが帰ったら、迎えに来てくれよ。"
+    },
+    "1F3683521B2873C3822A4EB4AF4EF2E9": {
+      "source": "Anything with a bow is mine. Anything bigger is yours.",
+      "target": "弓持ちは俺がもらう。でかいのは任せた。"
+    },
+    "2AB96FBA461EEB513D5157F3068F8F33": {
+      "source": "Then this is where I keep watch. Come back for me if the pass gets too loud.",
+      "target": "なら、ここで見張りに戻る。峠が騒がしくなりすぎたら、迎えに来てくれ。"
+    },
+    "2B14F16C27CC71A692585028FC196BF3": {
+      "source": "Want a bow at your back?",
+      "target": "背中に弓、いらないか？"
+    },
+    "2EB4740DDE5409D0E365FD3F85C0875A": {
+      "source": "Walk with me",
+      "target": "共に行こう"
+    },
+    "2EE743EBABC224C0FD75B5A62FD8DF7B": {
+      "source": "Two roads up to the quarry from here, and neither of them is a stroll.",
+      "target": "ここから採石場へ登る道はふたつ。どっちも、のんびり散歩ってわけにはいかないよ。"
+    },
+    "2F95B3238186C92CACA5CAE98C131CDF": {
+      "source": "Then I come. Keep close, and I will keep you whole.",
+      "target": "では、参ります。そばを離れないでくださいね。あなたを無事に守りますから。"
+    },
+    "03C50ED7A341FB54F16850B9761F6E3B": {
+      "source": "Goblins, archers and a shaman · Lv 7–8",
+      "target": "ゴブリン、弓兵、シャーマン・Lv 7–8"
+    },
+    "4F191E9FD2DD3CD2212C108E5189D0FA": {
+      "source": "A note is nailed under the knocker: \"Gone up the pass. Back when the fires are out. — M.\"",
+      "target": "ノッカーの下に書き付けが釘で留めてある。「峠へ登る。火が消えたら戻る。――M」"
+    },
+    "5ACB7051082D3C634C2783C56FF6F770": {
+      "source": "Since the old fire went out, the pass has been waking one hollow at a time. Slimes in the glade, goblins in the keep, and something up in the {Caldera} that breathes like a forge.",
+      "target": "古き火が消えてから、峠は窪地ひとつずつ目を覚ましている。林にはスライム、砦にはゴブリン、そして{カルデラ}には、鍛冶の炉のような息をする何かがいる。"
+    },
+    "5B60791C083D8D25208AC32D263A18BE": {
+      "source": "Good. I was just getting my eye in.",
+      "target": "よかった。ちょうど目が慣れてきたところなんだ。"
+    },
+    "5C3B0FA594F6CAE966FD7C63ACD110BD": {
+      "source": "Still here. Still shooting straw.",
+      "target": "まだここにいるよ。まだわら人形を撃ってる。"
+    },
+    "6A2F8BF42950530CDE9F158B4C782983": {
+      "source": "Keeper of the Waystones",
+      "target": "道標石の守り手"
+    },
+    "6B2C07265ED982853AC786B83CAB6BBD": {
+      "source": "How do you want this spear?",
+      "target": "この槍、どう振るわせる？"
+    },
+    "6CB0BA76A75A3E90756716D894687402": {
+      "source": "About time! Keep them off me and I'll keep them off you.",
+      "target": "やっとか！　奴らを俺に寄せつけないでくれりゃ、俺も奴らをあんたに寄せつけないさ。"
+    },
+    "6D105117F878802C111FBF262781289C": {
+      "source": "Whetstones, ironbark tonic, a warding charm or two — the watch pays me in stories, so the rest of you pay in gold.",
+      "target": "砥石に鉄樹の強壮薬、守りの護符もひとつふたつ――見張りの連中は土産話でしか払ってくれないんでね、ほかのお客さんには金貨で払ってもらうよ。"
+    },
+    "6DE4979AD67B3F093F9553504EB6AD03": {
+      "source": "Part ways",
+      "target": "別れる"
+    },
+    "6DEAF0C973B50D3189E68132F69C2A5E": {
+      "source": "← the {Bramble Ruins} · → the {Hollow Mire}\nBoth roads climb to the {Cinder Quarry}.\n↓ {Waystone Camp}",
+      "target": "← {いばらの遺跡}・→ {窪地の沼}\nどちらの道も{シンダー採石場}へ登る。\n↓ {道標石の野営地}"
+    },
+    "07C88C46628D99FA038B203C9ADB80BC": {
+      "source": "Lead on",
+      "target": "先へ進もう"
+    },
+    "8ACCA028CE8535347332690C2F088B6B": {
+      "source": "The pass has grown too loud for one blade. Let me walk with you, and I will mend what it breaks.",
+      "target": "この峠は、ひと振りの剣には騒がしくなりすぎました。共に歩ませてください。峠が傷つけたものは、私が癒やしましょう。"
+    },
+    "8B26F108297E582856B903A5F2D6CE0A": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "8C46D85B94B8A1B277E2FCFC441F9F4D": {
+      "source": "A Luminati 2.5D action demo · three.js",
+      "target": "Luminati 2.5D アクションデモ・three.js"
+    },
+    "8CC94438B5BBBE413EBC1979C5D5A0AB": {
+      "source": "And the molten pools he leaves behind burn for as long as you stand in them. Step out, then step back in to swing.",
+      "target": "それと、奴の残す溶岩溜まりは、踏んでいるあいだずっと身を焼く。いったん出て、斬りかかるときだけ踏み込め。"
+    },
+    "8F4E0C5438B01DBA7565EBDCDCD2BB5F": {
+      "source": "Yes, part ways",
+      "target": "ああ、ここで別れよう"
+    },
+    "9A1C61457FC9AD06F9061A80ADF213F0": {
+      "source": "Rook joined your party · G: Tactics",
+      "target": "ルークがパーティに加わった・G：作戦"
+    },
+    "9BBF3CACB61645CBD5781129AB447EE1": {
+      "source": "Lead on.",
+      "target": "参りましょう。"
+    },
+    "9E45D52A449FAD97DB0E57F5EC183B9D": {
+      "source": "CINDERWATCH PASS",
+      "target": "シンダーウォッチ峠"
+    },
+    "12DBD3F4C43FB7FAE873BCB3F19C6C99": {
+      "source": "Lead on",
+      "target": "先へ進もう"
+    },
+    "17EC0C765E5EC25A8DAC5F96ED5BF3EA": {
+      "source": "Take me up the pass and I'll pick off whatever's shooting at you. Keep the big ones busy; I'll do the rest.",
+      "target": "峠の上まで連れてってくれりゃ、あんたを狙う奴は俺が片っ端から射抜く。でかいのを引きつけといてくれ。あとは俺がやる。"
+    },
+    "18CD39E9EF5BC399322696C682347560": {
+      "source": "Your lead, traveller.",
+      "target": "先を行ってくれ、旅人。"
+    },
+    "21B5C26CAE28C414EC5A7DEAAF671231": {
+      "source": "Here? You sure?",
+      "target": "ここで？　本気か？"
+    },
+    "25DD14E81148884AEF68EE5A81C17834": {
+      "source": "Lead on",
+      "target": "先へ進もう"
+    },
+    "27F2F6B91FDEB37C5DFCE083549EE3E1": {
+      "source": "The stones are listening. Walk on.",
+      "target": "石たちが耳を澄ませています。さあ、進みましょう。"
+    },
+    "31E0CAA5FAF377DF9E8B0113C46F1F38": {
+      "source": "Shall my spear walk with you?",
+      "target": "この槍、旅に連れていくか？"
+    },
+    "34C8703B101F29F94B929FF65899B5D6": {
+      "source": "Warden of the Cinderwatch",
+      "target": "シンダーウォッチの衛士"
+    },
+    "54D918597FA484790D3D9D787C648E76": {
+      "source": "Easy, traveller. Sela, of the Cinderwatch — the watch keeps this stone, and today the watch is me.",
+      "target": "落ち着け、旅人。シンダーウォッチのセラだ。この石は見張りが守る――そして今日の見張りは、私だ。"
+    },
+    "60DD1CCFD877D98F624F98A3C0CDA715": {
+      "source": "Here? You're sure?",
+      "target": "ここで？　本当にいいのか？"
+    },
+    "68EB89CAA17EB5DCAE4846C249911A20": {
+      "source": "Part ways",
+      "target": "別れる"
+    },
+    "73ABFF2781242AD7E7DC27E5B025A2FD": {
+      "source": "Here? Are you certain?",
+      "target": "ここで？　本当によろしいのですか？"
+    },
+    "73E613A8359C803871A988C23AD46906": {
+      "source": "Sister Ilse joined your party · G: Tactics",
+      "target": "シスター・イルゼがパーティに加わった・G：作戦"
+    },
+    "74ADF2248DB896AAA5BA7C0BA14647B7": {
+      "source": "Then it's the two of us. I'll keep to your heels — tell me how you want me fighting, and that's how I'll fight.",
+      "target": "なら、これで二人だ。すぐ後ろにつく――どう戦ってほしいか言ってくれ。その通りに戦う。"
+    },
+    "76CFA3415DB52EB2558AAE6CAF2FDCC9": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "78A40C637A79F58CB35077DD48ECEDEC": {
+      "source": "Walk with me",
+      "target": "共に行こう"
+    },
+    "80BFBA37F8B042B1E98561BAD094025B": {
+      "source": "Straw dummies and a warm fire · Safe",
+      "target": "わら人形と暖かな焚き火・安全地帯"
+    },
+    "94EA0028B8100E8C7D28B17ECC49A0AB": {
+      "source": "Walk with me",
+      "target": "共に行こう"
+    },
+    "148F1EF65795185F71AFA891775EC47B": {
+      "source": "No — stay with me",
+      "target": "いや、一緒に来てくれ"
+    },
+    "239AB5B7EACCA3FF63F6CB9314A0C227": {
+      "source": "Bats, slimes and a shaman · Lv 6–7",
+      "target": "コウモリ、スライム、シャーマン・Lv 6–7"
+    },
+    "479E3369D64BB5161A9C3183897DD58E": {
+      "source": "Where the Old Fires Wake",
+      "target": "古き火の目覚める地"
+    },
+    "501A5ACC04A8BF8BCA32A7D4228F5CF3": {
+      "source": "Where the Old Fires Wake",
+      "target": "古き火の目覚める地"
+    },
+    "528C36CF5C27D8BE8DBA96495448C863": {
+      "source": "Then the watch marches with you. I'll keep to your heels — tell me how you want me fighting, and that's how I'll fight.",
+      "target": "なら、見張りも共に行こう。すぐ後ろにつく――どう戦ってほしいか言ってくれ。その通りに戦う。"
+    },
+    "0751A222ADC1767D11A61D1FDF4E7B2D": {
+      "source": "West, the ruins — archers on the walls, and a blade-smith's cache up on the ledge. Whoever carries that blade hits harder.",
+      "target": "西は遺跡。城壁には弓兵がいて、岩棚の上には刀鍛冶の隠し箱がある。あの剣を持ってれば、一撃が重くなるよ。"
+    },
+    "765BB6859D2461D2DEF0EA32623E46E9": {
+      "source": "That's Cinderheart up there. You break the rock — I'll keep you standing.",
+      "target": "あれがシンダーハートだ。岩は任せた――倒れないよう、私が支える。"
+    },
+    "806E150DDC7B6C5B05EEFF0F5348CF68": {
+      "source": "Rook, scout of the Cinderwatch. The captain has me minding the camp while the whole pass goes mad.",
+      "target": "シンダーウォッチの斥候、ルークだ。峠じゅうが大騒ぎだってのに、隊長には野営地の留守番を任されててさ。"
+    },
+    "813CD58D47C644A953211244B2A3C3AE": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "833F290FC00ABA221D57A9F1EA6DF945": {
+      "source": "Quiver's full. Point me at something.",
+      "target": "矢筒は満タンだ。何か狙わせてくれよ。"
+    },
+    "0835E199F2848FEDA93A30141C4A04A4": {
+      "source": "Shall I walk with you?",
+      "target": "ご一緒しましょうか？"
+    },
+    "05914B6673EDC076B257D0CAD2AFCAED": {
+      "source": "Fair enough. I'll watch the road from here.",
+      "target": "分かったよ。ここから道を見張ってる。"
+    },
+    "6905A12E2BF8CCA3D81E30D55DF6D434": {
+      "source": "Yes, part ways",
+      "target": "ああ、ここで別れよう"
+    },
+    "6919B52A9CC30FA33D99B75553A462E6": {
+      "source": "The keep's door is rusted shut. Goblin scrawl covers the timbers: a very bad drawing of a very big rock man, and an arrow pointing north.",
+      "target": "砦の扉は錆びついて開かない。板一面にゴブリンの落書き――ものすごく下手な、ものすごく大きな岩男の絵と、北を指す矢印だ。"
+    },
+    "07116A6A7ADCE521EA065EF4326ACAE5": {
+      "source": "Back from the road? The pass will not wait for you to heal — but I can heal you as you go.",
+      "target": "道からお戻りですか？　峠は傷が癒えるのを待ってはくれません――でも、歩きながら私が癒やすことはできますよ。"
+    },
+    "7627DF60A0EDD44A86742170DA1DF527": {
+      "source": "Every step up, the pass gets louder.",
+      "target": "一歩登るごとに、峠が騒がしくなる。"
+    },
+    "09176F94FFF086AB8A0478C0D30E3FD9": {
+      "source": "Boars on the lip — they charge in straight lines. I'll stay at your shoulder.",
+      "target": "縁にイノシシだ――まっすぐ突っ込んでくるぞ。私はすぐ横にいる。"
+    },
+    "16152C6F8C5125A4AA97762D84ECC406": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "37554CEF2F7326B9BABE00323417CD17": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "49939CCA5D6EBC44D07C38A9A723C481": {
+      "source": "Your call, traveller.",
+      "target": "決めるのはあんただ、旅人。"
+    },
+    "903676CD514DC9690543CE7D9521231F": {
+      "source": "No — stay with me",
+      "target": "いや、一緒に来てくれ"
+    },
+    "952558C7641506B4AB60FFB4250B8EE2": {
+      "source": "Yes, part ways",
+      "target": "ああ、ここで別れよう"
+    },
+    "3200572EBE4B3D9AEE0BB27E520B2088": {
+      "source": "The lodge door is barred from inside. Someone is snoring in there — steadily, like a drum keeping time for a march.",
+      "target": "山小屋の扉は内側から閂がかけられている。中で誰かがいびきをかいている――行進の拍子を刻む太鼓のように、規則正しく。"
+    },
+    "4809641C8FF3C741A64392B7404BE905": {
+      "source": "The nearest stone will know where I am. Go gently.",
+      "target": "一番近い石が、私の居場所を覚えていてくれます。どうかお気をつけて。"
+    },
+    "5839654DF48D5A83FBDDB41095C3E290": {
+      "source": "East, the mire — bats over the water, and something that hardens the heart out on the islet. Both roads meet again on the {quarry lip}.",
+      "target": "東は沼。水の上をコウモリが飛びまわってて、小島には心臓を強くしてくれる何かがある。どっちの道も、{採石場の縁}でまた合流するよ。"
+    },
+    "6336343E6CD1CAAA0C738B90082177C1": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "8376826FF01B0B73B1FF876D3C50A33E": {
+      "source": "Three already walk at your back. Go with the stones' blessing, and come for me if one of them turns home.",
+      "target": "もう三人があなたの後ろを歩いていますね。石の祝福と共にお行きなさい。どなたかが帰ることになったら、私を迎えに来てください。"
+    },
+    "A5AEAD3E8E60EC0941A43384120CD8ED": {
+      "source": "↑ the {Cinder Quarry} · the {Caldera}\n↓ the {Hollow Mire} · {The Crossroads}",
+      "target": "↑ {シンダー採石場}・{カルデラ}\n↓ {窪地の沼}・{四つ辻}"
+    },
+    "A13C34DDF782036D2BF5255590EC11DB": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "A82D0E6392F14AD7B32F252640340F24": {
+      "source": "Your company's full, traveller. If one of them heads home, the stone and I will still be here.",
+      "target": "一行はもう満員だな、旅人。誰かが帰るなら、石も私も、ここで待っている。"
+    },
+    "A41051B7A4620F91A12D428B6A488A98": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "AB679A9CB09D1A595C516F1473537C35": {
+      "source": "Should you fall, the stone you last woke calls you back to it — lighter in the purse, but whole.",
+      "target": "もし倒れても、最後に目覚めさせた石があなたを呼び戻してくれます。財布は軽くなりますが、体は無事なままで。"
+    },
+    "ABA9A4704A2302335B933DBE540116A1": {
+      "source": "Lead on, then.",
+      "target": "では、先を頼む。"
+    },
+    "AD0B93B1D38819D9148BB5B4278AB1E8": {
+      "source": "How shall I serve?",
+      "target": "どのようにお仕えしましょう？"
+    },
+    "AD737096AAC8A67FE3884848C3280506": {
+      "source": "Archers on the walls. The ones with bows are mine.",
+      "target": "壁の上に弓兵だ。弓持ちは俺がやる。"
+    },
+    "ADB0B7840B9ED517F107470406C3246F": {
+      "source": "Lead on.",
+      "target": "行こうぜ。"
+    },
+    "B875CFF344AC05F7736228F519AF5F9A": {
+      "source": "When he smashes the ground, rings of fire roll out. Don't run from them. Roll through them — toward him.",
+      "target": "奴が地面を叩き割ると、炎の輪が広がってくる。逃げるな。転がって抜けろ――奴に向かってな。"
+    },
+    "B4690431AA00A6B361FF605A172C1B2A": {
+      "source": "Tactics…",
+      "target": "作戦…"
+    },
+    "BB53CE50E961BEF626C50940E3EED6F1": {
+      "source": "Ironhide boars and archers · Lv 8",
+      "target": "アイアンハイドボアと弓兵・Lv 8"
+    },
+    "BBD4D81E2999A620A80AE33D8A5B3454": {
+      "source": "The waystones remember the last traveller who came near. Walk close, and the crystal will know you.",
+      "target": "道標石は、最後にそばへ来た旅人を覚えているのです。近くまで歩み寄れば、水晶があなたを見知ってくれますよ。"
+    },
+    "BFEE313B0F7FC3EA0DCBD2A0586957C0": {
+      "source": "What's the plan?",
+      "target": "で、どうする？"
+    },
+    "C5A3480B339D06B1101BD0D4197447B1": {
+      "source": "Cinderheart… Stay within my reach, and I will keep you whole.",
+      "target": "シンダーハート……私の手の届くところにいてください。必ず無事に守りますから。"
+    },
+    "C53E49744D06BFE7AD83B46F73EA98D2": {
+      "source": "Press any key",
+      "target": "何かキーを押してください"
+    },
+    "C874C41F20BEEB3F1785B0ED0D868FEC": {
+      "source": "Suit yourself. I'll be here, shooting straw.",
+      "target": "好きにしな。俺はここでわら人形を撃ってるよ。"
+    },
+    "C40694E163258BD89E13EB65CBA1C128": {
+      "source": "The stones will keep me. Come back when you need mending.",
+      "target": "石たちが私を守ってくれます。癒やしが要るときは、戻っていらしてください。"
+    },
+    "D0F07D90B7A22ED883300464C6D275FC": {
+      "source": "Back again. The {Caldera} hasn't come any closer.",
+      "target": "また来たか。{カルデラ}は少しも近づいてくれないぞ。"
+    },
+    "D4495716787AB1CDDC383EA4CAA60283": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "DAD1F3620027AB99A77311A1F5567B13": {
+      "source": "A stone can keep itself. If you mean to climb to the {Caldera}, I'd rather be climbing with you.",
+      "target": "石の番は、石に任せておけばいい。{カルデラ}を目指すなら、私も一緒に登らせてくれ。"
+    },
+    "DB7EC5B2B1E4FCCEE1B58962D34CC64D": {
+      "source": "↑ the {Mossy Glade} · {The Crossroads}\nBeyond: the {Cinder Quarry} and the {Caldera}.",
+      "target": "↑ {苔むす林}・{四つ辻}\nその先は{シンダー採石場}と{カルデラ}。"
+    },
+    "DDDA8166397B7FC9B99346F7D64335F6": {
+      "source": "I am with you, traveller.",
+      "target": "私はあなたと共にいますよ、旅人さん。"
+    },
+    "E0A4A9813095DD85A7D188678D7E3919": {
+      "source": "Part ways",
+      "target": "別れる"
+    },
+    "E6B551CC8A46019FD72CAE1F3B0273A1": {
+      "source": "Sela joined your party · G: Tactics",
+      "target": "セラがパーティに加わった・G：作戦"
+    },
+    "E7D613D4B57621AFC48EE3CA9AA96E7E": {
+      "source": "The watch keeps its last stores up here — draughts, whetstones, tonic. Coin for the cause, and they are yours.",
+      "target": "見張りの最後の備蓄はここにある――回復薬、砥石、強壮薬。大義のために金を出すなら、持っていけ。"
+    },
+    "E347C036F0CEB68F8A4366AE82D9E52E": {
+      "source": "Cinderheart's awake in the {Caldera}. When he lowers his head and paws the stone, get a brazier between you — bait the charge into it and he'll stagger long enough for a proper beating.",
+      "target": "シンダーハートが{カルデラ}で目を覚ました。奴が頭を低くして地面を掻きはじめたら、篝火台を間に挟め。突進をそこへぶつけさせれば、しばらくよろめく。その隙にたっぷり叩き込んでやれ。"
+    },
+    "E860F1D99214C8930069DC6E3FBA24E2": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "EB3312FE867710DFD66D58C2B4CF914B": {
+      "source": "Slimes and goblins · Lv 2",
+      "target": "スライムとゴブリン・Lv 2"
+    },
+    "EDA227F6F891C0B444139D5BB49A672F": {
+      "source": "Bruised? Stay where my light can reach you.",
+      "target": "傷を負いましたか？　私の光が届くところにいてくださいね。"
+    },
+    "EF9F263B8A2753D32224C152DAC0E679": {
+      "source": "Still on your feet? Good.",
+      "target": "まだ立っているか。よし。"
+    },
+    "F0EB49DB71AD989F2698ABFEFC07B978": {
+      "source": "Good. I'd have followed you anyway.",
+      "target": "よかった。どのみち、ついて行くつもりだった。"
+    },
+    "F43B4158E7AB475A27CE88E9D0DCF251": {
+      "source": "No — stay with me",
+      "target": "いや、一緒に来てくれ"
+    },
+    "F46A8BB2503C801625CA9F4AF88C2CF3": {
+      "source": "Then I'll keep the stone warm. You know where to find me.",
+      "target": "なら、石を温めて待っている。どこにいるかは分かるだろう。"
+    },
+    "F05259E38F4E18D71F68B3C8D771CBE9": {
+      "source": "Cinderwatch Pass",
+      "target": "シンダーウォッチ峠"
+    },
+    "F054678FFA77C3E533BB8AC5C96975F4": {
+      "source": "Tactics…",
+      "target": "作戦…"
+    },
+    "F403445709004892BEB78F13C0A7C838": {
+      "source": "Where the Old Fires Wake",
+      "target": "古き火の目覚める地"
+    },
+    "FA1C6A7EE4448CDA9E129D197A8E6232": {
+      "source": "Healing Draughts! Glade honey, cold spring water and something I promised my grandmother never to name.",
+      "target": "回復薬だよ！　林で採れたはちみつに、冷たい湧き水。それと、ばあちゃんに「絶対に名前は言わない」って約束した何かがひとつ。"
+    },
+    "FBA45B69E587F4EA3CB1EE56F934E849": {
+      "source": "Scout of the Cinderwatch",
+      "target": "シンダーウォッチの斥候"
+    },
+    "FD6CB96117B742410E45A922C9576567": {
+      "source": "↑ {The Caldera}. Cinderheart sleeps within.\nBait his charge into a brazier; roll through his fire rings, toward him; step out of the magma.",
+      "target": "↑ {カルデラ}。奥にシンダーハートが眠る。\n突進は篝火台へ誘え。炎の輪は奴に向かって転がり抜けよ。溶岩からは出よ。"
+    },
+    "FE00689C4289C44EAF9EAE88AC2624FA": {
+      "source": "Rest at a stone and your wounds close. The creatures of the pass return to their haunts as well, mind. Nothing is free up here — not even sleep.",
+      "target": "石のそばで休めば、傷はふさがります。ただし、峠の魔物たちも棲み処へ戻ってくることをお忘れなく。ここでは何ひとつただでは手に入りません――眠りでさえも。"
+    },
+    "FE580912FF46BD2513D7302B84A6499B": {
+      "source": "Goblins on the ruin walls, bats over the mire, archers on every ledge — and me down here, shooting straw.",
+      "target": "遺跡の壁にはゴブリン、沼の上にはコウモリ、岩棚という岩棚に弓兵――なのに俺は、ここでわら人形を撃ってるだけ。"
+    },
+    "FF094CD2FD5115F8510DE66EB7929682": {
+      "source": "Then I stay.",
+      "target": "では、おそばに残ります。"
+    }
+  }
+}

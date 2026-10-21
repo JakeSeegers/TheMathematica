@@ -1,0 +1,14 @@
+[
+  { "eval": "window.__terrain.setClock(3.0); window.__terrain.setView('fringe'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "fringe_day" },
+  { "eval": "window.__terrain.setView('lip'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "lip_day" },
+  { "eval": "window.__terrain.setView('edge'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "edge_day" },
+  { "eval": "window.__terrain.setTime('golden'); window.__terrain.setView('cliffs'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "cliffs_golden" }
+]

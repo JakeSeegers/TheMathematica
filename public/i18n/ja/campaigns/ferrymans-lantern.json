@@ -1,0 +1,533 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "campaigns/ferrymans-lantern",
+  "extends": [],
+  "terms": {
+    "Cellar Key": "地下室の鍵",
+    "Elder Wren": "レン長老",
+    "Ferry Chart": "渡し舟の水路図",
+    "Ferry Lantern": "渡し舟のランタン",
+    "Ferryman's Ledge": "渡し守の岩棚",
+    "Festival Bun": "お祭りパン",
+    "Gwil the Peddler": "行商人グウィル",
+    "Hollis": "ホリス",
+    "Ilse": "イルゼ",
+    "Mill Hill": "粉挽きの丘",
+    "Mill Road": "粉挽き街道",
+    "Millbrook": "ミルブルック",
+    "Millbrook Green": "ミルブルックの草地",
+    "Miller Odo": "粉屋オド",
+    "Notice": "告知",
+    "Oak Plank": "樫の板",
+    "Pip": "ピップ",
+    "Quarry Gate": "採石場の門",
+    "Tamsin": "タムシン",
+    "The East Road": "東の街道",
+    "The Ferryman's Lantern": "渡し守のランタン",
+    "The Mill Cellar": "粉挽き小屋の地下室",
+    "The Missing Ferryman": "消えた渡し守",
+    "The Old Quarry": "旧採石場",
+    "Watchman Bran": "番兵ブラン",
+    "Wolf Ford": "狼ヶ瀬"
+  },
+  "units": {
+    "0D09B575C03BC8F2C4E27A1C0534FDD1": {
+      "source": "The ford bridge? The spring flood took the middle span clean away.",
+      "target": "瀬の橋か？　春の洪水で、真ん中の橋桁がまるごと持っていかれちまった。"
+    },
+    "0E80B7710E105A2CB467FEAB42E343FB": {
+      "source": "Miller Odo keeps the key on his belt.",
+      "target": "鍵は粉屋オドが腰に下げている。"
+    },
+    "0F9CDF58B2ECDF1C69A3C6ECB7EEC559": {
+      "source": "The bridge is back! I'll be over it by supper.",
+      "target": "橋が直ったぞ！　晩飯までには向こう岸だ。"
+    },
+    "1AA3265E31292C56723013F58DE52682": {
+      "source": "Ilse's lantern. It has not gone out since the flood.",
+      "target": "イルゼのランタン。洪水の夜から一度も消えていない。"
+    },
+    "1CC50FEBC77F31136B93B31AD8759B89": {
+      "source": "Mind the flour.",
+      "target": "粉まみれにならんようにな。"
+    },
+    "1EBA4F29C036486BAE79B3B8AA57F2FE": {
+      "source": "Chapter Two",
+      "target": "第二章"
+    },
+    "2A4E7CDC0BA793064C1F0103BF904CDF": {
+      "source": "Good as new. Better, even. Go and find her.",
+      "target": "新品同様――いや、前よりいいくらいだ。さあ、イルゼを探しに行ってくれ。"
+    },
+    "2D1E7B6A3302575E219AB56949AF790A": {
+      "source": "Lanterns Home",
+      "target": "家路を照らす灯"
+    },
+    "3C188D7ED23408AD64AA16E7763C83AB": {
+      "source": "Mind the slimes",
+      "target": "スライムに注意"
+    },
+    "4C6621992A7299CDA47014BFF0B5275E": {
+      "source": "Rats?",
+      "target": "ネズミ？"
+    },
+    "4D66368FEF8317E8B318D6C63F1274FD": {
+      "source": "An old chart of the river, pinned to a beam. A note in Ilse's hand:",
+      "target": "梁に留められた、古い川の水路図。イルゼの字で書き込みがある――"
+    },
+    "4E7803B69703EBCB43224D1BE7F09492": {
+      "source": "Ah, a traveller. Millbrook has a favour to ask of you.",
+      "target": "おお、旅人さんか。ミルブルックから、ひとつ頼みがあるんじゃ。"
+    },
+    "4F2D24DCCC01D2B1EE348EF102CAE518": {
+      "source": "The Broken Ford",
+      "target": "断たれた渡り"
+    },
+    "4FBDADF12CCA067B5A8539F054CE011A": {
+      "source": "You've been to ${visited-count} places? I've been to the well. Twice.",
+      "target": "${visited-count}か所も行ったの？　井戸までなら行ったことあるよ。二回も！"
+    },
+    "5AB4399D25FD18AB2DACDF73EA557104": {
+      "source": "Slime trails glisten on the quarry floor.",
+      "target": "採石場の底に、スライムの這った跡がぬらぬらと光っている。"
+    },
+    "5C18D5E4F45CCF4432E3F73B80DF81C7": {
+      "source": "Miller Odo's iron key to the mill cellar.",
+      "target": "粉挽き小屋の地下室を開ける、粉屋オドの鉄の鍵。"
+    },
+    "6B4EC59719432D525F498B81CEFD31FC": {
+      "source": "A song for the ferryman? I know just the one.",
+      "target": "渡し守に捧げる歌？　ぴったりのを知ってるよ。"
+    },
+    "6C30D6B0998C150DB196ED215DB0424B": {
+      "source": "Oak planks for Hollis (${item:plank} of 3)",
+      "target": "ホリスに渡す樫の板（${item:plank}/3）"
+    },
+    "6D2B7A0D615B0F4E7214CC0B4F363B78": {
+      "source": "Luminati 2.5D Pixel-Art Engine · three.js",
+      "target": "Luminati 2.5D ピクセルアートエンジン・three.js"
+    },
+    "6E2BC0A2E7E5366F5077E1A162C71B3D": {
+      "source": "Elder Wren asked me to find Ilse. The bridge on the Mill Road is out — Hollis the carpenter might help.",
+      "target": "レン長老にイルゼを探してほしいと頼まれた。粉挽き街道の橋は落ちている――大工のホリスなら力になってくれるかもしれない。"
+    },
+    "6E253B000987B2E3A5A8F06340A64268": {
+      "source": "Hollis will mend the bridge, but the flood took his timber: he needs three oak planks from the stack by the east road.",
+      "target": "ホリスが橋を直してくれるが、材木を洪水で流されてしまった。東の街道脇に積んである樫の板が三枚いる。"
+    },
+    "6F93281C5968734B91AB8A70D3F82FC0": {
+      "source": "A Mill by the Brook",
+      "target": "小川のほとりの粉挽き小屋"
+    },
+    "7BF4A5F67EBE6F70ED5FA4618E559EBA": {
+      "source": "The beam where the chart hung is bare.",
+      "target": "水路図が掛かっていた梁には、もう何もない。"
+    },
+    "7D76577ED50AFE0D3B02193F0C1191E3": {
+      "source": "Three {oak planks}, from the stack by the east road. You have ${item:plank}.",
+      "target": "{樫の板}を三枚だ。東の街道脇に積んである。今持ってるのは${item:plank}枚だな。"
+    },
+    "7DFD012BE0DE9FB400096BF9864CEEF0": {
+      "source": "The ford is lit again. If you are ever this way after dark, I will row you over myself.",
+      "target": "瀬にまた灯がともった。日が暮れてからこっちへ来ることがあったら、私が舟で渡してあげる。"
+    },
+    "8AEBBB53AA22322C50B0140C7A19C444": {
+      "source": "Ilse the ferryman rowed east to the {Old Quarry} three nights ago, with the {ferry lantern}. She has not come back.",
+      "target": "三晩前、渡し守のイルゼが{渡し舟のランタン}を持って、東の{旧採石場}へ舟を出した。それきり戻ってこんのじゃ。"
+    },
+    "8D8BB9E94BCAD56DC419F8D853802705": {
+      "source": "\"Mind the ford, traveller!\" — Elder Wren",
+      "target": "「瀬に気をつけるんじゃぞ、旅人さん！」――レン長老"
+    },
+    "9AE4DFA922AFD8EBDEB185A86FEEF3BF": {
+      "source": "Millbrook",
+      "target": "ミルブルック"
+    },
+    "9B0CB1A26E35865B143ECD594D36CE3D": {
+      "source": "The way east lies open.",
+      "target": "東への道が開けた。"
+    },
+    "9C6C6FC3039BF625695E89FFF2A768F2": {
+      "source": "You came all this way? The slimes cornered me up here when the flood came through.",
+      "target": "こんなところまで来てくれたの？　洪水が押し寄せたとき、スライムにここへ追い詰められちゃって。"
+    },
+    "9C6731088D23670DEB41427627BD11D9": {
+      "source": "East of the Wolf Ford",
+      "target": "狼ヶ瀬の東"
+    },
+    "9ED0F13308600087AF8FE8ECEE95889D": {
+      "source": "Not today",
+      "target": "今日はやめておく"
+    },
+    "9F43FE46DD116C2813A442FD92C4107A": {
+      "source": "Good day.",
+      "target": "それじゃ、また"
+    },
+    "23DDB35B08A948EE98BFFE1FB363681D": {
+      "source": "Where the river runs wide",
+      "target": "川幅の広がるところ"
+    },
+    "26AC166EC427FA2E99CC447599A9C4B5": {
+      "source": "Slimes have crept into the old quarry since the rain. Keep your blade handy past the ford.",
+      "target": "雨のあと、旧採石場にスライムが入り込んでいる。瀬を越えたら剣から手を離すな。"
+    },
+    "26E8F4703623E68501AC57E136AF302E": {
+      "source": "Without the lantern nobody crosses the Wolf Ford after dark.",
+      "target": "あのランタンがなければ、日が暮れてから狼ヶ瀬を渡れる者はおらん。"
+    },
+    "28F2DD2E85D9EDC21190A231E328994E": {
+      "source": "The Old Quarry",
+      "target": "旧採石場"
+    },
+    "36F9860E1264D23C92906D0BB0AACBF8": {
+      "source": "Hollis mended the bridge at the Wolf Ford. The Old Quarry lies beyond it.",
+      "target": "ホリスが狼ヶ瀬の橋を直してくれた。その先に旧採石場がある。"
+    },
+    "41B42607132150571AB86A5FA14525A0": {
+      "source": "Millbrook",
+      "target": "ミルブルック"
+    },
+    "48A9CBE2728B4FC3A20F1031130C38F4": {
+      "source": "Down to the Wolf Ford",
+      "target": "狼ヶ瀬へ"
+    },
+    "51EEEE9C02A09875C2C1E94ED599BD8E": {
+      "source": "Sawdust drifts out under the door. A plane rasps somewhere inside.",
+      "target": "戸の下からおがくずが舞い出てくる。奥のどこかで、かんなをかける音がする。"
+    },
+    "54A968F2B077295486112C0BF1D13950": {
+      "source": "Any word of Ilse? The ford first, then the {Old Quarry}.",
+      "target": "イルゼの消息はあったかの？　まずは瀬を越えて、それから{旧採石場}じゃ。"
+    },
+    "67ED3E16976DE76616B42E4E112C1B98": {
+      "source": "Hollis? Slow as a mule, sure as one too.",
+      "target": "ホリスかい？　ラバみたいにのろいが、ラバみたいに確かな男さ。"
+    },
+    "68DB4DD02440007F4449F537A6EC5983": {
+      "source": "For Ilse's sake I'll mend it. But the flood took my timber too.",
+      "target": "イルゼのためなら直してやるさ。だが、材木まで洪水に流されちまってな。"
+    },
+    "77DF12DD2F768F489C1270430D902BBA": {
+      "source": "Millbrook",
+      "target": "ミルブルック"
+    },
+    "78D0E5170EAF6CC458AFD37C90C29DBF": {
+      "source": "I will find her",
+      "target": "必ず見つけます"
+    },
+    "093D60DB1F3D7698C21599DF930AA26A": {
+      "source": "Honey from the elder's own bees!",
+      "target": "はちみつは長老さんちの蜂のだよ！"
+    },
+    "146AE80A2A5C8DE434DFBBE6E61C6A07": {
+      "source": "Where the sails turn",
+      "target": "風車の羽根が回るところ"
+    },
+    "148A5883D8B89A13E19CDA7A8596F933": {
+      "source": "Do slimes taste like jam? Hollis says no, but he won't say how he knows.",
+      "target": "スライムってジャムの味がするのかな？　ホリスは違うって言うけど、なんで知ってるのかは教えてくれないんだ。"
+    },
+    "232AA7B8644C88F815EF1036B67CA447": {
+      "source": "The lantern! I'm ringing the bell!",
+      "target": "ランタンだ！　鐘を鳴らしてくる！"
+    },
+    "347F79411C8DA25A0F7CCC9B07CD9C5D": {
+      "source": "Three good oak planks! That will do it.",
+      "target": "上等な樫の板が三枚！　これで足りる。"
+    },
+    "363D3D46E3D0B85B30B740DC691C9CCB": {
+      "source": "I rang the bell! Did you hear it? I rang it SO loud.",
+      "target": "鐘、鳴らしたよ！　聞こえた？　すっごく、すーっごく大きく鳴らしたんだ！"
+    },
+    "376FBFE4466F4A06FB6B4941955FC509": {
+      "source": "Ilse was on the quarry ledge, the lantern still burning. Time to bring her home.",
+      "target": "イルゼは採石場の岩棚にいた。ランタンはまだ灯っている。村へ連れて帰ろう。"
+    },
+    "513C85508F423F76B11EBE65616FADCC": {
+      "source": "Up here! The stair is round the east side of the rock.",
+      "target": "こっち、上よ！　階段は岩の東側に回ったところ！"
+    },
+    "558BD7A1C1D1C16547A29649265FCD69": {
+      "source": "Where the Lantern Went",
+      "target": "ランタンの行方"
+    },
+    "604DBE235D76956F11649981CC27FBDF": {
+      "source": "Nobody answers. Through the window: a cat asleep on a chair.",
+      "target": "返事はない。窓の向こうでは、猫が椅子の上で眠っている。"
+    },
+    "638E50AAE16C1B33532B5964955D9D91": {
+      "source": "WOLF FORD — the bridge is out.",
+      "target": "狼ヶ瀬――橋が落ちて通れない。"
+    },
+    "764C9A6793C99C1099055BFCCAC13940": {
+      "source": "I said I would bring it home, didn't I?",
+      "target": "持って帰るって言ったでしょ？"
+    },
+    "797D78A63C1F58ECEBFE4B52105B879B": {
+      "source": "She'll hold. I built that span to outlast me.",
+      "target": "もう大丈夫だ。俺より長持ちするように架けたからな。"
+    },
+    "890BAF0DC5C62B00C49972177495EE6C": {
+      "source": "Ilse rowed east to the Old Quarry with the ferry lantern three nights ago and has not come back.",
+      "target": "三晩前、イルゼは渡し舟のランタンを持って東の旧採石場へ舟を漕いでいき、それきり戻っていない。"
+    },
+    "0957D2029292F960DA799BE00CF9D990": {
+      "source": "Would you look for her?",
+      "target": "イルゼを探してはもらえんかの？"
+    },
+    "957DA0D16B591BF48CF9AEAA55D4D9DE": {
+      "source": "↑ Somewhere nice",
+      "target": "↑ どこか素敵なところ"
+    },
+    "963E9D98F62390688E86F1957E9404DE": {
+      "source": "Another night, then.",
+      "target": "じゃあ、また今度ね。"
+    },
+    "975E0E7BE1BB09E75D9107A33C9AFEDF": {
+      "source": "Festival buns! Fresh from the oven!",
+      "target": "お祭りパンだよ！　焼きたてだよ！"
+    },
+    "1220AD7CAB67DF2E7D04AB98EFBEE68B": {
+      "source": "Ask {Hollis} in Millbrook. — Elder Wren",
+      "target": "ミルブルックの{ホリス}に相談されたし。――レン長老"
+    },
+    "1607ACD857E1F131673060450A4522D7": {
+      "source": "La la la, the lantern's on the hill…",
+      "target": "ラララ、丘の上にはランタンが……"
+    },
+    "05419DB370BF1D3BE893B77CE4D015D8": {
+      "source": "The planks are in the water and the pegs are cut. Walk up to the bank when you're ready.",
+      "target": "板は水に入れたし、木釘も削ってある。支度ができたら岸まで来てくれ。"
+    },
+    "05426E8D2A5191B0A476FCF3AEE8958D": {
+      "source": "A Luminati campaign",
+      "target": "Luminati キャンペーン"
+    },
+    "5813A1E094954E3933CBD10C3664096A": {
+      "source": "Bring me three {oak planks}: the miller stacks them by the east road to dry.",
+      "target": "{樫の板}を三枚持ってきてくれ。粉屋が東の街道脇に積んで乾かしてる。"
+    },
+    "6518B087C800A90ECD77162FEE9E26C5": {
+      "source": "Let's take it home. Millbrook will want to see it burning.",
+      "target": "村へ持って帰ろう。灯ってるところを、ミルブルックのみんなに見せなきゃ。"
+    },
+    "7407BF3AB0FF4BE9E3476AB1BE5487AD": {
+      "source": "Not much point mending it with nobody to cross.",
+      "target": "渡る者もいないんじゃ、直したってしょうがない。"
+    },
+    "8266B5C43B77CFA2A7EB2F89ADDD8E6A": {
+      "source": "Let's take it home. Millbrook will want to see it burning.",
+      "target": "村へ持って帰ろう。灯ってるところを、ミルブルックのみんなに見せなきゃ。"
+    },
+    "9862CFC2726CBE2A0DF94F0D4AD8B29E": {
+      "source": "Mind the ford, friend — the water's still high.",
+      "target": "瀬に気をつけな、あんた――水はまだ高いぜ。"
+    },
+    "12740D46D77E1CD2F2ECB5B816D6F5CF": {
+      "source": "Resting my feet. Nobody gets over the ford these days.",
+      "target": "ちょいと足を休めてるのさ。近ごろは誰も瀬を渡れないからね。"
+    },
+    "25483E7C0FBD9E588F73A092435716C7": {
+      "source": "Flour, flour, always flour. And rats in the cellar, which is why I keep it locked.",
+      "target": "粉、粉、来る日も粉さ。おまけに地下室にはネズミが出る。だから鍵をかけてあるんだ。"
+    },
+    "48418F3E351D0FCBF5CDE2ADF50B526B": {
+      "source": "The Night of Lanterns",
+      "target": "ランタンの夜"
+    },
+    "52995AC53016DF4A896CB8644BA67C24": {
+      "source": "Buttons! Ribbons! Nobody? Nobody.",
+      "target": "ボタンに、リボン！　……誰も？　誰もいない、か。"
+    },
+    "61244B9651AC6099781E2E3336E31A8A": {
+      "source": "The lamps of Millbrook are lit.",
+      "target": "ミルブルックに灯がともった。"
+    },
+    "071219C20CBBA2DDEF4DDC2017ACE7D9": {
+      "source": "Oak planks, stacked to dry. Hollis said three would do.",
+      "target": "乾かすために積まれた樫の板だ。ホリスは三枚あれば足りると言っていた。"
+    },
+    "77170E96C53CD698EAC068EF5DA0891B": {
+      "source": "Hollis will see to the bridge. He is slow, but he is sure.",
+      "target": "橋のことはホリスがなんとかしてくれる。仕事は遅いが、確かな男じゃ。"
+    },
+    "584273F049EDEB5C43FFF023ABC397D4": {
+      "source": "Chapter One",
+      "target": "第一章"
+    },
+    "701427B116FC1EFE783E06CDFF305DBE": {
+      "source": "THE FERRYMAN'S LANTERN",
+      "target": "渡し守のランタン"
+    },
+    "24929021F3DB9B54360A321D2458CB03": {
+      "source": "There you are! Stand back from the bank.",
+      "target": "来たな！　岸から下がってろ。"
+    },
+    "A4C1AC16737D42D9C701038C80B7FAD5": {
+      "source": "Search",
+      "target": "探す"
+    },
+    "A5F9D59A502EF6180B45AB7CFB8EE683": {
+      "source": "Between Millbrook and the Old Quarry",
+      "target": "ミルブルックと旧採石場のあいだ"
+    },
+    "A9F11163588E9C978A65F1FA586D064C": {
+      "source": "The {ferry lantern} is safe — I kept it lit the whole time. Look.",
+      "target": "{渡し舟のランタン}は無事よ――ずっと灯しておいたの。ほら。"
+    },
+    "A25C8C7710907251ECB645AC376C90B0": {
+      "source": "Ilse? She keeps an old ferry chart pinned up in my cellar. Here — the {cellar key}.",
+      "target": "イルゼかい？　あの人なら、うちの地下室に古い水路図を貼ってるよ。ほら――{地下室の鍵}だ。"
+    },
+    "A7055D80AF2C7FB2B56ACCB47D799C81": {
+      "source": "Ilse! Thank the river.",
+      "target": "イルゼ！　川の恵みに感謝じゃ。"
+    },
+    "A7625EF82670979367851A1607F87ED6": {
+      "source": "← {Millbrook}",
+      "target": "← {ミルブルック}"
+    },
+    "A8023FD2F8ECE135C3C6132130904229": {
+      "source": "Then the ford stays dark. Come back if your feet change their mind.",
+      "target": "では、瀬は暗いままじゃな。足が向いたら、また来ておくれ。"
+    },
+    "A317161C1CBE745521300E98FEFA3D61": {
+      "source": "Millbrook flour, the elder's honey.",
+      "target": "ミルブルックの小麦粉に、長老のはちみつ。"
+    },
+    "A824558566EBB65E4B6971531F57A49A": {
+      "source": "→ {Wolf Ford} · {the Old Quarry}",
+      "target": "→ {狼ヶ瀬}・{旧採石場}"
+    },
+    "AD1CFFFBC830E7E409190E97FBA27E6B": {
+      "source": "The whole village owes you, traveller. Look at the green!",
+      "target": "村じゅうが旅人さんに感謝しておる。ほれ、草地をごらん！"
+    },
+    "B03EE70B6C39FD6CD921FE1ECA242F0B": {
+      "source": "Will you row me across tonight?",
+      "target": "今夜、渡してくれる？"
+    },
+    "B6A8DBE943D4F3B6EAB67DB1742F3D29": {
+      "source": "Mill Road",
+      "target": "粉挽き街道"
+    },
+    "B8D16CB28D69C0DF5533D7B276271104": {
+      "source": "A sprig of rosemary hangs over the door. The elder is out on the green.",
+      "target": "戸口の上にローズマリーの小枝が下がっている。長老は草地に出ているようだ。"
+    },
+    "B36A4A3FD271C5D0AECC5B5001CF5912": {
+      "source": "Hold on, traveller — Elder Wren was asking for you. On the green.",
+      "target": "待て、旅人――レン長老がお探しだったぞ。草地においでだ。"
+    },
+    "B72979172F2A4F008126EF5D50AAF6AF": {
+      "source": "Climb up",
+      "target": "上がる"
+    },
+    "BB711C24AB3EA6D0EF043C3AE8F085DA": {
+      "source": "Millbrook",
+      "target": "ミルブルック"
+    },
+    "BBB49BD62AD27311A97DB7811850DE22": {
+      "source": "A short tale of Millbrook",
+      "target": "ミルブルックの小さな物語"
+    },
+    "BC6C899F66F9058B6AB998B37C336BA9": {
+      "source": "Ilse and the lantern are home. Millbrook has lit every window.",
+      "target": "イルゼとランタンが帰ってきた。ミルブルックの窓という窓に灯がともっている。"
+    },
+    "BC7B8780DCB13D94F02F51589697C3C3": {
+      "source": "Ilse lets me ring the {ferry bell}!",
+      "target": "イルゼが{渡しの鐘}を鳴らさせてくれるんだ！"
+    },
+    "BD5F55EB90CAACD2293B88606AA95A11": {
+      "source": "Under the Mill House",
+      "target": "粉挽き小屋の下"
+    },
+    "C2A4F22D16D035436EB5DC4BAF1EA64D": {
+      "source": "Ilse lets me ring the ferry bell! When she comes back, I mean.",
+      "target": "イルゼがね、渡しの鐘を鳴らさせてくれるんだよ！　……帰ってきたら、だけど。"
+    },
+    "C6B2FD28F21C15E4FD321BA19DE3B264": {
+      "source": "The Lantern Home",
+      "target": "ランタン、家路へ"
+    },
+    "C15D4CD012D93DB64B12B74E6DA5E8BB": {
+      "source": "Ilse's chart of the river. \"If the ford floods, wait it out on the quarry ledge.\"",
+      "target": "イルゼの川の水路図。「瀬があふれたら、採石場の岩棚で水が引くのを待つこと」"
+    },
+    "C697A18645A02E1264261A6403E17A57": {
+      "source": "Meet me at the Wolf Ford. Mind you don't fall in before I've finished.",
+      "target": "狼ヶ瀬で落ち合おう。俺が仕上げる前に川へ落ちるなよ。"
+    },
+    "C763E461BF7833146EA8A937ECF15704": {
+      "source": "{\"If the ford floods, wait it out on the quarry ledge.\"}",
+      "target": "{「瀬があふれたら、採石場の岩棚で水が引くのを待つこと」}"
+    },
+    "C794901A345A5C11296097A0972AD8C8": {
+      "source": "I'm looking for Ilse.",
+      "target": "イルゼを探してる"
+    },
+    "CDF453BBFA0A3C5717208029895F612F": {
+      "source": "Ilse? Saw her lantern bobbing up toward the {Old Quarry} the night of the flood.",
+      "target": "イルゼかい？　洪水の夜、あの人のランタンが{旧採石場}のほうへ揺れながら登っていくのを見たよ。"
+    },
+    "D02AAA1DEB07E747ED7F97DB1027E637": {
+      "source": "What brings you to the mill?",
+      "target": "粉挽き小屋に何の用だい？"
+    },
+    "D53CFB03AA621F3D6D0458F813BBA9F2": {
+      "source": "Festival buns, fresh from the oven — the flour is mine, the honey is Wren's.",
+      "target": "お祭りパン、焼きたてだよ――粉はうちの、はちみつはレンさんのだ。"
+    },
+    "D86E6CCE29659D0C0B3427378E343530": {
+      "source": "Big as cats. Bigger than {my} cat, anyway.",
+      "target": "猫くらいでかいんだ。少なくとも{うちの}猫よりはでかい。"
+    },
+    "D69309B5C62D9F3B0A99558C7729C08F": {
+      "source": "Race you to the well!",
+      "target": "井戸まで競走だよ！"
+    },
+    "E3D7EFE16310CF3C7A9117806AC0AE7B": {
+      "source": "The cellar door is locked.",
+      "target": "地下室の扉には鍵がかかっている。"
+    },
+    "E8D87B48D181D35E0B7B331CEDC0E317": {
+      "source": "Another night.",
+      "target": "また今度"
+    },
+    "E58A3A06EDE45E18164EED1404551725": {
+      "source": "Bless you. The bridge on the Mill Road is out — ask {Hollis} at his workshop.",
+      "target": "ありがたい。粉挽き街道の橋が落ちておる――工房の{ホリス}を訪ねてみなされ。"
+    },
+    "F7A3D1C3146F349E603812120E754F74": {
+      "source": "A sound oak plank from the stack by Millbrook's east road.",
+      "target": "ミルブルックの東の街道脇に積まれていた、しっかりした樫の板。"
+    },
+    "F7AF98651BA833BF157E85C295ECAB7E": {
+      "source": "A lantern still burns",
+      "target": "ランタンはまだ灯っている"
+    },
+    "F9E1A06B8C9B5687FF77017A84FF9DFB": {
+      "source": "A copper for news of the east road!",
+      "target": "東の街道の噂、銅貨一枚で買うよ！"
+    },
+    "F11E0258C9A618E5234B5D78949E25BC": {
+      "source": "→ {Mill Road} · {Wolf Ford} · {the Old Quarry}",
+      "target": "→ {粉挽き街道}・{狼ヶ瀬}・{旧採石場}"
+    },
+    "F6042F3E8884F3ECD0B4F9276B53E3AF": {
+      "source": "Tonight? Under all these lanterns? Climb in.",
+      "target": "今夜？　こんなにランタンが灯ってるのに？　いいよ、乗って。"
+    },
+    "F976026CF5103E5F64868C29D314CE1B": {
+      "source": "← {Millbrook Green}",
+      "target": "← {ミルブルックの草地}"
+    },
+    "FE83D26596C66FDC54A6DA81EEF0302E": {
+      "source": "The rope is new. Hollis must have seen to it.",
+      "target": "井戸の綱は新しい。ホリスが替えてくれたのだろう。"
+    }
+  }
+}

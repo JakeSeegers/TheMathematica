@@ -1,0 +1,94 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "levels/sample-hamlet",
+  "extends": [],
+  "terms": {
+    "Honey Cake": "蜂蜜蛋糕",
+    "Mira": "米拉",
+    "Mirror Pond": "镜池",
+    "Old Fen": "老芬",
+    "Orchard Terrace": "果园台地",
+    "Tilda": "蒂尔达",
+    "Willowmere Green": "柳湖村绿地"
+  },
+  "units": {
+    "1FF85A1D38837A784793090E0101751B": {
+      "source": "Your reflection looks back — a little tired, but content.",
+      "target": "水中的倒影回望着你——有些疲惫，却很满足。"
+    },
+    "4E3BB0DABEE484E854B827AC8942E231": {
+      "source": "Where the old trees keep watch",
+      "target": "古树守望之处"
+    },
+    "5C81F5E3A97DF5D50F7E6EED058E4CB5": {
+      "source": "They are lovely",
+      "target": "真的很美"
+    },
+    "6F9832E8CB1D0529263EEE53AE820187": {
+      "source": "The water is clear and very cold.",
+      "target": "井水清澈，冰凉彻骨。"
+    },
+    "33EAF2513D234466BB483DF284F59F46": {
+      "source": "Willowmere",
+      "target": "柳湖村"
+    },
+    "62B2F944CF63F488D9D0F218138EB6ED": {
+      "source": "Warm light and the clink of mugs behind the door. The inn is full tonight.",
+      "target": "门后透出温暖的灯光，传来杯盏相碰的声响。今晚旅店客满。"
+    },
+    "77DB2D458E068F03BA0E6499B7D32576": {
+      "source": "The carrots are late this year.",
+      "target": "今年的胡萝卜长得晚啊。"
+    },
+    "797FBC173A238590359D94F832AD4CED": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "5490C902CAED9FC7B1CDD98782F33083": {
+      "source": "A Hamlet by the Pond",
+      "target": "池畔小村"
+    },
+    "A47E05FC78C1F220DB7D1ED373ECE401": {
+      "source": "Willowmere",
+      "target": "柳湖村"
+    },
+    "ADFE3FBED1E5C791B3B73D5F287B555B": {
+      "source": "Willowmere",
+      "target": "柳湖村"
+    },
+    "BD9A34F0CE250BD9CD7868103140D73D": {
+      "source": "Mind the chickens. They think the road is theirs.",
+      "target": "当心那些鸡。它们以为这条路是自己家的。"
+    },
+    "C5B5464DE1D002F30114396B4D3B5540": {
+      "source": "Lavender hangs drying by the door. Someone inside is humming.",
+      "target": "门边挂着正在晾干的薰衣草。屋里有人在哼着歌。"
+    },
+    "C05295C9556338B8414497490E72ACC2": {
+      "source": "Nobody answers. A cat flap swings gently in the breeze.",
+      "target": "没有人应门。猫洞的小门在微风中轻轻摆动。"
+    },
+    "D40B54AF1589FF5ECC22806E4908857D": {
+      "source": "Have you seen the fireflies over {Mirror Pond}?",
+      "target": "你看过{镜池}上空的萤火虫了吗？"
+    },
+    "DA8FA51D93705ABF189185DF0ABF52BB": {
+      "source": "Come back after dark — they are brightest then.",
+      "target": "天黑以后再来吧——那时候它们最亮。"
+    },
+    "E30C0ABFEFD45B0C51EB750012FF71DC": {
+      "source": "↑ {Orchard Terrace} · → {Mirror Pond}\n← {Rosehip Cottage}",
+      "target": "↑ {果园台地} · → {镜池}\n← {蔷薇果小屋}"
+    },
+    "FC65E1D8812CC818600168FB88D7D41C": {
+      "source": "Fresh from the oven! Honey from the orchard hives.",
+      "target": "刚出炉的哟！用的是果园蜂箱里的蜂蜜。"
+    },
+    "FF1489A58488ABBA0794FAA6034591E5": {
+      "source": "Welcome to {Willowmere}! We are small, but the pond makes up for it.",
+      "target": "欢迎来到{柳湖村}！我们村子虽小，可有这片池塘就够啦。"
+    }
+  }
+}

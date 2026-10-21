@@ -1,0 +1,14 @@
+[
+  { "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())" },
+  { "eval": "(() => { const v = T.E.view2d; const t0 = performance.now(); for (let k = 0; k < 20; k++) v._render(performance.now()); const render = (performance.now() - t0) / 20; v._terrainDirty = 'all'; const t1 = performance.now(); v._updateTerrain(); const terrain = performance.now() - t1; return JSON.stringify({ renderMs: +render.toFixed(2), fullTerrainMs: +terrain.toFixed(1), objects: T.E.state.level.objects.length }); })()" },
+  { "eval": "(() => { const s = T.E.state; const t0 = performance.now(); s.begin('stroke'); for (let k = 0; k < 30; k++) s.editTiles([{ i: 10 + (k % 10), j: 20 + Math.floor(k / 10), tile: 'c' }]); s.commit(); T.E.view2d._render(performance.now()); return (performance.now() - t0).toFixed(1) + ' ms for 30 paint samples + render'; })()" },
+  { "shot": "01-layout" },
+  { "eval": "T.E.state.setView({ layout: '2d' }); 'ok'" },
+  { "wait": 500 },
+  { "fps": 2000, "label": "2d-idle-water" },
+  { "eval": "(() => { const L = T.E.state.level; import('/src/engine/level/LevelFormat.js').then((m) => { const big = m.resizeLevel(L, 128, 128, { anchor: 'c' }); T.E.state.replaceLevel(big, { kind: 'new', name: '' }); }); return 'resized'; })()" },
+  { "wait": 800 },
+  { "eval": "(() => { const v = T.E.view2d; v._terrainDirty = 'all'; const t1 = performance.now(); v._updateTerrain(); const terrain = performance.now() - t1; const t0 = performance.now(); for (let k = 0; k < 10; k++) v._render(performance.now()); return JSON.stringify({ fullTerrain128Ms: +terrain.toFixed(1), renderMs: +((performance.now() - t0) / 10).toFixed(2) }); })()" },
+  { "shot": "02-128" },
+  { "eval": "T.E.state.markSaved(); 'ok'" }
+]

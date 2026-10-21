@@ -1,0 +1,11 @@
+[
+  { "eval": "window.__postfx.freeze(true); window.__postfx.nanTest(true)" },
+  { "wait": 400 },
+  { "shot": "nan_test" },
+  { "eval": "window.__postfx.zoom(615, 80, 6)" },
+  { "wait": 300 },
+  { "shot": "nan_zoom" },
+  { "eval": "window.__postfx.zoom(); window.__postfx.set('dof.enabled', false)" },
+  { "wait": 300 },
+  { "shot": "nan_test_dof_off" }
+]

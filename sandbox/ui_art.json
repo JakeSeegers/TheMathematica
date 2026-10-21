@@ -1,0 +1,19 @@
+[
+  {"eval": "(async () => { await window.__uiArt.ready; return JSON.stringify(window.__uiArt.info()); })()"},
+  {"eval": "(async () => JSON.stringify(await window.__uiArt.checks()))()"},
+  {"eval": "(async () => { await window.__uiArt.show('frames'); window.__uiArt.pause(); return 'frames'; })()"},
+  {"wait": 300},
+  {"shot": "01_frames"},
+  {"eval": "(async () => { await window.__uiArt.show('pieces'); window.__uiArt.pause(); return 'pieces'; })()"},
+  {"wait": 300},
+  {"shot": "02_pieces"},
+  {"eval": "(async () => { await window.__uiArt.show('type'); window.__uiArt.pause(); return 'type'; })()"},
+  {"wait": 300},
+  {"shot": "03_type"},
+  {"eval": "(async () => { await window.__uiArt.show('logo'); window.__uiArt.pause(); return 'logo'; })()"},
+  {"wait": 300},
+  {"shot": "04_logo"},
+  {"eval": "(async () => { await window.__uiArt.show('titles'); window.__uiArt.pause(); return 'titles'; })()"},
+  {"wait": 300},
+  {"shot": "05_titles"}
+]

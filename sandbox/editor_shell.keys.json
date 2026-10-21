@@ -1,0 +1,74 @@
+[
+ {
+  "eval": "import('/sandbox/editor_shell.helpers.js').then((m) => m.install())"
+ },
+ {
+  "press": "3"
+ },
+ {
+  "eval": "T.E.state.view.layout"
+ },
+ {
+  "press": "b"
+ },
+ {
+  "press": "]"
+ },
+ {
+  "press": "]"
+ },
+ {
+  "press": "["
+ },
+ {
+  "eval": "JSON.stringify({ tool: T.E.state.toolId, brush: T.E.state.toolOptions.brushSize })"
+ },
+ {
+  "eval": "T.E.state.setToolOption('tile', '.'); T.drag([[10, 10], [14, 10]]).then(() => T.E.state.canUndo)"
+ },
+ {
+  "eval": "(() => { const a = T.key('z', { ctrl: true }); const u = T.E.state.canRedo; T.key('y', { ctrl: true }); return JSON.stringify({ a, redoAfterUndo: u, canUndo: T.E.state.canUndo }); })()"
+ },
+ {
+  "eval": "(() => { const inp = document.querySelector('.le-search'); inp.focus(); const before = T.E.state.toolId; T.key('v'); T.key('Delete'); const after = T.E.state.toolId; inp.blur(); return JSON.stringify({ before, after }); })()"
+ },
+ {
+  "eval": "(() => { const v = T.E.view2d; const s0 = v.scale; const c = document.querySelector('.le-map2d-canvas'); const r = c.getBoundingClientRect(); c.dispatchEvent(new WheelEvent('wheel', { deltaY: -240, clientX: r.left + r.width / 2, clientY: r.top + r.height / 2, bubbles: true, cancelable: true })); return JSON.stringify({ s0: +s0.toFixed(2), s1: +v.scale.toFixed(2) }); })()"
+ },
+ {
+  "eval": "(() => { const v = T.E.view2d; const cx0 = v.cx; window.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', key: ' ', bubbles: true })); T.fire('pointermove', 16, 12); T.fire('pointerdown', 16, 12); T.fire('pointermove', 12, 12, { down: true }); T.fire('pointerup', 12, 12); window.dispatchEvent(new KeyboardEvent('keyup', { code: 'Space', key: ' ', bubbles: true })); return JSON.stringify({ cx0: +cx0.toFixed(2), cx1: +v.cx.toFixed(2), painted: T.E.state.undoLabel }); })()"
+ },
+ {
+  "press": "Home"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "T.E.view2d.zoomPercent + '%'"
+ },
+ {
+  "eval": "T.E.state.addObject('well', 20, 8); T.key('f'); 'framed'"
+ },
+ {
+  "wait": 400
+ },
+ {
+  "eval": "JSON.stringify({ cx: +T.E.view2d.cx.toFixed(1), cz: +T.E.view2d.cz.toFixed(1) })"
+ },
+ {
+  "press": "1"
+ },
+ {
+  "wait": 300
+ },
+ {
+  "eval": "T.key('a', { ctrl: true }); T.E.state.selection.length"
+ },
+ {
+  "shot": "01-final"
+ },
+ {
+  "eval": "T.E.state.markSaved(); 'ok'"
+ }
+]

@@ -1,0 +1,80 @@
+[
+  {
+    "eval": "(async () => { const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); for (let i = 0; i < 300 && !window.__luminati?.loadMs; i++) await sleep(100); window.ST = { get G() { return window.__game; }, get game() { return window.__game.game; }, get S() { return window.__game.story; }, sleep, programs: () => window.__game.engine.renderer.info.programs.length, until: async (fn, ms = 15000) => { const t0 = performance.now(); while (performance.now() - t0 < ms) { try { if (fn()) return true; } catch {} await sleep(100); } return false; }, idle: () => ST.until(() => !ST.S.info().running && !ST.S.info().queued.length && !ST.game.busy && ST.game.mode === 'play' && !ST.G.state().campaign?.traveling, 30000), talk: async (id) => { await ST.idle(); const ok = ST.G.talkTo(id); await ST.sleep(200); await ST.idle(); return ok; } }; ST.S.auto(true); const s = ST.G.state(); return JSON.stringify({ loadMs: __luminati.loadMs, level: s.campaign.level, story: { vars: s.story.vars, quests: s.story.quests, events: s.story.events.map((e) => e.id + (e.present ? '' : ' (absent)')), errors: s.story.errors }, npcs: ST.game.npcs.map((n) => n.id + (n.present ? '' : ' (absent)') + (n.storyTalk ? ' [talk]' : '')), programs: ST.programs(), journalKey: !!ST.game.engine.input.bindings.journal }); })()"
+  },
+  {
+    "shot": "01-millbrook"
+  },
+  {
+    "eval": "(async () => { ST.G.teleport(36, 16.5); await ST.sleep(300); ST.G.teleport(34.5, 16.5); await ST.sleep(400); await ST.idle(); return JSON.stringify({ warned: ST.S.info().done, trace: ST.S.trace().slice(-4) }); })()"
+  },
+  {
+    "eval": "(async () => { const ok = await ST.talk('elder'); const s = ST.S.info(); return JSON.stringify({ ok, quests: s.quests, trace: ST.S.trace().slice(-6) }); })()"
+  },
+  {
+    "eval": "(async () => { const ok = await ST.talk('hollis'); const s = ST.S.info(); return JSON.stringify({ ok, quests: s.quests, done: s.done, planksPrompt: !ST.game.world.interactables.find((i) => i.id === 'event:ev_planks')?.disabled }); })()"
+  },
+  {
+    "eval": "(async () => { const open = ST.game.toggleJournal(true); await ST.sleep(700); const j = ST.game.ui.journal; return JSON.stringify({ open, isOpen: j?.isOpen, tab: j?.tab }); })()"
+  },
+  {
+    "shot": "01b-journal"
+  },
+  {
+    "eval": "(async () => { ST.game.toggleJournal(false); await ST.sleep(500); return JSON.stringify({ open: ST.game.journalOpen }); })()"
+  },
+  {
+    "eval": "(async () => { ST.G.teleport(35.4, 14.1); await ST.sleep(300); const near = ST.G.state().nearest; ST.S.fire('ev_planks'); await ST.sleep(300); await ST.idle(); const s = ST.S.info(); return JSON.stringify({ near, items: s.items, done: s.done, journal: ST.S.journal().quests.map((q) => ({ id: q.id, log: q.log.length, goals: q.goals })) }); })()"
+  },
+  {
+    "eval": "(async () => { ST.G.teleport(30, 13.8); await ST.sleep(200); ST.G.talkTo('hollis'); await ST.sleep(500); const during = { busy: ST.game.busy, camera: ST.S.info().ownsCamera, running: ST.S.info().running }; await ST.idle(); await ST.sleep(300); const h = ST.game.npcById.get('hollis'); return JSON.stringify({ during, after: { items: ST.S.info().items, vars: ST.S.info().vars, hollisPresent: h.present, hollisPos: [+h.position.x.toFixed(1), +h.position.z.toFixed(1)], camera: ST.S.info().ownsCamera, busy: ST.game.busy } }); })()"
+  },
+  {
+    "shot": "02-hollis-gone"
+  },
+  {
+    "eval": "(async () => { ST.G.teleport(38.6, 16.5); const ok = await ST.until(() => ST.G.state().campaign.level === 'mill-road' && ST.game.mode === 'play' && !ST.G.state().campaign.traveling); await ST.sleep(500); const s = ST.G.state(); const h = ST.game.npcById.get('hollis_ford'); return JSON.stringify({ ok, level: s.campaign.level, hollisFord: h?.present, bridgeVisible: [...ST.game.world.storyGroups.values()].map((g) => g.sample.id + ':' + g.present), riverWalkable: ST.game.tileMap.isWalkable(31.5, 8.5), programs: ST.programs() }); })()"
+  },
+  {
+    "eval": "(async () => { ST.S.auto(false); ST.G.teleport(20, 8.5); await ST.sleep(300); ST.G.teleport(23.5, 8.5); await ST.sleep(800); const during = { running: ST.S.info().running, camera: ST.S.info().ownsCamera, letterbox: document.querySelector('.lu-root')?.classList.contains('lu-root--cutscene') ?? null, dialog: ST.game.ui.dialog.isOpen }; return JSON.stringify(during); })()"
+  },
+  {
+    "shot": "03-ford-cutscene"
+  },
+  {
+    "eval": "(async () => { for (let k = 0; k < 40 && ST.S.info().running; k++) { window.dispatchEvent(new KeyboardEvent('keydown', { code: 'Space', key: ' ' })); await ST.sleep(60); window.dispatchEvent(new KeyboardEvent('keyup', { code: 'Space', key: ' ' })); await ST.sleep(350); } await ST.idle(); ST.S.auto(true); const s = ST.S.info(); return JSON.stringify({ vars: s.vars, quests: s.quests, groups: [...ST.game.world.storyGroups.values()].map((g) => g.sample.id + ':' + g.present), deckWalkable: ST.game.tileMap.isWalkable(31.5, 8.5), camera: s.ownsCamera, programs: ST.programs(), errors: s.errors }); })()"
+  },
+  {
+    "shot": "04-bridge-built"
+  },
+  {
+    "eval": "(async () => { ST.G.teleport(31.5, 8.5); await ST.sleep(400); ST.G.teleport(55.2, 8.5); const ok = await ST.until(() => ST.G.state().campaign.level === 'old-quarry' && ST.game.mode === 'play' && !ST.G.state().campaign.traveling); await ST.sleep(800); await ST.idle(); return JSON.stringify({ ok, level: ST.G.state().campaign.level, combat: !!ST.game.combat, done: ST.S.info().done, programs: ST.programs() }); })()"
+  },
+  {
+    "eval": "(async () => { const c = window.__game.combat; const floor = ST.game.combat.enemies.filter((e) => e.groupId === 'slimes_floor'); for (const e of floor) c.kill(e.uid); await ST.sleep(800); await ST.idle(); return JSON.stringify({ killed: floor.length, done: ST.S.info().done, trace: ST.S.trace().slice(-5) }); })()"
+  },
+  {
+    "eval": "(async () => { ST.G.teleport(27.2, 7.6); await ST.sleep(300); const ok = await ST.talk('ilse'); const s = ST.S.info(); return JSON.stringify({ ok, items: s.items, vars: s.vars, quests: s.quests, chapter: ST.G.state().campaign.chapter }); })()"
+  },
+  {
+    "eval": "(async () => { const ok = await ST.G.campaign.travel('mill-road', ''); await ST.idle(); const h = ST.game.npcById.get('hollis_ford'); return JSON.stringify({ ok, level: ST.G.state().campaign.level, hollisFord: h?.present ?? null }); })()"
+  },
+  {
+    "eval": "(async () => { const ok = await ST.G.campaign.travel('millbrook', ''); await ST.sleep(500); const during = { running: ST.S.info().running, queued: ST.S.info().queued }; await ST.idle(); await ST.sleep(300); const ilse = ST.game.npcById.get('ilse'); const s = ST.S.info(); return JSON.stringify({ ok, file: ST.G.state().campaign.file, during, quests: s.quests, ilse: [+ilse.position.x.toFixed(1), +ilse.position.z.toFixed(1)], home: ST.game.campaign.state.story.levels['millbrook']?.homes, camera: s.ownsCamera, programs: ST.programs(), errors: s.errors }); })()"
+  },
+  {
+    "shot": "05-lanterns-home"
+  },
+  {
+    "eval": "(async () => { const saved = ST.G.campaign.save(); const raw = JSON.parse(localStorage.getItem('luminati.campaign.ferrymans-lantern')); return JSON.stringify({ saved, version: raw.version, story: { vars: raw.story.vars, items: raw.story.items, quests: Object.keys(raw.story.quests), done: raw.story.done.length, visits: raw.story.visits, day: raw.story.day, homes: raw.story.levels } }); })()"
+  },
+  {
+    "goto": "game.html?campaign=ferrymans-lantern&autostart=1"
+  },
+  {
+    "wait": 500
+  },
+  {
+    "eval": "(async () => { const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); for (let i = 0; i < 300 && !window.__luminati?.loadMs; i++) await sleep(100); await sleep(800); const s = window.__game.state(); const g = window.__game.game; const ilse = g.npcById.get('ilse'); return JSON.stringify({ level: s.campaign.level, file: s.campaign.file, quests: s.story.quests, running: s.story.running, ilse: [+ilse.position.x.toFixed(1), +ilse.position.z.toFixed(1)], items: s.story.items, errors: s.story.errors }); })()"
+  }
+]

@@ -1,0 +1,19 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luminati · Pixel UI art sandbox</title>
+  <style>
+    html, body { margin: 0; height: 100%; overflow: hidden; background: #000; }
+    /* the backdrops (docs/assets/screenshots/ui-backdrop-*.jpg: the game with its UI hidden), 1280 × 720, centred */
+    #backdrop { position: fixed; inset: 0; background-position: center; background-size: 1280px 720px; background-repeat: no-repeat; }
+    #app { position: fixed; inset: 0; }
+  </style>
+</head>
+<body>
+  <div id="backdrop"></div>
+  <div id="app"></div>
+  <script type="module" src="./ui_art.js"></script>
+</body>
+</html>

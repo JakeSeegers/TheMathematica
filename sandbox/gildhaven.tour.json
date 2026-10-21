@@ -1,0 +1,32 @@
+[
+  { "eval": "(async () => { for (let k = 0; k < 400 && !(window.__luminati && window.__luminati.loadMs); k++) await new Promise((r) => setTimeout(r, 100)); const G = window.__game; G.game.resolution.enabled = false; G.engine.renderScale = 1; G.lighting.timeSpeed = 0; G.setTime(16.6); const sleep = (ms) => new Promise((r) => setTimeout(r, ms)); const fail = (m) => setTimeout(() => { throw new Error('[gildhaven.tour] ' + m); }); const T = window.__tour = { log: [], fail, sleep, async view(name, x, z, yaw = 0, dist = 30, { wait = 900, budget = 300 } = {}) { G.teleport(x, z); G.rig.setAngles(yaw); G.rig.distanceTarget = dist; G.rig.snap(); await sleep(wait); const s = G.state(); const row = { name, x, z, yaw, dist, dc: s.drawCalls, tris: s.triangles }; T.log.push(row); if (budget && s.drawCalls > budget) fail(`${name}: ${s.drawCalls} draw calls (budget ${budget})`); return JSON.stringify(row); } }; T.programs0 = G.engine.renderer.info.programs.length; G.photo(true); return JSON.stringify({ loadMs: window.__luminati.loadMs, programs: T.programs0, combat: !!G.game.combat, lights: G.state().pointLights, stats: { ...G.world.stats, buildMs: undefined, phases: undefined } }); })()" },
+
+  { "eval": "__tour.view('spawn', 64, 121.5)" }, { "shot": "01_spawn" },
+  { "eval": "__tour.view('outside the South Gate', 64, 101.5)" }, { "shot": "02_south_gate" },
+  { "eval": "__tour.view('fairground', 88, 109)" }, { "shot": "03_fairground" },
+  { "eval": "__tour.view('Fairfield Mill', 34, 108.5)" }, { "shot": "04_fairfield_mill" },
+  { "eval": "__tour.view('Main Street', 64, 84)" }, { "shot": "05_main_street" },
+  { "eval": "__tour.view('Lantern Row', 36, 76)" }, { "shot": "06_lantern_row" },
+  { "eval": "__tour.view('Bellgreen', 15, 84)" }, { "shot": "07_bellgreen" },
+  { "eval": "__tour.view('Market Street', 64, 61.5)" }, { "shot": "08_market_street" },
+  { "eval": "__tour.view('Market Square', 64, 54.5)" }, { "shot": "09_square" },
+  { "eval": "__tour.view('Market Square', 64, 54.5, -60)" }, { "shot": "10_square_ym60" },
+  { "eval": "__tour.view('Market Square', 64, 54.5, 60)" }, { "shot": "11_square_yp60" },
+  { "eval": "__tour.view('Kingsbridge', 64, 41.5)" }, { "shot": "12_kingsbridge" },
+  { "eval": "__tour.view('North Quay', 70, 37.5)" }, { "shot": "13_north_quay" },
+  { "eval": "__tour.view('Mistbridge', 48.5, 38.5)" }, { "shot": "14_gildfall" },
+  { "eval": "__tour.view('Undercliff', 30, 39)" }, { "shot": "15_undercliff" },
+  { "eval": "__tour.view('West Quarter', 24, 61)" }, { "shot": "16_west_quarter" },
+  { "eval": "__tour.view('Barge Quay', 90, 46)" }, { "shot": "17_barge_quay" },
+  { "eval": "__tour.view('Fish Quay', 108, 60)" }, { "shot": "18_fish_quay" },
+  { "eval": "__tour.view('the beach', 118, 50)" }, { "shot": "19_beach" },
+  { "eval": "__tour.view('Abbey Plaza', 64, 21)" }, { "shot": "20_abbey" },
+  { "eval": "__tour.view('Hall Court', 33, 20.5)" }, { "shot": "21_hall" },
+  { "eval": "__tour.view('Scholars Row', 92, 24.5)" }, { "shot": "22_scholars" },
+  { "eval": "__tour.view('the Lookout', 115, 28)" }, { "shot": "23_lookout" },
+  { "eval": "__tour.view('Pippin Orchard', 14, 23.5)" }, { "shot": "24_orchard" },
+  { "eval": "__tour.view('Weaver\\'s Lane east', 106, 91)" }, { "shot": "25_weavers_east" },
+  { "eval": "__tour.view('over the square, zoomed out', 64, 50, 0, 42)" }, { "shot": "26_square_far" },
+
+  { "eval": "(() => { const G = window.__game; const programs = G.engine.renderer.info.programs.length; if (programs !== __tour.programs0) __tour.fail(`${programs - __tour.programs0} shader program(s) compiled after load (${__tour.programs0} → ${programs}): warm them at load`); return JSON.stringify({ programs, atLoad: __tour.programs0, maxDc: Math.max(...__tour.log.map((r) => r.dc)), log: __tour.log.map((r) => `${r.name}${r.yaw ? ' ' + r.yaw : ''}: ${r.dc}`) }); })()" }
+]

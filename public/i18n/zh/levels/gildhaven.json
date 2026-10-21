@@ -1,0 +1,1173 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "levels/gildhaven",
+  "extends": [],
+  "terms": {
+    "Ada": "艾达",
+    "Alba Quern": "阿尔芭·奎恩",
+    "Azar": "阿扎尔",
+    "Barge Quay": "驳船码头",
+    "Barlow's Farm": "巴洛农场",
+    "Beck": "贝克",
+    "Bellgreen": "钟声草坪",
+    "Bram": "布拉姆",
+    "Bramwell Bun": "布拉姆韦尔·邦",
+    "Brother Anselm": "安瑟伦修士",
+    "Brother Tuck": "塔克修士",
+    "Captain Hale": "黑尔队长",
+    "Clay Cup": "陶杯",
+    "Corporal Dunn": "邓恩下士",
+    "Corporal Lisbet": "莉丝贝特下士",
+    "Corwin the Juggler": "杂耍艺人科温",
+    "Crier Bertil": "公告员贝蒂尔",
+    "Crown Walk": "王冠步道",
+    "Daisy": "黛西",
+    "Dame Agnes": "阿格尼丝老师",
+    "Daro the Wayfarer": "漫游者达罗",
+    "Dob": "多布",
+    "Dora Haddock": "多拉·哈多克",
+    "Dozen Eggs": "一打鸡蛋",
+    "Edda": "埃达",
+    "Elric the Pilgrim": "朝圣者埃尔里克",
+    "Fair Ribbon": "集市丝带",
+    "Fairfield": "集原",
+    "Fairfield Mill": "集原磨坊",
+    "Farmer Barlow": "农夫巴洛",
+    "Fenna": "芬娜",
+    "Fennick": "芬尼克",
+    "Florin Fiddlewick": "弗洛林·菲德尔威克",
+    "Garr the Bargeman": "船夫加尔",
+    "Gild Trout": "鎏金鳟鱼",
+    "Gildhaven Hall": "鎏金港市政厅",
+    "Goodman Hollis": "霍利斯大叔",
+    "Goose Loaf": "鹅形面包",
+    "Gran Tessaly": "泰莎莉阿婆",
+    "Guardsman Pell": "卫兵佩尔",
+    "Guildmaster Orrin": "行会会长奥林",
+    "Gwen the Bargewife": "船娘格温",
+    "Hamish Mott": "哈米什·莫特",
+    "Harbourmaster Ysolde": "港务长伊索德",
+    "Hazel": "黑兹尔",
+    "Hester": "赫丝特",
+    "Hetty Bramble": "赫蒂·布兰布尔",
+    "High Town": "上城",
+    "Hob": "霍布",
+    "Joss Plane": "乔斯·普莱恩",
+    "Kingsbridge": "王桥",
+    "Kit": "基特",
+    "Lady Amabel Thornbury": "阿玛贝尔·索恩伯里夫人",
+    "Lady Odelia Fairgild": "奥德莉亚·费尔吉尔德夫人",
+    "Lantern Row": "灯笼巷",
+    "Marigold Posy": "金盏花束",
+    "Market Square": "市场广场",
+    "Market Street": "市场街",
+    "Master Brie": "布里师傅",
+    "Master Odd": "奥德先生",
+    "Merrit": "梅里特",
+    "Milla": "蜜拉",
+    "Mirela": "米蕾拉",
+    "Mother Celandine": "塞兰丁院长",
+    "Mother Wenna": "温娜大娘",
+    "Mug of Gild Ale": "一杯鎏金麦酒",
+    "Ned the Porter": "搬运工内德",
+    "Nim": "尼姆",
+    "North Quay": "北码头",
+    "Novice Cass": "见习生卡斯",
+    "Old Ambrose": "老安布罗斯",
+    "Old Salt Merrow": "老水手梅罗",
+    "Old Wick": "老威克",
+    "Ottilie Clay": "奥蒂莉·克莱",
+    "Pim Crumble": "皮姆·克朗布尔",
+    "Pinch of Saffron": "一撮藏红花",
+    "Pippin Orchard": "皮平果园",
+    "River-Blue Cloth": "河蓝布",
+    "Rosalind": "罗莎琳德",
+    "Rurik Hammerstane": "留里克·哈默斯坦",
+    "Saffi": "萨菲",
+    "Saffron Bun": "藏红花面包",
+    "Scholars' Row": "学者街",
+    "Sergeant Brask": "布拉斯克中士",
+    "Signora Vell": "维尔夫人",
+    "Sister Wynn": "薇恩修女",
+    "Smoked Gild Trout": "烟熏鎏金鳟鱼",
+    "Sorrel": "索雷尔",
+    "Sunspire Abbey": "日塔修道院",
+    "Tam the Piper": "吹笛人塔姆",
+    "Tamsin": "塔姆辛",
+    "The Allotments": "市民菜园",
+    "The Fairground": "集市会场",
+    "The Gild Pool": "鎏金潭",
+    "The Gildfall": "鎏金瀑布",
+    "The Grand Stair": "大石阶",
+    "The Harbour Stair": "港口石阶",
+    "The Lookout": "瞭望台",
+    "The Rampart Walk": "城墙步道",
+    "The South Gate": "南门",
+    "The Undercliff": "崖下区",
+    "The Watch": "卫兵所",
+    "The West Quarter": "西区",
+    "Tilda": "蒂尔达",
+    "Tilly": "蒂莉",
+    "Tobias Quern": "托拜厄斯·奎恩",
+    "Toffee Apple": "太妃糖苹果",
+    "Weaver's Lane": "织工巷",
+    "Wedge of Gild Blue": "一角鎏金蓝纹奶酪",
+    "Wren": "雷恩"
+  },
+  "units": {
+    "00B12AAF6D7553DD5254EF74903FC29F": {
+      "source": "↓ the {Gild Pool} · the {Boathouse}\n← {Crown Walk} · {Sunspire Abbey}",
+      "target": "↓ {鎏金潭} · {船屋}\n← {王冠步道} · {日塔修道院}"
+    },
+    "0C7FF21274DBC70C613279212E12A297": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "0C9FE826F669C8F14565AF04B8D2F2EA": {
+      "source": "The harbourmaster's house. A brass telescope pokes out of the upstairs window, though there is no upstairs.",
+      "target": "港务长的家。一架黄铜望远镜从楼上的窗户探出来——虽然这房子根本没有楼上。"
+    },
+    "0D93A79F8BF1EC08F2F1E1B6FD0ED8CB": {
+      "source": "Gildhaven Harbour",
+      "target": "鎏金港码头"
+    },
+    "0F200C2EA844F17360ED19609F3D5510": {
+      "source": "A goose loaf?",
+      "target": "来个鹅形面包？"
+    },
+    "1A19E423F5F0C8FF9C319648A4A7FA6C": {
+      "source": "Bless you. I came down from {Sunspire Abbey} for cheese and came away with cheese, a ribbon and a goose loaf.",
+      "target": "愿你蒙福。我从{日塔修道院}下来买奶酪，结果带回了奶酪、一条丝带和一个鹅形面包。"
+    },
+    "1B3FC6869D25C78311542A9B4B950FC0": {
+      "source": "The water glints. Probably the sun. Probably.",
+      "target": "水面闪着光。大概是阳光吧。大概。"
+    },
+    "1C3C5CE73DD64B5B6D4ABEFC96D94E04": {
+      "source": "The whole house smells of beeswax. Even the doorknob is slightly sticky.",
+      "target": "整座房子都是蜂蜡的味道。连门把手都有点黏。"
+    },
+    "1DC4DC3DAE4AA9B70BEC131F06A413C6": {
+      "source": "The goose over the door? Real gold leaf. It gets stolen every year and it always comes back. I suspect it enjoys the trip.",
+      "target": "门上那只鹅？是真金箔。年年被偷，年年回来。我猜它挺喜欢出门旅行的。"
+    },
+    "1E918AB327A5E8EE1B49B330BC754F28": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "1EB37CA220FB22AE37CDEED4EAB87510": {
+      "source": "Sold my furs by noon. Now I am just here for the crowd. And the bread. Mostly the bread.",
+      "target": "不到中午毛皮就卖光了。现在我就是来凑热闹的。还有面包。主要是面包。"
+    },
+    "1FD21BF19492C370019DE4E45082461A": {
+      "source": "Mind you, the town is the real sight. The Abbey up on the rock, the falls coming off the cliff... worth the blisters.",
+      "target": "不过说真的，这座城才是真正的好风景。岩顶上的修道院，从悬崖上倾泻而下的瀑布……磨出水泡也值了。"
+    },
+    "1FE26B9A0C7AC2DA46888F2C2A215724": {
+      "source": "West Quarter",
+      "target": "西区"
+    },
+    "2B1F8BBF49C88A16902830B72A1189F4": {
+      "source": "The sign says don't climb the oak. It does not say don't climb the oak AGAIN.",
+      "target": "牌子上写的是别爬橡树。可没写别“再”爬橡树。"
+    },
+    "02C428C7AD9A7D891C5688082D9A9760": {
+      "source": "Not today",
+      "target": "今天就算了"
+    },
+    "2CC00B4D298D919A3A366C93CE4AA6C8": {
+      "source": "↑ {Gildhaven} · the {South Gate}\n← {Fairfield Mill} · {Barlow's Farm}\n→ the {Fairground}",
+      "target": "↑ {鎏金港} · {南门}\n← {集原磨坊} · {巴洛农场}\n→ {集市会场}"
+    },
+    "2D6D549361457F88C9EF0309E2CE04C6": {
+      "source": "A brass plate by the door: \"{The Sunspire Bell} rings the fair closed at dusk. Kindly do not ring it yourself. — The Abbess\"",
+      "target": "门边有块黄铜牌：“{日塔之钟}于黄昏敲响，宣告集市结束。请勿自行敲钟。——修道院长”"
+    },
+    "2EC5FAE8F6813D9A26F2E3A1709B8CB8": {
+      "source": "Take a trout home?",
+      "target": "带条鳟鱼回家吗？"
+    },
+    "2F853AEA68952D8B6F97AB1DC3DB014C": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "3AC7E97509C251DA7E7924FE73C07BED": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "3B679F424AF28EC10BC6396F7168E1BF": {
+      "source": "A cosy voice: \"We can hear the Gildfall from our beds. We have not had a dry pillow since the spring.\"",
+      "target": "一个温和的声音：“躺在床上都能听见鎏金瀑布。打从开春起，我们的枕头就没干过。”"
+    },
+    "3C1E19D09B7DBE6ADFE35638DA4722AF": {
+      "source": "A bargeman's home. Somebody inside is snoring in time with the river.",
+      "target": "这是一户船夫的家。屋里有人在打鼾，和着河水的节拍。"
+    },
+    "3CC662DE95A5B7B77EDABB25C2B0DF50": {
+      "source": "→ the {Fish Quay} · the {Piers} · the {Boathouse}\n← the {Market Square}",
+      "target": "→ {鱼码头} · {栈桥} · {船屋}\n← {市场广场}"
+    },
+    "3CCFABDEDCA42E99465B56FFBAB3C403": {
+      "source": "Gild Fair · Stalls, crier and the Gild Well",
+      "target": "鎏金集市 · 摊位、公告员与鎏金井"
+    },
+    "3FF07FA273B278D2E3FA8FC317D55B45": {
+      "source": "I walked in from the farms at dawn for this. My feet hurt and I would not be anywhere else.",
+      "target": "为了这个，我天一亮就从农庄走过来了。脚是疼，可我哪儿也不想去。"
+    },
+    "4A2C69BA92A4EBF4ED431625F07B814E": {
+      "source": "A tune for a penny! A sad one for two! A sad one about pennies for three!",
+      "target": "一个铜板一支曲！两个铜板来支伤心的！三个铜板来支关于铜板的伤心曲！"
+    },
+    "4ABECB3480DE34D61CBBA80EE24C8EAF": {
+      "source": "Welcome to {Gildhaven}, traveller. Gild Fair today, so the gate stands open and my patience stands closed.",
+      "target": "欢迎来到{鎏金港}，旅人。今天是鎏金集市，所以城门敞开着，我的耐心可关上了。"
+    },
+    "4B1F9578C751D551E8DEB4881EC53526": {
+      "source": "A long shed full of hemp and twisting rope. \"Mind your fingers,\" calls a voice, \"or you become rope.\"",
+      "target": "长长的棚屋里堆满了麻和正在绞合的绳子。有人喊道：“当心手指，不然你也会被搓成绳子！”"
+    },
+    "4B3B6C871897B6B2CA7EA87B3BF6DD50": {
+      "source": "Sixty-one Gild Fairs I have seen. The players get younger every year. The juggler never gets better.",
+      "target": "鎏金集市我已经看过六十一回了。剧团的人一年比一年年轻，那个杂耍的却一点长进都没有。"
+    },
+    "4B290B3C3D607204F906CA2465063AD0": {
+      "source": "A dummy in the window wears half a very fine coat. The other half is presumably on its way.",
+      "target": "橱窗里的人台穿着半件极其考究的外套。另外半件想必还在路上。"
+    },
+    "4B7140755F939D9DED4749547829F946": {
+      "source": "A duty roster is nailed to the door. Somebody has written \"FAIR DAY — EVERYONE\" across all of it.",
+      "target": "门上钉着一张值班表。有人在整张表上横着写了一行大字：“集市日——全员”。"
+    },
+    "4D2E93295F0E392C4EF1579B0B1A11DE": {
+      "source": "Have you seen a small boy in a red cap? Answers to \"Bram\", and to \"cake\", and to nothing else.",
+      "target": "你见过一个戴红帽子的小男孩吗？叫他“布拉姆”会应，叫“蛋糕”也会应，别的一概不理。"
+    },
+    "4D42F10E658769D734B5EDC744307C8D": {
+      "source": "The apples come from {Pippin Orchard} up in {High Town}. The toffee comes from me. The teeth are your own business.",
+      "target": "苹果来自{上城}的{皮平果园}，太妃糖出自我的手。至于牙齿嘛，那是你自己的事。"
+    },
+    "04E3CACB9C3FBD1FCA6E6E10A2B4CACE": {
+      "source": "Cheese. Hard cheese, soft cheese, cheese that walks to you if you leave it long enough. Taste? It is free. The second taste is not.",
+      "target": "奶酪。硬奶酪、软奶酪，还有放得够久就会自己走过来的奶酪。尝尝？免费的。第二口就不免费了。"
+    },
+    "5B39ADD4A42BC3336AE58A6AE7D9B6C1": {
+      "source": "Gildhaven Hall. The Lord Mayor is receiving in the court — just there, by the benches. Please do not curtsey into the flower boxes.",
+      "target": "这里是鎏金港市政厅。市长大人正在庭院会客——就在那边长椅旁。行礼时请别一头栽进花箱里。"
+    },
+    "5B755B811F009291C8EB75C08E76091A": {
+      "source": "HEAR YE, HEAR YE! The Gild Fair is OPEN! Stalls on the square, players in {Fairfield}, and fish on the {Fish Quay}!",
+      "target": "听好了，听好了！鎏金集市开市啦！摊位在广场，剧团在{集原}，鱼在{鱼码头}！"
+    },
+    "5B164482F157FA1D93A4A7F0ECED7F9A": {
+      "source": "The {Shrine of the Tide} keeps the names of the boats. Those that came home, and those that did not.",
+      "target": "{潮汐神龛}记着每条船的名字。有归来的，也有没能归来的。"
+    },
+    "5BA41B68FA911BE1C014AA8AAA18E95A": {
+      "source": "Clap on the off-beat, if you please. Florin is always half a beat ahead, and somebody has to drag him back.",
+      "target": "劳驾，请在反拍上拍手。弗洛林总是抢半拍，总得有人把他拽回来。"
+    },
+    "5C82BBC61C5177B76E730F43E1150920": {
+      "source": "It tastes of water. Very good water, to be fair.",
+      "target": "尝起来就是水。平心而论，是相当好的水。"
+    },
+    "5D8EC8AB2D3368412BE9A15D51479B4F": {
+      "source": "What happens then?",
+      "target": "到时会怎样？"
+    },
+    "5DB2B9C754230E6FC4FDEE01BA00FB51": {
+      "source": "Bottles of every colour line the window. One of them is gently bubbling. You decide not to ask.",
+      "target": "窗台上排满了各色瓶子。其中一瓶正在轻轻冒泡。你决定还是别问了。"
+    },
+    "6A6001C404758B76D7B116DAE0BF2A7F": {
+      "source": "Blue to match the river?",
+      "target": "要配河水的蓝色吗？"
+    },
+    "06AB00D312898294B6E0AC5157615864": {
+      "source": "I am not CHASING them. I am HERDING them. There is a difference and the difference is I am winning.",
+      "target": "我才不是在“追”它们！我是在“赶”它们！这可不一样，不一样的地方就是我赢了！"
+    },
+    "6BC51C416E11FBA607B3A2A7FB70AA77": {
+      "source": "A sign in the window: \"Shoes mended. Boots mended. Hearts not mended, try the Abbey.\"",
+      "target": "窗上的牌子写着：“修鞋。修靴。不修心——请去修道院。”"
+    },
+    "6BD2EF5AAC3C91C3C6481C1F3F9F43ED": {
+      "source": "I build boats. Little ones for the river, bigger ones for the harbour. The biggest one is still a dream and some sawdust.",
+      "target": "我造船。小的给河上用，大一点的给港口用。最大的那条，目前还只是一个梦和一堆木屑。"
+    },
+    "6C5AA87B8001C7097CC306800829AB49": {
+      "source": "↑ the {Grand Stair} · {Sunspire Abbey}\n← the {Gildfall} · → the {Harbour Stair}",
+      "target": "↑ {大石阶} · {日塔修道院}\n← {鎏金瀑布} · → {港口石阶}"
+    },
+    "06E8995424A9FF7B09E4C595B526FCCB": {
+      "source": "Smoked trout?",
+      "target": "来条熏鳟鱼？"
+    },
+    "6F4385E3B41339273BE08BDE990C0AC5": {
+      "source": "Welcome to {Gildhaven}, traveller, on the best day of our year. I am Odelia Fairgild, Lord Mayor — \"Lord\" because the charter is very old and nobody likes paperwork.",
+      "target": "欢迎来到{鎏金港}，旅人，今天可是我们一年中最好的日子。我是奥德莉亚·费尔吉尔德，本城的市长“老爷”——叫“老爷”是因为特许状年代太久，而谁都不爱办文书手续。"
+    },
+    "7BFE07922109E081BAAD2511CD31FC3D": {
+      "source": "Just looking",
+      "target": "随便看看"
+    },
+    "7D46D38CF851B61B19061D794746AF2A": {
+      "source": "Market Day on the River Gild",
+      "target": "鎏金河畔集市日"
+    },
+    "7E515CF0F8CB01FB2B480DB1D7800D0F": {
+      "source": "I weave the river-blue that Signora Vell sells on the square. She sells it for three times what she pays me. I weave slower on Mondays.",
+      "target": "维尔夫人在广场上卖的河蓝布是我织的。她的卖价是付我工钱的三倍。所以每逢星期一，我就织得慢一点。"
+    },
+    "7F69AC80AED137EE5A73901E922C52C4": {
+      "source": "I'll pass",
+      "target": "我就算了"
+    },
+    "7F88B86F305B33E25D6A4167E604A119": {
+      "source": "The chandlers on {Market Street}, probably. They have everything.",
+      "target": "大概是{市场街}上那家杂货铺吧。他们什么都有。"
+    },
+    "7F323D54EDEA406DFBA9650C92A1743F": {
+      "source": "I walked from the coast to hear the {Sunspire Bell}. Three weeks. My boots are holier than I am.",
+      "target": "为了听{日塔之钟}，我从海边一路走来。走了三个星期。我靴子上磨出的洞，比我积下的功德还多。"
+    },
+    "8B00DAE9C45C7E91CB1279D71F8096D0": {
+      "source": "One goose loaf",
+      "target": "要一个鹅形面包"
+    },
+    "8C09419D9D0313199C1EE88ED0953A89": {
+      "source": "Flour on the doorstep, flour on the knocker, flour on you now.",
+      "target": "门阶上是面粉，门环上是面粉，现在你身上也是面粉。"
+    },
+    "8C739855C162BD61A7DCE771EFBA1352": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "8E0BC14AD3BA0F6BEAC76C4918623A6F": {
+      "source": "Hoops and staves everywhere. A half-made barrel rocks gently, like it is thinking about rolling off.",
+      "target": "到处都是铁箍和桶板。一只做了一半的木桶轻轻摇晃，像是在考虑要不要滚走。"
+    },
+    "8FBD42E51D1384EE7AD574477D9237AA": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "8FDE6248CAA5AE0D880BD88C2C92FECF": {
+      "source": "{Gildhaven} — Gild Fair today!\n↑ {High Town} · ↓ {Fairfield} and the {South Gate}\n← the {West Quarter} · → the {Gild Pool}",
+      "target": "{鎏金港}——今日鎏金集市！\n↑ {上城} · ↓ {集原}与{南门}\n← {西区} · → {鎏金潭}"
+    },
+    "9A2F298094450574CCA1B4787E25BFA7": {
+      "source": "One trout",
+      "target": "来一条鳟鱼"
+    },
+    "9B10EEF6C6CCD54F8EDDA4C95710D051": {
+      "source": "Three days up the river from the sea, and every lock-keeper wanted a fair-day tip. My barge has gone back down without me. I stayed for the cheese.",
+      "target": "从海边逆流而上走了三天，每个闸门看守都想讨一份集市日的小费。我的驳船已经撇下我顺流回去了。我是为了奶酪才留下的。"
+    },
+    "09CD269777B4CEF054EC99329FABB17C": {
+      "source": "The players out in {Fairfield} have a fiddle. I have a pipe and a good loud hat. We are not rivals. They are simply wrong.",
+      "target": "{集原}那边的剧团有把提琴。我有支笛子，外加一顶够花哨的帽子。我们不是对手。只是他们错了而已。"
+    },
+    "9CE71A84EF9638AE7344F3A30C9539E3": {
+      "source": "Roses climb all the way to the chimney. A voice: \"If you have come about the roses, they are not for sale. They are for showing off.\"",
+      "target": "玫瑰一路爬上了烟囱。一个声音说：“要是为玫瑰而来，那可不卖。这是种来炫耀的。”"
+    },
+    "9D99B107CDE6EF0B7C4D5E9C93289BCD": {
+      "source": "Will you stay for the bell at dusk?",
+      "target": "您会留下来听黄昏的钟声吗？"
+    },
+    "9E1C92A3285882FF6D7814F1A8CB2430": {
+      "source": "The smell of pitch and sawdust. Somebody inside is singing to a boat. The boat does not seem to mind.",
+      "target": "满是沥青和木屑的气味。有人在里面对着一条船唱歌。船似乎并不介意。"
+    },
+    "9E4BE33808D39307F55EA1A55E4BAC78": {
+      "source": "Yes, please",
+      "target": "好的，谢谢"
+    },
+    "9EC51FD6A909A8F5B86F2ABD6B48E380": {
+      "source": "\"BARLOW'S EGGS — the best in Fairfield\" is painted over the door. Underneath, smaller: \"the only in Fairfield\".",
+      "target": "门楣上漆着“巴洛鸡蛋——集原最好”。下面一行小字：“集原唯一”。"
+    },
+    "9F9E895FC9EC791ADB92EAB2EAAFB6C2": {
+      "source": "\"Back in five minutes,\" says the note. It has said so since this morning.",
+      "target": "纸条上写着：“五分钟后回来。”从今天早上起就一直这么写着。"
+    },
+    "10FF8417841194101C16E5251AB31CE9": {
+      "source": "Smoked Gild trout, fresh off the fire at the end of the quay. Smoked eel for the brave.",
+      "target": "烟熏鎏金鳟鱼，码头尽头刚下火的。胆子大的还可以来条熏鳗鱼。"
+    },
+    "11CE565A8F56140D883D082046C23C46": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "18EE4F4954AAD9FCBE5BEFCBE876507F": {
+      "source": "Trade is the river that runs under the river, friend. And this is a very good day for it.",
+      "target": "贸易是河底下流淌的另一条河，朋友。而今天正是它涨水的好日子。"
+    },
+    "19BC56E7A6AAC0D02A594EC3D3C6A58B": {
+      "source": "Saffron, pepper, cinnamon bark — all the way up the river by barge, all the way from the sea.",
+      "target": "藏红花、胡椒、肉桂皮——坐驳船沿河而上，从大海那边一路运来的。"
+    },
+    "19BE7D65C8037BEBA6A88193AEC5C136": {
+      "source": "Upturned boats inside, and a dozen oars, and a gull that very clearly lives here now.",
+      "target": "里面倒扣着几条船，还有十来支桨，以及一只显然已经在这儿安了家的海鸥。"
+    },
+    "20D5BA0112D1E339D203FC9E3D2235A6": {
+      "source": "Market Day on the River Gild",
+      "target": "鎏金河畔集市日"
+    },
+    "22E3A2E42AED13CEFF0A10580A017801": {
+      "source": "↘ {The Lookout} over the {Gild Pool}\n↙ the {Harbour Stair} down to the {North Quay}",
+      "target": "↘ {瞭望台}，俯瞰{鎏金潭}\n↙ {港口石阶}，下至{北码头}"
+    },
+    "24A20758C34A738214233FEBD85729E9": {
+      "source": "I'll stay up",
+      "target": "我还不睡"
+    },
+    "29F1DAD122760107987AA5D4291079AD": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "33C8BE5BE377B641E5081ADF7B4D10EE": {
+      "source": "One mug",
+      "target": "来一杯"
+    },
+    "35C8502AC71DAC06C7C3435A2EEF6284": {
+      "source": "Fair day means horseshoes, cart-pins and cauldron handles. Nobody buys a sword on fair day. Too much joy in the air.",
+      "target": "集市日要的是马蹄铁、车辖和锅把手。集市日没人买剑。空气里欢乐太多了。"
+    },
+    "39B556053440A0448AD475B3CB7D1AC5": {
+      "source": "A posy?",
+      "target": "来一束花吗？"
+    },
+    "41EB83D23D06A802D0EE7C99D898BCA7": {
+      "source": "Quiet fair so far. One stolen purse, one lost child — found asleep in a haystack in {Fairfield} — and the goose went missing from the inn again. It will turn up.",
+      "target": "目前集市还算太平。一个钱袋被偷，一个孩子走失——后来发现在{集原}的干草堆里睡着了——还有旅店的那只鹅又不见了。它会回来的。"
+    },
+    "45C28EAA732F5DE3C8FC66464CD4EA03": {
+      "source": "The sergeant counts everyone who comes in. I count everyone who goes out. We have never once agreed.",
+      "target": "中士数进城的人，我数出城的人。我们俩的数从来没对上过。"
+    },
+    "46D63390EFFA41EFFFA73920A6634C62": {
+      "source": "The {Gild Pool}. The barges came up at dawn, unloaded for the fair and went straight back down to the sea for more. Now it is just us and the gulls.",
+      "target": "这里是{鎏金潭}。驳船天亮时上来，为集市卸完货就直接顺流回海边再去装货了。现在只剩我们和海鸥。"
+    },
+    "46E807C70E5CFF990A5538A7B67FD95B": {
+      "source": "Barlow's the name, eggs are the game. Brown eggs, white eggs, and one blue egg nobody can explain.",
+      "target": "巴洛是我名，鸡蛋是我行。红皮蛋、白皮蛋，还有一个谁也说不清来历的蓝皮蛋。"
+    },
+    "47AD9ECA7325D866D9158C6726978657": {
+      "source": "Bread! Bread! Bread with seeds, bread without seeds, bread shaped like a goose for the fair.",
+      "target": "面包！面包！有籽的面包，没籽的面包，还有为集市特制的鹅形面包！"
+    },
+    "47AD7100E4F94E6B6226FA9EB16D5E66": {
+      "source": "Forty years I have fished the Gild. On fair day the trout hide under the barges, sulking at the noise.",
+      "target": "我在鎏金河上打了四十年鱼。一到集市日，鳟鱼就躲到驳船底下，嫌吵在那儿生闷气。"
+    },
+    "48DF207BC2AEC1100D8FD79F629BA240": {
+      "source": "Shh. They are biting. Or they were, until you walked down the pier like a drum.",
+      "target": "嘘。鱼正咬钩呢。至少在你像敲鼓一样踩着栈桥走过来之前是这样。"
+    },
+    "50E63A73BF660610CC8F0EF3DC97CAD8": {
+      "source": "Flour dust puffs out under the door. The millstones rumble like a giant clearing its throat.",
+      "target": "面粉从门底下噗噗地冒出来。磨盘隆隆作响，像巨人在清嗓子。"
+    },
+    "51AC0C6C5C82DF4D69341EFA7F802F8D": {
+      "source": "\"Letters written, read, and — for a small extra fee — improved.\"",
+      "target": "“代写书信，代读书信，另付少许费用——还可代为润色。”"
+    },
+    "53F00649042AFB5E033A95F3D857B843": {
+      "source": "I think so",
+      "target": "应该会吧"
+    },
+    "54BE1FAEB7181036FE08FA1E30D0D43A": {
+      "source": "Mother {Celandine} rings the {Sunspire Bell}, the fair closes, and we light lanterns all along the river. The water turns to gold for a night. That is the real gild of {Gildhaven}.",
+      "target": "{塞兰丁}院长会敲响{日塔之钟}，集市落幕，我们会沿河点亮灯笼。河水会化作一夜的金色。那才是{鎏金港}真正的“鎏金”。"
+    },
+    "54C6D6F35BB5E494F6E8E9D9D1F3D1DA": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "56A9C5B8B2A69AB80E7B40543417EFF3": {
+      "source": "Maybe later",
+      "target": "下次吧"
+    },
+    "58DC89F8241EFBBDC110342318EF69E3": {
+      "source": "Eggs from Barlow's Farm, hens from my own yard. Those four by the stall are not for sale. They are staff.",
+      "target": "鸡蛋来自巴洛农场，母鸡是我自家院子养的。摊子旁边那四只可不卖，它们是员工。"
+    },
+    "62D3D35F3063742FE02671E2E2090FC3": {
+      "source": "Gulls took my lunch, my bait and my hat. I am keeping the rod out of spite.",
+      "target": "海鸥叼走了我的午饭、鱼饵，还有帽子。我偏要把鱼竿留着，气死它们。"
+    },
+    "72BB05CD5B02C81EDD01F62AC7B92F02": {
+      "source": "The {Barrelhouse}! Gild Ale, brown as the river and twice as strong. We brew it with water from the falls.",
+      "target": "{酒桶屋}！鎏金麦酒，颜色跟河水一样棕，劲头却比河水猛两倍。用瀑布的水酿的。"
+    },
+    "75CEB48FDD6750768AFC2A9FAE456DFC": {
+      "source": "One for the walk?",
+      "target": "来一个边走边吃吗？"
+    },
+    "75D47B7AEDCE1F9A62FE81548B2FEFC8": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "78F3FA83A5F900700DBA8624794BD7DC": {
+      "source": "Marigolds for the fair! You wear them to the bell at dusk, then throw them in the river for luck.",
+      "target": "集市的金盏花！戴着它去听黄昏的钟声，然后扔进河里讨个好运。"
+    },
+    "79F9EDA1D20C6CD4633AFC3BCAB2EFF1": {
+      "source": "Dozens of clocks tick inside, none of them together. It is, apparently, every time at once.",
+      "target": "屋里几十座钟滴答作响，没有两座是同步的。看来此刻同时是所有的时间。"
+    },
+    "83F0F43B3E3941073CB5CFA6AB0EB553": {
+      "source": "{Pippin Orchard}\nApples for the fair: take one, leave a coin.",
+      "target": "{皮平果园}\n集市苹果：拿一个，留一枚硬币。"
+    },
+    "84C4244FD153E33A6867FE6153F2C388": {
+      "source": "Just looking",
+      "target": "随便看看"
+    },
+    "86E7251F7EDC4D02FEEE22E7319B5E60": {
+      "source": "Me? Just browsing. Admiring. Absolutely not counting anyone's purse.",
+      "target": "我？随便逛逛。欣赏欣赏。绝对没在数谁的钱袋。"
+    },
+    "88A87F1CF01CC69B159E08C15D656811": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "90CC78A6F3454BD3DB54CCEEBB33F535": {
+      "source": "Stand on the {Mistbridge} when the sun is low — the spray glitters like the gold dust of the old stories. Free of charge, which is more than my cousin can say.",
+      "target": "太阳西斜时站到{雾桥}上——水雾闪闪发亮，就像老故事里的金沙。还不收钱，这可是我堂兄比不了的。"
+    },
+    "111AFA07C5179264FDB7AC85D426ADBB": {
+      "source": "Warm steam curls out under the door. \"Baths half price on fair day,\" says the slate. \"Soap extra. Singing free.\"",
+      "target": "暖暖的蒸汽从门底下袅袅飘出。石板上写着：“集市日沐浴半价。肥皂另计。唱歌免费。”"
+    },
+    "138DEE550B52D927332E1BD1D9DA7E44": {
+      "source": "The Wandering Lark Players · Today only",
+      "target": "流浪云雀剧团 · 仅限今日"
+    },
+    "178EAB369FD62E4022A8B3FA641DC354": {
+      "source": "One ribbon",
+      "target": "要一条丝带"
+    },
+    "225A780518B91A54F7761CA0A63748C0": {
+      "source": "Peace on your fair day. I am the Abbess of {Sunspire Abbey}. At dusk I ring the bell, and the whole town stops to listen.",
+      "target": "愿你的集市日平安。我是{日塔修道院}的院长。黄昏时我会敲钟，全城都会停下来聆听。"
+    },
+    "264C212DCD9E0DBBDDD371CA97F37525": {
+      "source": "A wheel leans by the door, waiting for its cart. It looks like it has been waiting a while.",
+      "target": "门边靠着一只车轮，在等它的车。看样子已经等了好一阵子了。"
+    },
+    "322D38F0E8F25C2E8EF635585EC1B879": {
+      "source": "Rest until morning",
+      "target": "休息到天亮"
+    },
+    "450BA8F7D7A5606140BAAD67739CE176": {
+      "source": "Tired already? Rest now and you'll miss the bell at dusk.",
+      "target": "这就累了？现在歇下，可就要错过黄昏的钟声啦。"
+    },
+    "513EBEEA448B8C9E4EF07AB061BDD74D": {
+      "source": "Mind the Grand Stair behind me — three hundred years of feet have made it slippy as a wet eel.",
+      "target": "当心我身后的大石阶——三百年来被人踩来踩去，滑得跟条湿鳗鱼似的。"
+    },
+    "605A98E94B551673756DC147881A4346": {
+      "source": "My barge went back down to the sea at noon. Left me here with a pocketful of coin and no boat. I call that a holiday.",
+      "target": "我的驳船中午就顺流回海边了，把我留在这儿，兜里装满了钱，却没了船。我管这叫度假。"
+    },
+    "618D11CF78F4EA9D8B841A9D64545658": {
+      "source": "A length, please",
+      "target": "请给我扯一段"
+    },
+    "631B00BE58360E7423C9114D88BEB18D": {
+      "source": "Lanterns of every size hang in the window, waiting for dusk like children waiting for a story.",
+      "target": "窗里挂着大大小小的灯笼，等着黄昏，就像孩子们等着听故事。"
+    },
+    "633D9E6F67E7C4633FCE95388C09E4C2": {
+      "source": "I polish the candlesticks, I sweep the steps, and at dusk I am allowed to hold the rope while Mother Celandine rings the bell. It is the best job in {Gildhaven}.",
+      "target": "我擦烛台，扫台阶，黄昏时塞兰丁院长敲钟，我还可以帮忙拉着绳子。这是{鎏金港}最好的差事。"
+    },
+    "642A8619C301D871AED0BFDE98DCAF04": {
+      "source": "East Quarter",
+      "target": "东区"
+    },
+    "671F92C2C7ADC7DAC01C4A78F1071941": {
+      "source": "No school today. I said so on the slate. Twice. And on the door. And to every child personally.",
+      "target": "今天不上课。我在石板上写了。写了两遍。门上也写了。还挨个跟每个孩子说了。"
+    },
+    "687BAED361ED0DC93E6A718B48CC52D7": {
+      "source": "Not now",
+      "target": "现在不用"
+    },
+    "771E39F8440EEDD65CBDFDB2BAC242C9": {
+      "source": "A footman opens the door an inch: \"The Lord Mayor is receiving in the court today, as it is fair day. And as it is sunny.\"",
+      "target": "一名男仆把门开了一条缝：“市长大人今日在庭院中会客，因为今天是集市日。也因为今天阳光正好。”"
+    },
+    "861F32BD2A53725DC04B04528F1E3725": {
+      "source": "Where the Gild leaves High Town",
+      "target": "鎏金河流出上城之处"
+    },
+    "920E72E955D0A104D67126EDDA4B90F8": {
+      "source": "The {Gilt Library}: four thousand books, three readers, and one cat who sleeps on the rarest of them.",
+      "target": "{镀金书库}：四千本书，三位读者，还有一只专挑最珍贵的那本睡觉的猫。"
+    },
+    "932F193F169EE10BAE32C0D0CEB41830": {
+      "source": "Blue, gold and red cloth hangs drying inside. The dyer's hands are, you suspect, all three colours.",
+      "target": "屋里晾着蓝、金、红三色的布。你猜染匠的手大概也是这三种颜色。"
+    },
+    "940F0F7F25C3CF29DAD8DE5C7F5F1C28": {
+      "source": "\"Come in if you are a grandchild, go away if you are selling something, and wipe your feet either way.\"",
+      "target": "“是孙辈就进来，是推销的就走开，不管哪种都先擦擦脚。”"
+    },
+    "2826B15AFD7FF9466FB74315132F640D": {
+      "source": "Lady {Odelia Fairgild}. She receives in the court of {Gildhaven Hall} on fair day — up the {Grand Stair} and west along {Crown Walk}, over the Hall Bridge.",
+      "target": "{奥德莉亚·费尔吉尔德}夫人。集市日她在{鎏金港市政厅}的庭院会客——走上{大石阶}，沿{王冠步道}往西，过了市政厅桥就到。"
+    },
+    "3373E6C5B0BBD5EC58ADD570C54F069E": {
+      "source": "I keep the Rampart lawns and the Abbey beds. Every fair, somebody sits on my marigolds. Every fair, I forgive them. Barely.",
+      "target": "我照管城墙边的草坪和修道院的花圃。每逢集市，总有人坐到我的金盏花上。每逢集市，我都会原谅他们。勉强原谅。"
+    },
+    "3848F1CB1030AD98BBF625A44EC3AFA4": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "4083BAAE1CEDB8E496E920F99E8A99E5": {
+      "source": "Shh! I am hiding from Mum. If she says \"cake\", I have to come out. It is the rules.",
+      "target": "嘘！我在躲妈妈。要是她喊“蛋糕”，我就得出来。这是规矩。"
+    },
+    "4492B9602FEF3B640140E4EB2E187885": {
+      "source": "We play the Gild Fair every year. The town pays us in pies, and the pies are worth the walk.",
+      "target": "我们每年都来鎏金集市演出。镇上拿馅饼当酬劳，而那些馅饼值得我们走这一趟。"
+    },
+    "4916F80F74705A05E26C8EECAE564759": {
+      "source": "The {Lookout}. From here I can see both piers of the {Gild Pool}, every roof in the lower town and the road all the way to the gate.",
+      "target": "这里是{瞭望台}。从这儿能看到{鎏金潭}的两座栈桥、下城的每一片屋顶，还有一直通到城门的大路。"
+    },
+    "5957EC672B100ED071C00B15BA7AD1F9": {
+      "source": "No, thank you",
+      "target": "不用了，谢谢"
+    },
+    "6036ECFE7408534AD688F48F3ECF4288": {
+      "source": "Sit down, sit down. The best view of fair day is a bench and a friend.",
+      "target": "坐，坐。看集市日最好的位置，就是一张长椅加一位朋友。"
+    },
+    "6661FD1F620FF3E78E41EB790A59CB3F": {
+      "source": "Mind your backs! Barrels for the {Barrelhouse}, cheese for the square, and a harp for — honestly, I do not know who orders a harp.",
+      "target": "借过借过！酒桶送{酒桶屋}，奶酪送广场，竖琴送——说实话，我也不知道谁会订竖琴。"
+    },
+    "7805F06B35CCBB837EA6842392FC2B5D": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "8328D8DD5C28653E0F470B11D954693C": {
+      "source": "Through the door: the clatter of an abacus and somebody saying \"Twelve barrels? I said TWO barrels!\"",
+      "target": "门里传来算盘噼啪作响，还有人在嚷：“十二桶？我说的是‘两’桶！”"
+    },
+    "8617EDEB89E09587188668820E643898": {
+      "source": "Not today",
+      "target": "今天就算了"
+    },
+    "9196D23597E11E44D44EA58FADC3D17A": {
+      "source": "If you catch my boy {Nim} chasing the hens again, tell him supper is when the {Sunspire Bell} rings.",
+      "target": "要是你撞见我家小子{尼姆}又在追母鸡，告诉他，{日塔之钟}一响就开饭。"
+    },
+    "9664E70197DF0BD7E78FC8C7EB85C547": {
+      "source": "Mending nets, dear. Every hole is a fish that got away and a story that got bigger.",
+      "target": "在补网呢，孩子。每个破洞都是一条溜走的鱼，和一个越讲越大的故事。"
+    },
+    "12604C5D699E304F12A9396B398769EB": {
+      "source": "Ah, an audience! The {Wandering Lark Players}, at your service — songs, dances, and one juggler who is mostly reliable.",
+      "target": "啊，有观众了！{流浪云雀剧团}为您效劳——唱歌、跳舞，外加一位大体上还算靠得住的杂耍艺人。"
+    },
+    "31031B9E0EF7B2E84EB853FF93C0C05A": {
+      "source": "Sawdust drifts from the door. A half-finished rocking horse stares at you with one painted eye.",
+      "target": "木屑从门口飘出来。一匹做了一半的摇摇马用一只画好的眼睛盯着你。"
+    },
+    "59154FC464820593E58789D5CEAE4C40": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "94362DD60A6301C3AD9CB44967B88689": {
+      "source": "You came over the {Hall Bridge}? Then you have crossed the Gild twice today — once up here as a stream, once down there as a river.",
+      "target": "你是从{市政厅桥}过来的？那你今天已经两次跨过鎏金河了——一次在上面，它还是条小溪；一次在下面，它已是条大河。"
+    },
+    "151226D67079EB35D519A95F36BE3EAF": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "235820D9AEFFBE66470556F3F488C159": {
+      "source": "I am counting pigeons. There are six. There were seven. I think one went to {High Town} to be fancy.",
+      "target": "我在数鸽子。现在有六只。刚才有七只。我觉得有一只跑去{上城}装阔气了。"
+    },
+    "287403F2CF413E7845FFF1FFDDEE83AA": {
+      "source": "Bundles of drying herbs hang so thick inside that the room looks like a little forest.",
+      "target": "屋里挂满了一捆捆晾着的草药，密得像一片小树林。"
+    },
+    "368980EE2A025D2BECA6CA04F8814EC3": {
+      "source": "River-blue cloth, dyed in the {West Quarter} and fit for a duchess. Feel it. No — gently. GENTLY.",
+      "target": "河蓝布，在{西区}染的，公爵夫人穿都够格。摸摸看。不不——轻点。轻、点！"
+    },
+    "2647257B983331D3B005583EA3EC393E": {
+      "source": "A wheel hums inside. A pot slumps. Somebody sighs, then laughs, then starts again.",
+      "target": "屋里的转盘嗡嗡转着。一只陶坯塌了下去。有人叹了口气，接着笑了，然后从头再来。"
+    },
+    "3083617D224D80DBBAF7CC20A7405644": {
+      "source": "→ the {Mistbridge} to the {North Quay}\n↓ {Mill Lane} to {Market Street}",
+      "target": "→ {雾桥}，通往{北码头}\n↓ {磨坊巷}，通往{市场街}"
+    },
+    "3159626B9DF1D8355F94D3D4F265ADEC": {
+      "source": "A pinch of saffron?",
+      "target": "来一撮藏红花？"
+    },
+    "9428912C6F9487E9B40133515EC28058": {
+      "source": "A sign: \"ALL BARGES TO DECLARE ALL CARGO. Including cheese. ESPECIALLY cheese.\"",
+      "target": "告示写着：“所有驳船须申报全部货物。包括奶酪。尤其是奶酪！”"
+    },
+    "37207338BC5CE11D62CAA2B164447D3F": {
+      "source": "The brass knocker is shaped like a quill. Knocking with it leaves a small ink stain on your knuckles.",
+      "target": "黄铜门环做成了羽毛笔的形状。敲过之后，你的指节上留下了一小块墨渍。"
+    },
+    "03471569420C6A2C38AE9BAE838BC40A": {
+      "source": "My cousin runs the windmill out in {Fairfield}. I run the water mill under the {Gildfall}. We do not speak of whose flour is better. Mine is.",
+      "target": "我堂兄在{集原}管风车磨坊，我管{鎏金瀑布}底下的水磨坊。我们从不谈谁家的面粉更好。是我家的。"
+    },
+    "81350712495CAC35322FE17376E358CE": {
+      "source": "Barrels rumble somewhere inside. A cheerful bellow: \"We are OPEN, it is FAIR DAY, and the ale is BROWN!\"",
+      "target": "里面不知哪里有木桶在隆隆滚动。一声欢快的大吼：“开门营业啦！今天是集市日！麦酒是棕色的！”"
+    },
+    "55902458214493B1E81B2838C828CE49": {
+      "source": "The Guild Exchange sets the price of everything sold on the square today. Everything. Even the turnip the juggler drops.",
+      "target": "今天广场上卖的每样东西，价格都由行会交易所来定。每一样。连杂耍艺人掉下来的萝卜也不例外。"
+    },
+    "477381773248679587397892151A630B": {
+      "source": "Stand back from the forge, friend. Sparks do not care whose coat they land on.",
+      "target": "离炉子远点，朋友。火星可不管落在谁的外套上。"
+    },
+    "A0D987D6539145DF31FE7F97E3EED120": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "A1F6FD067A56B3C9FB691B62EA2516EB": {
+      "source": "A wooden soldier in the window salutes as the door creaks. Clever springs.",
+      "target": "门吱呀一响，橱窗里的木头士兵就敬了个礼。好巧妙的弹簧。"
+    },
+    "A3FBF9087B77A679C675B14C9140F9B8": {
+      "source": "Do you know {Kit}? Kit climbs the oak on {Bellgreen} even though there is a sign. There is a sign because of Kit.",
+      "target": "你认识{基特}吗？{钟声草坪}上明明立着牌子，基特还是要爬那棵橡树。那块牌子就是因为基特才立的。"
+    },
+    "A5EA88BA8CE9183654D6E46283E4A26F": {
+      "source": "Press any key",
+      "target": "按任意键开始"
+    },
+    "A6FF400D98E9C66C0CF65C4317CAD94C": {
+      "source": "The door is warm. Behind it: saffron, butter and a very busy oven.",
+      "target": "门摸上去暖暖的。门后是藏红花、黄油，还有一座忙个不停的烤炉。"
+    },
+    "A9F1056D8459055D00902A7C423C28F0": {
+      "source": "Maybe later",
+      "target": "下次吧"
+    },
+    "A30B7264A0702FC239EDDD3A1B5F9A38": {
+      "source": "Laughter, a fiddle and the smell of roast apples spill out of {The Gilded Goose}.",
+      "target": "笑声、提琴声和烤苹果的香气从{金鹅旅店}里飘了出来。"
+    },
+    "A0931F8B4FCFADAAA4D700653DC25687": {
+      "source": "Market Square is straight up {Main Street}. Fair stalls, the players and the mill are out here in {Fairfield}.",
+      "target": "沿着{大街}一直往上就是市场广场。集市摊位、剧团和磨坊都在外头的{集原}。"
+    },
+    "A3726D4A560802ABF541006E550AE1F2": {
+      "source": "Toffee apples! Dipped this morning, sticky till midnight.",
+      "target": "太妃糖苹果！今早现蘸的糖衣，一直黏到半夜！"
+    },
+    "A14662D18B0B3C5EEFCCB84F948B074A": {
+      "source": "{Bellgreen}\nPlease do not climb the oak. (It means you, Kit.)",
+      "target": "{钟声草坪}\n请勿攀爬橡树。（说的就是你，基特。）"
+    },
+    "A9633939A535629FBFB4688284C92A5A": {
+      "source": "If you see a little boy with a toffee apple and no shoes, that is {Nim}. He is fine. He is always fine.",
+      "target": "要是看见一个拿着太妃糖苹果、光着脚的小男孩，那就是{尼姆}。他没事。他向来都没事。"
+    },
+    "AA2C6E3E73D0F8428A43F39826ED2B38": {
+      "source": "Fairfield",
+      "target": "集原"
+    },
+    "AB611AC8BBFE37EBDA9FA099777C8E68": {
+      "source": "Yes, please",
+      "target": "好的，谢谢"
+    },
+    "AC98806681778FD208D2032971E23797": {
+      "source": "The great door stands ajar. Inside, a hundred candles and one very patient choir.",
+      "target": "大门虚掩着。里面燃着上百支蜡烛，还有一支极有耐心的唱诗班。"
+    },
+    "AD1D21165BB1A2A87C67F41E57D26125": {
+      "source": "Carpenter. I made half the stalls on the square, and all the benches. If one wobbles, it was the other half.",
+      "target": "我是木匠。广场上一半的摊位和所有长椅都是我做的。要是哪个晃悠，那肯定是另一半。"
+    },
+    "ADABFB5816B6F9DE6151533E97B352DD": {
+      "source": "East Pier for fishing, West Pier for gossip. Gran Tessaly mends nets down on the beach, past the smokehouse.",
+      "target": "东栈桥钓鱼，西栈桥聊闲话。泰莎莉阿婆在下面海滩上补网，就在熏鱼坊过去一点。"
+    },
+    "B1AD0E3E917568177C39760426E5C1F5": {
+      "source": "The ring of a hammer stops. \"If you want a horseshoe, wait. If you want a sword, wait longer. If you want to chat, Rurik is outside.\"",
+      "target": "叮当的锤声停了下来。“要马蹄铁，等着。要剑，等更久。要聊天，留里克在外面。”"
+    },
+    "B3F6FF5FF045A36FF23CFDD6834DA1AA": {
+      "source": "You should see the {Gild Pool} past the {Barge Quay} — gulls stealing everything that is not nailed down, and some things that are.",
+      "target": "你该去看看{驳船码头}那头的{鎏金潭}——海鸥见什么偷什么，没钉死的全偷，钉死的也偷几样。"
+    },
+    "B5FD0C8172B10C8691AD5FEB9CE7AC4A": {
+      "source": "Cups, jugs, and a teapot that pours almost entirely into the cup. Almost.",
+      "target": "杯子、水罐，还有一把几乎能把茶全倒进杯里的茶壶。几乎。"
+    },
+    "B6A3FDCF7A09525F6B97ACC77DAA9483": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "B6AC83A6E665EBF4FA047E5D6F34F94E": {
+      "source": "They still came. They are at the fair now, learning arithmetic from the cheese stall.",
+      "target": "可他们还是来了。现在都去了集市，在奶酪摊上学算术呢。"
+    },
+    "B07CF32798A3F570D78B8A498F0F96FF": {
+      "source": "Just admiring",
+      "target": "只是欣赏一下"
+    },
+    "B8A96F7ED0805F93575FCBAF0FB9021A": {
+      "source": "A card in the window: \"SILENCE. (This means you, the fair.)\"",
+      "target": "窗上贴着一张卡片：“肃静！（说的就是你，集市。）”"
+    },
+    "B08D981CFE1DA2B74652B5662D7AAE01": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "B32BB88E4F65F5E2B7645A6B4A2930AC": {
+      "source": "Shells and smooth stones line the doorstep: offerings for boats that come home, and for some that did not.",
+      "target": "门阶上摆满了贝壳和光滑的石子：献给平安归来的船，也献给那些没能回来的。"
+    },
+    "B63FD403F610ECFE4A7A918E32B30664": {
+      "source": "Hob has been on that bench since the fair opened. I have been on this one. We are having a lovely day together.",
+      "target": "集市一开张，霍布就坐在那张长椅上了。我就坐在这张上。我们一起过了美好的一天。"
+    },
+    "B084EDA188AF0ADDBEC078DF97A7C18B": {
+      "source": "Lamplighter. Every lamp from the {South Gate} to the {Rampart Walk} — I light them all at dusk, one by one.",
+      "target": "我是点灯人。从{南门}到{城墙步道}的每一盏灯——黄昏时都由我一盏一盏点亮。"
+    },
+    "B166A5E2EF3489F934252BF4152F2404": {
+      "source": "Not today",
+      "target": "今天就算了"
+    },
+    "B548B9103F2383DE58BA25E42B897DB3": {
+      "source": "A very small cottage with a very large door knocker, as if to make up for it.",
+      "target": "一间非常小的小屋，配着一个非常大的门环，像是要弥补点什么。"
+    },
+    "B763CE00AF4661EFDA97B9F2377C5AF4": {
+      "source": "Who is the Lord Mayor?",
+      "target": "市长是谁？"
+    },
+    "B1723EEA5655D8DCD3E0B50AE982184B": {
+      "source": "Mother Celandine will ring the bell at dusk. Listen from the {Rampart Walk} — the whole town hums with it.",
+      "target": "黄昏时塞兰丁院长会敲钟。到{城墙步道}上听吧——整座城都会随之共鸣。"
+    },
+    "B4100E283F9FFB2C79BE123DF8E99CE1": {
+      "source": "Down in town there's an older mill, under the {Gildfall}. Runs on water, not wind. Show-off.",
+      "target": "城里还有座更老的磨坊，就在{鎏金瀑布}底下。靠水转，不靠风。真会显摆。"
+    },
+    "B5290F669882D98918D09378E3BB3408": {
+      "source": "Look up at the cliff. That is the {Lookout}, at the end of the {Rampart Walk}. Captain Hale watches the barges from there, and pretends she is not watching me.",
+      "target": "抬头看那悬崖。那就是{瞭望台}，在{城墙步道}的尽头。黑尔队长在那儿盯着驳船，还假装没在盯着我。"
+    },
+    "B8422D9D761CFAEFED2CE759C6208063": {
+      "source": "Three hundred years that bell has rung. It cracked once, in a hard winter. We mended it with gold leaf — a little of everything in Gildhaven is.",
+      "target": "那口钟已经响了三百年。有一年严冬它裂过一次，我们用金箔把它补好了——在鎏金港，每样东西多少都用金箔补过一点。"
+    },
+    "B8475B9A405FFDF2051F69FA6FAF9B2E": {
+      "source": "At dusk the {Sunspire Bell} rings the fair closed, and the Lord Mayor lights the lanterns along the river. Bring a coat. And a sweetheart, if you have one going spare.",
+      "target": "黄昏时{日塔之钟}敲响，集市落幕，市长大人会点亮沿河的灯笼。记得带件外套。要是有闲着的心上人，也一并带上。"
+    },
+    "BA459690A8080E7DB3CE087EBB6F3DA7": {
+      "source": "Fairfield Mill grinds for half the valley. On fair day, it grinds for the bakers, and the bakers grind me.",
+      "target": "集原磨坊给半个山谷磨面。到了集市日，它专给面包师磨，面包师就来磨我。"
+    },
+    "BB4A5FA9C6A1BF40AB4F6C56D3AE6E51": {
+      "source": "A clay cup",
+      "target": "要一只陶杯"
+    },
+    "BC34FA077AE852991DEBA59535D2B0EE": {
+      "source": "Something for the kitchen?",
+      "target": "给厨房添点东西吗？"
+    },
+    "BDD7F6D715B30054A7D51BD1B427ED45": {
+      "source": "Above the door hangs a goose of beaten gold leaf. It has been stolen eleven times. It always comes back.",
+      "target": "门上挂着一只金箔打成的鹅。它被偷过十一次，每次都会自己回来。"
+    },
+    "BE78D0419F0B14DA14058D1331362C93": {
+      "source": "Apple-crates are stacked high by the door. A note: \"Gone to sell apples. Take one, leave a coin. — H.\"",
+      "target": "门边高高摞着苹果箱。纸条上写着：“卖苹果去了。拿一个，留一枚硬币。——H”"
+    },
+    "BFFB1F02FDC3A755F96877E598437147": {
+      "source": "A big family by the sound of it, all of them looking for the same left shoe.",
+      "target": "听动静是一大家子人，全都在找同一只左脚的鞋。"
+    },
+    "C0C24CDD91FE39370FE6713B7E1721F3": {
+      "source": "The whole town below",
+      "target": "全城尽收眼底"
+    },
+    "C16B563FE93A41EDEDD9D0C4BE78D758": {
+      "source": "The {Sun Well}. Its water is said to taste of honey on fair day.",
+      "target": "{太阳井}。据说到了集市日，井水会带着蜂蜜的甜味。"
+    },
+    "C92C36B866C3435E854107F3469F7064": {
+      "source": "Nets drying in great brown waves. It smells of the sea, and slightly of someone's lunch.",
+      "target": "渔网晾成一道道棕色的大浪。闻起来有海的味道，还隐约有谁的午饭味。"
+    },
+    "C97E88D551A327F535DB25041B9BC759": {
+      "source": "Nobody answers, but a parrot inside says \"Fair day! Fair day!\" with great conviction.",
+      "target": "没人应门，屋里却有只鹦鹉斩钉截铁地叫着：“集市日！集市日！”"
+    },
+    "C0567D85AD5DB2C54C57D8A2B40C8CAC": {
+      "source": "After the fair we follow the {King's Road} south. Next week, a wedding. Then a funeral. Then another wedding. Busy season.",
+      "target": "集市散了，我们就沿着{王之大道}南下。下周有场婚礼，然后是场葬礼，接着又是一场婚礼。旺季嘛。"
+    },
+    "C841A5635592D02CE89DB1EE8CBA02D4": {
+      "source": "Lovely day. Lovely crowd. Lovely... heavy... cloth.",
+      "target": "好天气。好热闹。好……沉甸甸的……衣料。"
+    },
+    "C849C9E0EC5965813883574C1828DA9C": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "C5907E02C7A94DBC6B7F628274905FA0": {
+      "source": "A dozen",
+      "target": "来一打"
+    },
+    "CAD1B513A305B001E87C54F619B25A8B": {
+      "source": "Came up the {King's Road} from the coast. You can smell the fair from a mile off — toffee, woodsmoke and cattle.",
+      "target": "我从海边沿着{王之大道}一路上来。隔着老远就能闻到集市的味道——太妃糖、柴烟，还有牛。"
+    },
+    "CB99A2165EFAE90A294077F1206FEB90": {
+      "source": "The {Gild Well}. They say the first barge-folk washed gold dust out of the river here, and the town was named for it.",
+      "target": "{鎏金井}。据说最早的船民就在这里从河中淘出金沙，小镇也因此得名。"
+    },
+    "CBD2970E50D6EDF74F6BE0A56C167D5B": {
+      "source": "Takes me till the bell has stopped ringing. By then the first ones want trimming. A lamplighter's work is never done, only dim.",
+      "target": "要一直忙到钟声停下。到那时，最早点的那几盏又该剪灯芯了。点灯人的活儿从来没有干完的时候，只有灯暗的时候。"
+    },
+    "CC347EB36E856D0D53EE2E28A9F4B73D": {
+      "source": "A cheerful voice: \"Come back after the bell! We are all down at the fair until then — even the kettle.\"",
+      "target": "一个愉快的声音传来：“等钟响了再来吧！在那之前我们全都在集市上——连水壶也去了。”"
+    },
+    "CCF9A044C457528BB59A53E3F6DB4B33": {
+      "source": "If you lose something, the {Watch House} is up in {High Town}, east along {Crown Walk}. Captain Hale will be up at the {Lookout}, mind — she always is.",
+      "target": "要是丢了东西，{卫兵所}在{上城}，沿{王冠步道}往东走。不过黑尔队长肯定在{瞭望台}上——她总是在那儿。"
+    },
+    "CE921095E6B05C2E1A36FDF16AF6DA55": {
+      "source": "Saffron buns, hot from the {Saffron Bakery}! The saffron comes from Azar's stall on the square. Azar charges like a pirate, but oh, the colour.",
+      "target": "藏红花面包，{藏红花面包房}刚出炉的！藏红花是从广场上阿扎尔的摊子买的。阿扎尔要价跟海盗似的，可是哎呀，那颜色！"
+    },
+    "CED78FBE6C733D8FD22579D0948227D9": {
+      "source": "One posy",
+      "target": "要一束"
+    },
+    "CF97F282C25D563292214E7491AF7082": {
+      "source": "Empty. A kettle on the hob and two mugs, both labelled \"SERGEANT\".",
+      "target": "空无一人。炉架上放着一把水壶，还有两只杯子，都写着“中士”。"
+    },
+    "CFCC25FBA833284F53D845F314B4D400": {
+      "source": "One trout",
+      "target": "来一条鳟鱼"
+    },
+    "D07D8352D18FC9200C8AAF459B798640": {
+      "source": "Milk! Fresh this morning from {Fairfield}! ...Sold out by noon. I am just walking the empty pails home, for the exercise.",
+      "target": "牛奶！今早刚从{集原}运来的新鲜牛奶！……中午前就卖完了。我现在只是拎着空桶走回家，权当锻炼。"
+    },
+    "D8E4F76DD247D60F847C427F611B3BCA": {
+      "source": "Not just now",
+      "target": "先不用了"
+    },
+    "D033ADCAECD20AFC3530044811D5F309": {
+      "source": "Keep your purse close today. Fair days bring three things to {Gildhaven}: farmers, players and fingers.",
+      "target": "今天看好你的钱袋。每逢集市日，{鎏金港}就会来三样东西：农夫、艺人，还有三只手。"
+    },
+    "D41EEB9A58A5E030B03F2EB0FCF7241F": {
+      "source": "The bell rings the fair closed at dusk",
+      "target": "黄昏钟声宣告集市落幕"
+    },
+    "D94F8C08E26F22DCC246567670FAB5C3": {
+      "source": "A length for a cloak?",
+      "target": "扯一段做斗篷吗？"
+    },
+    "D214BE1CE4A384B250D5989368ED7631": {
+      "source": "Hollyhocks by the door, taller than you. They nod as if they know you.",
+      "target": "门边的蜀葵比你还高。它们频频点头，好像认识你似的。"
+    },
+    "D391235F2FDE0BD65969322202457D9E": {
+      "source": "Goodman Hollis says the hens are STAFF. So I am helping them do their job. Their job is running.",
+      "target": "霍利斯大叔说母鸡是“员工”。所以我在帮它们干活。它们的活儿就是跑。"
+    },
+    "D7666543D4213090A30EF788EF06799E": {
+      "source": "Fresh this morning! Gild trout, river eels, and a pike so ugly it frightened the cat.",
+      "target": "今早刚到的！鎏金鳟鱼、河鳗，还有一条丑得把猫都吓跑了的梭子鱼。"
+    },
+    "D305491260A09E0DFC9BFF8194804DB4": {
+      "source": "I have bought a hat. I did not need a hat. It is the most beautiful hat in {Gildhaven}, and therefore the world.",
+      "target": "我买了一顶帽子。我并不需要帽子。可这是{鎏金港}最美的帽子，因此也就是全世界最美的帽子。"
+    },
+    "D46987336031B9B34A47010959D2C6D1": {
+      "source": "A mug for the fair?",
+      "target": "来一杯庆祝集市？"
+    },
+    "DA5BD8683FC213C4B8440FC134C72C5F": {
+      "source": "Pippin Orchard. Every apple on every toffee stick at the fair grew on these trees.",
+      "target": "这里是皮平果园。集市上每根太妃糖签子上的苹果，都是这些树上长的。"
+    },
+    "DA66C80854BF3D1A81529BE7CE7695E7": {
+      "source": "A dozen eggs?",
+      "target": "来一打鸡蛋？"
+    },
+    "DD9A3F0AB79C03E0D92BE1D6F9AC042E": {
+      "source": "High Town",
+      "target": "上城"
+    },
+    "E0B7848F7F0BA661513CA54D759DA022": {
+      "source": "Fairfield",
+      "target": "集原"
+    },
+    "E4A7681535D6D4814DF0C2EDA1FA0E54": {
+      "source": "I have a list. Cheese, cloth, eggs, saffron. I have bought three ribbons. The list is not going well.",
+      "target": "我列了张单子：奶酪、布、鸡蛋、藏红花。结果我买了三条丝带。这张单子进展得不太顺利。"
+    },
+    "E5B439A71DE91AB0D3C5834D58AB5959": {
+      "source": "Fair ribbons! Tie one on your wrist and the music finds you. That is the custom. Or I made it up. One of those.",
+      "target": "集市丝带！系一条在手腕上，音乐就会找上你。这是习俗。也可能是我瞎编的。总之是其中之一。"
+    },
+    "E5C6BE4317053179B98F33AFA186F59F": {
+      "source": "Market Day on the River Gild",
+      "target": "鎏金河畔集市日"
+    },
+    "E5D4EADDCEBC56A8CEA87639D158A1FD": {
+      "source": "One wedge",
+      "target": "来一角"
+    },
+    "E5F26EB6644E06595245131D8129DF77": {
+      "source": "Rope, tar, candles, nails, a stuffed pike and, for some reason, a harp. \"We have everything,\" says the sign. It may be right.",
+      "target": "绳子、焦油、蜡烛、钉子、一条梭子鱼标本，还有一架不知为何会在这里的竖琴。招牌上写着：“应有尽有。”也许真是这样。"
+    },
+    "E9FD6AA760D444499CF99C5A5A902644": {
+      "source": "Not today",
+      "target": "今天就算了"
+    },
+    "E62C1FFE0114E2A3E6EFA70A03A4ACC7": {
+      "source": "Locked. Through a crack: sacks of salt piled to the rafters, and a cat asleep on the highest one.",
+      "target": "锁着。从门缝望进去：盐袋一直堆到房梁，最高的那袋上睡着一只猫。"
+    },
+    "E95D5EA598CD674147DCFADCC4A2218F": {
+      "source": "A maid peers out. \"Lady Thornbury is not at home. Lady Thornbury is at the fair, buying a hat she does not need.\"",
+      "target": "一名女仆探出头来：“索恩伯里夫人不在家。索恩伯里夫人去集市了，去买一顶她根本用不着的帽子。”"
+    },
+    "E160FB6FC4F99C2E41353511AE40E37E": {
+      "source": "A pinch",
+      "target": "来一撮"
+    },
+    "E516AF004F40D0941383B23833B825A1": {
+      "source": "Customs. Every barge declares its cargo, and I write it in the book. Today I have written \"cheese\" one hundred and four times.",
+      "target": "这里是海关。每艘驳船都要申报货物，由我记进账簿。今天我已经写了一百零四遍“奶酪”。"
+    },
+    "E645ABDA9DDCB9BE2E25ADD2050DCAE5": {
+      "source": "Three apples, two knives and a turnip. The turnip is the dangerous one. Nobody expects the turnip.",
+      "target": "三个苹果、两把刀，再加一根萝卜。最危险的是萝卜。谁也想不到会是萝卜。"
+    },
+    "E2852DE55E556BBADB57C2D91EFEA4F3": {
+      "source": "If you want the history of the fair, it is in chapter nine. If you want the gossip, it is in the Barrelhouse.",
+      "target": "想了解集市的历史，请看第九章。想听闲话，请去酒桶屋。"
+    },
+    "E4734AC10B63D879C442A20C224BCF56": {
+      "source": "The Abbey, the Hall and the Rampart Walk",
+      "target": "修道院、市政厅与城墙步道"
+    },
+    "E17195E317708610142DACD98C2463BE": {
+      "source": "Closed for the fair. A slate by the door reads: \"NO SCHOOL TODAY. Yes, really. Go away. — Dame Agnes\"",
+      "target": "因集市停课。门边的石板上写着：“今日停课。没错，是真的。快走吧。——阿格尼丝老师”"
+    },
+    "E41844FEE2B08370763D33F3C2D7C047": {
+      "source": "One pinch of my saffron and the bakers of {Lantern Row} fight in the street. I have seen it. I sold them tickets.",
+      "target": "只要一撮我的藏红花，{灯笼巷}的面包师们就会当街打起来。我亲眼见过。我还卖过门票呢。"
+    },
+    "E4543866A9659E04AA81115B8E5C2558": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "EBB2C44A6648820D414D6620738067A2": {
+      "source": "A wedge of Gild Blue?",
+      "target": "来一角鎏金蓝纹奶酪？"
+    },
+    "F4ED4B64B2E4D3757A816D6631FE64D7": {
+      "source": "GILDHAVEN",
+      "target": "鎏金港"
+    },
+    "F5F11E891C78353096663A3CCDCC0B53": {
+      "source": "The {Saltbridge} to the east, {Kingsbridge} in the middle, and the {Mistbridge} by the falls — three bridges, and I have to count the tolls on all of them.",
+      "target": "东边是{盐桥}，中间是{王桥}，瀑布旁是{雾桥}——三座桥，过桥费全得我来算。"
+    },
+    "F6F05B0D59B1C5DE51A4A9E292B95C3C": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    },
+    "F08C75F717408B96AEAFEAAA187B661C": {
+      "source": "A bun for the road?",
+      "target": "带个面包路上吃？"
+    },
+    "F9D3184FB8BD8001A93F6BCCE1059472": {
+      "source": "Fairfield",
+      "target": "集原"
+    },
+    "F9DCD922F6F881F9B84602750FA29037": {
+      "source": "Any questions?",
+      "target": "还有什么要问的吗？"
+    },
+    "F27CC242E750F0C749FB52033A9AA237": {
+      "source": "Outside the South Gate · Fair day",
+      "target": "南门外 · 集市日"
+    },
+    "F620E0F624445B0C3AE60E43BAC63D9C": {
+      "source": "The clack of a loom. A voice counts \"...forty-one, forty-two, forty — oh, BOTHER.\"",
+      "target": "织机咔嗒作响。有个声音在数：“……四十一、四十二、四十——哎呀，烦死了！”"
+    },
+    "F92869977E76C8465D216AF9E06F9685": {
+      "source": "Light a thought for the river, friend. It gives this town everything — even its name.",
+      "target": "为这条河点一份念想吧，朋友。它给了这座城一切——连名字也是。"
+    },
+    "F263328470CA18C52AD9AE926CC17673": {
+      "source": "Welcome to {The Gilded Goose}! Every room is full of fair-folk, but I always keep one bed aired for a traveller.",
+      "target": "欢迎光临{金鹅旅店}！房间都住满了赶集的人，不过我总会给旅人留一张晾好被褥的床。"
+    },
+    "FA8B99027D901B09665A99F8F6C702F4": {
+      "source": "Piers, gulls and the smokehouse",
+      "target": "栈桥、海鸥与熏鱼坊"
+    },
+    "FA87D9F052FAF93E977DF03A76CF4DEA": {
+      "source": "No, thank you",
+      "target": "不用了，谢谢"
+    },
+    "FABB281725F613D53E1FE5269DFF6680": {
+      "source": "Wonderful, isn't it?",
+      "target": "真好啊，不是吗？"
+    },
+    "FC16DFC65A6289A26D14EDEABDAB3F00": {
+      "source": "A smell hits you before the door does. You decide not to knock twice.",
+      "target": "还没碰到门，一股气味就先扑了过来。你决定不敲第二下了。"
+    },
+    "FC34E8832725DD949A2EE719254271E1": {
+      "source": "Long ago the barge-folk found gold dust in the river below the falls. There was not much, but they named the town for it, and they have been gilding everything since.",
+      "target": "很久以前，船民们在瀑布下的河里发现了金沙。数量不多，可他们还是用它给小镇命了名，此后便事事都要鎏上一层金。"
+    },
+    "FE4E2E714CF7331595A20562C65C7F16": {
+      "source": "A Luminati 2.5D town · three.js",
+      "target": "Luminati 2.5D 城镇 · three.js"
+    },
+    "FEB398FCAC91D982B218EC5A9DBBF944": {
+      "source": "Gildhaven",
+      "target": "鎏金港"
+    }
+  }
+}

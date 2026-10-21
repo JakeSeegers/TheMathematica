@@ -1,0 +1,10 @@
+[
+  { "eval": "window.__props.frame('trees'); 'ok'" },
+  { "wait": 300 },
+  { "shot": "wind_calm" },
+  { "eval": "window.__props.globalUniforms.uWindStrength.value = 14; 'ok'" },
+  { "wait": 120 },
+  { "shot": "wind_storm_a" },
+  { "wait": 900 },
+  { "shot": "wind_storm_b" }
+]

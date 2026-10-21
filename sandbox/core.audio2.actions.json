@@ -1,0 +1,8 @@
+[
+  { "eval": "window.__core.analyzeAudio(12, { parts: ['music'], mute: ['_pad', '_flute'] })" },
+  { "wait": 300 },
+  { "shot": "spec_harp" },
+  { "eval": "window.__core.analyzeAudio(12, { parts: ['music'], mute: ['_pluck', '_flute'] })" },
+  { "wait": 300 },
+  { "shot": "spec_pad" }
+]
