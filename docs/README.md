@@ -257,6 +257,9 @@ describes the code.
     look is set: pixel density, palette, sprites, camera, post values, lighting, weather, UI.
   - [LEVEL_DESIGN_GUIDE.md](design/LEVEL_DESIGN_GUIDE.md) — level design rules with the reason and
     the check behind each; a pre-ship checklist.
+  - [RESEARCH_STATISTICS_RPG.md](design/RESEARCH_STATISTICS_RPG.md) — *proposal, not built*: the
+    research-statistics RPG direction on top of GLAIVE combat (populations, the observation
+    protocol, statistical targets, kingdom consequences, the plan).
   - **levels/** — one design document per shipped level
     - [emberfall.md](design/levels/emberfall.md) — Emberfall, the 48 × 40 reference village (the
       default level).
