@@ -22,6 +22,12 @@ import { RNG } from '../src/engine/utils/math.js';
 import { Dice } from '../src/game/glaive/dice.js';
 import { Population, validateConfig, penetrationChance, damageDistribution } from '../src/game/research/populations.js';
 import { Dataset, penetrates, HIDDEN_KEYS } from '../src/game/research/dataset.js';
+import { Recorder } from '../src/game/research/recorder.js';
+import { ResearchMode } from '../src/game/research/ResearchMode.js';
+import { Encounter } from '../src/game/glaive/Encounter.js';
+import { Sheet } from '../src/game/glaive/Sheet.js';
+import { xpToNext } from '../src/game/glaive/rules.js';
+import { PARTY_PRESETS } from '../src/engine/level/PartyRules.js';
 import {
   mean, median, percentile, fiveNumber, sd, frequencyTable, histogram, proportion,
   invNorm, normCdf, invT, tCdf, proportionInterval, meanInterval, sampleSizeForProportion,
@@ -72,7 +78,7 @@ function meet(ds, dice, habitat, count, { playerAc = 13, expedition = 1, attacks
       const mode = flankEvery && (i + k) % flankEvery === 0 ? 'adv' : 'normal';
       const r = dice.d20(ind.attackBonus, playerAc, mode);
       const damage = r.success ? dice.roll(ind.damage, { mode: r.crit ? 'adv' : 'normal' }).total : null;
-      ds.addAttack({ enemyId: en.id, targetId: 'player', targetAc: playerAc, rollMode: mode, strikeTotal: r.total, critical: r.crit, fumble: r.fumble, hit: r.success, damage, free: false, vsUnconscious: false });
+      ds.addAttack({ enemyId: en.id, targetId: 'player', targetAc: playerAc, rollMode: mode, strikeTotal: r.crit || r.fumble ? null : r.total, critical: r.crit, fumble: r.fumble, hit: r.success, damage, free: false, vsUnconscious: false });
     }
     ds.setFate(en.id, 'killed');
   }
@@ -181,7 +187,7 @@ sec('dataset');
   ds.addAttack({ ...base, enemyId: e1.id, rollMode: 'adv', strikeTotal: 15, critical: false, fumble: false, hit: true, damage: 4 });
   const a2 = ds.addAttack({ ...base, enemyId: e1.id, rollMode: 'normal', strikeTotal: 11, critical: false, fumble: false, hit: false, damage: null });
   ds.addAttack({ ...base, enemyId: e1.id, rollMode: 'normal', strikeTotal: 16, critical: false, fumble: false, hit: true, damage: 5 });
-  ds.addAttack({ ...base, enemyId: e1.id, rollMode: 'normal', strikeTotal: 21, critical: true, fumble: false, hit: true, damage: 6 });
+  ds.addAttack({ ...base, enemyId: e1.id, rollMode: 'normal', strikeTotal: null, critical: true, fumble: false, hit: true, damage: 6 });
   // e2: one normal hit; e3: only a flanked attack; e4: never attacks
   ds.addAttack({ ...base, enemyId: e2.id, rollMode: 'normal', strikeTotal: 14, critical: false, fumble: false, hit: true, damage: 7 });
   ds.addAttack({ ...base, enemyId: e3.id, rollMode: 'adv', strikeTotal: 18, critical: false, fumble: false, hit: true, damage: 3 });
@@ -197,7 +203,9 @@ sec('dataset');
   const pa = ds.penetration(13, { unit: 'attack' });
   ok(pa.n === 4 && pa.enemies === 2 && pa.clustered, 'per attack: 4 normal attacks from 2 enemies, flagged clustered', pa);
   ok(ds.penetration(12, { unit: 'enemy' }).x === 1 && ds.penetration(11, { unit: 'enemy' }).x === 2, 'one strike total answers every armour (AC 11 / 12)');
-  ok(penetrates({ strikeTotal: 5, critical: true, fumble: false }, 30) && !penetrates({ strikeTotal: 40, critical: false, fumble: true }, 5), 'a critical always penetrates, a fumble never');
+  ok(penetrates({ strikeTotal: null, critical: true, fumble: false }, 30) && !penetrates({ strikeTotal: null, critical: false, fumble: true }, 5), 'a critical always penetrates, a fumble never');
+  ok(throws(() => ds.addAttack({ ...base, enemyId: e2.id, rollMode: 'normal', strikeTotal: 23, critical: true, fumble: false, hit: true, damage: 4 })), 'a critical with its total is refused (the total would reveal the bonus)');
+  ok(throws(() => ds.addAttack({ ...base, enemyId: e2.id, rollMode: 'normal', strikeTotal: null, critical: false, fumble: false, hit: false, damage: null })), 'an ordinary attack needs its total');
   ok(JSON.stringify(ds.damageOnHit()) === JSON.stringify([4, 5, 6, 7, 3]), 'damage on hit: every hit, misses not counted as 0', ds.damageOnHit());
   ok(JSON.stringify(ds.damageOnHit({ unit: 'enemy' })) === JSON.stringify([7]), 'damage per enemy: the eligible attacks that hit', ds.damageOnHit({ unit: 'enemy' }));
   ok(throws(() => ds.addAttack({ ...base, enemyId: e2.id, rollMode: 'normal', strikeTotal: 9, critical: false, fumble: false, hit: false, damage: 0 })), 'a miss with damage 0 is refused (null, not 0)');
@@ -310,7 +318,7 @@ sec('sampling');
         const ind = pop.individual(h, [seed, r, i]);
         const en = ds.addEnemy({ encounterId: enc.id, family: 'goblin', weapon: ind.weapon, habitat: h, time: 0 });
         const roll = d.d20(ind.attackBonus, 13);
-        ds.addAttack({ enemyId: en.id, targetId: 'player', targetAc: 13, rollMode: 'normal', strikeTotal: roll.total, critical: roll.crit, fumble: roll.fumble, hit: roll.success, damage: roll.success ? 1 : null, free: false, vsUnconscious: false });
+        ds.addAttack({ enemyId: en.id, targetId: 'player', targetAc: 13, rollMode: 'normal', strikeTotal: roll.crit || roll.fumble ? null : roll.total, critical: roll.crit, fumble: roll.fumble, hit: roll.success, damage: roll.success ? 1 : null, free: false, vsUnconscious: false });
       }
       const p = ds.penetration(LIGHT);
       const c = proportionInterval(p.x, p.n);
@@ -342,6 +350,179 @@ sec('sampling');
   fl.startExpedition({ start: 0, route: 'road' });
   meet(fl, new Dice(new RNG('flank')), 'road', 12, { attacks: 1, flankEvery: 3 });
   ok(fl.penetration(LIGHT).n === 8 && fl.missing()['only flanked attacks'] === 4, 'a flanked-only goblin has no eligible attack and says why', { n: fl.penetration(LIGHT).n, missing: fl.missing() });
+}
+
+// -------------------------------------------------------------------------------------------------
+// Real GLAIVE encounters through the recorder (step 2): a flat world, the player on AI
+// -------------------------------------------------------------------------------------------------
+
+const flatWorld = {
+  path(c, x, z, maxLen, stopDist, others) {
+    const dx = x - c.x, dz = z - c.z;
+    const d = Math.hypot(dx, dz);
+    if (d < 1e-6) return null;
+    let len = Math.min(maxLen, Math.max(0, d - stopDist));
+    for (let tries = 0; tries < 8 && len > 0; tries++) {
+      const ex = c.x + (dx / d) * len, ez = c.z + (dz / d) * len;
+      if (!others.some((o) => Math.hypot(o.x - ex, o.z - ez) < (o.radius ?? 0.3) + (c.radius ?? 0.3))) break;
+      len = Math.max(0, len - 0.4);
+    }
+    const ex = c.x + (dx / d) * len, ez = c.z + (dz / d) * len;
+    return { x: ex, z: ez, points: [c.x, c.z, ex, ez], len };
+  },
+  los: () => true,
+  summon: () => null,
+};
+
+/** A level-`level` sellsword (AC 17) on AI. */
+function hero(level = 3) {
+  const p = Sheet.create('sellsword', 'human', 'Player');
+  for (let i = 1; i < level; i++) { p.xp = xpToNext(p.level); p.levelUp(null, p.raisable()[0] ?? null); }
+  p.hp = p.hpMax;
+  return { id: 'player', side: /** @type {'party'} */ ('party'), name: 'Player', kind: 'player', sheet: p, x: 0, z: 0, controller: /** @type {'ai'} */ ('ai'), rule: PARTY_PRESETS.aggressive.rule };
+}
+
+/**
+ * One fight of the hero against a studied group (its individuals for the overlay's expedition),
+ * recorded as GlaiveCombat records it. Returns the beats.
+ * @param {ResearchMode} rm
+ * @param {string} groupId
+ * @param {number} count
+ * @param {number} seed
+ */
+function studiedFight(rm, groupId, count, seed) {
+  const list = /** @type {any[]} */ ([hero()]);
+  /** @type {{ id: string, studied: any }[]} */
+  const foes = [];
+  for (let i = 0; i < count; i++) {
+    const ind = /** @type {NonNullable<ReturnType<ResearchMode['individualFor']>>} */ (rm.individualFor(groupId, i));
+    const id = `${groupId}#${i}`;
+    list.push({ id, side: 'foe', name: 'Bramble Goblin', kind: 'goblin', stats: ind.stats, x: (i - 1) * 1.5, z: -5, radius: 0.35 });
+    foes.push({ id, studied: ind.info });
+  }
+  const enc = new Encounter({ dice: new Dice(seed), world: flatWorld, combatants: /** @type {any} */ (list), ambush: null, canFlee: false });
+  rm.fightStart(foes);
+  const all = [];
+  let b = enc.start();
+  rm.beats(b); all.push(...b);
+  for (let steps = 0; !enc.over && steps < 4000; steps++) {
+    b = enc.step(enc.decide());
+    rm.beats(b); all.push(...b);
+  }
+  return { enc, beats: all };
+}
+
+sec('recorder');
+{
+  let clock = 8;
+  const host = { now: () => clock, armor: () => 'medium' };
+  const rm = new ResearchMode(CONFIG, host);
+  ok(rm.expedition === 1 && rm.dataset.expeditions.length === 1 && rm.dataset.expedition, 'the overlay opens expedition 1');
+  const road = rm.individualFor('glade_goblins', 0);
+  const mire = rm.individualFor('mire_goblins', 0);
+  ok(!!road && [0, 1, 2].includes(road.stats.atk) && road.stats.ac === 13 && road.stats.hpMax === 5, 'a road goblin: bonus +0..+2, AC 13, 5 hp', road?.stats);
+  ok(!!mire && [3, 4, 5].includes(mire.stats.atk), 'a mire goblin: bonus +3..+5', mire?.stats.atk);
+  ok(road?.stats.attacks.length === 1 && road.stats.attacks[0].name === CONFIG.weapons[road.info.weapon].name && road.stats.attacks[0].damage === CONFIG.weapons[road.info.weapon].damage, 'its one attack is its visible weapon');
+  ok(road?.stats.moves.includes('gang'), 'it keeps the family\'s moves (gang tactics)');
+  ok(rm.individualFor('ruins_court', 0) === null, 'a group outside the study keeps its own stats (null)');
+  ok(!('attackBonus' in /** @type {any} */ (road?.info ?? {})), 'the visible info holds no attack bonus');
+  const before = [0, 1, 2, 3, 4, 5].map((i) => rm.individualFor('glade_goblins', i)?.stats.atk + '/' + rm.individualFor('glade_goblins', i)?.info.weapon).join();
+  ok(before === [0, 1, 2, 3, 4, 5].map((i) => rm.individualFor('glade_goblins', i)?.stats.atk + '/' + rm.individualFor('glade_goblins', i)?.info.weapon).join(), 'the same expedition gives the same individuals');
+
+  // one real fight
+  const { enc, beats } = studiedFight(rm, 'glade_goblins', 3, 101);
+  const ds = rm.dataset;
+  const goblinAttacks = beats.filter((b) => b.t === 'attack' && String(b.who).startsWith('glade_goblins'));
+  ok(enc.over && enc.result.outcome === 'victory', 'the hero wins the fight', enc.result.outcome);
+  ok(ds.counts().encounter === 1 && ds.counts().enemy === 3, 'one encounter row, three enemy rows', ds.counts());
+  ok(ds.attacks.length === goblinAttacks.length, 'one attack row per goblin attack beat (the hero\'s attacks are not rows)', { rows: ds.attacks.length, beats: goblinAttacks.length });
+  let same = true;
+  ds.attacks.forEach((row, i) => {
+    const b = goblinAttacks[i];
+    const exp = b.roll.crit || b.roll.fumble ? null : b.roll.total;
+    if (row.strikeTotal !== exp || row.hit !== b.hit || row.targetAc !== b.roll.target || row.rollMode !== b.roll.mode) same = false;
+    if (b.hit && row.damage !== b.damage.total) same = false;
+    if (!b.hit && row.damage !== null) same = false;
+  });
+  ok(same, 'each row matches its beat: strike total (none on a natural 20 / 1), hit, AC, mode, damage roll');
+  ok(ds.attacks.every((a) => a.targetAc === 17), 'the hero\'s AC 17 is the target AC');
+  const eligible = ds.attacks.filter((a) => a.eligible);
+  ok(eligible.length <= 3 && new Set(eligible.map((a) => a.enemyId)).size === eligible.length, 'at most one eligible attack per goblin');
+  ok(ds.enemies.every((e) => e.fate !== null), 'every goblin has a fate', ds.enemies.map((e) => e.fate));
+  ok(ds.enemies.every((e) => (ds.eligibleOf(e.id) === null) === (e.missingReason !== null)), 'a goblin without an eligible attack says why, one with it does not');
+  ok(ds.encounters[0].result === 'victory' && ds.encounters[0].armor === 'medium' && ds.encounters[0].habitat === 'road', 'the encounter: victory, the player\'s armour, its habitat');
+  ok(!rm.recorder.active, 'the recorder closed the encounter at the end beat');
+  // no hidden key reached the dataset
+  const keys = new Set();
+  const walk = (o) => { if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) { keys.add(k); walk(v); } };
+  walk(rm.toJSON());
+  ok(!HIDDEN_KEYS.some((k) => keys.has(k)), 'the overlay\'s save holds no hidden key', HIDDEN_KEYS.filter((k) => keys.has(k)));
+
+  // a rest: a new expedition with new individuals
+  clock = 20;
+  rm.startExpedition();
+  const after = [0, 1, 2, 3, 4, 5].map((i) => rm.individualFor('glade_goblins', i)?.stats.atk + '/' + rm.individualFor('glade_goblins', i)?.info.weapon).join();
+  ok(rm.expedition === 2 && ds.expeditions[0].end === 20 && after !== before, 'a rest ends expedition 1 and draws new goblins', { before, after });
+  const second = studiedFight(rm, 'glade_goblins', 3, 102);
+  ok(ds.counts().enemy === 6 && new Set(ds.enemies.map((e) => e.id)).size === 6 && ds.enemies.slice(3).every((e) => e.expeditionId === 'X2'), 'the pack after the rest gives three new enemy rows in expedition 2');
+  ok(second.enc.over, 'the second fight ends');
+
+  // reproducible: the same seeds give the same dataset
+  const replay = () => {
+    const r = new ResearchMode(CONFIG, { now: () => 8, armor: () => 'medium' });
+    for (let k = 0; k < 4; k++) studiedFight(r, k % 2 ? 'mire_goblins' : 'glade_goblins', 3, 500 + k);
+    return JSON.stringify(r.toJSON());
+  };
+  ok(replay() === replay(), 'fixed seeds reproduce the recorded dataset');
+
+  // routes: many fights on the road vs in the mire give different samples
+  const roadRm = new ResearchMode(CONFIG, { now: () => 8, armor: () => 'medium' });
+  const mireRm = new ResearchMode(CONFIG, { now: () => 8, armor: () => 'medium' });
+  for (let k = 0; k < 60; k++) {
+    studiedFight(roadRm, 'glade_goblins', 3, 1000 + k);
+    studiedFight(mireRm, 'mire_goblins', 3, 2000 + k);
+    roadRm.startExpedition();
+    mireRm.startExpedition();
+  }
+  const pr = roadRm.dataset.penetration(LIGHT), pm = mireRm.dataset.penetration(LIGHT);
+  log('route road', pr.n, pr.x / pr.n, 'route mire', pm.n, pm.x / pm.n, 'missing', roadRm.dataset.missing(), mireRm.dataset.missing());
+  ok(pr.n > 60 && pm.n > 60, 'both routes yield eligible attacks from real fights', { road: pr.n, mire: pm.n });
+  ok(pm.x / pm.n > pr.x / pr.n, 'the mire route shows more penetration of light armour than the road route', { road: pr.x / pr.n, mire: pm.x / pm.n });
+  const cr = proportionInterval(pr.x, pr.n);
+  ok(cr.lo <= pop.truePenetration(LIGHT, 'road') && pop.truePenetration(LIGHT, 'road') <= cr.hi, 'the road route\'s interval covers the road value (this seed)', { lo: cr.lo, hi: cr.hi });
+  const flanked = roadRm.dataset.attacks.filter((a) => a.rollMode !== 'normal');
+  ok(flanked.length > 0 && flanked.every((a) => !a.eligible), 'gang tactics give flanked (ADV) attacks; none is eligible', flanked.length);
+}
+
+sec('recorder beats');
+{
+  // synthetic beats: a sleeper, a fleeing goblin, and a party that withdraws
+  const ds = new Dataset();
+  ds.startExpedition({ start: 0, route: 'open' });
+  const rec = new Recorder(ds, { family: 'goblin' });
+  rec.begin([{ id: 'g0', habitat: 'road', weapon: 'knife' }, { id: 'g1', habitat: 'road', weapon: 'spear' }, { id: 'g2', habitat: 'mire', weapon: 'spear' }], { time: 1, armor: 'light' });
+  const roll = (total, natural, mode = 'normal') => ({ dice: [natural], natural, mod: total - natural, total, target: 12, mode, success: natural !== 1 && (natural === 20 || total >= 12), crit: natural === 20, fumble: natural === 1 });
+  rec.beats([
+    { t: 'condition', who: 'player', id: 'unconscious', on: true },
+    { t: 'attack', who: 'g0', target: 'player', roll: { ...roll(9, 8), success: true, crit: true }, hit: true, crit: true, free: false, damage: { total: 5 } },
+    { t: 'condition', who: 'player', id: 'unconscious', on: false },
+    { t: 'attack', who: 'g0', target: 'player', roll: roll(14, 13), hit: true, crit: false, free: false, damage: { total: 3 } },
+    { t: 'attack', who: 'g1', target: 'player', roll: roll(5, 1), hit: false, crit: false, free: false },
+    { t: 'attack', who: 'player', target: 'g1', roll: roll(18, 15), hit: true, crit: false, free: false, damage: { total: 6 } },
+    { t: 'flee', who: 'g2', points: [] },
+    { t: 'end', outcome: 'fled', xp: 0 },
+  ], 2);
+  ok(ds.attacks.length === 3, 'three goblin attacks recorded, the player\'s attack not', ds.attacks.length);
+  ok(ds.attacks[0].vsUnconscious && !ds.attacks[0].eligible && ds.attacks[0].strikeTotal === null, 'an attack on a sleeper: recorded, flagged, never eligible');
+  ok(ds.attacks[1].eligible && ds.attacks[1].strikeTotal === 14 && ds.attacks[1].damage === 3, 'the next normal attack is the eligible one');
+  ok(ds.attacks[2].fumble && ds.attacks[2].strikeTotal === null && ds.attacks[2].damage === null && ds.attacks[2].eligible, 'a natural 1: no total, no damage, still eligible (it is a normal attack)');
+  ok(ds.enemies[2].fate === 'fled' && ds.enemies[2].missingReason === 'fled before attacking', 'a goblin that fled without attacking');
+  ok(ds.encounters[0].result === 'flight' && ds.enemies[1].fate === 'alive', 'the party withdrew; the goblins left standing are alive');
+  ok(!rec.active, 'the end beat closes the encounter');
+  rec.begin([{ id: 'g9', habitat: 'road', weapon: 'knife' }], { time: 3, armor: 'light' });
+  rec.abort(4);
+  ok(ds.encounters[1].result === 'defeat' && ds.enemies[3].missingReason === 'fight lost', 'a fight cut short is closed as lost');
+  ok(rec.begin([], { time: 5, armor: 'light' }) === null && ds.encounters.length === 2, 'a fight without studied foes is not recorded');
 }
 
 // -------------------------------------------------------------------------------------------------

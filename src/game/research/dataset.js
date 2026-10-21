@@ -33,7 +33,7 @@
  */
 
 /**
- * @typedef {'killed before attacking'|'fled before attacking'|'only flanked attacks'|'fight lost'|'avoided'} MissingReason
+ * @typedef {'killed before attacking'|'fled before attacking'|'only flanked attacks'|'fight lost'|'party withdrew'|'avoided'} MissingReason
  */
 
 /**
@@ -57,7 +57,9 @@
  * @property {string} targetId
  * @property {number} targetAc   the AC of its actual target
  * @property {RollMode} rollMode observable (the player sees the flanking)
- * @property {number} strikeTotal  d20 + bonus as shown (the bonus itself is not recorded)
+ * @property {number|null} strikeTotal  d20 + bonus as shown (the bonus itself is not recorded); null
+ *   on a critical or a fumble — the player saw "natural 20" / "natural 1", and the total would
+ *   reveal the bonus
  * @property {boolean} critical
  * @property {boolean} fumble
  * @property {boolean} hit       against its actual target
@@ -92,7 +94,7 @@ function checkFields(table, row) {
  * @param {number} ac
  */
 export function penetrates(a, ac) {
-  return !a.fumble && (a.critical || a.strikeTotal >= ac);
+  return !a.fumble && (a.critical || (a.strikeTotal ?? -Infinity) >= ac);
 }
 
 export class Dataset {
@@ -158,6 +160,7 @@ export class Dataset {
       const any = this.attacks.some((a) => a.enemyId === en.id);
       en.missingReason = o.result === 'avoided' ? 'avoided'
         : any ? 'only flanked attacks'
+        : o.result === 'flight' && en.fate !== 'killed' && en.fate !== 'fled' ? 'party withdrew'
         : en.fate === 'fled' ? 'fled before attacking'
         : en.fate === 'killed' ? 'killed before attacking'
         : 'fight lost';
@@ -196,6 +199,8 @@ export class Dataset {
     if (o.hit && !(Number.isFinite(o.damage) && /** @type {number} */ (o.damage) >= 0)) throw new Error('dataset: a hit needs its damage');
     if (!o.hit && o.damage !== null) throw new Error('dataset: a miss has no damage (null, not 0)');
     if (o.fumble && o.hit) throw new Error('dataset: a fumble always misses');
+    if (o.critical && !o.hit) throw new Error('dataset: a critical always hits');
+    if ((o.critical || o.fumble) !== (o.strikeTotal === null)) throw new Error('dataset: the strike total is null exactly on a critical or a fumble');
     const eligible = o.rollMode === 'normal' && !o.free && !o.vsUnconscious && !this.eligibleOf(o.enemyId);
     /** @type {AttackRow} */
     const row = { id: this._id('attacks', 'A'), encounterId: en.encounterId, eligible, ...o };

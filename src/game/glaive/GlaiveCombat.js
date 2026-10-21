@@ -39,6 +39,7 @@ import { Foe } from './Foe.js';
 import { Stage, PcActor } from './Stage.js';
 import { TurnHUD, CombatLog } from './TurnHUD.js';
 import { makeHooks } from './hooks.js';
+import { ResearchMode } from '../research/ResearchMode.js';
 
 /**
  * @import { Game } from '../Game.js'
@@ -263,6 +264,11 @@ export class GlaiveCombat {
     this.sheet = Sheet.create('sellsword', 'human', '');
     /** A build was chosen (else the picker opens at the first quiet moment of play). */
     this.chosen = false;
+    /**
+     * The research overlay (`?research=<config>`, docs/design/RESEARCH_STATISTICS_RPG.md), or null.
+     * @type {ResearchMode|null}
+     */
+    this.research = null;
     /** Seconds of plain play in a row (the menus open after QUIET_S). */
     this._quietFor = 0;
     this.pc = new PlayerCard(this);
@@ -422,6 +428,8 @@ export class GlaiveCombat {
     this.ui.enableCombat();
     this.hud = new TurnHUD(this.ui.hud.element);
     this.log = new CombatLog((id) => this.nameOf(id), (text, kind) => this.hud.line(text, /** @type {any} */ (kind)), (id) => this.combatantOf(id)?.side ?? null);
+    // (research mode: a studied foe's rolls show their total only — the bonus is not observable)
+    this.log.hideRoll = (id) => { const o = this._who.get(id); return o instanceof Foe && !!o.studied; };
     this._savedBindings = this.input.saveBindings();
     this.input.addBindings(COMBAT_BINDINGS, COMBAT_PAD_BINDINGS);
     this.input.enableMouseButtons?.(this.engine.renderer.domElement);
@@ -430,6 +438,9 @@ export class GlaiveCombat {
     // ---- zones (the level's regions) ----
     this.zones = level.objects.filter((o) => o.type === 'region' && ['minX', 'maxX', 'minZ', 'maxZ'].every((k) => Number.isFinite(o[k])))
       .map((o) => ({ id: o.id, minX: o.minX, maxX: o.maxX, minZ: o.minZ, maxZ: o.maxZ, minY: Number.isFinite(o.minY) ? o.minY : null }));
+
+    // ---- the research overlay (before the foes: studied ones get their own stat blocks) ----
+    this.research = await ResearchMode.fromPage({ now: () => this.game.lighting?.timeOfDay ?? 0, armor: () => this.sheet.armor });
 
     // ---- foes ----
     /** @type {BossArena[]} */
@@ -483,6 +494,7 @@ export class GlaiveCombat {
     spots.forEach(([x, z], index) => {
       const name = g.name || (g.elite ? `Elite ${def.name}` : def.name);
       const e = this._createFoe({ uid: `${g.id}#${index}`, group: g, index, kind, name, stats, def, sheet, home: { x, z }, arena, isAdd: false });
+      this._applyResearch(e);
       if (e.boss) this._boss ??= e;
       // its zone: the region round its group's centre (it never sees the player outside it)
       const gx = Number(g.x), gz = Number(g.z);
@@ -493,6 +505,19 @@ export class GlaiveCombat {
         e.zoneRect = { minX: Math.min(r.minX, gx - R), maxX: Math.max(r.maxX, gx + R), minZ: Math.min(r.minZ, gz - R), maxZ: Math.max(r.maxZ, gz + R) };
       }
     });
+  }
+
+  /**
+   * A foe of a studied group takes its individual's stat block for the current expedition.
+   * @param {Foe} e
+   */
+  _applyResearch(e) {
+    const r = this.research;
+    if (!r || e.isAdd || e.kind !== r.family) return;
+    const ind = r.individualFor(e.groupId, e.index);
+    if (!ind) return;
+    e.setStats(ind.stats);
+    e.studied = ind.info;
   }
 
   /** @param {{ uid: string, group: any, index: number, kind: string, name: string, stats: any, def: any, sheet: any, home: {x:number,z:number}, arena: any, isAdd: boolean }} init */
@@ -1071,6 +1096,7 @@ export class GlaiveCombat {
     }
     const dice = new Dice((this.seedValue ^ Math.imul(this.fights, 0x9E3779B1)) >>> 0);
     this.encounter = new Encounter({ dice, world: this._world(boss), combatants: list, ambush, canFlee: !boss, leader: 'player' });
+    this.research?.fightStart(foes.map((e) => ({ id: e.uid, studied: e.studied })));
     this.engaged = true;
     this.locksPlayer = true;
     this.player.action = 'fight';
@@ -1081,7 +1107,7 @@ export class GlaiveCombat {
     this.events.emit('fightStart', foes.map((e) => e.uid));
     const beats = this.encounter.start();
     this.hud.set(this._orderEntries(), null);
-    this.stage.play(beats);
+    this._play(beats);
     return true;
   }
 
@@ -1194,8 +1220,17 @@ export class GlaiveCombat {
       this._playerTurn().catch((err) => console.error('[glaive] turn failed:', err)).finally(() => { this._awaiting = false; });
       return;
     }
-    this.stage.play(enc.step(enc.decide()));
+    this._play(enc.step(enc.decide()));
     this.hud.set(this._orderEntries(), null);
+  }
+
+  /**
+   * Beats to the stage (and to the research recorder first: it records what the stage will show).
+   * @param {Beat[]} beats
+   */
+  _play(beats) {
+    this.research?.beats(beats);
+    this.stage.play(beats);
   }
 
   /** A promise that resolves once the stage has played everything queued. */
@@ -1217,7 +1252,7 @@ export class GlaiveCombat {
       const action = await this._chooseAction(enc, me);
       if (this.encounter !== enc || enc.over) return;
       if (!action) continue;
-      this.stage.play(enc.act(action));
+      this._play(enc.act(action));
       this.hud.set(this._orderEntries(), null);
       await this._idle();
     }
@@ -1380,7 +1415,13 @@ export class GlaiveCombat {
       const p = Math.max(5, Math.min(95, (21 - need) * 5));
       odds = t('glaive.pick.odds', { p });
     }
-    this.ui.hud.toast(t('glaive.pick.info', { name: c.name, hp: Math.max(0, c.hp), hpMax: c.hpMax, ac: enc.acOf(c) }) + (odds ? `${sep()}${odds}` : ''), 1.4);
+    // (a studied foe: its visible weapon, never its HP numbers — research mode hides what the
+    // player cannot observe)
+    const studied = this._who.get(id) instanceof Foe ? /** @type {Foe} */ (this._who.get(id)).studied : null;
+    const info = studied
+      ? t('glaive.pick.infoStudied', { name: c.name, weapon: studied.weaponName, ac: enc.acOf(c) })
+      : t('glaive.pick.info', { name: c.name, hp: Math.max(0, c.hp), hpMax: c.hpMax, ac: enc.acOf(c) });
+    this.ui.hud.toast(info + (odds ? `${sep()}${odds}` : ''), 1.4);
   }
 
   _pickStep() {
@@ -1928,6 +1969,7 @@ export class GlaiveCombat {
    */
   resetEncounter({ full = false } = {}) {
     if (this.encounter) {
+      this.research?.abort();
       this.encounter = null;
       this.stage.clear();
       this.hud.show(false);
@@ -1963,6 +2005,11 @@ export class GlaiveCombat {
   /** Rest at a waystone: a GLAIVE long rest for the party, every foe back. */
   restAll() {
     this.resetEncounter({ full: true });
+    // a research study: the expedition ends; the packs come back as new individuals
+    if (this.research) {
+      this.research.startExpedition();
+      for (const e of this.enemies) this._applyResearch(e);
+    }
     this.pc.refill();
     this.pc.potions = Math.max(this.pc.potions, REST_DRAUGHTS);
   }
@@ -2166,6 +2213,7 @@ export class GlaiveCombat {
       } : null,
       fights: this.fights,
       kills: this.kills,
+      research: this.research ? { expedition: this.research.expedition, counts: this.research.dataset.counts(), byHabitat: this.research.dataset.byHabitat(), missing: this.research.dataset.missing(), recording: this.research.recorder.active } : null,
       bossDefeated: this.bossDefeated,
       enemies: { total, alive },
       boss: this._boss ? { uid: this._boss.uid, alive: this._boss.alive, defeated: this.bossDefeated } : null,

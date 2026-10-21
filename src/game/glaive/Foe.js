@@ -85,6 +85,11 @@ export class Foe {
     this.deathCount = 0;
     /** The zone rect it keeps to (the level's region round its group), or null. */
     this.zoneRect = null;
+    /**
+     * In a research study (ResearchMode): its habitat and visible weapon; null otherwise.
+     * @type {import('../research/ResearchMode.js').StudiedInfo|null}
+     */
+    this.studied = null;
     this.labelY = init.def.labelY ?? 2;
     // motion along a path (the stage)
     /** @type {number[]} */
@@ -344,6 +349,18 @@ export class Foe {
   }
 
   /** Back home, whole (a rest, a lost fight, the reset hook). @param {(x: number, z: number) => number} ground */
+  /**
+   * A new stat block (a research study's individual for a new expedition): full HP with it.
+   * @param {MonsterStats} stats
+   */
+  setStats(stats) {
+    this.stats = stats;
+    this.level = stats.level;
+    this.elite = stats.elite;
+    this.hpMax = stats.hpMax;
+    this.hp = this.hpMax;
+  }
+
   reset(ground) {
     this.alive = !this.isAdd;
     this.routed = false;

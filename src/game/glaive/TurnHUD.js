@@ -160,6 +160,12 @@ export class CombatLog {
     this.sideOf = sideOf;
     /** @type {string[]} the last 40 lines (tests) */
     this.history = [];
+    /**
+     * Whose rolls show their total only (research mode: a studied foe's bonus is not observable;
+     * a natural 20 or 1 shows the die instead, as its total would give the bonus away).
+     * @type {(id: string) => boolean}
+     */
+    this.hideRoll = () => false;
   }
 
   /** @param {string} text @param {string} kind */
@@ -182,7 +188,10 @@ export class CombatLog {
         const mod = r.mod >= 0 ? `+${r.mod}` : String(r.mod);
         const dice = r.dice.length > 1 ? `[${r.dice.join(',')}]` : String(r.natural);
         const key = !b.hit ? 'glaive.log.miss' : b.crit ? 'glaive.log.crit' : 'glaive.log.hit';
-        this._line(t(key, { who: n(b.who), target: n(b.target), roll: `${dice}${mod}=${r.total}`, ac: r.target }), b.hit ? (side === 'party' ? 'hit' : 'foe') : 'miss');
+        const roll = !this.hideRoll(b.who ?? '') ? `${dice}${mod}=${r.total}`
+          : r.crit || r.fumble ? t('glaive.log.natural', { n: r.natural })
+          : String(r.total);
+        this._line(t(key, { who: n(b.who), target: n(b.target), roll, ac: r.target }), b.hit ? (side === 'party' ? 'hit' : 'foe') : 'miss');
         break;
       }
       case 'damage': this._line(t('glaive.log.damage', { who: n(b.who), n: b.amount }), this.sideOf(b.who) === 'party' ? 'bad' : 'hit'); break;

@@ -31,6 +31,9 @@ import { PICKUP_KINDS } from '../combat/Pickups.js';
  * @property {(uid: string) => boolean} kill   a foe falls at once: its XP, no loot, its `kill` event fires
  * @property {() => any[]} enemies             the same list as `foes` (the old hook's name)
  * @property {GlaiveCombat} system             the GlaiveCombat itself (scripted checks)
+ * @property {() => { expedition: number, dataset: any, truth: any, studied: any[] }|null} research
+ *   the research overlay (designer view: the player's dataset, the truth, the studied foes' stat
+ *   blocks) — null without `?research=`
  */
 
 /**
@@ -129,6 +132,16 @@ export function makeHooks(sys) {
     },
     foes: () => sys.enemies.map((e) => ({ uid: e.uid, kind: e.kind, group: e.groupId, alive: e.alive, hidden: e.hidden, boss: e.boss, x: +e.position.x.toFixed(2), z: +e.position.z.toFixed(2) })),
     log: () => [...sys.log.history],
+    research() {
+      const r = sys.research;
+      if (!r) return null;
+      return {
+        expedition: r.expedition,
+        dataset: r.dataset.toJSON(),
+        truth: r.truth(),
+        studied: sys.enemies.filter((e) => e.studied).map((e) => ({ uid: e.uid, habitat: e.studied?.habitat, weapon: e.studied?.weapon, atk: e.stats.atk, alive: e.alive })),
+      };
+    },
     enemies: () => sys.enemies.map((e) => ({ uid: e.uid, kind: e.kind, group: e.groupId, alive: e.alive, hidden: e.hidden, boss: e.boss, x: +e.position.x.toFixed(2), z: +e.position.z.toFixed(2) })),
     freezeAI(on = true) {
       sys.freezeAI = !!on;

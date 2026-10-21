@@ -1,0 +1,35 @@
+[
+  {
+    "wait": 2000
+  },
+  {
+    "eval": "window.S = (n, dt = 1/30) => { for (let i = 0; i < n; i++) window.__engine.step(dt, { render: false }); window.__engine.redraw(); return n; }; window.U = async (pred, max = 3000, dt = 1/30) => { for (let i = 0; i < max; i++) { if (pred()) { window.__engine.redraw(); return i; } window.__engine.step(dt, { render: false }); if (i % 50 === 49) await new Promise((r) => setTimeout(r, 0)); } window.__engine.redraw(); return -1; }; window.C = () => window.__game.combat; window.FAIL = (m) => { setTimeout(() => { throw new Error('[research.record] ' + m); }); return 'FAIL ' + m; }; window.M = () => { const f = C().state().fight; return !!(f && f.needsInput && !f.busy && window.__game.ui.dialog.isChoosing); }; window.K = (code, frames = 2) => { window.dispatchEvent(new KeyboardEvent('keydown', { code, key: code, bubbles: true })); S(frames); window.dispatchEvent(new KeyboardEvent('keyup', { code, key: code, bubbles: true })); S(2); return code; }; 'ok'"
+  },
+  {
+    "eval": "(async () => { const r = await U(() => window.__game && C() && window.__game.state().mode === 'play', 4000); if (r < 0) return FAIL('the level never reached play'); C().choose('sellsword', 'human'); S(5); const R = C().research(); if (!R) return FAIL('no research overlay (?research=cinderwatch-pass)'); const hab = R.studied.reduce((o, s) => (o[s.habitat] = (o[s.habitat] || 0) + 1, o), {}); return R.expedition === 1 && hab.road === 3 && hab.mire === 2 && R.dataset.expeditions.length === 1 ? JSON.stringify({ hab, studied: R.studied.map((s) => s.weapon) }) : FAIL('studied foes: ' + JSON.stringify({ exp: R.expedition, hab })); })()"
+  },
+  {
+    "eval": "window.RB = C().research().studied.map((s) => s.uid + ':' + s.atk + '/' + s.weapon).join(); const f3 = C().foes().find((x) => x.group === 'glade_goblins'); window.__game.teleport(f3.x, f3.z + 5); S(10); C().fight('glade_goblins'); const st3 = C().state(); (st3.fight && st3.research.recording && C().research().dataset.encounters.length === 1 && C().research().dataset.enemies.length === 3) ? 'recording ' + JSON.stringify(st3.research.counts) : FAIL('the fight is not recorded: ' + JSON.stringify(st3.research))"
+  },
+  {
+    "eval": "C().auto(true); C().pace(5); (async () => { const r = await U(() => !C().state().fight, 6000); return r >= 0 ? 'fight over' : FAIL('the fight did not end'); })()"
+  },
+  {
+    "eval": "S(30); const D5 = C().research().dataset; const st5 = C().state(); const ok5 = !st5.research.recording && D5.encounters[0].end !== null && D5.enemies.every((e) => e.fate) && D5.enemies.every((e) => (D5.attacks.some((a) => a.enemyId === e.id && a.eligible)) === (e.missingReason === null)) && D5.attacks.filter((a) => a.eligible).length <= 3; ok5 ? JSON.stringify({ result: D5.encounters[0].result, attacks: D5.attacks.map((a) => [a.enemyId, a.rollMode, a.strikeTotal, a.hit, a.damage, a.eligible]), missing: st5.research.missing }) : FAIL('the recorded fight: ' + JSON.stringify(D5))"
+  },
+  {
+    "eval": "const lines6 = C().log(); const foe6 = lines6.filter((l) => /^Bramble Goblin (hits|misses|lands)/.test(l)); const leak6 = foe6.filter((l) => /\\d[+-]\\d+=|\\[\\d+,\\d+\\]/.test(l)); const keys6 = new Set(); const walk6 = (o) => { if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) { keys6.add(k); walk6(v); } }; walk6(C().research().dataset); const hidden6 = ['attackBonus', 'mod', 'natural', 'hp', 'hpMax'].filter((k) => keys6.has(k)); (leak6.length === 0 && hidden6.length === 0) ? JSON.stringify({ goblinLines: foe6.slice(-4) }) : FAIL('hidden6 values shown: ' + JSON.stringify({ leak6, hidden6 }))"
+  },
+  {
+    "shot": "01-after-recorded-fight"
+  },
+  {
+    "eval": "const ok8 = C().rest(); S(10); const R8 = C().research(); const after8 = R8.studied.map((s) => s.uid + ':' + s.atk + '/' + s.weapon).join(); (ok8 && R8.expedition === 2 && R8.dataset.expeditions[0].end !== null && R8.dataset.expeditions.length === 2 && after8 !== window.RB && R8.studied.every((s) => s.alive)) ? JSON.stringify({ before: window.RB, after8 }) : FAIL('the rest did not start a new expedition with new goblins: ' + JSON.stringify({ exp: R8.expedition, after8, before: window.RB }))"
+  },
+  {
+    "eval": "const f9 = C().foes().find((x) => x.group === 'glade_goblins'); window.__game.teleport(f9.x, f9.z + 5); S(10); C().fight('glade_goblins'); C().auto(true); C().pace(5); (async () => { const r = await U(() => !C().state().fight, 6000); S(30); const D = C().research().dataset; return r >= 0 && D.encounters.length === 2 && D.enemies.length === 6 && D.enemies.slice(3).every((e) => e.expeditionId === 'X2') ? JSON.stringify(C().state().research) : FAIL('the second expedition\\'s fight: ' + JSON.stringify({ r, enc: D.encounters.length, en: D.enemies.length })); })()"
+  },
+  {
+    "shot": "02-second-expedition"
+  }
+]
