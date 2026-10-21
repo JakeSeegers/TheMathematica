@@ -202,6 +202,14 @@ Before publishing, inspect `public/`: the build copies its files even when they 
 scratch levels. Make lasting launcher changes in the source `index.html` and its styles; a
 rebuild replaces edits made directly in `dist/`.
 
+**GitHub Pages** — [`.github/workflows/pages.yml`](../../.github/workflows/pages.yml) builds the
+project on every push to `main` (or by hand: *Actions → Deploy to GitHub Pages → Run workflow*)
+and publishes `dist/`. In the repository's *Settings → Pages → Build and deployment*, set
+**Source** to **GitHub Actions**. With *Deploy from a branch* GitHub runs Jekyll over the raw
+source instead: that fails on the `{{ … }}` type comments in the docs ("Liquid syntax error"),
+and the raw source could not run the game anyway. The site is then at
+`https://<owner>.github.io/<repo>/` (a sub-path, see below).
+
 **Hosting under a sub-path** — the build's URLs are relative (`base: './'` in
 [`vite.config.js`](../../vite.config.js)): the pages load `./assets/…` and fetch `./levels/…`,
 `./campaigns/…` and `./i18n/…` from their own folder, so the same `dist/` works at the site root and
