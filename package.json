@@ -19,7 +19,8 @@
     "i18n:test": "node tools/test-i18n.mjs",
     "i18n:keys": "node tools/i18n-keys.mjs",
     "keys:test": "node tools/test-text-keys.mjs",
-    "glaive:test": "node tools/test-glaive.mjs"
+    "glaive:test": "node tools/test-glaive.mjs",
+    "research:test": "node tools/test-research.mjs"
   },
   "dependencies": {
     "@fontsource/cinzel": "^5.3.0",

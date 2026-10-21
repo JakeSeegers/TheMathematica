@@ -49,6 +49,7 @@ before anything runs.
 | Data | level round-trip byte check, generator determinism and validation (Node) | level format, generators |
 | Story language | `npm run story:test` (Node self-tests, 648 + 244 assertions, ~4 s: the language, files and checks, then the runtime on a stub game) | story scripts and files, story and campaign checks, the story's party commands, conditions, presence, talk and saves (a stub party), the scripts' `#line:` keys |
 | GLAIVE rules | `npm run glaive:test` (Node self-test, 168 assertions, a few seconds: dice, the sheet, talents, spells, the bestiary, the encounter, seeded fights and the boss, the strings) | the turn-based combat rules |
+| Research core | `npm run research:test` (Node self-test, 94 assertions, ~3 s: the goblin population model, the observation dataset, the statistics, sampling and interval coverage with seeds) | `src/game/research/` ([design](../design/RESEARCH_STATISTICS_RPG.md)) |
 | Level checks | `npm run level:test` (Node self-test of `checkLevel` in story states on in-memory levels, ~100 assertions, ~1 s) | `tools/lib/levelcheck.mjs`, `src/engine/level/StoryStates.js`: overlaps and reachability per story state, comparisons read either way, whole-number values, groups and samples, the reused state work against checking every state from scratch |
 | Level API | `npm run api:test` (Node self-test: a throwaway Vite server with only the level-API plugin on a temporary folder, then one under a sub-path; 42 checks, ~1 s) | `tools/vite-level-api.js`: status codes, bytes, names, origin check, campaign routes |
 | Languages | `npm run i18n:check` (every content table against the units and terms its readers show: untranslated, changed, orphans, texts with no key, markup errors, the UI glossary; one key with two Englishes and a table that is not version 3 are errors; the shipped tables pass `--strict --complete`: 0 errors, 0 warnings, 0 untranslated) and `npm run i18n:test` (Node self-test of the tables, lookup chain, extractor, checker, worklist, PO and the real data, 314 assertions, ~10 s) | `public/i18n/`, `ContentText.js`, `ContentStrings.js`, the string tables, `tools/check-i18n.mjs`, `tools/i18n-worklist.mjs` ([I18N.md](../specs/I18N.md)) |
@@ -648,6 +649,10 @@ npm run story:test
 # the GLAIVE rules: dice, sheets, talents, spells, monsters, the encounter and its beats, seeded
 # fights (win rates, the boss against a level-3 party), the strings in en / ja / zh (exit 1 on a failure)
 npm run glaive:test
+
+# the research core: the population model (world truth), the player's dataset (observations
+# only, no hidden fields), the statistics, and sampling / interval coverage with fixed seeds
+npm run research:test
 
 # the dev-server level API's self-test: a throwaway Vite server with only the plugin, on a temporary
 # folder (never public/): bytes, 400 / 403 / 404 / 405 / 415 / 422, campaigns, then the routes under a

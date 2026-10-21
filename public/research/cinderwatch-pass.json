@@ -1,0 +1,32 @@
+{
+  "version": 1,
+  "comment": "World truth of the goblin investigation on Cinderwatch Pass (docs/design/RESEARCH_STATISTICS_RPG.md §7). Never shown to the player outside a debrief. The distributions are placeholders: keep each habitat's probabilities summing to 1; damage dice come from GLAIVE's weapon table.",
+  "level": "cinderwatch-pass",
+  "worldSeed": 20261021,
+  "family": "goblin",
+  "statBlock": { "ac": 13, "hd": 1, "morale": 7 },
+  "weapons": {
+    "knife": { "name": "Knife", "damage": "1d6" },
+    "spear": { "name": "Spear", "damage": "1d8" },
+    "greataxe": { "name": "Greataxe", "damage": "1d12" }
+  },
+  "habitats": {
+    "road": {
+      "name": "Road",
+      "population": 120,
+      "attackBonus": [[0, 0.3], [1, 0.5], [2, 0.2]],
+      "weapons": [["knife", 0.6], ["spear", 0.4]]
+    },
+    "mire": {
+      "name": "Mire",
+      "population": 180,
+      "attackBonus": [[3, 0.3], [4, 0.4], [5, 0.3]],
+      "weapons": [["spear", 0.6], ["greataxe", 0.4]]
+    }
+  },
+  "groups": {
+    "glade_goblins": "road",
+    "mire_goblins": "mire"
+  },
+  "citizens": { "dex": 0, "armor": { "none": 0, "light": 2, "medium": 4 } }
+}

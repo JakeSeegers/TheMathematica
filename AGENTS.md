@@ -31,7 +31,7 @@ verification constraints.
 | `npm run check -- --page=<page.html> --query=<query> --out=<unique-name> --strict` | Run browser checks and capture screenshots and a JSON report in `.check/`. |
 | `npm run level:check -- <name-or-file>` | Validate a level without changing it. |
 | `npm run level:check -- --campaign=<name>` | Validate a campaign, its levels, story, and links. |
-| `npm run story:test`, `npm run api:test`, `npm run level:test` | Run the related Node self-tests. |
+| `npm run story:test`, `npm run api:test`, `npm run level:test`, `npm run glaive:test`, `npm run research:test` | Run the related Node self-tests. |
 | `npm run i18n:keys`, `npm run i18n:check -- --strict --complete` | Check content keys and shipped translations. |
 | `npm run i18n:test`, `npm run keys:test` | Run translation and text-key self-tests. |
 

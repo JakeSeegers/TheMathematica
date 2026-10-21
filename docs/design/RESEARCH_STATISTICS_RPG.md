@@ -1,8 +1,10 @@
 # Research-Statistics RPG — design proposal
 
-Status: **proposal, not built.** Written 2026-10-21 as the "next deliverable" of the project
-direction *A Research-Statistics RPG*. Nothing here changes the engine yet. Values marked
-*placeholder* are open and are only there to show that the design works with real numbers.
+Status: **step 1 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
+direction *A Research-Statistics RPG*; the recommendations of §5 were accepted the same day. The
+research core (`src/game/research/`) exists and is tested in Node; the game does not use it yet.
+Values marked *placeholder* are open and are only there to show that the design works with real
+numbers.
 
 Guiding principle: **combat supplies the evidence; research turns evidence into claims; the
 kingdom turns claims into decisions; the consequences create the next research question.**
@@ -113,7 +115,8 @@ Each conflict comes with the smallest revision that solves it.
 
 ## 5. Unresolved decisions
 
-These change what we build. Each has a recommendation.
+These change what we build. Each has a recommendation. **All recommendations were accepted on
+2026-10-21** (D11 stays open until the outline file is added).
 
 | # | Decision | Options | Recommendation |
 | --- | --- | --- | --- |
@@ -186,8 +189,12 @@ The loop, mapped to systems:
 
 | Habitat | Attack bonus | Weapon (damage) |
 | --- | --- | --- |
-| Road | +0: 30 % · +1: 50 % · +2: 20 % | spear 1d6: 60 % · club 1d4: 40 % |
-| Mire | +3: 30 % · +4: 40 % · +5: 30 % | spear 1d6: 50 % · axe 1d8: 50 % |
+| Road | +0: 30 % · +1: 50 % · +2: 20 % | knife 1d6: 60 % · spear 1d8: 40 % |
+| Mire | +3: 30 % · +4: 40 % · +5: 30 % | spear 1d8: 60 % · greataxe 1d12: 40 % |
+
+The damage dice are GLAIVE's weapon table (dagger / hand axe 1d6; spear, sword, axe 1d8;
+greataxe and other two-handed great weapons 1d12). The data lives in
+[`public/research/cinderwatch-pass.json`](../../public/research/cinderwatch-pass.json).
 
 - The weapon is **observable** (the sprite and the log name it). The attack bonus is **hidden**.
 - An individual is drawn from its habitat's distribution with a seed made of the world seed, the
@@ -358,7 +365,7 @@ Each step ends with passing tests and can be reviewed alone.
 | Step | Work | Tests |
 | --- | --- | --- |
 | 0 | Finish the GLAIVE branch (the `campaign.cleared.json` re-run in progress). | existing suites |
-| 1 | `populations.js`, `dataset.js`, `stats.js` with `research.json` for the Pass. | `tools/test-research.mjs`: fixed seeds give the same individuals; stats match hand-worked examples; a road-only simulated sample of 400 has an interval that misses the Pass value; random sampling gives ≈ 95 % coverage over many replays. |
+| 1 ✓ | `populations.js`, `dataset.js`, `stats.js` with `public/research/cinderwatch-pass.json` (done 2026-10-21; `npm run research:test`, 94 assertions). | `tools/test-research.mjs`: fixed seeds give the same individuals; stats match hand-worked examples; a road-only simulated sample of 400 has an interval that misses the Pass value; random sampling gives ≈ 95 % coverage over many replays. |
 | 2 | `recorder.js` wired to `Encounter` beats; research mode in `GlaiveCombat` (C1, C2); expedition ids at rests; new individuals on respawn. | Node: beats → rows (one enemy, three attacks → 1 enemy row, 3 attack rows, 1 eligible); flanked attacks never eligible; misses have empty damage; missing reasons. No-leak test. Browser fixed-step script: a road fight writes the expected rows; the log shows no bonus. |
 | 3 | `kingdom.js`, `report.js`, `debrief.js`. | Node: a season with a fixed seed is identical twice; the rules follow §10; the replay distribution; debrief parts stay separate (a good policy with a bad season is "defensible" + "bad outcome"). |
 | 4 | Missions 1–5: the Steward's talk script, quest stages, the mire flag, the ledger page, the report dialog, the number widget. | story tests for the mission conditions; UI sandbox shots of the ledger and the report at the three reference sizes. |
@@ -366,3 +373,35 @@ Each step ends with passing tests and can be reviewed alone.
 
 Only after step 5 works end to end: more curriculum (two-group comparison of armour designs,
 hypothesis tests, a second family), regional allocation, and the translations (D9).
+
+### 13.1 Step 1 results
+
+`npm run research:test` (`tools/test-research.mjs`) simulates observations with GLAIVE's own dice
+and checks:
+
+- **Truth:** road 0.495, mire 0.65, the whole Pass 0.588 against light armour (AC 12), 0.488
+  against medium (AC 14); the exact values agree with a 40 000-attack simulation through `Dice.d20`.
+- **Reproducibility:** the same seed parts give the same goblin; the same seed gives the same
+  dataset byte for byte; a new expedition draws new goblins.
+- **Units:** 40 attacks from 10 goblins count as n = 10 by enemy and n = 40 by attack (flagged
+  `clustered`); flanked (ADV) attacks are kept but never eligible; misses have no damage (null,
+  never 0).
+- **No leak:** the dataset refuses any field that is not an observation (an attack bonus, a
+  modifier, the natural die), also when it is loaded from a save.
+- **Statistics:** hand-worked values for the mean, median, OpenStax percentiles and quartiles,
+  sample and population SD, frequency tables, histograms, invNorm / invT, the proportion and mean
+  intervals and the sample-size formula.
+- **Sampling (with seeds):** 400 road-only goblins give 0.512 (0.464–0.561), which misses the
+  Pass value 0.588. Over 1 000 replications, 95 % intervals from random samples of the whole Pass
+  (n = 100) cover the truth 93.5 % of the time; road-only samples cover it 51 % of the time at
+  n = 100 and 4 % at n = 400 — more convenient data, worse coverage.
+
+Implementation notes: individuals are drawn as from a large population (with replacement); the
+population sizes only set each habitat's share. `Dataset` assigns the eligible flag itself (the
+caller cannot set it). `stats.js` also offers the "plus four" and Wilson intervals (Wilson for
+designer checks only, D6).
+
+**Open item (before release):** `public/research/*.json` is shipped as a plain file, so a player
+who opens the browser's network tools can read the world truth. Fine for development; before
+release, bundle the truth into the combat chunk or derive it from a seed at run time, so the
+ledger stays the only player-facing source.
