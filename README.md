@@ -1,4 +1,4 @@
-# Luminati — a 2.5D pixel-art engine for three.js
+# Luminati — a 2.5D pixel-art engine for three.js - NOT
 
 Luminati combines pixel-art sprites with lit 3D environments, dynamic shadows and depth of field.
 It is inspired by the diorama look of Square Enix's HD-2D games and built with three.js and
