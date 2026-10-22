@@ -34,6 +34,7 @@ import { PICKUP_KINDS } from '../combat/Pickups.js';
  * @property {() => { expedition: number, dataset: any, truth: any, studied: any[] }|null} research
  *   the research overlay (designer view: the player's dataset, the truth, the studied foes' stat
  *   blocks) — null without `?research=`
+ * @property {(open?: boolean, tab?: string) => boolean} ledger  open / close the field ledger (research mode); its open state
  */
 
 /**
@@ -141,6 +142,13 @@ export function makeHooks(sys) {
         truth: r.truth(),
         studied: sys.enemies.filter((e) => e.studied).map((e) => ({ uid: e.uid, habitat: e.studied?.habitat, weapon: e.studied?.weapon, atk: e.stats.atk, alive: e.alive })),
       };
+    },
+    ledger(open = true, tab) {
+      const l = sys.ledger;
+      if (!l) return false;
+      if (open) sys.openLedger(/** @type {any} */ (tab));
+      else l.close();
+      return l.isOpen;
     },
     enemies: () => sys.enemies.map((e) => ({ uid: e.uid, kind: e.kind, group: e.groupId, alive: e.alive, hidden: e.hidden, boss: e.boss, x: +e.position.x.toFixed(2), z: +e.position.z.toFixed(2) })),
     freezeAI(on = true) {

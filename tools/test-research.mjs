@@ -31,6 +31,7 @@ import { PARTY_PRESETS } from '../src/engine/level/PartyRules.js';
 import { Kingdom, validateKingdom, truthSource, evidenceSource } from '../src/game/research/kingdom.js';
 import { validateReport, evidenceFor } from '../src/game/research/report.js';
 import { debrief } from '../src/game/research/debrief.js';
+import { MissionProgress, firstDamage } from '../src/game/research/missions.js';
 import {
   mean, median, percentile, fiveNumber, sd, frequencyTable, histogram, proportion,
   invNorm, normCdf, invT, tCdf, proportionInterval, meanInterval, sampleSizeForProportion,
@@ -640,6 +641,65 @@ sec('debrief');
   empty.startExpedition({ start: 0, route: 'x' });
   const d4 = debrief({ report: { ...gRep }, dataset: empty, population: pop, kingdom: k, season: seasons[0], seasons: 20 });
   ok(d4.decision.flags.includes('no-evidence') && d4.research.flags.includes('small-sample'), 'no data: no evidence world, a small sample');
+}
+
+sec('missions');
+{
+  const mp = new MissionProgress(CONFIG);
+  const ds = new Dataset();
+  ds.startExpedition({ start: 0, route: 'x' });
+  const m1 = /** @type {any} */ (mp.current);
+  ok(m1?.id === 'define' && mp.missions.length === 5, 'five missions; the first is "define"');
+  const t1 = m1.tasks[0];
+  const wrong = mp.answer(m1, t1, 1, ds);
+  ok(!wrong.ok && wrong.feedback.length > 10 && mp.tries['define.population'] === 1, 'a wrong choice: feedback, counted as a try');
+  for (const t of m1.tasks) mp.answer(m1, t, t.options.findIndex((o) => o.correct), ds);
+  ok(mp.missionDone(m1) && mp.current?.id === 'sample', 'all three correct: mission 1 done, mission 2 next');
+  const m2 = /** @type {any} */ (mp.current);
+  const roadP = m2.tasks.find((t) => t.id === 'roadP');
+  ok(!mp.needs(roadP, ds).met && mp.answer(m2, roadP, 0.5, ds).feedback.includes('more data'), 'a task that needs 10 road goblins waits for them');
+  meet(ds, new Dice(new RNG('mis-road')), 'road', 12, { expedition: 1 });
+  const exp = /** @type {number} */ (mp.expected(roadP.target, ds));
+  ok(Math.abs(exp - evidenceFor(ds, LIGHT, { habitat: 'road' }).estimate) < 1e-12, 'the expected answer is the road sample\'s own share');
+  const off = mp.answer(m2, roadP, exp + 0.05, ds);
+  ok(!off.ok && off.feedback.includes('Count'), 'a wrong number gets the hint');
+  ok(mp.answer(m2, roadP, Math.round(exp * 100) / 100, ds).ok, 'the share rounded to two places is accepted');
+  const why = m2.tasks.find((t) => t.id === 'why');
+  ok(!mp.needs(why, ds).met && mp.needs(why, ds).what.includes('Mire'), 'the comparison waits for mire goblins');
+  meet(ds, new Dice(new RNG('mis-mire')), 'mire', 8, { expedition: 1 });
+  for (const t of m2.tasks.slice(1)) mp.answer(m2, t, t.options.findIndex((o) => o.correct), ds);
+  ok(mp.current?.id === 'describe' && !mp.unlocked('summaries'), 'mission 3 next; summaries still locked');
+  const m3 = /** @type {any} */ (mp.current);
+  ok(mp.brief(m3, ds).includes(firstDamage(ds, 10).join(', ')), 'the brief lists the first ten damage values');
+  ok(mp.answer(m3, m3.tasks[0], mean(firstDamage(ds, 10)), ds).ok && !mp.answer(m3, m3.tasks[0], mean(firstDamage(ds, 10)) + 1, ds).ok, 'the hand-computed mean is checked against the data');
+  mp.answer(m3, m3.tasks[1], 0, ds);
+  ok(mp.unlocked('summaries') && mp.current?.id === 'uncertainty', 'mission 3 unlocks the summaries');
+  const m4 = /** @type {any} */ (mp.current);
+  meet(ds, new Dice(new RNG('mis-more')), 'mire', 15, { expedition: 2 });
+  ok(mp.brief(m4, ds).includes(' to ') && mp.brief(m4, ds).includes('n = '), 'the interval appears in the brief once there are 30 goblins');
+  for (const t of m4.tasks) mp.answer(m4, t, t.options.findIndex((o) => o.correct), ds);
+  ok(mp.unlocked('interval') && mp.current?.id === 'advise', 'mission 4 unlocks the interval; the report is last');
+  ok(mp.answer(/** @type {any} */ (mp.current), /** @type {any} */ (mp.current).tasks[0], 0, ds).ok === false, 'the report task is not answered in the missions page');
+  const back = new MissionProgress(CONFIG, JSON.parse(JSON.stringify(mp.toJSON())));
+  ok(back.current?.id === 'advise' && back.unlocked('interval') && back.tries['define.population'] === 1, 'progress survives a save');
+
+  // the overlay: pack sizes, the report, the save
+  const rm = new ResearchMode(CONFIG, { now: () => 9, armor: () => 'light' });
+  ok(rm.groupCount('glade_goblins', 3) === 4 && rm.groupCount('mire_goblins', 2) === 4 && rm.groupCount('ruins_court', 3) === 3, 'studied packs get the configured sizes; others keep theirs');
+  for (let k = 0; k < 12; k++) { studiedFight(rm, k % 5 < 2 ? 'glade_goblins' : 'mire_goblins', 4, 3000 + k); rm.startExpedition(); }
+  rm.missions.done = new Set(mp.done);
+  const ev = evidenceFor(rm.dataset, LIGHT);
+  const bad = rm.submit({ armor: 'light', population: 'region', unit: 'enemy', estimate: /** @type {number} */ (ev.estimate), interval: null, policy: { armor: 'light', count: 40 }, rationale: 'x' });
+  ok(!bad.ok && 'problems' in bad && bad.problems.some((p) => p.includes('interval')), 'with the interval unlocked, a report without one is refused');
+  const sent = rm.submit({ armor: 'light', population: 'region', unit: 'enemy', estimate: /** @type {number} */ (ev.estimate), interval: { lo: /** @type {any} */ (ev.interval).lo, hi: /** @type {any} */ (ev.interval).hi, level: 0.95 }, policy: { armor: 'light', count: 40 }, rationale: 'Most attacks get through; light armour is cheap.' });
+  ok(sent.ok && !!rm.result && rm.missions.current === null, 'a complete report is sent: a season, a debrief, every mission done');
+  ok(!!rm.result?.debrief.research && !!rm.result?.debrief.decision && !!rm.result?.debrief.outcome && rm.result.season.policy.count === 40, 'the result holds the three debrief parts and the season of the policy');
+  const saved = JSON.parse(JSON.stringify(rm.toJSON()));
+  const again = new ResearchMode(CONFIG, { now: () => 9, armor: () => 'light' }, { dataset: Dataset.from(saved.dataset), expedition: saved.expedition, missions: saved.missions, result: saved.result });
+  ok(again.expedition === rm.expedition && again.dataset.counts().attack === rm.dataset.counts().attack && again.result?.debrief.outcome.totalCost === rm.result?.debrief.outcome.totalCost && again.missions.current === null, 'the whole study survives a save: data, expedition, missions, the result');
+  const walk2 = (o, keys) => { if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) { keys.add(k); walk2(v, keys); } return keys; };
+  const preKeys = walk2({ dataset: saved.dataset, missions: saved.missions }, new Set());
+  ok(!HIDDEN_KEYS.some((k) => preKeys.has(k)), 'the saved data and mission progress hold no hidden key (the truth sits only in the debrief result)');
 }
 
 // -------------------------------------------------------------------------------------------------

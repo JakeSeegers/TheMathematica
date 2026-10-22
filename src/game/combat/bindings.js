@@ -11,11 +11,13 @@
 /** Keyboard + mouse (the `Mouse*` codes need `input.enableMouseButtons(canvas)`). */
 export const COMBAT_BINDINGS = Object.freeze({
   attack: ['KeyJ', 'Mouse0'],
+  // the research overlay's field ledger (does nothing without `?research=`)
+  ledger: ['KeyL'],
 });
 
 /** Gamepad. */
 export const COMBAT_PAD_BINDINGS = Object.freeze({
-  attack: ['GamepadX'], zoomIn: [], zoomOut: [], photo: [], photoPad: ['GamepadLS'],
+  attack: ['GamepadX'], ledger: [], zoomIn: [], zoomOut: [], photo: [], photoPad: ['GamepadLS'],
 });
 
 /**

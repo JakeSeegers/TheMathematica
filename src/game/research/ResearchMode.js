@@ -2,6 +2,10 @@ import { Population } from './populations.js';
 import { Dataset } from './dataset.js';
 import { Recorder } from './recorder.js';
 import { monsterStats } from '../glaive/bestiary.js';
+import { Kingdom, truthSource } from './kingdom.js';
+import { MissionProgress } from './missions.js';
+import { validateReport } from './report.js';
+import { debrief } from './debrief.js';
 
 /**
  * ResearchMode — the research overlay of a combat level (docs/design/RESEARCH_STATISTICS_RPG.md
@@ -21,6 +25,11 @@ import { monsterStats } from '../glaive/bestiary.js';
 /** @import { ResearchConfig } from './populations.js' */
 /** @import { MonsterStats } from '../glaive/bestiary.js' */
 /** @import { Beat } from '../glaive/Encounter.js' */
+/** @import { Report } from './report.js' */
+/** @import { SeasonResult } from './kingdom.js' */
+
+/** Browser storage key prefix of a study's progress (per config name). */
+const STORE = 'luminati.research.';
 
 /**
  * What GlaiveCombat gives the overlay (kept small so it can be faked in tests).
@@ -38,14 +47,23 @@ export class ResearchMode {
   /**
    * @param {ResearchConfig} config
    * @param {ResearchHost} host
-   * @param {{ dataset?: Dataset, expedition?: number }} [saved]
+   * @param {{ dataset?: Dataset, expedition?: number, missions?: any, result?: any }} [saved]
+   * @param {string} [name] the config's name (its storage key); '' keeps nothing
    */
-  constructor(config, host, saved = {}) {
+  constructor(config, host, saved = {}, name = '') {
     this.config = config;
+    this.name = name;
     this.population = new Population(config);
+    this.kingdom = /** @type {any} */ (config).kingdom ? new Kingdom(/** @type {any} */ (config)) : null;
     this.host = host;
     this.dataset = saved.dataset ?? new Dataset();
     this.recorder = new Recorder(this.dataset, { family: config.family });
+    this.missions = new MissionProgress(/** @type {any} */ (config), saved.missions);
+    /**
+     * The sent report, its season and its debrief (null before the report).
+     * @type {{ report: Report, season: SeasonResult, debrief: ReturnType<typeof debrief> }|null}
+     */
+    this.result = saved.result ?? null;
     /** The expedition number (1 = the first; a rest starts the next). */
     this.expedition = saved.expedition ?? 0;
     if (!this.dataset.expedition) this.startExpedition();
@@ -65,11 +83,61 @@ export class ResearchMode {
     try {
       const r = await fetch(`${base}research/${name}.json`, { cache: 'no-store' });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
-      return new ResearchMode(await r.json(), host);
+      const config = await r.json();
+      const fresh = new URLSearchParams(search).has('fresh');
+      return new ResearchMode(config, host, fresh ? {} : ResearchMode.load(name), name);
     } catch (err) {
       console.warn(`[research] could not load "${name}":`, err);
       return null;
     }
+  }
+
+  /**
+   * A study's saved progress from browser storage ({} when there is none or it cannot be read).
+   * @param {string} name
+   */
+  static load(name) {
+    try {
+      const raw = globalThis.localStorage?.getItem(STORE + name);
+      if (!raw) return {};
+      const j = JSON.parse(raw);
+      return { dataset: Dataset.from(j.dataset), expedition: Number(j.expedition) || 0, missions: j.missions, result: j.result ?? null };
+    } catch (err) {
+      console.warn('[research] the saved study could not be read:', err);
+      return {};
+    }
+  }
+
+  /** Save the study's progress (browser storage; nothing without a name or storage). */
+  save() {
+    if (!this.name) return;
+    try { globalThis.localStorage?.setItem(STORE + this.name, JSON.stringify(this.toJSON())); } catch { /* storage full or blocked: progress stays in memory */ }
+  }
+
+  /** How many foes a studied pack has (the config's `groupCounts`, else the level's). @param {string} groupId @param {number} count */
+  groupCount(groupId, count) {
+    const n = /** @type {any} */ (this.config).groupCounts?.[groupId];
+    return this.studies(groupId) && Number.isInteger(n) && n > 0 ? n : count;
+  }
+
+  /**
+   * Send the report: the kingdom acts on its policy, a season of raids follows (seeded by the
+   * world, the expedition and the report), and the debrief is made. Returns the problems instead
+   * when the report is not complete.
+   * @param {Report} report
+   * @returns {{ ok: true, result: NonNullable<ResearchMode['result']> } | { ok: false, problems: string[] }}
+   */
+  submit(report) {
+    if (!this.kingdom) return { ok: false, problems: ['this study has no kingdom'] };
+    const problems = validateReport(report, this.kingdom, { requireInterval: this.missions.unlocked('interval') });
+    if (problems.length) return { ok: false, problems };
+    const seed = `${this.config.worldSeed}|report|${this.expedition}|${this.dataset.attacks.length}`;
+    const season = this.kingdom.season(report.policy, truthSource(this.population), seed);
+    const d = debrief({ report, dataset: this.dataset, population: this.population, kingdom: this.kingdom, season, seed });
+    this.result = { report, season, debrief: d };
+    this.missions.reportSent();
+    this.save();
+    return { ok: true, result: this.result };
   }
 
   /** The family studied (an enemy kind). */
@@ -84,6 +152,7 @@ export class ResearchMode {
   startExpedition() {
     this.expedition++;
     this.dataset.startExpedition({ start: this.host.now(), route: 'open' });
+    this.save();
   }
 
   /**
@@ -123,6 +192,7 @@ export class ResearchMode {
   /** The beats of a turn. @param {Beat[]} beats */
   beats(beats) {
     this.recorder.beats(beats, this.host.now());
+    if (beats.some((b) => b.t === 'end')) this.save();
   }
 
   /** A fight cut short (a reset). */
@@ -132,7 +202,7 @@ export class ResearchMode {
 
   /** What the save keeps. */
   toJSON() {
-    return { expedition: this.expedition, dataset: this.dataset.toJSON() };
+    return { expedition: this.expedition, dataset: this.dataset.toJSON(), missions: this.missions.toJSON(), result: this.result };
   }
 
   /**

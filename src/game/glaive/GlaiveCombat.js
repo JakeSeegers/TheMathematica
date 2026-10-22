@@ -40,6 +40,7 @@ import { Stage, PcActor } from './Stage.js';
 import { TurnHUD, CombatLog } from './TurnHUD.js';
 import { makeHooks } from './hooks.js';
 import { ResearchMode } from '../research/ResearchMode.js';
+import { LedgerPanel } from '../research/LedgerPanel.js';
 
 /**
  * @import { Game } from '../Game.js'
@@ -441,6 +442,8 @@ export class GlaiveCombat {
 
     // ---- the research overlay (before the foes: studied ones get their own stat blocks) ----
     this.research = await ResearchMode.fromPage({ now: () => this.game.lighting?.timeOfDay ?? 0, armor: () => this.sheet.armor });
+    /** @type {LedgerPanel|null} the research overlay's field ledger (L) */
+    this.ledger = this.research ? new LedgerPanel(this.ui.root, this.research, { onClose: () => { this.game.busy = false; } }) : null;
 
     // ---- foes ----
     /** @type {BossArena[]} */
@@ -488,7 +491,9 @@ export class GlaiveCombat {
     const stats = monsterStats(kind, g.level ?? 1, !!g.elite);
     const tm = this.tileMap;
     const walk = def.flier ? (x, z) => tm.isWalkable(x, z) || tm.getWaterSurface(x, z) !== null : (x, z) => this.standable(x, z);
-    const spots = enemyStartPoints(g, walk);
+    // (a research study may give a studied pack more foes: `groupCounts`)
+    const count = this.research ? this.research.groupCount(g.id, Number(g.count) || 1) : null;
+    const spots = enemyStartPoints(count !== null && count !== g.count ? { ...g, count } : g, walk);
     const arena = kind === 'golem' ? new BossArena(g, this) : null;
     if (arena) this.arenas.push(arena);
     spots.forEach(([x, z], index) => {
@@ -889,6 +894,8 @@ export class GlaiveCombat {
     this.frame++;
     this._wasActive = active;
     if (!active) return;
+    // the field ledger (research mode): L opens it between fights; it holds the game while open
+    if (this.ledger && !this.ledger.isOpen && this.input.actionPressed('ledger') && !this.encounter && !this.game.busy && !this.ui.dialog.isOpen) this.openLedger();
     this.clock += dt;
     this._cacheViewProjection();
     this._runTimers(dt);
@@ -1231,6 +1238,17 @@ export class GlaiveCombat {
   _play(beats) {
     this.research?.beats(beats);
     this.stage.play(beats);
+  }
+
+  /**
+   * Open the field ledger (research mode): the game holds while it is open.
+   * @param {import('../research/LedgerPanel.js').Tab} [tab]
+   */
+  openLedger(tab) {
+    if (!this.ledger || this.ledger.isOpen) return false;
+    this.game.busy = true;
+    this.ledger.open(tab);
+    return true;
   }
 
   /** A promise that resolves once the stage has played everything queued. */
@@ -2243,6 +2261,8 @@ export class GlaiveCombat {
   dispose() {
     if (!this._ready) return;
     this._ready = false;
+    if (this.ledger?.isOpen) this.ledger.close();
+    this.ledger?.dispose();
     if (this._picking) this._pickDone(null);
     if (this._cursor) this._cursorDone(null);
     for (const a of this.allies) a.release();

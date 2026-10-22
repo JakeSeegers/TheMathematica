@@ -50,5 +50,261 @@
     "prices": { "light": 25, "medium": 75 },
     "losses": { "injury": 100, "death": 2000 },
     "countStep": 5
-  }
+  },
+  "groupCounts": { "glade_goblins": 4, "mire_goblins": 4 },
+  "missions": [
+    {
+      "id": "define",
+      "title": "1. Define the threat",
+      "brief": "Royal Steward: \"Goblins raid the farms of the Pass, on the road and at the mire edge. How often does a goblin's attack get through light armour? Before you fight, tell me what we are studying.\"",
+      "tasks": [
+        {
+          "id": "population",
+          "type": "choice",
+          "question": "Who does the report concern?",
+          "options": [
+            {
+              "text": "Every goblin that raids the Pass: on the road and in the mire.",
+              "correct": true,
+              "feedback": "Yes. That is the population: the whole group the kingdom asks about."
+            },
+            {
+              "text": "The goblins I happen to fight.",
+              "correct": false,
+              "feedback": "Those are your sample. The kingdom asks about every raiding goblin, met or not."
+            },
+            {
+              "text": "The goblins near the Waystone Camp.",
+              "correct": false,
+              "feedback": "That is only one place. The farms are all over the Pass."
+            }
+          ]
+        },
+        {
+          "id": "unit",
+          "type": "choice",
+          "question": "What is one observation?",
+          "options": [
+            {
+              "text": "One goblin: its first normal attack.",
+              "correct": true,
+              "feedback": "Yes. One goblin, one attack. Three attacks by one goblin are still one goblin."
+            },
+            {
+              "text": "Every attack, from any goblin.",
+              "correct": false,
+              "feedback": "A strong goblin that attacks five times would count five times. We count goblins, not swings."
+            },
+            {
+              "text": "One fight.",
+              "correct": false,
+              "feedback": "A fight holds several goblins. We want each goblin."
+            }
+          ]
+        },
+        {
+          "id": "variable",
+          "type": "choice",
+          "question": "What do we measure about it?",
+          "options": [
+            {
+              "text": "Whether its strike beats light armour (AC 12): yes or no.",
+              "correct": true,
+              "feedback": "Yes. A yes/no (categorical) variable. The log shows each strike total, so you can tell."
+            },
+            {
+              "text": "How many hit points it has.",
+              "correct": false,
+              "feedback": "You never see that number. Measure what you can observe."
+            },
+            {
+              "text": "The damage of each miss.",
+              "correct": false,
+              "feedback": "A miss does no damage at all. Damage exists only for hits."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sample",
+      "title": "2. Two places, two samples",
+      "brief": "Start on the road near the camp: those goblins are easy to find. Then visit the Hollow Mire to the north-east. Compare what you see.",
+      "tasks": [
+        {
+          "id": "roadP",
+          "type": "number",
+          "question": "What share of your ROAD goblins' first attacks beat light armour (AC 12)? Answer as a decimal, e.g. 0.45.",
+          "target": {
+            "kind": "proportion",
+            "armor": "light",
+            "habitat": "road"
+          },
+          "tolerance": 0.01,
+          "hint": "Count the road goblins whose eligible strike was 12 or more (or a natural 20). Divide by all road goblins with an eligible attack.",
+          "needs": {
+            "habitat": "road",
+            "eligible": 10
+          }
+        },
+        {
+          "id": "why",
+          "type": "choice",
+          "question": "Your mire goblins differ from your road goblins. Why?",
+          "options": [
+            {
+              "text": "The mire goblins may be a different group. Small samples also vary by chance.",
+              "correct": true,
+              "feedback": "Yes. A difference can come from different groups, from chance, or both. More mire data will tell."
+            },
+            {
+              "text": "The road sample was a mistake.",
+              "correct": false,
+              "feedback": "No: it describes the road goblins well. It just says nothing about the mire."
+            },
+            {
+              "text": "My armour changed the goblins.",
+              "correct": false,
+              "feedback": "Armour does not change how a goblin strikes. The strike total is the same whatever you wear."
+            }
+          ],
+          "needs": {
+            "habitat": "mire",
+            "eligible": 6
+          }
+        },
+        {
+          "id": "more",
+          "type": "choice",
+          "question": "Would 100 more road fights fix an estimate for the whole Pass?",
+          "options": [
+            {
+              "text": "No. More road data still leaves out the mire.",
+              "correct": true,
+              "feedback": "Right. A bigger sample cuts chance error, not the bias of leaving a group out."
+            },
+            {
+              "text": "Yes. A bigger sample is always better.",
+              "correct": false,
+              "feedback": "A bigger sample from the same place repeats the same gap. The mire goblins are still missing."
+            }
+          ],
+          "needs": {
+            "habitat": "mire",
+            "eligible": 6
+          }
+        }
+      ]
+    },
+    {
+      "id": "describe",
+      "title": "3. Describe the threat",
+      "brief": "A citizen has 10 HP. Look at the damage of the hits you have taken. Your first ten hits: {firstDamage}.",
+      "tasks": [
+        {
+          "id": "mean",
+          "type": "number",
+          "question": "What is the mean of your first ten hits' damage?",
+          "target": {
+            "kind": "meanDamage",
+            "first": 10
+          },
+          "tolerance": 0.05,
+          "hint": "Add the ten values and divide by 10.",
+          "needs": {
+            "damage": 10
+          }
+        },
+        {
+          "id": "enough",
+          "type": "choice",
+          "question": "Is the mean damage enough to judge the danger to a citizen?",
+          "options": [
+            {
+              "text": "No. The biggest hits matter: one hit of 10 or more drops a citizen.",
+              "correct": true,
+              "feedback": "Yes. The shape of the distribution matters, not just its centre. Look at the right tail."
+            },
+            {
+              "text": "Yes. The mean says it all.",
+              "correct": false,
+              "feedback": "Two threats with the same mean can be very different. One of them may drop a citizen in one blow."
+            }
+          ],
+          "needs": {
+            "damage": 10
+          }
+        }
+      ],
+      "unlocks": [
+        "summaries"
+      ]
+    },
+    {
+      "id": "uncertainty",
+      "title": "4. How sure are we?",
+      "brief": "With 30 or more goblins, the ledger can show a 95% confidence interval for the share that beats light armour: {interval}.",
+      "tasks": [
+        {
+          "id": "meaning",
+          "type": "choice",
+          "question": "What does the 95% interval mean?",
+          "options": [
+            {
+              "text": "If we sampled this way many times, about 95% of intervals made like this would contain the true share.",
+              "correct": true,
+              "feedback": "Yes. The 95% describes the method, over many samples."
+            },
+            {
+              "text": "95% of goblin attacks fall inside this range.",
+              "correct": false,
+              "feedback": "No. The interval is about the share (a proportion), not about single attacks."
+            },
+            {
+              "text": "The true share is certainly inside this range.",
+              "correct": false,
+              "feedback": "Not certainly. Some intervals made this way miss. And it only covers the places you sampled."
+            }
+          ],
+          "needs": {
+            "eligible": 30
+          }
+        },
+        {
+          "id": "where",
+          "type": "choice",
+          "question": "You want a narrower, fairer interval. Where should you gather more?",
+          "options": [
+            {
+              "text": "Where my sample is thin compared with the Pass. Not just more of the same road.",
+              "correct": true,
+              "feedback": "Yes. More data narrows the interval; data from the right places makes it fair."
+            },
+            {
+              "text": "Anywhere. More is more.",
+              "correct": false,
+              "feedback": "More from one place narrows the interval around the wrong value if that place is not typical."
+            }
+          ],
+          "needs": {
+            "eligible": 30
+          }
+        }
+      ],
+      "unlocks": [
+        "interval"
+      ]
+    },
+    {
+      "id": "advise",
+      "title": "5. Advise the kingdom",
+      "brief": "The Steward has 2000 silver. Light armour costs 25, medium 75, for each of 40 citizens (16 on the road, 24 at the mire). Each citizen faces raids; an injury costs the kingdom 100 silver, a death 2000. Money taken below the 500 reserve leaves other needs unpaid. Give your estimate, your interval, and, separately, your purchase.",
+      "tasks": [
+        {
+          "id": "report",
+          "type": "report"
+        }
+      ]
+    }
+  ]
 }

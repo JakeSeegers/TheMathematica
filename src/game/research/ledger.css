@@ -1,0 +1,75 @@
+/* The research overlay's field ledger (src/game/research/LedgerPanel.js). Plain DOM over the game in
+   the UI font; hidden until opened (L). */
+.lu-ledger {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  width: min(760px, calc(100% - 32px));
+  max-height: calc(100% - 48px);
+  display: none;
+  flex-direction: column;
+  background: rgba(14, 12, 20, 0.94);
+  border: 2px solid #8a7550;
+  box-shadow: 0 0 0 2px #1b1622, 0 8px 32px rgba(0, 0, 0, 0.6);
+  color: #efe6d2;
+  font-family: var(--lu-font, monospace);
+  font-size: 15px;
+  line-height: 1.35;
+  pointer-events: auto;
+  z-index: 40;
+  outline: none;
+}
+.lu-ledger.is-on { display: flex; }
+.lu-ledger__head { display: flex; align-items: baseline; gap: 12px; padding: 10px 14px 6px; border-bottom: 1px solid #3a3146; }
+.lu-ledger__title { font-size: 20px; color: #f4d58d; letter-spacing: 1px; }
+.lu-ledger__sub { flex: 1; color: #b9ad95; font-size: 13px; }
+.lu-ledger__close, .lu-ledger__tab, .lu-ledger__btn, .lu-ledger__opt {
+  font: inherit; color: inherit; background: #2a2333; border: 1px solid #5a4d6a; cursor: pointer;
+}
+.lu-ledger__close { padding: 0 8px; }
+.lu-ledger__tabs { display: flex; gap: 4px; padding: 6px 14px; flex-wrap: wrap; }
+.lu-ledger__tab { padding: 3px 10px; }
+.lu-ledger__tab.is-cur { background: #4a3a24; border-color: #c9a56a; color: #f4d58d; }
+.lu-ledger__tab:disabled { opacity: 0.4; cursor: default; }
+.lu-ledger__body { overflow-y: auto; padding: 4px 14px 14px; }
+.lu-ledger__mission { margin: 6px 0; padding: 6px 8px; border-left: 3px solid #3a3146; }
+.lu-ledger__mission.is-cur { border-color: #c9a56a; background: rgba(201, 165, 106, 0.06); }
+.lu-ledger__mission.is-done { color: #9fd38a; }
+.lu-ledger__mtitle { font-size: 16px; }
+.lu-ledger__brief { color: #e8dcc0; margin: 6px 0; }
+.lu-ledger__task { margin: 8px 0 8px 8px; }
+.lu-ledger__task.is-done .lu-ledger__q { color: #9fd38a; }
+.lu-ledger__q { margin-bottom: 4px; }
+.lu-ledger__need { color: #c9a56a; margin: 2px 0; }
+.lu-ledger__opt { display: block; width: 100%; text-align: left; margin: 3px 0; padding: 4px 8px; }
+.lu-ledger__opt:hover, .lu-ledger__btn:hover, .lu-ledger__tab:not(:disabled):hover { border-color: #c9a56a; }
+.lu-ledger__row { display: flex; gap: 6px; align-items: center; }
+.lu-ledger__num, .lu-ledger__sel, .lu-ledger__text {
+  font: inherit; color: #efe6d2; background: #1d1826; border: 1px solid #5a4d6a; padding: 2px 6px;
+}
+.lu-ledger__num { width: 7em; }
+.lu-ledger__text { width: 100%; box-sizing: border-box; }
+.lu-ledger__btn { padding: 3px 12px; }
+.lu-ledger__btn--main { margin-top: 10px; background: #4a3a24; border-color: #c9a56a; color: #f4d58d; }
+.lu-ledger__fb { margin: 4px 0; }
+.lu-ledger__fb.is-ok { color: #9fd38a; }
+.lu-ledger__fb.is-no { color: #f0a080; }
+.lu-ledger__note { color: #b9ad95; font-size: 13px; }
+.lu-ledger__note.is-lock { color: #c9a56a; }
+.lu-ledger__h { margin: 12px 0 4px; color: #f4d58d; }
+.lu-ledger__table { border-collapse: collapse; margin: 6px 0; font-size: 13px; }
+.lu-ledger__table th, .lu-ledger__table td { border: 1px solid #3a3146; padding: 2px 8px; text-align: left; }
+.lu-ledger__table th { color: #c9b98f; background: #211b2a; }
+.lu-ledger__table--rows td { white-space: nowrap; }
+.lu-ledger__chart { display: flex; align-items: flex-end; gap: 2px; height: 120px; padding: 4px 0; border-bottom: 1px solid #5a4d6a; overflow-x: auto; }
+.lu-ledger__col { display: flex; flex-direction: column; align-items: center; justify-content: flex-end; height: 100%; min-width: 20px; flex: 1; }
+.lu-ledger__bar { width: 70%; min-height: 0; }
+.lu-ledger__bar.is-cold { background: #6b7a8f; }
+.lu-ledger__bar.is-warm { background: #c9a56a; }
+.lu-ledger__bar.is-hot { background: #d0603c; }
+.lu-ledger__n { font-size: 11px; color: #b9ad95; }
+.lu-ledger__k { font-size: 11px; color: #b9ad95; }
+.lu-ledger__field { display: block; margin: 4px 0; }
+.lu-ledger__problems { color: #f0a080; }
+@media (max-width: 520px) { .lu-ledger { font-size: 13px; } }
