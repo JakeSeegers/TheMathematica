@@ -1,8 +1,9 @@
 # Research-Statistics RPG — design proposal
 
-Status: **step 1 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
+Status: **steps 1–2 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
 direction *A Research-Statistics RPG*; the recommendations of §5 were accepted the same day. The
-research core (`src/game/research/`) exists and is tested in Node; the game does not use it yet.
+research core (`src/game/research/`) is tested in Node, and the game records fights into it when
+a page is opened with `?research=cinderwatch-pass` (no ledger or report UI yet).
 Values marked *placeholder* are open and are only there to show that the design works with real
 numbers.
 
@@ -366,7 +367,7 @@ Each step ends with passing tests and can be reviewed alone.
 | --- | --- | --- |
 | 0 | Finish the GLAIVE branch (the `campaign.cleared.json` re-run in progress). | existing suites |
 | 1 ✓ | `populations.js`, `dataset.js`, `stats.js` with `public/research/cinderwatch-pass.json` (done 2026-10-21; `npm run research:test`, 94 assertions). | `tools/test-research.mjs`: fixed seeds give the same individuals; stats match hand-worked examples; a road-only simulated sample of 400 has an interval that misses the Pass value; random sampling gives ≈ 95 % coverage over many replays. |
-| 2 | `recorder.js` wired to `Encounter` beats; research mode in `GlaiveCombat` (C1, C2); expedition ids at rests; new individuals on respawn. | Node: beats → rows (one enemy, three attacks → 1 enemy row, 3 attack rows, 1 eligible); flanked attacks never eligible; misses have empty damage; missing reasons. No-leak test. Browser fixed-step script: a road fight writes the expected rows; the log shows no bonus. |
+| 2 ✓ | (done 2026-10-22) `recorder.js` wired to `Encounter` beats; research mode in `GlaiveCombat` (C1, C2); expedition ids at rests; new individuals on respawn. | Node: beats → rows (one enemy, three attacks → 1 enemy row, 3 attack rows, 1 eligible); flanked attacks never eligible; misses have empty damage; missing reasons. No-leak test. Browser fixed-step script: a road fight writes the expected rows; the log shows no bonus. |
 | 3 | `kingdom.js`, `report.js`, `debrief.js`. | Node: a season with a fixed seed is identical twice; the rules follow §10; the replay distribution; debrief parts stay separate (a good policy with a bad season is "defensible" + "bad outcome"). |
 | 4 | Missions 1–5: the Steward's talk script, quest stages, the mire flag, the ledger page, the report dialog, the number widget. | story tests for the mission conditions; UI sandbox shots of the ledger and the report at the three reference sizes. |
 | 5 | Full-loop browser script in fixed step: road expedition, mire expedition, report, season, debrief. Docs (this file becomes a spec), known issues. | the full script; `npm run typecheck`, all Node tests, the build. |
@@ -405,3 +406,37 @@ designer checks only, D6).
 who opens the browser's network tools can read the world truth. Fine for development; before
 release, bundle the truth into the combat chunk or derive it from a seed at run time, so the
 ledger stays the only player-facing source.
+
+### 13.2 Step 2 results
+
+**How to try it:** `game.html?level=cinderwatch-pass&research=cinderwatch-pass`. The overlay
+(`src/game/research/ResearchMode.js`, owned by `GlaiveCombat` as `research`) is off without the
+flag; nothing changes on other pages.
+
+- **Individuals in the world:** the foes of `glade_goblins` (road, 3) and `mire_goblins` (mire, 2)
+  take their stat block from the population for the current expedition (`Foe.setStats`, the
+  `studied` field holds the habitat and the visible weapon). Other packs keep their group-level
+  stats and are not recorded. A waystone rest (`restAll`) starts the next expedition and redraws
+  every studied foe.
+- **Recording:** `GlaiveCombat._play` hands every batch of beats to the recorder before the stage
+  plays it. `recorder.js` writes one enemy row per studied foe per fight and one attack row per
+  attack beat of a studied foe: roll mode, strike total (none on a natural 20 / 1), hit, the
+  target's AC, the damage roll on a hit. Fates come from the `dead` / `flee` / `end` beats; an
+  attack on a sleeping target is flagged and never eligible; a fight cut short (a reset) is closed
+  as lost. New missing reason: `party withdrew`.
+- **Hidden in research mode:** the target picker shows a studied foe's weapon and AC, not its HP
+  (`glaive.pick.infoStudied`); the log shows its roll as the total only, or "natural 20 / 1"
+  (`CombatLog.hideRoll`, `glaive.log.natural`).
+- **Designer hooks:** `__game.combat.research()` (the dataset, the truth, the studied foes' stat
+  blocks) and `state().research` (expedition, counts, habitats, missing reasons).
+- **Tests:** `npm run research:test` now 132 assertions — real GLAIVE encounters through the
+  recorder (rows match beats one for one, the hero's attacks are not rows, one eligible attack per
+  goblin, every missing reason explained, no hidden key in the save, a rest draws new goblins,
+  fixed seeds reproduce the dataset, 60 road vs 60 mire fights: the mire route shows more
+  penetration and gang tactics give flanked attacks that are never eligible) and synthetic beats
+  (a sleeper, a goblin that flees, a party that withdraws, a fight cut short).
+  `sandbox/research.record.json` plays two recorded road fights in the browser (fixed step) with a
+  rest between them.
+
+**Not yet:** more goblin packs in the level (C3: 3 road and 2 mire goblins per expedition is a
+small sample), saving the dataset in the campaign save, the ledger UI.

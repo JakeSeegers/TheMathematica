@@ -360,6 +360,7 @@ The tabletop leaves some rules to the GM. The game decides them like this:
 | `xp(n)`, `levelUp(talent, ability)` | progress without the menus |
 | `rest(id)`, `reset()` | a waystone rest; the whole level back |
 | `kill(uid)`, `freezeAI(on)` | content tours: a foe falls (its XP), foes never notice the player |
+| `research()` | the research overlay (`?research=…`): dataset, truth, studied foes ([research design](../design/RESEARCH_STATISTICS_RPG.md)) |
 | `foes()` / `enemies()`, `log()`, `showcase()` | lists and a program check |
 
 `state().combat` has `rules: 'glaive'`, `player` (HP, AC, level, XP, silver, draughts, build,
