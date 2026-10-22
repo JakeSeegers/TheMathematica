@@ -641,6 +641,27 @@ Three villagers of the pass will fight beside you — a party holds three, so al
 
 ---
 
+### 15.9 Research mode (work in progress)
+
+Open `game.html?level=cinderwatch-pass&research=cinderwatch-pass` to play the pass as a
+statistics investigation ([design](../design/RESEARCH_STATISTICS_RPG.md); English only for now).
+The kingdom wants to know how often a goblin's attack gets through light armour, and how much
+armour to buy for 40 citizens.
+
+- **You gather evidence by fighting.** Every fight with the goblins near the camp road and in the
+  Hollow Mire is written down: each goblin's strike total, hit or miss, and the damage of hits.
+  There is no study action. A waystone rest ends an expedition: the goblins come back as new
+  individuals.
+- **L** opens the **field ledger** between fights: the Steward's five missions (short questions
+  checked against your own data), the data, charts, your report and the debrief. **Esc** or **L**
+  closes it.
+- **In research mode** the target picker shows a goblin's weapon instead of its HP, and the log
+  shows a goblin's strike total only (or "natural 20 / 1"): you see what you could really observe.
+- **The report** has two separate parts: your estimate (with a 95% interval once mission 4 unlocks
+  it) and your purchase. The kingdom then faces a season of raids, and the debrief judges your
+  research, your decision and the outcome separately.
+- Progress is kept in this browser; add `&fresh=1` to the address to start over.
+
 ## 16. Campaigns (The Ferryman's Lantern)
 
 A campaign is a story told across several levels: you walk off the end of a road into the next

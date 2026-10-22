@@ -270,6 +270,7 @@ reference: [GLAIVE.md §10](GLAIVE.md#10-test-hooks)):
 | `kill(uid)` → boolean | a foe falls at once: its XP, no loot, its `kill` event (the content tours) |
 | `freezeAI(on = true)` | foes never notice the player and the boss's arena does not close (the content tours) |
 | `research()` | with `?research=<config>`: `{ expedition, dataset, truth, studied }` — the player's dataset, the world truth and the studied foes' stat blocks (designer view; [research design](../design/RESEARCH_STATISTICS_RPG.md)); null without the flag |
+| `ledger(open = true, tab?)` | research mode: open (on `tab`: `missions`, `data`, `charts`, `report`, `debrief`) or close the field ledger; its open state (false without research mode) |
 | `foes()` / `enemies()`, `log()` | the foes (uid, kind, group, alive, hidden, boss, position); the last log lines |
 | `showcase()` | every effect, marker style and pickup once (program checks) |
 

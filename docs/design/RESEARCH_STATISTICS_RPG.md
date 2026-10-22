@@ -1,10 +1,10 @@
 # Research-Statistics RPG — design proposal
 
-Status: **steps 1–3 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
+Status: **steps 1–4 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
 direction *A Research-Statistics RPG*; the recommendations of §5 were accepted the same day. The
 research core (`src/game/research/`) is tested in Node, and the game records fights into it when
-a page is opened with `?research=cinderwatch-pass`; the kingdom's season, the report and the
-debrief exist as tested modules (no ledger, report or debrief UI yet).
+a page is opened with `?research=cinderwatch-pass`; the field ledger (L) carries the five
+missions, the data and charts, the report and the debrief.
 Values marked *placeholder* are open and are only there to show that the design works with real
 numbers.
 
@@ -381,7 +381,7 @@ Each step ends with passing tests and can be reviewed alone.
 | 1 ✓ | `populations.js`, `dataset.js`, `stats.js` with `public/research/cinderwatch-pass.json` (done 2026-10-21; `npm run research:test`, 94 assertions). | `tools/test-research.mjs`: fixed seeds give the same individuals; stats match hand-worked examples; a road-only simulated sample of 400 has an interval that misses the Pass value; random sampling gives ≈ 95 % coverage over many replays. |
 | 2 ✓ | (done 2026-10-22) `recorder.js` wired to `Encounter` beats; research mode in `GlaiveCombat` (C1, C2); expedition ids at rests; new individuals on respawn. | Node: beats → rows (one enemy, three attacks → 1 enemy row, 3 attack rows, 1 eligible); flanked attacks never eligible; misses have empty damage; missing reasons. No-leak test. Browser fixed-step script: a road fight writes the expected rows; the log shows no bonus. |
 | 3 ✓ | (done 2026-10-22) `kingdom.js`, `report.js`, `debrief.js`. | Node: a season with a fixed seed is identical twice; the rules follow §10; the replay distribution; debrief parts stay separate (a good policy with a bad season is "defensible" + "bad outcome"). |
-| 4 | Missions 1–5: the Steward's talk script, quest stages, the mire flag, the ledger page, the report dialog, the number widget. | story tests for the mission conditions; UI sandbox shots of the ledger and the report at the three reference sizes. |
+| 4 ✓ | (done 2026-10-22, simplified: §13.4) Missions 1–5, the ledger page, the report form with number entry, the debrief page. | story tests for the mission conditions; UI sandbox shots of the ledger and the report at the three reference sizes. |
 | 5 | Full-loop browser script in fixed step: road expedition, mire expedition, report, season, debrief. Docs (this file becomes a spec), known issues. | the full script; `npm run typecheck`, all Node tests, the build. |
 
 Only after step 5 works end to end: more curriculum (two-group comparison of armour designs,
@@ -475,4 +475,37 @@ small sample), saving the dataset in the campaign save, the ledger UI.
   representative sample raises no flag and its choice comes close to the oracle; a lucky and an
   unlucky season change only the outcome and its percentile, never the research or decision
   judgement; a careless report is flagged on both.
+
+### 13.4 Step 4 results
+
+**How to play it:** `game.html?level=cinderwatch-pass&research=cinderwatch-pass` (add `&fresh=1`
+to start over). A toast names the key; **L** opens the field ledger between fights; it holds the
+game while open (`game.busy`), and **Esc** or **L** closes it.
+
+- **Missions** (`missions.js`, text in the config's `missions`): 1 *Define the threat* (population,
+  unit, variable: choices with feedback), 2 *Two places, two samples* (the road sample's share by
+  hand after 10 road goblins; why the mire differs and why more road data would not fix it, after
+  6 mire goblins), 3 *Describe the threat* (the mean of the first ten hits by hand, whether the
+  mean is enough against a 10 HP citizen; unlocks the automatic summaries), 4 *How sure are we?*
+  (after 30 goblins: what the 95 % interval means, where to gather more; unlocks the interval),
+  5 *Advise the kingdom* (the report). Every answer is checked against the player's own data,
+  never the truth.
+- **The ledger** (`LedgerPanel.js`, `ledger.css`; plain DOM in the UI font): Missions, Data (counts
+  by unit, by place, missing reasons, the latest attack rows), Charts (eligible strike totals
+  coloured by the armour they beat, damage of hits against the citizen's HP; summaries and the
+  share table with intervals once unlocked), Report (the claim — population, estimate, interval —
+  and, separately, the purchase with its cost; problems listed when refused), Debrief (the three
+  judgements, the replay, the truth).
+- **Saving:** the study (dataset, expedition, missions, result) is kept in browser storage under
+  `luminati.research.<name>`.
+- **Larger samples:** the config's `groupCounts` give the studied packs 4 goblins each (the level
+  file is unchanged).
+- **Simplified from the plan:** no Steward talk script or story quest stages (the missions live in
+  the ledger), no flooded-mire flag (mission 2 tells the player to start on the road), an HTML
+  number input instead of a pixel-UI widget, English only (D9).
+- **Tests:** `npm run research:test` 194 assertions (the missions' needs, feedback, hints, unlocks
+  and saves; `submit`: the interval required once unlocked, a full result, a save that keeps
+  everything and no hidden key in the data or mission progress). `sandbox/research.record.json`
+  also opens the ledger with L, answers mission 1 by clicking (a wrong answer's feedback first),
+  checks the Data and Charts pages and closes it with Esc.
 

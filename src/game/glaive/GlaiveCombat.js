@@ -444,6 +444,8 @@ export class GlaiveCombat {
     this.research = await ResearchMode.fromPage({ now: () => this.game.lighting?.timeOfDay ?? 0, armor: () => this.sheet.armor });
     /** @type {LedgerPanel|null} the research overlay's field ledger (L) */
     this.ledger = this.research ? new LedgerPanel(this.ui.root, this.research, { onClose: () => { this.game.busy = false; } }) : null;
+    // (research mode is English-first, decision D9)
+    if (this.ledger) this.later(4, () => this.ui.hud.toast('Research mode: press L for the field ledger', 5));
 
     // ---- foes ----
     /** @type {BossArena[]} */
