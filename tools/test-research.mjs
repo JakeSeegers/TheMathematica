@@ -28,6 +28,9 @@ import { Encounter } from '../src/game/glaive/Encounter.js';
 import { Sheet } from '../src/game/glaive/Sheet.js';
 import { xpToNext } from '../src/game/glaive/rules.js';
 import { PARTY_PRESETS } from '../src/engine/level/PartyRules.js';
+import { Kingdom, validateKingdom, truthSource, evidenceSource } from '../src/game/research/kingdom.js';
+import { validateReport, evidenceFor } from '../src/game/research/report.js';
+import { debrief } from '../src/game/research/debrief.js';
 import {
   mean, median, percentile, fiveNumber, sd, frequencyTable, histogram, proportion,
   invNorm, normCdf, invT, tCdf, proportionInterval, meanInterval, sampleSizeForProportion,
@@ -523,6 +526,120 @@ sec('recorder beats');
   rec.abort(4);
   ok(ds.encounters[1].result === 'defeat' && ds.enemies[3].missingReason === 'fight lost', 'a fight cut short is closed as lost');
   ok(rec.begin([], { time: 5, armor: 'light' }) === null && ds.encounters.length === 2, 'a fight without studied foes is not recorded');
+}
+
+// -------------------------------------------------------------------------------------------------
+sec('kingdom');
+{
+  const k = new Kingdom(CONFIG);
+  ok(validateKingdom(CONFIG.kingdom, CONFIG).length === 0, 'the shipped kingdom config is valid', validateKingdom(CONFIG.kingdom, CONFIG));
+  const badK = structuredClone(CONFIG.kingdom); badK.citizens.swamp = 3; badK.prices.plate = 0;
+  ok(validateKingdom(badK, CONFIG).length === 3, 'unknown areas and armour, bad prices are reported', validateKingdom(badK, CONFIG));
+  ok(k.totalCitizens === 40 && k.cost({ armor: 'light', count: 40 }) === 1000 && k.cost({ armor: 'none', count: 9 }) === 0, 'citizens and costs (GLAIVE prices: light 25 sp)');
+  ok(k.validatePolicy({ armor: 'medium', count: 27 }).some((p) => p.includes('budget')), 'over the budget is refused');
+  ok(k.validatePolicy({ armor: 'light', count: 41 }).some((p) => p.includes('citizens')), 'more armour than citizens is refused');
+  ok(k.validatePolicy({ armor: 'heavy', count: 1 }).length > 0 && k.validatePolicy({ armor: 'light', count: 40 }).length === 0, 'only armour for sale; light for all is fine');
+  ok(JSON.stringify(k.allocation({ armor: 'light', count: 10 })) === '{"road":4,"mire":6}', 'allocation in proportion to citizens', k.allocation({ armor: 'light', count: 10 }));
+  ok(JSON.stringify(k.allocation({ armor: 'light', count: 7 })) === '{"road":3,"mire":4}', 'the remainder goes to the largest fraction (2.8 / 4.2 → 3 / 4)', k.allocation({ armor: 'light', count: 7 }));
+  const opts = k.options();
+  ok(opts[0].armor === 'none' && opts.some((o) => o.armor === 'light' && o.count === 40) && opts.some((o) => o.armor === 'medium' && o.count === 26) && !opts.some((o) => o.armor === 'medium' && o.count === 30), 'options: nothing, multiples of 5, and the most the budget allows (medium 26)');
+  // the rules, with sources that always do one thing
+  const always = (hit, damage) => ({ kind: 'test', attack: () => ({ hit, damage }) });
+  const miss = k.season({ armor: 'medium', count: 26 }, always(false, 0), 1);
+  ok(miss.dead === 0 && miss.injured === 0 && miss.spent === 1950 && miss.remaining === 50 && miss.unfunded === 450 && miss.totalCost === 2400, 'no hits: the cost is the purchase plus the shortfall below the reserve (1950 + 450)', { spent: miss.spent, unfunded: miss.unfunded, total: miss.totalCost });
+  const huge = k.season({ armor: 'none', count: 0 }, always(true, 20), 1);
+  ok(huge.dead === 40 && huge.citizens.every((c) => c.hits === 1 && c.hp === -10), 'a 20-damage hit drops a citizen to −10: dead, no second attack', { dead: huge.dead });
+  const six = k.season({ armor: 'light', count: 40 }, always(true, 6), 1);
+  ok(six.citizens.every((c) => c.down && c.hp === -2 && c.hits === 2) && six.dead + six.injured + six.knockedOut === 40, 'two 6-damage hits: −2 HP, down, an injury roll each', { dead: six.dead, injured: six.injured, ko: six.knockedOut });
+  ok(six.equipmentFailures === 80 && huge.equipmentFailures === 0, 'equipment failures count hits on armoured citizens only');
+  const four = k.season({ armor: 'none', count: 0 }, always(true, 4), 1);
+  ok(four.citizens.every((c) => !c.down && c.hp === 2) && four.totalCost === 0, 'two 4-damage hits: hurt, not down, no cost');
+  // reproducible; the truth makes the decision matter
+  const t = truthSource(pop);
+  ok(JSON.stringify(k.season({ armor: 'light', count: 20 }, t, 'a')) === JSON.stringify(k.season({ armor: 'light', count: 20 }, t, 'a')), 'a fixed seed reproduces a season');
+  ok(JSON.stringify(k.season({ armor: 'light', count: 20 }, t, 'a')) !== JSON.stringify(k.season({ armor: 'light', count: 20 }, t, 'b')), 'another seed, another season');
+  const none = k.replay({ armor: 'none', count: 0 }, t, { seasons: 300 });
+  const light = k.replay({ armor: 'light', count: 40 }, t, { seasons: 300 });
+  const med = k.replay({ armor: 'medium', count: 26 }, t, { seasons: 300 });
+  log('truth replay mean cost: none', none.totalCost.mean, 'light 40', light.totalCost.mean, 'medium 26', med.totalCost.mean);
+  ok(light.totalCost.mean < none.totalCost.mean, 'under the truth, light armour for all costs less than buying nothing (underprotection has a price)', { none: none.totalCost.mean, light: light.totalCost.mean });
+  ok(light.totalCost.mean < med.totalCost.mean, 'and less than medium for 26 (overspending into the reserve has a price)', { light: light.totalCost.mean, medium: med.totalCost.mean });
+  ok(none.totalCost.p10 <= none.totalCost.p50 && none.totalCost.p50 <= none.totalCost.p90 && none.totalCost.p90 > none.totalCost.p10, 'seasons vary: p10 ≤ p50 ≤ p90');
+}
+
+sec('report');
+{
+  const k = new Kingdom(CONFIG);
+  const good = { armor: 'light', population: 'region', unit: 'enemy', estimate: 0.55, interval: { lo: 0.5, hi: 0.6, level: 0.95 }, policy: { armor: 'light', count: 30 }, rationale: 'Most attacks get through light armour; it is cheap.' };
+  ok(validateReport(good, k).length === 0, 'a complete report is valid', validateReport(good, k));
+  ok(validateReport({ ...good, estimate: 1.2, interval: null }, k).length === 1, 'an estimate outside 0..1 is refused');
+  ok(validateReport({ ...good, interval: { lo: 0.6, hi: 0.7, level: 0.95 } }, k).some((p) => p.includes('inside')), 'the estimate must lie inside its interval');
+  ok(validateReport({ ...good, interval: null }, k, { requireInterval: true }).some((p) => p.includes('interval')), 'a mission can require the interval');
+  ok(validateReport({ ...good, policy: { armor: 'medium', count: 40 } }, k).some((p) => p.startsWith('policy:')), 'the policy is checked on its own (over budget)');
+  ok(validateReport({ ...good, unit: 'attack' }, k).length === 1 && validateReport({ ...good, rationale: ' ' }, k).length === 1, 'the unit is per goblin; a rationale is needed');
+  ok(validateReport({ ...good, estimate: undefined, interval: null }, k).length === 1 && validateReport({ ...good, policy: undefined }, k).length >= 1, 'the claim and the policy are separate required parts');
+}
+
+sec('debrief');
+{
+  const k = new Kingdom(CONFIG);
+  /** A dataset of `n` goblins met by habitat shares (the player's AC 13). */
+  const sample = (n, roadShare, seed) => {
+    const ds = new Dataset();
+    ds.startExpedition({ start: 0, route: 'x' });
+    const dice = new Dice(new RNG(seed));
+    const nr = Math.round(n * roadShare);
+    if (nr) meet(ds, dice, 'road', nr, { expedition: 1 });
+    if (n - nr) meet(ds, dice, 'mire', n - nr, { expedition: 2 });
+    return ds;
+  };
+  /** @returns {import('../src/game/research/report.js').Report} */
+  const reportFrom = (ds, policy) => {
+    const ev = evidenceFor(ds, LIGHT);
+    return { armor: 'light', population: 'region', unit: /** @type {'enemy'} */ ('enemy'), estimate: /** @type {number} */ (ev.estimate), interval: ev.interval ? { lo: ev.interval.lo, hi: ev.interval.hi, level: 0.95 } : null, policy, rationale: 'test' };
+  };
+  const truth = truthSource(pop);
+
+  // a big road-only (convenience) sample, the purchase its evidence favours
+  const road = sample(200, 1, 'deb-road');
+  const roadRank = k.rank(/** @type {any} */ (evidenceSource(road)), { seasons: 200, seed: 'pick' });
+  const rRep = reportFrom(road, roadRank[0].policy);
+  const season1 = k.season(rRep.policy, truth, 'deb-s1');
+  const d1 = debrief({ report: rRep, dataset: road, population: pop, kingdom: k, season: season1, seasons: 200 });
+  log('road-only debrief', JSON.stringify({ r: d1.research.flags, best: d1.decision.best, mine: d1.decision.mine, oracle: d1.replay.oracle, truth: d1.truth }));
+  ok(d1.research.flags.includes('habitat-missing:mire') && d1.research.flags.includes('coverage-gap'), 'research: the mire is missing, a coverage gap', d1.research.flags);
+  ok(d1.research.estimateMatches && d1.research.intervalMatches && d1.research.uncertaintyStated, 'research: the reported numbers match the data and uncertainty was stated');
+  ok(d1.decision.defensible, 'decision: the purchase is defensible for the evidence the player had', d1.decision);
+  ok(d1.truth.intervalCovers === false, 'truth: the road-only interval misses the Pass value', { value: d1.truth.value, interval: rRep.interval });
+  ok(JSON.stringify(d1.replay.oracle.policy) !== JSON.stringify(rRep.policy) && d1.replay.totalCost.mean > d1.replay.oracle.meanCost, 'replay: under the truth the evidence\'s favourite costs more than the oracle\'s choice', { mine: d1.replay.totalCost.mean, oracle: d1.replay.oracle });
+
+  // a representative sample (40 % road, 60 % mire)
+  const rep = sample(300, 0.4, 'deb-rep');
+  const repRank = k.rank(/** @type {any} */ (evidenceSource(rep)), { seasons: 200, seed: 'pick' });
+  const gRep = reportFrom(rep, repRank[0].policy);
+  const d2 = debrief({ report: gRep, dataset: rep, population: pop, kingdom: k, season: k.season(gRep.policy, truth, 'deb-s2'), seasons: 200 });
+  log('representative debrief', JSON.stringify({ r: d2.research.flags, best: d2.decision.best, oracle: d2.replay.oracle, truth: d2.truth.value, ci: gRep.interval }));
+  ok(d2.research.flags.length === 0, 'research: a representative sample raises no flag', d2.research.flags);
+  ok(d2.decision.defensible && d2.truth.intervalCovers === true, 'decision defensible; the interval covers the truth');
+  ok(d2.replay.totalCost.mean <= d2.replay.oracle.meanCost * 1.08, 'replay: its choice is close to the oracle\'s under the truth', { mine: d2.replay.totalCost.mean, oracle: d2.replay.oracle.meanCost });
+
+  // the three parts stay apart: the same report with a lucky and an unlucky season
+  const seasons = Array.from({ length: 40 }, (_, i) => k.season(gRep.policy, truth, `luck:${i}`)).sort((a, b) => a.totalCost - b.totalCost);
+  const lucky = debrief({ report: gRep, dataset: rep, population: pop, kingdom: k, season: seasons[0], seasons: 100 });
+  const unlucky = debrief({ report: gRep, dataset: rep, population: pop, kingdom: k, season: seasons[39], seasons: 100 });
+  ok(JSON.stringify(lucky.research) === JSON.stringify(unlucky.research) && lucky.decision.defensible === unlucky.decision.defensible, 'a lucky or an unlucky season changes neither the research nor the decision judgement');
+  ok(lucky.outcome.totalCost < unlucky.outcome.totalCost && lucky.replay.percentile < unlucky.replay.percentile, 'only the outcome and where it fell in the replay change', { lucky: lucky.replay.percentile, unlucky: unlucky.replay.percentile });
+
+  // a careless report: numbers that do not match the data, no interval, a poor purchase
+  const bad = { ...gRep, estimate: 0.9, interval: null, policy: { armor: 'medium', count: 26 } };
+  const d3 = debrief({ report: bad, dataset: rep, population: pop, kingdom: k, season: k.season(bad.policy, truth, 'deb-s3'), seasons: 150 });
+  ok(d3.research.flags.includes('estimate-mismatch') && d3.research.flags.includes('no-uncertainty'), 'research: estimate mismatch, no uncertainty', d3.research.flags);
+  ok(!d3.decision.defensible && d3.decision.flags.includes('not-defensible'), 'decision: medium for 26 is not defensible on this evidence', d3.decision.mine);
+  ok(JSON.stringify(debrief({ report: gRep, dataset: rep, population: pop, kingdom: k, season: seasons[5], seasons: 50 })) === JSON.stringify(debrief({ report: gRep, dataset: rep, population: pop, kingdom: k, season: seasons[5], seasons: 50 })), 'the debrief is reproducible');
+  const empty = new Dataset();
+  empty.startExpedition({ start: 0, route: 'x' });
+  const d4 = debrief({ report: { ...gRep }, dataset: empty, population: pop, kingdom: k, season: seasons[0], seasons: 20 });
+  ok(d4.decision.flags.includes('no-evidence') && d4.research.flags.includes('small-sample'), 'no data: no evidence world, a small sample');
 }
 
 // -------------------------------------------------------------------------------------------------

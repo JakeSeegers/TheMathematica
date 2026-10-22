@@ -157,6 +157,21 @@ export class Population {
   }
 
   /**
+   * An individual drawn with the caller's RNG (the kingdom's raids: many draws, one seeded stream).
+   * Same distribution as `individual`.
+   * @param {string} habitat
+   * @param {{ next(): number }} rng
+   * @returns {{ attackBonus: number, weapon: string, damage: string }}
+   */
+  sample(habitat, rng) {
+    const h = this.config.habitats[habitat];
+    if (!h) throw new Error(`unknown habitat ${habitat}`);
+    const attackBonus = pickWeighted(h.attackBonus, rng.next());
+    const weapon = pickWeighted(h.weapons, rng.next());
+    return { attackBonus, weapon, damage: this.config.weapons[weapon].damage };
+  }
+
+  /**
    * The individuals of a level group for one expedition (its slots 0..count-1).
    * @param {string} groupId
    * @param {number} expedition

@@ -1,9 +1,10 @@
 # Research-Statistics RPG — design proposal
 
-Status: **steps 1–2 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
+Status: **steps 1–3 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
 direction *A Research-Statistics RPG*; the recommendations of §5 were accepted the same day. The
 research core (`src/game/research/`) is tested in Node, and the game records fights into it when
-a page is opened with `?research=cinderwatch-pass` (no ledger or report UI yet).
+a page is opened with `?research=cinderwatch-pass`; the kingdom's season, the report and the
+debrief exist as tested modules (no ledger, report or debrief UI yet).
 Values marked *placeholder* are open and are only there to show that the design works with real
 numbers.
 
@@ -295,20 +296,28 @@ All formulas live in one pure module and match what the ledger displays.
 - Budget: *placeholder* 2 000 sp from the treasury.
 - Citizens at risk: *placeholder* 40 (16 on road farms, 24 on the mire edge). Each has HP 10,
   DEX +0, AC 10 + armour (D7).
-- Options: equip k citizens with light armour (25 sp each) and m with medium (75 sp each), with
-  25k + 75m ≤ budget. First release: one armour type for a chosen number of citizens, or "no
-  purchase". Unspent silver stays in the treasury.
+- Options (built): one armour type — light (25 sp) or medium (75 sp), GLAIVE's prices — for a
+  chosen number of citizens in steps of 5 (and the most the budget allows), or "no purchase".
+  The armour goes to the areas in proportion to their citizens (rounded down, the remainder to the
+  largest fractions). Unspent silver stays in the treasury.
 
 **The season** (documented, seeded rules; all GLAIVE):
 
-1. Each citizen faces *placeholder* 3 raid attacks. Each attack comes from an individual drawn from
-   the **true** population of the citizen's own habitat.
+1. Each citizen faces *placeholder* 2 raid attacks, until one drops the citizen. Each attack comes
+   from an individual drawn from the **true** population of the citizen's own habitat.
 2. Each attack: `d20 + bonus` against the citizen's AC (natural 1 / 20 rules). On a hit, roll the
    weapon damage (a critical rolls it with ADV).
 3. A citizen at 0 HP or less is out of action and rolls the injury table (d12 + ½ the HP below 0);
    below −5 the citizen dies. Citizens heal fully between seasons.
-4. Losses: *placeholder* an injury costs 30 sp of lost work, a death 400 sp and counts as a death.
-   Remaining treasury below *placeholder* 500 sp means other needs go unfunded (shown as a cost).
+4. Losses: *placeholder* an injury costs 100 sp of lost work, a death 2 000 sp and counts as a death.
+   Remaining treasury below *placeholder* 500 sp means other needs go unfunded: the shortfall is a
+   cost. Cost to the kingdom = silver spent + losses + shortfall.
+
+These placeholders were tuned (2026-10-22) so the decision depends on the evidence: under the
+truth, light armour for 35–40 citizens costs the kingdom about 5 000 sp a season against about
+5 550 sp for buying nothing and about 6 200 sp for medium armour for 26 (which eats the reserve);
+a road-only view of the world makes "buy nothing" look best. With the first values tried (3
+attacks, 30 / 400 sp) armour barely mattered and "buy nothing" always won.
 
 The rules are shown in the mission brief, so the player can reason about consequences.
 
@@ -320,14 +329,17 @@ Three separate parts. No single score mixes them.
    sample vs the target)? Was the protocol followed (eligible attacks only, one per goblin)? Is the
    reported interval correct for the data (recomputed)? Was the uncertainty stated? Which groups
    were missing?
-2. **Decision quality** — given the player's *own* estimate and interval, was the purchase
-   defensible? The game computes the expected losses of every option for values across the
-   player's interval; a purchase that is reasonable for some value inside it is "defensible". A
-   purchase that contradicts the player's own estimate is flagged.
+2. **Decision quality** — given the player's *own* evidence, was the purchase defensible? Built
+   as: every option is replayed over many seasons in "the world as the evidence describes it"
+   (each raid attack resamples one of the dataset's eligible attacks and one observed damage
+   value, pooled over the habitats the player visited); a purchase whose mean cost there is within
+   *placeholder* 5 % of the best is defensible. The truth plays no part, so a convenience sample
+   can lead to a defensible decision that the truth then punishes — the research part flags the
+   sample, the decision part does not.
 3. **Realized outcome** — the season that happened: citizens protected, injured, killed, silver
    spent and left, equipment that failed (penetrating attacks on armoured citizens).
 
-**Replay** (advanced): the same policy over many seeded seasons (*placeholder* 500) shows its
+**Replay** (advanced): the same policy over many seeded seasons (*placeholder* 300) shows its
 typical result and spread, and where the actual season fell. The debrief then unlocks the truth
 for this investigation (habitat penetration rates) and compares the oracle choice. Text rules: a
 death never "proves" the analysis wrong; a lucky season never "proves" it right.
@@ -368,7 +380,7 @@ Each step ends with passing tests and can be reviewed alone.
 | 0 | Finish the GLAIVE branch (the `campaign.cleared.json` re-run in progress). | existing suites |
 | 1 ✓ | `populations.js`, `dataset.js`, `stats.js` with `public/research/cinderwatch-pass.json` (done 2026-10-21; `npm run research:test`, 94 assertions). | `tools/test-research.mjs`: fixed seeds give the same individuals; stats match hand-worked examples; a road-only simulated sample of 400 has an interval that misses the Pass value; random sampling gives ≈ 95 % coverage over many replays. |
 | 2 ✓ | (done 2026-10-22) `recorder.js` wired to `Encounter` beats; research mode in `GlaiveCombat` (C1, C2); expedition ids at rests; new individuals on respawn. | Node: beats → rows (one enemy, three attacks → 1 enemy row, 3 attack rows, 1 eligible); flanked attacks never eligible; misses have empty damage; missing reasons. No-leak test. Browser fixed-step script: a road fight writes the expected rows; the log shows no bonus. |
-| 3 | `kingdom.js`, `report.js`, `debrief.js`. | Node: a season with a fixed seed is identical twice; the rules follow §10; the replay distribution; debrief parts stay separate (a good policy with a bad season is "defensible" + "bad outcome"). |
+| 3 ✓ | (done 2026-10-22) `kingdom.js`, `report.js`, `debrief.js`. | Node: a season with a fixed seed is identical twice; the rules follow §10; the replay distribution; debrief parts stay separate (a good policy with a bad season is "defensible" + "bad outcome"). |
 | 4 | Missions 1–5: the Steward's talk script, quest stages, the mire flag, the ledger page, the report dialog, the number widget. | story tests for the mission conditions; UI sandbox shots of the ledger and the report at the three reference sizes. |
 | 5 | Full-loop browser script in fixed step: road expedition, mire expedition, report, season, debrief. Docs (this file becomes a spec), known issues. | the full script; `npm run typecheck`, all Node tests, the build. |
 
@@ -440,3 +452,27 @@ flag; nothing changes on other pages.
 
 **Not yet:** more goblin packs in the level (C3: 3 road and 2 mire goblins per expedition is a
 small sample), saving the dataset in the campaign save, the ledger UI.
+
+### 13.3 Step 3 results
+
+- `kingdom.js` — the budget, the options, the allocation rule, one season of raids under GLAIVE's
+  rules (§10), many seasons (`replay`, `rank`), and two raid sources: `truthSource` (the
+  population) and `evidenceSource` (the player's dataset). The kingdom section of
+  `public/research/cinderwatch-pass.json` holds its numbers.
+- `report.js` — `validateReport` (the claim and the policy are separate required parts; the
+  estimate inside its interval; the policy affordable) and `evidenceFor` (what the data itself
+  says, as the ledger will show it).
+- `debrief.js` — the three judgements (§11) as data with flag ids (`habitat-missing:<h>`,
+  `coverage-gap`, `small-sample`, `estimate-mismatch`, `interval-mismatch`, `no-uncertainty`,
+  `condition-not-met`; `not-defensible`, `no-evidence`), the outcome, the replay with the real
+  season's percentile and the oracle's choice, and the truth.
+- Tests (`npm run research:test`, 172 assertions): the rules with sources that always hit or miss
+  (a 20-damage hit kills, two 6-damage hits knock down and roll an injury, the shortfall below the
+  reserve), the allocation, reproducible seasons; under the truth light armour for all beats both
+  buying nothing and medium for 26. Debriefs: a 200-goblin road-only sample gets `habitat-missing:mire`
+  and `coverage-gap`, a *defensible* decision (buy nothing, for its evidence), an interval that
+  misses the truth, and a replay that shows the oracle (light armour) doing better; a
+  representative sample raises no flag and its choice comes close to the oracle; a lucky and an
+  unlucky season change only the outcome and its percentile, never the research or decision
+  judgement; a careless report is flagged on both.
+

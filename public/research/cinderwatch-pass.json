@@ -4,7 +4,11 @@
   "level": "cinderwatch-pass",
   "worldSeed": 20261021,
   "family": "goblin",
-  "statBlock": { "ac": 13, "hd": 1, "morale": 7 },
+  "statBlock": {
+    "ac": 13,
+    "hd": 1,
+    "morale": 7
+  },
   "weapons": {
     "knife": { "name": "Knife", "damage": "1d6" },
     "spear": { "name": "Spear", "damage": "1d8" },
@@ -28,5 +32,23 @@
     "glade_goblins": "road",
     "mire_goblins": "mire"
   },
-  "citizens": { "dex": 0, "armor": { "none": 0, "light": 2, "medium": 4 } }
+  "citizens": {
+    "dex": 0,
+    "armor": {
+      "none": 0,
+      "light": 2,
+      "medium": 4
+    }
+  },
+  "kingdom": {
+    "comment": "Placeholders (design §10, D7, D8). Citizens use GLAIVE's PC formulas with +0 bonuses (HP 10, AC 10 + armour); prices are GLAIVE's armour prices.",
+    "budget": 2000,
+    "reserve": 500,
+    "citizens": { "road": 16, "mire": 24 },
+    "citizenHp": 10,
+    "attacksPerCitizen": 2,
+    "prices": { "light": 25, "medium": 75 },
+    "losses": { "injury": 100, "death": 2000 },
+    "countStep": 5
+  }
 }
