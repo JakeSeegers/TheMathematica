@@ -2,7 +2,7 @@ import './ledger.css';
 import { mean, median, sd, percentile, fiveNumber, frequencyTable } from './stats.js';
 import { evidenceFor } from './report.js';
 import { round } from './missions.js';
-import { newRunSeed } from './ResearchMode.js';
+import { newRunSeed, ResearchMode } from './ResearchMode.js';
 
 /**
  * The field ledger (docs/design/RESEARCH_STATISTICS_RPG.md §6, step 4): the research overlay's one
@@ -21,7 +21,7 @@ import { newRunSeed } from './ResearchMode.js';
  * English only for now (decision D9). Plain DOM in the game's UI font.
  */
 
-/** @import { ResearchMode } from './ResearchMode.js' */
+
 
 /** @typedef {'missions'|'data'|'charts'|'report'|'debrief'|'run'} Tab */
 
@@ -141,18 +141,21 @@ export class LedgerPanel {
   }
 
   /**
-   * A new run: a new seed in the address (asked twice unless the run is over). The page reloads;
-   * a seed other than the saved run's starts a new run (ResearchMode.fromPage).
+   * A new run (asked twice): its seed and rules are remembered in this browser and the same
+   * address reloads, so the player's link never changes (ResearchMode.queueNext / fromPage).
    */
   _newRun() {
     if (!this._confirmNew) { this._confirmNew = true; this.render(); return; }
     const typed = Number.parseInt(this._next.seed, 10);
     const seed = Number.isInteger(typed) && typed > 0 && typed <= 999999999 ? typed : newRunSeed();
     if (seed === this.research.run.seed) { this._status = 'That is this run\'s seed: pick another or leave it blank.'; this._confirmNew = false; this.render(); return; }
+    // the same address, the new run remembered for the reload (seed-like options leave the address)
     const q = new URLSearchParams(globalThis.location.search);
-    q.set('seed', String(seed));
-    if (this._next.permadeath) q.set('permadeath', '1'); else q.delete('permadeath');
-    q.delete('fresh');
+    for (const k of ['seed', 'permadeath', 'fresh']) q.delete(k);
+    if (!ResearchMode.queueNext(this.research.name, { seed, permadeath: this._next.permadeath })) {
+      q.set('seed', String(seed));
+      if (this._next.permadeath) q.set('permadeath', '1');
+    }
     globalThis.location.search = q.toString();
   }
 

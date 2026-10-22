@@ -749,7 +749,7 @@ sec('runs');
   const g = /** @type {any} */ (globalThis);
   const oldFetch = g.fetch, oldStore = g.localStorage;
   g.fetch = async () => ({ ok: true, json: async () => structuredClone(CONFIG) });
-  g.localStorage = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => { store.set(k, String(v)); } };
+  g.localStorage = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => { store.set(k, String(v)); }, removeItem: (k) => { store.delete(k); } };
   try {
     const heroHost = { ...host, hero: () => ({ level: 4, chosen: true, checkpoint: 'spawn' }) };
     const r1 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(heroHost, '?research=cinderwatch-pass&seed=77'));
@@ -765,6 +765,12 @@ sec('runs');
     store.clear();
     const r5 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass'));
     ok(r5.run.seed >= 1 && r5.run.seed <= 999999999 && r5.run.seed !== CONFIG.worldSeed, 'no save and no seed: a random run seed', r5.run.seed);
+    // the ledger's new run: remembered, then picked up by the same address
+    ok(ResearchMode.queueNext('cinderwatch-pass', { seed: 555, permadeath: true }), 'a new run can be queued');
+    const r6 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass'));
+    ok(r6.run.seed === 555 && r6.run.permadeath && r6.dataset.counts().attack === 0 && !store.has('luminati.research.cinderwatch-pass.next'), 'the same address starts the queued run (seed 555, permadeath) and forgets the request');
+    const r7 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass'));
+    ok(r7.run.seed === 555, 'the next load continues it');
     ok((await ResearchMode.fromPage(host, '?level=x')) === null && (await ResearchMode.fromPage(host, '?research=../x')) === null, 'no overlay without a valid research name');
   } finally {
     g.fetch = oldFetch;

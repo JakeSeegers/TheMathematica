@@ -13,6 +13,9 @@
  *                             names the entrance, else its player start)
  *     &level=local:<slot>&as=<id>   play a level from browser storage as level <id> of the
  *                             campaign (the editor's play-test of a campaign level)
+ *   ?research=<name>        research mode (src/game/research/): the study public/research/<name>.json
+ *                           on the level of the same name (unless ?level= names another); its run is
+ *                           saved in this browser (&seed=<n> plays a given world, &fresh=1 wipes it)
  *   ?lang=en|ja|zh          the language of this page load (not saved; docs/specs/I18N.md §1) —
  *                           else the player's saved choice, else English
  *   &i18n=<table>           a content table to look the level's text up in besides its own
@@ -34,6 +37,17 @@ import { artScale } from './engine/ui/UiScale.js';
 /** @import { Level } from './engine/level/types.js' */
 
 const DEFAULT_LEVEL = 'emberfall';
+
+// research mode names its level: `?research=<name>` plays public/levels/<name>.json unless `?level=`
+// (or a campaign) says otherwise — one short link for a study (docs/design/RESEARCH_STATISTICS_RPG.md)
+{
+  const q = new URLSearchParams(window.location.search);
+  const study = q.get('research');
+  if (study && /^[a-z0-9-]+$/.test(study) && !q.has('level') && !q.has('campaign')) {
+    q.set('level', study);
+    window.history.replaceState(null, '', `${window.location.pathname}?${q}${window.location.hash}`);
+  }
+}
 
 const params = new URLSearchParams(window.location.search);
 const autostart = params.has('autostart') && params.get('autostart') !== '0';

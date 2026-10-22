@@ -643,7 +643,7 @@ Three villagers of the pass will fight beside you — a party holds three, so al
 
 ### 15.9 Research mode (work in progress)
 
-Open `game.html?level=cinderwatch-pass&research=cinderwatch-pass` to play the pass as a
+Open `game.html?research=cinderwatch-pass` (the one link to keep) to play the pass as a
 statistics investigation ([design](../design/RESEARCH_STATISTICS_RPG.md); English only for now).
 The kingdom wants to know how often a goblin's attack gets through light armour, and how much
 armour to buy for 40 citizens.
@@ -667,7 +667,8 @@ armour to buy for 40 citizens.
   seed starts a new run, no seed continues your saved run (or starts a random one). The ledger's
   **Run** page shows the seed and starts a **new run**: type a seed or leave it blank for a random
   one, tick **Permadeath** if you want it, and press *Start a new run* twice (this browser keeps
-  one run, so the current one is replaced).
+  one run, so the current one is replaced). The page reloads at the same address: your link never
+  changes.
 - **Saving.** The **Save** button at the top of the ledger (and *Save now* on the Run page) saves
   at once and says when. The run also saves itself in this browser after every fight, rest, level
   and answer: your

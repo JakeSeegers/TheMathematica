@@ -425,7 +425,7 @@ ledger stays the only player-facing source.
 
 ### 13.2 Step 2 results
 
-**How to try it:** `game.html?level=cinderwatch-pass&research=cinderwatch-pass`. The overlay
+**How to try it:** `game.html?research=cinderwatch-pass`. The overlay
 (`src/game/research/ResearchMode.js`, owned by `GlaiveCombat` as `research`) is off without the
 flag; nothing changes on other pages.
 
@@ -482,7 +482,7 @@ small sample), saving the dataset in the campaign save, the ledger UI.
 
 ### 13.4 Step 4 results
 
-**How to play it:** `game.html?level=cinderwatch-pass&research=cinderwatch-pass` (add `&fresh=1`
+**How to play it:** `game.html?research=cinderwatch-pass` (add `&fresh=1`
 to start over). A toast names the key; **L** opens the field ledger between fights; it holds the
 game while open (`game.busy`), and **Esc** or **L** closes it.
 
@@ -534,8 +534,13 @@ Asked for by the owner: move toward seeded, roguelike play.
 - **Ledger controls** (added on request): a **Save** button in the ledger's header
   (`ResearchMode.save()` now reports success and the time) and a **Run** page — the seed, the
   permadeath rule, the state, the expeditions, the last save, *Save now*, and *Start a new run*
-  with an optional seed and a permadeath box (asked twice; it reloads with `&seed=…` and
-  `&permadeath=1` when ticked; a seed equal to the current run's is refused).
+  with an optional seed and a permadeath box (asked twice; a seed equal to the current run's is
+  refused). The new run is remembered in browser storage (`ResearchMode.queueNext`, key
+  `luminati.research.<name>.next`) and the **same address** reloads (`takeNext` picks it up), so
+  the player's link never changes; only without storage does it fall back to `&seed=` in the
+  address.
+- **One link:** `game.html?research=<name>` is enough — `src/main.js` adds `&level=<name>` (the
+  level of the same name) when neither `level` nor `campaign` is given.
 - **Permadeath** (`&permadeath=1`): `heroFell()` ends the run (`ended: 'slain'`, the hero is
   dropped from the save); after the death screen the ledger opens with a *Start a new run*
   banner, the data kept for reading.

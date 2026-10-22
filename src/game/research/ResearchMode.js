@@ -121,12 +121,14 @@ export class ResearchMode {
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const config = await r.json();
       const q = new URLSearchParams(search);
-      const saved = q.has('fresh') ? {} : ResearchMode.load(name);
+      // a new run asked for from the ledger (it reloads the same address): its seed and rules
+      const next = ResearchMode.takeNext(name);
+      const saved = q.has('fresh') || next ? {} : ResearchMode.load(name);
       const asked = Number.parseInt(q.get('seed') ?? '', 10);
-      const seed = Number.isInteger(asked) && asked > 0 ? asked : null;
+      const seed = next ? next.seed : Number.isInteger(asked) && asked > 0 ? asked : null;
       // the saved run goes on unless the address asks for another seed (or a fresh start)
       const keep = saved.run && (seed === null || seed === saved.run.seed);
-      const state = keep ? saved : { run: { seed: seed ?? newRunSeed(), permadeath: q.get('permadeath') === '1', ended: null } };
+      const state = keep ? saved : { run: { seed: seed ?? newRunSeed(), permadeath: next ? next.permadeath : q.get('permadeath') === '1', ended: null } };
       return new ResearchMode(config, host, state, name);
     } catch (err) {
       console.warn(`[research] could not load "${name}":`, err);
@@ -148,6 +150,38 @@ export class ResearchMode {
     } catch (err) {
       console.warn('[research] the saved study could not be read:', err);
       return {};
+    }
+  }
+
+  /**
+   * Ask for a new run on the next load (the ledger's Start a new run: it then reloads the same
+   * address, so the player's link never changes). False when storage is unavailable.
+   * @param {string} name
+   * @param {{ seed: number, permadeath: boolean }} next
+   */
+  static queueNext(name, next) {
+    try {
+      globalThis.localStorage.setItem(STORE + name + '.next', JSON.stringify({ seed: next.seed, permadeath: !!next.permadeath }));
+      return true;
+    } catch {
+      return false;
+    }
+  }
+
+  /**
+   * The new run asked for (and forget the request), or null.
+   * @param {string} name
+   * @returns {{ seed: number, permadeath: boolean }|null}
+   */
+  static takeNext(name) {
+    try {
+      const raw = globalThis.localStorage?.getItem(STORE + name + '.next');
+      if (!raw) return null;
+      globalThis.localStorage.removeItem(STORE + name + '.next');
+      const j = JSON.parse(raw);
+      return Number.isInteger(j.seed) && j.seed > 0 ? { seed: j.seed, permadeath: !!j.permadeath } : null;
+    } catch {
+      return null;
     }
   }
 
