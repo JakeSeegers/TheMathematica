@@ -204,12 +204,11 @@ rebuild replaces edits made directly in `dist/`.
 
 **GitHub Pages** — [`.github/workflows/pages.yml`](../../.github/workflows/pages.yml) builds the
 project on every push to `main` or to the development branch it names (or by hand: *Actions →
-Deploy to GitHub Pages → Run workflow*) and publishes `dist/`. Deploying from a branch other than
-the default one also needs that branch allowed under *Settings → Environments → github-pages →
-Deployment branches*. In the repository's *Settings → Pages → Build and deployment*, set
-**Source** to **GitHub Actions**. With *Deploy from a branch* GitHub runs Jekyll over the raw
-source instead: that fails on the `{{ … }}` type comments in the docs ("Liquid syntax error"),
-and the raw source could not run the game anyway. The site is then at
+Deploy to GitHub Pages → Run workflow*) and pushes `dist/` (with a `.nojekyll`) to the `gh-pages`
+branch. In the repository's *Settings → Pages → Build and deployment*, choose **Deploy from a
+branch**, branch **`gh-pages`**, folder **`/ (root)`**. Pointing Pages at a source branch instead
+makes GitHub run Jekyll over the raw files: that fails on the `{{ … }}` type comments in the docs
+("Liquid syntax error"), and the raw source could not run the game anyway. The site is then at
 `https://<owner>.github.io/<repo>/` (a sub-path, see below).
 
 **Hosting under a sub-path** — the build's URLs are relative (`base: './'` in
