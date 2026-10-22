@@ -50,6 +50,17 @@ export class Recorder {
   get active() { return !!this.encounter; }
 
   /**
+   * A foe's ledger id in the fight being recorded ('E12'), and whether its eligible attack is in.
+   * @param {string} combatantId
+   * @returns {{ enemyId: string, recorded: boolean }|null}
+   */
+  enemyOf(combatantId) {
+    const enemyId = this._enemy.get(combatantId);
+    if (!enemyId) return null;
+    return { enemyId, recorded: !!this.dataset.eligibleOf(enemyId) };
+  }
+
+  /**
    * A fight starts. Records it when at least one studied foe takes part; returns its row (or null).
    * @param {StudiedFoe[]} foes
    * @param {{ time: number, armor: string }} o
@@ -94,13 +105,16 @@ export class Recorder {
           const critical = vsUnconscious ? !!r.crit : !!b.crit;
           const fumble = !!r.fumble;
           const hit = vsUnconscious ? true : !!b.hit;
-          this.dataset.addAttack({
+          const row = this.dataset.addAttack({
             enemyId, targetId: b.target, targetAc: r.target, rollMode: r.mode,
             strikeTotal: critical || fumble ? null : r.total,
             critical: critical && hit, fumble: fumble && !hit,
             hit, damage: hit ? (b.damage?.total ?? 0) : null,
             free: !!b.free, vsUnconscious,
           });
+          // the protocol's attack of this goblin: the beat carries it to the stage and the log
+          // (the "recorded" notice and the goblin's ledger id)
+          if (row.eligible) b.recorded = { enemyId, attackId: row.id };
           break;
         }
         case 'dead': {

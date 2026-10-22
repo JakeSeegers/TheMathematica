@@ -191,7 +191,9 @@ export class CombatLog {
         const roll = !this.hideRoll(b.who ?? '') ? `${dice}${mod}=${r.total}`
           : r.crit || r.fumble ? t('glaive.log.natural', { n: r.natural })
           : String(r.total);
-        this._line(t(key, { who: n(b.who), target: n(b.target), roll, ac: r.target }), b.hit ? (side === 'party' ? 'hit' : 'foe') : 'miss');
+        // (research mode: the goblin's eligible attack — English-first, D9)
+        const rec = b.recorded ? ` — recorded (${b.recorded.enemyId})` : '';
+        this._line(t(key, { who: n(b.who), target: n(b.target), roll, ac: r.target }) + rec, b.hit ? (side === 'party' ? 'hit' : 'foe') : 'miss');
         break;
       }
       case 'damage': this._line(t('glaive.log.damage', { who: n(b.who), n: b.amount }), this.sideOf(b.who) === 'party' ? 'bad' : 'hit'); break;

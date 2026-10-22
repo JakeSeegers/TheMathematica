@@ -539,6 +539,12 @@ Asked for by the owner: move toward seeded, roguelike play.
   `luminati.research.<name>.next`) and the **same address** reloads (`takeNext` picks it up), so
   the player's link never changes; only without storage does it fall back to `&seed=` in the
   address.
+- **Recorded-strike notice** (on request): the recorder tags the eligible attack's beat
+  (`b.recorded = { enemyId, attackId }`); at the swing the stage calls
+  `GlaiveCombat.onRecordedStrike` (a toast, the ledger id over the goblin in the party colour, a
+  ring), the log line gets *— recorded (E12)*, and the target picker shows each studied goblin's
+  ledger id and whether it is recorded (`Recorder.enemyOf`). The Data page's latest attacks show
+  the target and its AC.
 - **One link:** `game.html?research=<name>` is enough — `src/main.js` adds `&level=<name>` (the
   level of the same name) when neither `level` nor `campaign` is given.
 - **Permadeath** (`&permadeath=1`): `heroFell()` ends the run (`ended: 'slain'`, the hero is

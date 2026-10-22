@@ -657,6 +657,11 @@ armour to buy for 40 citizens.
   closes it.
 - **In research mode** the target picker shows a goblin's weapon instead of its HP, and the log
   shows a goblin's strike total only (or "natural 20 / 1"): you see what you could really observe.
+- **When a goblin's strike goes into the ledger** (its first normal attack), you see it: a
+  *Recorded* toast (the goblin's ledger id, its weapon, the strike, how many are in the ledger), its
+  id floating over it (`E12 ✓`), a ring under it, and the log line ends with *— recorded (E12)*. The
+  target picker shows each studied goblin's id and whether its strike is recorded yet; the ids are
+  the ones on the ledger's Data page (which now also shows each attack's target and its AC).
 - **The report** has two separate parts: your estimate (with a 95% interval once mission 4 unlocks
   it) and your purchase. The kingdom then faces a season of raids, and the debrief judges your
   research, your decision and the outcome separately.

@@ -269,7 +269,8 @@ export class LedgerPanel {
     const missing = Object.entries(ds.missing());
     const rows = ds.attacks.slice(-15).reverse().map((a) => {
       const en = ds.enemies.find((e) => e.id === a.enemyId);
-      return el('tr', {}, [a.id, a.enemyId, habitats[en?.habitat ?? '']?.name ?? '', en?.weapon ?? '', a.rollMode, a.strikeTotal ?? (a.critical ? 'nat 20' : 'nat 1'), a.hit ? 'hit' : 'miss', a.damage ?? '—', a.eligible ? '✓' : ''].map((v) => el('td', { text: String(v) })));
+      const target = a.targetId === 'player' ? 'you' : a.targetId.startsWith('ally:') ? a.targetId.slice(5) : a.targetId;
+      return el('tr', {}, [a.id, a.enemyId, habitats[en?.habitat ?? '']?.name ?? '', en?.weapon ?? '', target, a.targetAc, a.rollMode, a.strikeTotal ?? (a.critical ? 'nat 20' : 'nat 1'), a.hit ? 'hit' : 'miss', a.damage ?? '—', a.eligible ? '✓' : ''].map((v) => el('td', { text: String(v) })));
     });
     return [
       el('p', { class: 'lu-ledger__note', text: 'Every fight with a studied goblin is recorded here. Only what you could see is written down: the strike total, hit or miss, the damage of hits. One goblin gives one eligible attack: its first normal one.' }),
@@ -287,7 +288,7 @@ export class LedgerPanel {
       ]),
       el('div', { class: 'lu-ledger__h', text: 'Latest attacks' }),
       el('table', { class: 'lu-ledger__table lu-ledger__table--rows' }, [
-        el('tr', {}, ['Attack', 'Goblin', 'Place', 'Weapon', 'Roll', 'Strike', 'Result', 'Damage', 'Eligible'].map((h) => el('th', { text: h }))),
+        el('tr', {}, ['Attack', 'Goblin', 'Place', 'Weapon', 'Target', 'Its AC', 'Roll', 'Strike', 'Result', 'Damage', 'Eligible'].map((h) => el('th', { text: h }))),
         ...rows,
       ]),
     ];

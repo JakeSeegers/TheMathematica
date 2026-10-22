@@ -1266,6 +1266,28 @@ export class GlaiveCombat {
   }
 
   /**
+   * Research mode: a goblin's strike went into the ledger as its eligible attack (at the swing).
+   * A toast, its ledger id over it, and a ring under it for a moment. English-first (D9).
+   * @param {Beat} b
+   */
+  onRecordedStrike(b) {
+    const rec = /** @type {{ enemyId: string }} */ (b.recorded);
+    const a = this.actorOf(b.who);
+    const foe = this._who.get(b.who);
+    const weapon = foe instanceof Foe && foe.studied ? foe.studied.weaponName.toLowerCase() : 'weapon';
+    const strike = b.roll.crit ? 'a natural 20' : b.roll.fumble ? 'a natural 1' : `strike ${b.roll.total}`;
+    const n = this.research ? this.research.dataset.attacks.filter((x) => x.eligible).length : 0;
+    this.ui.hud.toast(`Recorded: goblin ${rec.enemyId} (${weapon}), ${strike} · ${n} in the ledger`, 2.6);
+    if (!a) return;
+    this.number(a.position.x, a.position.y + (a.labelY ?? 2) + 0.5, a.position.z, `${rec.enemyId} ✓`, 'ally');
+    const ring = this.markerAllocCore();
+    if (ring >= 0) {
+      this.markerSetCore(ring, { shape: 'ring', x: a.position.x, z: a.position.z, r: 1.0, rInner: 0.78, style: 'player', progress: 1, alpha: 1 });
+      this.later(1.2, () => this.markerFreeCore(ring));
+    }
+  }
+
+  /**
    * Open the field ledger (research mode): the game holds while it is open.
    * @param {import('../research/LedgerPanel.js').Tab} [tab]
    */
@@ -1461,8 +1483,9 @@ export class GlaiveCombat {
     // (a studied foe: its visible weapon, never its HP numbers — research mode hides what the
     // player cannot observe)
     const studied = this._who.get(id) instanceof Foe ? /** @type {Foe} */ (this._who.get(id)).studied : null;
+    const led = studied ? this.research?.recorder.enemyOf(id) : null;
     const info = studied
-      ? t('glaive.pick.infoStudied', { name: c.name, weapon: studied.weaponName, ac: enc.acOf(c) })
+      ? t('glaive.pick.infoStudied', { name: led ? `${c.name} ${led.enemyId}` : c.name, weapon: studied.weaponName, ac: enc.acOf(c) }) + (led ? `${sep()}${led.recorded ? 'recorded ✓' : 'not recorded yet'}` : '')
       : t('glaive.pick.info', { name: c.name, hp: Math.max(0, c.hp), hpMax: c.hpMax, ac: enc.acOf(c) });
     this.ui.hud.toast(info + (odds ? `${sep()}${odds}` : ''), 1.4);
   }

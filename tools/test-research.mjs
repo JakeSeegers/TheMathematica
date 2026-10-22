@@ -507,7 +507,7 @@ sec('recorder beats');
   const rec = new Recorder(ds, { family: 'goblin' });
   rec.begin([{ id: 'g0', habitat: 'road', weapon: 'knife' }, { id: 'g1', habitat: 'road', weapon: 'spear' }, { id: 'g2', habitat: 'mire', weapon: 'spear' }], { time: 1, armor: 'light' });
   const roll = (total, natural, mode = 'normal') => ({ dice: [natural], natural, mod: total - natural, total, target: 12, mode, success: natural !== 1 && (natural === 20 || total >= 12), crit: natural === 20, fumble: natural === 1 });
-  rec.beats([
+  const synth = [
     { t: 'condition', who: 'player', id: 'unconscious', on: true },
     { t: 'attack', who: 'g0', target: 'player', roll: { ...roll(9, 8), success: true, crit: true }, hit: true, crit: true, free: false, damage: { total: 5 } },
     { t: 'condition', who: 'player', id: 'unconscious', on: false },
@@ -516,7 +516,12 @@ sec('recorder beats');
     { t: 'attack', who: 'player', target: 'g1', roll: roll(18, 15), hit: true, crit: false, free: false, damage: { total: 6 } },
     { t: 'flee', who: 'g2', points: [] },
     { t: 'end', outcome: 'fled', xp: 0 },
-  ], 2);
+  ];
+  const before = rec.enemyOf('g0');
+  rec.beats(synth, 2);
+  ok(before?.enemyId === 'E1' && before.recorded === false, 'a foe\'s ledger id is known while the fight is recorded (not recorded yet)');
+  const tagged = synth.filter((b) => b.recorded);
+  ok(tagged.length === 2 && tagged[0].who === 'g0' && tagged[0].recorded.enemyId === 'E1' && tagged[1].who === 'g1', 'the eligible attacks\' beats carry the ledger id (the stage and the log show it); the sleeper hit does not', tagged.map((b) => b.who));
   ok(ds.attacks.length === 3, 'three goblin attacks recorded, the player\'s attack not', ds.attacks.length);
   ok(ds.attacks[0].vsUnconscious && !ds.attacks[0].eligible && ds.attacks[0].strikeTotal === null, 'an attack on a sleeper: recorded, flagged, never eligible');
   ok(ds.attacks[1].eligible && ds.attacks[1].strikeTotal === 14 && ds.attacks[1].damage === 3, 'the next normal attack is the eligible one');

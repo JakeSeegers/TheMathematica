@@ -286,6 +286,8 @@ export class Stage {
           sys.sfxAt('dodge', v.position.x, v.position.z, { volume: 0.6 });
         }
         if (b.crit) sys.number(v.position.x, v.position.y + v.labelY + 0.4, v.position.z, t('glaive.word.crit'), 'crit');
+        // research mode: this strike went into the ledger
+        if (b.recorded) sys.onRecordedStrike?.(b);
       },
     });
     // the swing ends in its pose a moment, then back to idle (unless something follows at once)
