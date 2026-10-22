@@ -26,6 +26,7 @@ kingdom turns claims into decisions; the consequences create the next research q
 11. [Debrief](#11-debrief)
 12. [Engine boundaries](#12-engine-boundaries)
 13. [Implementation and test plan](#13-implementation-and-test-plan)
+14. [Investigation 2: where should the armour go? (planned)](#14-investigation-2-where-should-the-armour-go-planned)
 
 ---
 
@@ -572,4 +573,79 @@ first attack even when flanked but record the mode (a later mission can then ask
 attacks should be pooled), fewer goblins per gang, or a lower threshold.
 
 **Next:** investigation 2, from the consequences of the first (loop step 9).
+
+---
+
+## 14. Investigation 2: where should the armour go? (planned)
+
+Status: **planned 2026-10-22, not built.** Loop step 9: the consequences of investigation 1 create
+the next, harder question. Chosen with the owner: option A ("where should the armour go?") with a
+small piece of option B ("did the armour work?") in its debrief.
+
+### 14.1 The question and why it follows
+
+After investigation 1's season the Steward sees that the mire farms lost more people than the road
+farms. Next question: *"Should both areas get the same armour? How often do attacks get through
+medium armour in each place, and how should the 2 000 silver be split between the road and the
+mire?"*
+
+- **Population:** the goblins of each area separately (two populations), not the Pass as a whole.
+- **Unit:** one goblin, its eligible attack (the same protocol, §8).
+- **Variables:** penetrates light (AC 12) and medium (AC 14): yes / no; the area (categorical).
+- **Targets:** each area's proportion against medium armour, and the **difference** between the
+  areas (mire − road), with an interval.
+- **Policy:** per area — an armour type and a count for the road farms (16 citizens) and for the
+  mire edge (24) — within one budget.
+
+### 14.2 Curriculum (OpenStax)
+
+- Two independent proportions and the interval for their difference (ch. 10, the two-population
+  bridge; built on ch. 8's single-proportion interval).
+- Conditional probability and contingency tables (ch. 3), from the last season: injured or not, by
+  armour and by area.
+- Why a per-area decision needs data from each area; why an interval for the difference that
+  includes 0 means the data cannot yet tell the areas apart.
+- First look at confounding (sets up Phase 4): in last season's table armoured citizens may look
+  no safer, because the armour went to the area with the stronger goblins.
+
+### 14.3 What the player does (missions)
+
+1. **Two populations** — choices: what the new report is about (each area's goblins, separately),
+   and why the Pass-wide estimate from investigation 1 cannot answer it.
+2. **Reuse the old data?** — the ledger already holds each goblin's strike total, so it already
+   says whether each attack would have beaten medium armour (AC 14). Choice: is reusing it fair?
+   (Yes for these goblins and this protocol — the strike total does not depend on the armour worn;
+   but only as fair as the places it came from.) Then compute one area's medium-armour share by hand.
+3. **Compare the areas** — after at least 15 eligible goblins per area: the two shares and their
+   difference with a 95 % interval (computed). Choice: what an interval for the difference that
+   does / does not include 0 tells.
+4. **Last season's table** (the piece of option B) — the 2 × 2 table of armoured / unarmoured ×
+   injured / unhurt from investigation 1's season, overall and per area. Tasks: one conditional
+   probability by hand (P(injured | armoured)); choice: why "armoured citizens were hurt just as
+   often" does not prove armour useless (the areas differ: confounding).
+5. **Advise the kingdom** — the report: the two estimates and the difference (with intervals),
+   and a per-area purchase.
+
+### 14.4 Engine changes
+
+| Part | Change | Size |
+| --- | --- | --- |
+| Investigations in sequence | The config's `investigations` list (each with its missions, report form and kingdom rules); `ResearchMode` keeps the current investigation, the dataset carries over (the same goblins, the same protocol), finishing a debrief unlocks the next. Saves keep the investigation index. | small–medium |
+| Statistics | `differenceInterval(x1, n1, x2, n2)`: (p̂₁ − p̂₂) ± z·√(p̂₁q̂₁/n₁ + p̂₂q̂₂/n₂), with each sample's success / failure ≥ 5 check (OpenStax ch. 10). | small |
+| Kingdom | A per-area policy: `{ road: { armor, count }, mire: { armor, count } }`, cost summed, budget and reserve as before; a count is capped by the area's citizens. The investigation-1 policy (one armour, proportional allocation) stays as a special case. | medium |
+| Report | The claim holds two estimates (each with an interval) and the difference (with its interval); validation per part; the policy is per area. | small–medium |
+| Debrief | Research: was each area sampled enough (≥ 15 eligible each), do the numbers match the data. Decision: the per-area options replayed in the plausible worlds of each area's own data (bootstrap per area). Outcome as before, by area. The last season's 2 × 2 table, overall and per area. | medium |
+| Ledger | The report form for two areas; a contingency-table view on the Charts page; the Missions page for the current investigation. | medium |
+| Tests | Node: the difference interval against hand-worked values, its coverage over replications (≈ 95 % with fair samples per area), per-area policies (cost, allocation, refusals), the confounded table (simulated: armour given to the mire only can make armoured citizens look worse off overall), the sequence and its save. Browser: `research.loop.json` carried on into investigation 2. | medium |
+
+Roughly the size of step 3 (600–900 lines with tests).
+
+### 14.5 Numbers to check while building (placeholders)
+
+With the current truth, medium armour (AC 14) is beaten by about 0.395 of road goblins and 0.55 of
+mire goblins: a difference of about 0.155. With 15 goblins per area the difference's margin is
+about ±0.35 (the interval will usually include 0); with 50 per area about ±0.19. The mission's
+threshold and the debrief's "enough data per area" flag should be tuned so that a careful player
+can tell the areas apart in a reasonable number of expeditions — perhaps by raising the mire
+goblins' bonus spread, or by making mission 3's threshold 30 per area.
 
