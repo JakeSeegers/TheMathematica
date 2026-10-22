@@ -531,6 +531,11 @@ Asked for by the owner: move toward seeded, roguelike play.
   `GlaiveCombat.exportProgress()` plus the attuned waystone, written at fight ends, rests, level
   choices and answers; at load the hero is imported and placed at that waystone (no character
   picker).
+- **Ledger controls** (added on request): a **Save** button in the ledger's header
+  (`ResearchMode.save()` now reports success and the time) and a **Run** page — the seed, the
+  permadeath rule, the state, the expeditions, the last save, *Save now*, and *Start a new run*
+  with an optional seed and a permadeath box (asked twice; it reloads with `&seed=…` and
+  `&permadeath=1` when ticked; a seed equal to the current run's is refused).
 - **Permadeath** (`&permadeath=1`): `heroFell()` ends the run (`ended: 'slain'`, the hero is
   dropped from the save); after the death screen the ledger opens with a *Start a new run*
   banner, the data kept for reading.

@@ -153,8 +153,16 @@ export class ResearchMode {
 
   /** Save the study's progress (browser storage; nothing without a name or storage). */
   save() {
-    if (!this.name) return;
-    try { globalThis.localStorage?.setItem(STORE + this.name, JSON.stringify(this.toJSON())); } catch { /* storage full or blocked: progress stays in memory */ }
+    if (!this.name || !globalThis.localStorage) return false;
+    try {
+      globalThis.localStorage.setItem(STORE + this.name, JSON.stringify(this.toJSON()));
+      /** When the run was last saved (ms since 1970), or 0. */
+      this.savedAt = Date.now();
+      return true;
+    } catch {
+      // storage full or blocked: progress stays in memory
+      return false;
+    }
   }
 
   /** How many foes a studied pack has (the config's `groupCounts`, else the level's). @param {string} groupId @param {number} count */

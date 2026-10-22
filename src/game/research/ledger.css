@@ -74,3 +74,6 @@
 .lu-ledger__problems { color: #f0a080; }
 @media (max-width: 520px) { .lu-ledger { font-size: 13px; } }
 .lu-ledger__ended { margin: 8px 0; padding: 6px 10px; border: 1px solid #d0603c; background: rgba(208, 96, 60, 0.12); }
+.lu-ledger__status { color: #9fd38a; font-size: 13px; }
+.lu-ledger__head .lu-ledger__btn { padding: 0 10px; }
+.lu-ledger__field input[type='checkbox'] { vertical-align: middle; }

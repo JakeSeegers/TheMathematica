@@ -665,13 +665,18 @@ armour to buy for 40 citizens.
   other foe (attack bonus, HP), so no two runs play quite alike, and the same seed gives the same
   world: share it to compare results. Add `&seed=12345` to the address to play a given seed; a new
   seed starts a new run, no seed continues your saved run (or starts a random one). The ledger's
-  **New run** button (press it twice) starts a fresh run with a new seed.
-- **Saving.** A run saves itself in this browser after every fight, rest, level and answer: your
+  **Run** page shows the seed and starts a **new run**: type a seed or leave it blank for a random
+  one, tick **Permadeath** if you want it, and press *Start a new run* twice (this browser keeps
+  one run, so the current one is replaced).
+- **Saving.** The **Save** button at the top of the ledger (and *Save now* on the Run page) saves
+  at once and says when. The run also saves itself in this browser after every fight, rest, level
+  and answer: your
   hero (calling, level, XP, talents, silver, draughts, gear), your last waystone, the ledger and
   the missions. Reload and you are back at your waystone with everything. `&fresh=1` wipes the
   saved run each time it is in the address.
-- **Permadeath** (optional): start a run with `&permadeath=1` and a fallen hero ends it — the
-  ledger keeps your data and offers a new run.
+- **Permadeath** (optional): tick it when you start a new run (or add `&permadeath=1` to the
+  address of a new run) and a fallen hero ends the run — the ledger keeps your data and offers a
+  new one. It is set per run: the Run page shows whether it is on.
 
 ## 16. Campaigns (The Ferryman's Lantern)
 
