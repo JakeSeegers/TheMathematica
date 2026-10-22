@@ -1,0 +1,121 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "levels/emberfall",
+  "extends": [],
+  "terms": {
+    "Amberleaf Grove": "琥珀葉の木立",
+    "Bertram": "バートラム",
+    "Campfire Meadow": "焚き火の野原",
+    "Corporal Hale": "ヘイル伍長",
+    "Elder Maren": "マレン長老",
+    "Emberfall Falls": "エンバーフォールの滝",
+    "Old Tobin": "トビンじいさん",
+    "Ottoline Quill": "オットリーン・クィル",
+    "Pip": "ピップ",
+    "Rosalind": "ロザリンド",
+    "Tobin's Farm": "トビンの農場",
+    "Village Square": "村の広場",
+    "Windmill Hill": "風車の丘",
+    "Wren": "レン"
+  },
+  "units": {
+    "2B69FC3344A16D97863605998D8A7B81": {
+      "source": "The well is deep and cold. Far below, something glints — a copper coin, wished upon long ago.",
+      "target": "井戸は深く、冷たい。はるか底で何かがきらりと光った――遠い昔に願いを託された、一枚の銅貨だ。"
+    },
+    "14A49E0EA72EDBF2ADD5DA8B66945878": {
+      "source": "The door is latched. Somewhere inside, a kettle begins to sing.",
+      "target": "扉には掛け金が下りている。中のどこかで、やかんが鳴りはじめた。"
+    },
+    "62B42CE4EC39BDB5DEA1F3CD9C7D5BBF": {
+      "source": "{Windmill Hill}. On a clear evening you can see the whole valley from here — and, some say, a little of tomorrow.",
+      "target": "{風車の丘}。晴れた夕暮れには谷じゅうが見渡せる――そして、少しだけ明日も見えるという。"
+    },
+    "97FA42F4EE9CE0647B2CAC6171979771": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "517A4C3AFFF934032ED33E182455925A": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "532BFDDF2C5FBDABBCDE98B07F8A59EF": {
+      "source": "A neat little door with a brass knocker shaped like a leaf. Nobody answers.",
+      "target": "木の葉の形をした真鍮のノッカーがついた、こぎれいな小さな扉。返事はない。"
+    },
+    "638FE502B9DB304DBD5816D5B68E29CD": {
+      "source": "Someone has added, in smaller letters: \"They are not as friendly as they look.\"",
+      "target": "誰かが小さな字で書き足している。「見た目ほど人なつこくはありません」"
+    },
+    "668FC72A9007B553EE05D57408E8BAEC": {
+      "source": "Riverside Village",
+      "target": "川辺の村"
+    },
+    "9333E2A2D736223ADBF3C6AA67A9F207": {
+      "source": "Laughter and the smell of stew drift through the door of the {Ember & Oak}.",
+      "target": "{エンバー＆オーク亭}の扉の向こうから、笑い声とシチューの匂いが漂ってくる。"
+    },
+    "565075C5701A930591FBABA04976E448": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "892077E776AC665409CEA91041246A53": {
+      "source": "Luminati 2.5D Pixel-Art Engine · three.js",
+      "target": "Luminati 2.5D ピクセルアートエンジン・three.js"
+    },
+    "A6AA2205454A3523042D94EF703E76D7": {
+      "source": "Fresh bread cools on the sill. You resist. Barely.",
+      "target": "窓辺で焼きたてのパンが冷ましてある。ぐっとこらえた。……かろうじて。"
+    },
+    "A57C15192A26CDD30C1D32A1D85DB4E6": {
+      "source": "Where the valley keeps its winds",
+      "target": "谷の風が宿るところ"
+    },
+    "A495D919EC37E353EF6D07BB5DCA9DCC": {
+      "source": "{Amberleaf Grove}. Please do not feed the fireflies.",
+      "target": "{琥珀葉の木立}。ホタルにえさを与えないでください。"
+    },
+    "AFCB9A8D46F89AE7740D8D16AAE0166A": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "C602FD04D59FA5BA3957FC61BB5AA015": {
+      "source": "The barn smells of hay and patience. A cow regards you with polite indifference.",
+      "target": "納屋は干し草と辛抱の匂いがする。牛が一頭、行儀よく無関心な目であなたを眺めている。"
+    },
+    "C053818715354477F49F640BBA9A7C50": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "DCC274E7E643474BD02F1DC797649631": {
+      "source": "You make a small wish of your own.",
+      "target": "あなたも、ささやかな願いをひとつかけた。"
+    },
+    "E84D4C04D1CB3524F48827E615427CFB": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "E93F3371C9DA685CB2185C223CC5868C": {
+      "source": "A Luminati 2.5D Pixel-Art Engine Demo",
+      "target": "Luminati 2.5D ピクセルアートエンジンデモ"
+    },
+    "EC81DA9B246C1B4D79950241307900F6": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "EC902C499E780D432A29B99BD3CBC9D0": {
+      "source": "Split firewood is stacked high against the wall. Someone inside is humming a song about axes.",
+      "target": "割った薪が壁際に高く積まれている。中で誰かが斧の歌を口ずさんでいる。"
+    },
+    "FB4347C94600A78DB94DCA11E84B78F4": {
+      "source": "↑ {Windmill Hill} · → {Emberfall Falls} & {Amberleaf Grove}\n↓ {Campfire Meadow} · ← {Tobin's Farm}",
+      "target": "↑ {風車の丘}・→ {エンバーフォールの滝}と{琥珀葉の木立}\n↓ {焚き火の野原}・← {トビンの農場}"
+    },
+    "FD16B8743DD5A4C70BD9A04DC5BB7FCC": {
+      "source": "{Tobin's Farm}. Mind the chickens.",
+      "target": "{トビンの農場}。ニワトリに注意。"
+    }
+  }
+}

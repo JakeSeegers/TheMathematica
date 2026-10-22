@@ -1,0 +1,304 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "campaigns/emberfall-interiors",
+  "extends": [
+    "levels/emberfall"
+  ],
+  "terms": {
+    "Auntie Bryony": "ブライオニーおばさん",
+    "Elder's Cottage": "長老の家",
+    "Emberfall — Open Doors": "エンバーフォール ―開かれた扉―",
+    "Fenna": "フェンナ",
+    "Garrick": "ギャリック",
+    "Hilde": "ヒルデ",
+    "Kit": "キット",
+    "Linden": "リンデン",
+    "Master Ivo": "イーヴォ先生",
+    "Miller Hesk": "粉屋ヘスク",
+    "Old Nan": "ナンばあさん",
+    "Posy": "ポージー",
+    "Riverside House": "川辺の家",
+    "Rowan": "ローワン",
+    "Sir Brannoc": "サー・ブラノック",
+    "Sister Ada": "シスター・エイダ",
+    "Tam": "タム",
+    "Thatched Cottage": "わらぶきの家",
+    "The Ember & Oak": "エンバー＆オーク亭",
+    "The Windmill": "風車小屋",
+    "Tobin's Barn": "トビンの納屋",
+    "Wendel": "ウェンデル",
+    "Woodcutter's Lodge": "きこりの小屋"
+  },
+  "units": {
+    "2ACB201C3F8D64E6FB2FB1B4F3BF9D67": {
+      "source": "Mind the pot, dear. The pot minds nobody.",
+      "target": "鍋に気をつけなされ、あんた。鍋のほうは誰にも気をつけてくれんからのう。"
+    },
+    "3A08313C9065759C49B79B425317D4CA": {
+      "source": "The Hayloft",
+      "target": "干し草の屋根裏"
+    },
+    "3BBBD2218658BE08B69AA37632E31C61": {
+      "source": "Amberleaf Grove",
+      "target": "琥珀葉の木立"
+    },
+    "3D8D3637DF0F2F1929436DE8A8F26B82": {
+      "source": "I grease the gears! Miller Hesk says I have a gift for it. A sticky gift.",
+      "target": "ぼく、歯車に油をさす係なんだ！　粉屋ヘスクさんが、ぼくには才能があるって。ベトベトの才能だけどね。"
+    },
+    "3D0477C1F21667C535EA950AC4DD4E58": {
+      "source": "Open Doors — every house has a room behind its door",
+      "target": "開かれた扉 ― どの家にも、扉の向こうに部屋がある"
+    },
+    "4ACC0102F0EE64357897DD20E946742A": {
+      "source": "Two pops. Clear skies, then. Probably.",
+      "target": "二回だ。じゃあ、晴れだね。たぶん。"
+    },
+    "4E71AE06AE8177C4E0D2B34FA22389CD": {
+      "source": "Listen — that creak is the wind turning the cap. It means the weather is changing. Or that I missed a gear.",
+      "target": "聞いて――あのギシギシいう音は、風が風車のてっぺんを回してるんだ。天気が変わるってこと。それか、ぼくが歯車をひとつ忘れたってこと。"
+    },
+    "5C6BCB758DE731F23FD90754D01DE2A9": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "5F832304830031CF72F17D667103B527": {
+      "source": "Mm? Oh. Wendel, tinker. Tobin lets me sleep up here when the inn is full, if I mend his pots.",
+      "target": "ん？　ああ。ウェンデル、鋳掛け屋だ。宿がいっぱいのときは、鍋を直すかわりに、トビンがここで寝かせてくれるんだ。"
+    },
+    "6A5B5583C2FC0386102C020F5B4FEA3C": {
+      "source": "Go upstairs",
+      "target": "上の階へ"
+    },
+    "6DAD2918CF5C60CEDB96451B650E2B35": {
+      "source": "Every book on these shelves has a pressed leaf in it. She says the leaves remember the year better than the ink.",
+      "target": "この棚の本には、どれも押し葉が挟んであります。葉っぱのほうがインクよりもその年をよく覚えている、と長老は言うのです。"
+    },
+    "7A295FF35271498E6BA7DE8E1CC10EBB": {
+      "source": "The Hayloft",
+      "target": "干し草の屋根裏"
+    },
+    "8B639D97322901F002E17088AF4B3AFB": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "8EB42B78AAF6BB78D3080B7221E3AC15": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "9C1586787EA4FC6BB477ACE955F7D403": {
+      "source": "Take a heel of the loaf, the crusty end. It is the best part and nobody else knows it.",
+      "target": "パンの端っこをどうぞ。カリカリのところ。いちばんおいしいのに、誰も知らないんだよ。"
+    },
+    "9DA01DBD482AE500261547AC716903C9": {
+      "source": "Hm? Yes, I wrote it. Twelve verses. Kit knows them all. Kit is sick of them all.",
+      "target": "ん？　ああ、俺が作った。全部で十二番まである。キットは全部覚えてる。キットは全部聞き飽きてる。"
+    },
+    "12E19623D9ACF1555EA180053E9231A4": {
+      "source": "Ember ale, brewed with the river's own water. It tastes of autumn, or so the label says. I wrote the label.",
+      "target": "エンバーエールだ。この川の水で仕込んでる。秋の味がする――とラベルには書いてある。書いたのは俺だがね。"
+    },
+    "28FD5CA40C39C74DF34AF1C0AF38E02B": {
+      "source": "Go upstairs",
+      "target": "上の階へ"
+    },
+    "33E80A635EA4AFFC6C82CED9867115CB": {
+      "source": "Stew's on. It has been on since the founders came up the river, I'm told. I just keep adding to it.",
+      "target": "シチューは火にかかっとるよ。村を拓いた人らが川を上ってきた頃から、ずっと火にかかっとるそうな。わしは足し続けとるだけじゃ。"
+    },
+    "36C3EEAD5D4E4D09F1DCDB892F89627C": {
+      "source": "I'm going to be a woodcutter too. I've already cut down a dandelion.",
+      "target": "ぼくもきこりになるんだ。もうタンポポを一本切り倒したんだよ！"
+    },
+    "47C6A28CED20B2E0BBA6CBF956FE4267": {
+      "source": "A Song About Axes",
+      "target": "斧の歌"
+    },
+    "52F17F72FE474D4329A7E0FD38AE8302": {
+      "source": "The Taproom",
+      "target": "酒場"
+    },
+    "180A4477637B94064DC647B056246767": {
+      "source": "Press any key",
+      "target": "何かキーを押してください"
+    },
+    "271BA2DDE762E9D0A4EAF02D6B21C1F3": {
+      "source": "You followed the bread, didn't you? Everyone follows the bread.",
+      "target": "パンの匂いにつられて来たんでしょ？　みんなそうなんだから。"
+    },
+    "405E4432EA254EBDB62F0F3580E94C36": {
+      "source": "Shh — I am listening to the fire. It pops in threes before rain.",
+      "target": "しーっ――今、火の音を聞いてるの。雨の前は、三回ずつパチッていうんだよ。"
+    },
+    "430F72691EBCEC73D02DB77A4D18FCAB": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "848D9E04620898562C9BA8B8BB37A404": {
+      "source": "Welcome to the {Ember & Oak}! Rosalind keeps the door, I keep the taps. Between us we keep the gossip.",
+      "target": "{エンバー＆オーク亭}へようこそ！　ロザリンドは戸口の番、俺は酒樽の番。噂話の番はふたりがかりさ。"
+    },
+    "869D606D6FBCA44E681BE406D8C6ED91": {
+      "source": "I have crossed six kingdoms and fought a wyvern in a hailstorm. Nothing prepared me for Nan's stew.",
+      "target": "私は六つの王国を越え、雹の嵐の中でワイバーンとも戦いました。ですが、ナン殿のシチューだけは想像を超えていました。"
+    },
+    "982C476763210DBEBAFDFEC2974EE587": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "1389F2D3F7C56FAA5A5F0A67660320B6": {
+      "source": "Master Ivo, cartographer. I am mapping every room in Emberfall. This corridor is eleven paces long. I have checked twice.",
+      "target": "地図職人、イーヴォ先生とは私のことです。エンバーフォールの部屋をひとつ残らず地図にしております。この廊下は十一歩。二度確かめました。"
+    },
+    "2316A73F0FE55FC948F4BECB6FB0CAB6": {
+      "source": "Flour in your hair already? That is the windmill saying hello.",
+      "target": "もう髪に粉がついてるね？　それは風車小屋からの「こんにちは」さ。"
+    },
+    "3420E8FBD42F4F3AC8372BF1734160F3": {
+      "source": "Books by the Fire",
+      "target": "炉ばたの本"
+    },
+    "04558C7D574906697D618FB17C13252E": {
+      "source": "Dad says the grove turns amber because the trees are shy. I think they're just cold.",
+      "target": "父ちゃんがね、木が恥ずかしがりだから木立が琥珀色になるんだって。ぼくは、ただ寒いだけだと思うな。"
+    },
+    "4858CCFD7EDC3A75287642B157988B3A": {
+      "source": "EMBERFALL",
+      "target": "エンバーフォール"
+    },
+    "5385A3774D8DCA75A9B3A820F519B6A3": {
+      "source": "The Guest Rooms",
+      "target": "客室"
+    },
+    "5793CC82691C905495D1682F13194307": {
+      "source": "Fresh Bread",
+      "target": "焼きたてのパン"
+    },
+    "6689C009C68AE877FFFDAD21D4252C96": {
+      "source": "Go downstairs",
+      "target": "下の階へ"
+    },
+    "7272FCAD2853E560F2C0E08755CF3CB9": {
+      "source": "The Kettle Sings",
+      "target": "やかんが歌う"
+    },
+    "9635DA9BBB5E9D77A8D1D5539F620952": {
+      "source": "The Cap Floor",
+      "target": "最上階"
+    },
+    "76453BA669D5349DD5B98F86C08BABC5": {
+      "source": "Hay and Patience",
+      "target": "干し草と辛抱"
+    },
+    "88865C2608126971875648514004C72E": {
+      "source": "A Luminati campaign",
+      "target": "Luminati キャンペーン"
+    },
+    "27789903D7DE4D726A3DC449E47E52BA": {
+      "source": "The Millstone Floor",
+      "target": "石臼の階"
+    },
+    "A47F4CA11D804AF23E1C2ED0713532DF": {
+      "source": "The sails turn, the stones grind, the bread rises. A simple life. A dusty one.",
+      "target": "羽根が回り、石臼がひき、パンがふくらむ。素朴な暮らしさ。ほこりっぽいけどね。"
+    },
+    "AB1E05A8D16E2C17E5649ECAE0E7C6F5": {
+      "source": "Luminati 2.5D Pixel-Art Engine · three.js",
+      "target": "Luminati 2.5D ピクセルアートエンジン・three.js"
+    },
+    "AC6354E731330BAE1BDBA6F5A9BA0B8A": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "B2EEBD0FBBAA24878EB8354B99341B31": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "B4D11F7F2CB60DD521392096343D5134": {
+      "source": "Go downstairs",
+      "target": "下の階へ"
+    },
+    "B8F8F0B2FFF6A22352328614196F450D": {
+      "source": "The Cap Floor",
+      "target": "最上階"
+    },
+    "B7575005A0F0AD87C2BF5FDF5657F088": {
+      "source": "There's the kettle singing! Sit, sit. Everyone who knocks gets a cup, and you didn't even knock.",
+      "target": "ほら、やかんが歌いだした！　座って座って。ノックした人にはみんな一杯出すのよ。あなたはノックもしてないけどね。"
+    },
+    "BB225F8378C55EB13B410D1071F3D12F": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "BF078E5503F897E52E0AA8E987D2EC2B": {
+      "source": "The cow is out in the paddock. She prefers it to company. I understand her.",
+      "target": "牛は放牧場に出てるよ。誰かといるより、そっちのほうが好きなんだ。気持ちはわかる。"
+    },
+    "BFE36E961F9FBAD12D39F193413B5709": {
+      "source": "Emberfall",
+      "target": "エンバーフォール"
+    },
+    "C3D39A2F0B6CADBF0C6EB2190BD0F018": {
+      "source": "The windmill is round inside, you know. Rounder than you would think.",
+      "target": "風車小屋の中は丸いのですよ。あなたが思うより、ずっと丸い。"
+    },
+    "C323195261C9BF39E229458DA14D871A": {
+      "source": "Go downstairs",
+      "target": "下の階へ"
+    },
+    "C05980671410D012C40125D3E1F1EED2": {
+      "source": "The Millstone Floor",
+      "target": "石臼の階"
+    },
+    "D0DBC852C066BE1195F9730016D37AEA": {
+      "source": "Hilde, farmhand. Tobin pays me in eggs and advice. Mostly advice.",
+      "target": "ヒルデ、農場の手伝いだよ。トビンは給金を卵と助言で払ってくれる。ほとんど助言だけど。"
+    },
+    "D4B2E7C5E0D6579AF694A3430C3A7786": {
+      "source": "The Taproom",
+      "target": "酒場"
+    },
+    "DAA160EDF7821C67192C8D15A510F859": {
+      "source": "I came for one night. That was a fortnight ago.",
+      "target": "一晩だけのつもりで来たのです。それが二週間前のことでした。"
+    },
+    "DBD3CF718724D9E612BA547A18D86BC4": {
+      "source": "The elder's apprentice, at your service. She is out on the square, teaching the cobbles patience.",
+      "target": "長老の弟子です。なんなりとお申しつけを。長老は広場に出ていて、石畳に辛抱を教えているところです。"
+    },
+    "DD512683661A14E22D1DB83A4D6E5C7B": {
+      "source": "The hay smells of summer. Don't tell Rosalind, but it is better than her mattresses.",
+      "target": "干し草は夏の匂いがする。ロザリンドには内緒だけど、あそこのマットレスよりいいよ。"
+    },
+    "DF31568C30AFEB7F27FCCB800D4BB019": {
+      "source": "♪ Oh the axe is sharp and the oak is tall, and the tea is hot when the chips all fall ♪",
+      "target": "♪ 斧はするどく　樫はのっぽ　木っ端が散ったら　熱いお茶 ♪"
+    },
+    "E2EA679E88C75152909FAD12686ECBD1": {
+      "source": "The river talks all night under the floor. You get used to it. Then you can't sleep anywhere quiet.",
+      "target": "床の下で川が一晩じゅうおしゃべりしてるの。そのうち慣れるわ。慣れたら最後、静かなところじゃ眠れなくなるけどね。"
+    },
+    "EE4B89D07941531456B9736CDAF64A2D": {
+      "source": "The Guest Rooms",
+      "target": "客室"
+    },
+    "EEA56E5D73A2592A1BE9B307675EA9B2": {
+      "source": "Go out",
+      "target": "外に出る"
+    },
+    "F06AA0453E4141545AE75CC8E29EA8BE": {
+      "source": "Go upstairs",
+      "target": "上の階へ"
+    },
+    "F650327AA6E70224394C0391F5F54B40": {
+      "source": "A pilgrim, like me? The beds here are the softest between the mountains and the sea. I have tested many.",
+      "target": "あなたも私と同じ、巡礼の方ですか？　ここのベッドは、山と海のあいだでいちばん柔らかいのですよ。たくさん試しましたから。"
+    },
+    "FE93FC227CDEB9CFFD23EE69E1D4A4FD": {
+      "source": "Tobin's Farm",
+      "target": "トビンの農場"
+    }
+  }
+}

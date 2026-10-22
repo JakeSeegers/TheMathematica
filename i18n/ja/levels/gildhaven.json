@@ -1,0 +1,1173 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "levels/gildhaven",
+  "extends": [],
+  "terms": {
+    "Ada": "エイダ",
+    "Alba Quern": "アルバ・クァーン",
+    "Azar": "アザール",
+    "Barge Quay": "艀の波止場",
+    "Barlow's Farm": "バーロウの農場",
+    "Beck": "ベック",
+    "Bellgreen": "鐘ヶ原",
+    "Bram": "ブラム",
+    "Bramwell Bun": "ブラムウェル・バン",
+    "Brother Anselm": "アンセルム修道士",
+    "Brother Tuck": "タック修道士",
+    "Captain Hale": "ヘイル隊長",
+    "Clay Cup": "素焼きのカップ",
+    "Corporal Dunn": "ダン伍長",
+    "Corporal Lisbet": "リスベット伍長",
+    "Corwin the Juggler": "曲芸師コーウィン",
+    "Crier Bertil": "触れ役ベルティル",
+    "Crown Walk": "王冠通り",
+    "Daisy": "デイジー",
+    "Dame Agnes": "アグネス先生",
+    "Daro the Wayfarer": "さすらいのダロ",
+    "Dob": "ドッブ",
+    "Dora Haddock": "ドーラ・ハドック",
+    "Dozen Eggs": "卵1ダース",
+    "Edda": "エッダ",
+    "Elric the Pilgrim": "巡礼者エルリック",
+    "Fair Ribbon": "ギルド祭のリボン",
+    "Fairfield": "フェアフィールド",
+    "Fairfield Mill": "フェアフィールドの風車",
+    "Farmer Barlow": "農夫バーロウ",
+    "Fenna": "フェンナ",
+    "Fennick": "フェニック",
+    "Florin Fiddlewick": "フローリン・フィドルウィック",
+    "Garr the Bargeman": "船頭ガー",
+    "Gild Trout": "ギルドマス",
+    "Gildhaven Hall": "ギルドヘイヴン市庁舎",
+    "Goodman Hollis": "ホリスおじさん",
+    "Goose Loaf": "ガチョウパン",
+    "Gran Tessaly": "テッサリーばあちゃん",
+    "Guardsman Pell": "衛兵ペル",
+    "Guildmaster Orrin": "組合長オリン",
+    "Gwen the Bargewife": "船乗りグウェン",
+    "Hamish Mott": "ヘイミッシュ・モット",
+    "Harbourmaster Ysolde": "港長イソルデ",
+    "Hazel": "ヘーゼル",
+    "Hester": "ヘスター",
+    "Hetty Bramble": "ヘティ・ブランブル",
+    "High Town": "上町",
+    "Hob": "ホブ",
+    "Joss Plane": "ジョス・プレイン",
+    "Kingsbridge": "王の橋",
+    "Kit": "キット",
+    "Lady Amabel Thornbury": "レディ・アマベル・ソーンベリー",
+    "Lady Odelia Fairgild": "レディ・オデリア・フェアギルド",
+    "Lantern Row": "ランタン通り",
+    "Marigold Posy": "マリーゴールドの花束",
+    "Market Square": "市場広場",
+    "Market Street": "市場通り",
+    "Master Brie": "ブリー親方",
+    "Master Odd": "オッド先生",
+    "Merrit": "メリト",
+    "Milla": "ミーラ",
+    "Mirela": "ミレラ",
+    "Mother Celandine": "セランディン院長",
+    "Mother Wenna": "ウェンナおかみ",
+    "Mug of Gild Ale": "ギルドエール1杯",
+    "Ned the Porter": "荷運びネッド",
+    "Nim": "ニム",
+    "North Quay": "北波止場",
+    "Novice Cass": "見習いキャス",
+    "Old Ambrose": "アンブローズじいさん",
+    "Old Salt Merrow": "老水夫メロウ",
+    "Old Wick": "ウィックじいさん",
+    "Ottilie Clay": "オティリー・クレイ",
+    "Pim Crumble": "ピム・クランブル",
+    "Pinch of Saffron": "サフランひとつまみ",
+    "Pippin Orchard": "ピピン果樹園",
+    "River-Blue Cloth": "川青の布",
+    "Rosalind": "ロザリンド",
+    "Rurik Hammerstane": "リューリク・ハンマーステイン",
+    "Saffi": "サフィ",
+    "Saffron Bun": "サフランパン",
+    "Scholars' Row": "学者通り",
+    "Sergeant Brask": "ブラスク軍曹",
+    "Signora Vell": "シニョーラ・ヴェル",
+    "Sister Wynn": "シスター・ウィン",
+    "Smoked Gild Trout": "ギルドマスの燻製",
+    "Sorrel": "ソレル",
+    "Sunspire Abbey": "サンスパイア修道院",
+    "Tam the Piper": "笛吹きタム",
+    "Tamsin": "タムシン",
+    "The Allotments": "市民菜園",
+    "The Fairground": "祭り広場",
+    "The Gild Pool": "ギルドの淵",
+    "The Gildfall": "ギルドの滝",
+    "The Grand Stair": "大階段",
+    "The Harbour Stair": "港の階段",
+    "The Lookout": "見張り台",
+    "The Rampart Walk": "城壁の遊歩道",
+    "The South Gate": "南門",
+    "The Undercliff": "崖下の町",
+    "The Watch": "衛兵詰所",
+    "The West Quarter": "西地区",
+    "Tilda": "ティルダ",
+    "Tilly": "ティリー",
+    "Tobias Quern": "トビアス・クァーン",
+    "Toffee Apple": "りんご飴",
+    "Weaver's Lane": "機織り小路",
+    "Wedge of Gild Blue": "ギルドブルーひと切れ",
+    "Wren": "レン"
+  },
+  "units": {
+    "00B12AAF6D7553DD5254EF74903FC29F": {
+      "source": "↓ the {Gild Pool} · the {Boathouse}\n← {Crown Walk} · {Sunspire Abbey}",
+      "target": "↓ {ギルドの淵}・{舟小屋}\n← {王冠通り}・{サンスパイア修道院}"
+    },
+    "0C7FF21274DBC70C613279212E12A297": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "0C9FE826F669C8F14565AF04B8D2F2EA": {
+      "source": "The harbourmaster's house. A brass telescope pokes out of the upstairs window, though there is no upstairs.",
+      "target": "港長の家だ。二階の窓から真鍮の望遠鏡が突き出している。二階などないのだが。"
+    },
+    "0D93A79F8BF1EC08F2F1E1B6FD0ED8CB": {
+      "source": "Gildhaven Harbour",
+      "target": "ギルドヘイヴン港"
+    },
+    "0F200C2EA844F17360ED19609F3D5510": {
+      "source": "A goose loaf?",
+      "target": "ガチョウパンはどう？"
+    },
+    "1A19E423F5F0C8FF9C319648A4A7FA6C": {
+      "source": "Bless you. I came down from {Sunspire Abbey} for cheese and came away with cheese, a ribbon and a goose loaf.",
+      "target": "あなたに祝福を。{サンスパイア修道院}からチーズを買いに下りてきたのですが、チーズとリボンとガチョウパンを抱えて帰ることになりました。"
+    },
+    "1B3FC6869D25C78311542A9B4B950FC0": {
+      "source": "The water glints. Probably the sun. Probably.",
+      "target": "水面がきらりと光る。たぶん日の光だろう。……たぶん。"
+    },
+    "1C3C5CE73DD64B5B6D4ABEFC96D94E04": {
+      "source": "The whole house smells of beeswax. Even the doorknob is slightly sticky.",
+      "target": "家じゅうが蜜蝋の匂いだ。ドアノブまで少しべたついている。"
+    },
+    "1DC4DC3DAE4AA9B70BEC131F06A413C6": {
+      "source": "The goose over the door? Real gold leaf. It gets stolen every year and it always comes back. I suspect it enjoys the trip.",
+      "target": "扉の上のガチョウ？　本物の金箔よ。毎年盗まれて、毎年ちゃんと戻ってくるの。きっと旅が楽しいんでしょうね。"
+    },
+    "1E918AB327A5E8EE1B49B330BC754F28": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "1EB37CA220FB22AE37CDEED4EAB87510": {
+      "source": "Sold my furs by noon. Now I am just here for the crowd. And the bread. Mostly the bread.",
+      "target": "毛皮は昼までに売り切れた。今はただ人混みを楽しんでるだけさ。あとパン。主にパンだな。"
+    },
+    "1FD21BF19492C370019DE4E45082461A": {
+      "source": "Mind you, the town is the real sight. The Abbey up on the rock, the falls coming off the cliff... worth the blisters.",
+      "target": "とはいえ、本当の見ものは町のほうさ。岩の上の修道院に、崖から落ちる滝……靴ずれしてでも来る価値はあるね。"
+    },
+    "1FE26B9A0C7AC2DA46888F2C2A215724": {
+      "source": "West Quarter",
+      "target": "西地区"
+    },
+    "2B1F8BBF49C88A16902830B72A1189F4": {
+      "source": "The sign says don't climb the oak. It does not say don't climb the oak AGAIN.",
+      "target": "立て札には「樫の木に登るな」って書いてあるだけだもん。「もう一回登るな」とは書いてないもん。"
+    },
+    "02C428C7AD9A7D891C5688082D9A9760": {
+      "source": "Not today",
+      "target": "今日はやめておく"
+    },
+    "2CC00B4D298D919A3A366C93CE4AA6C8": {
+      "source": "↑ {Gildhaven} · the {South Gate}\n← {Fairfield Mill} · {Barlow's Farm}\n→ the {Fairground}",
+      "target": "↑ {ギルドヘイヴン}・{南門}\n← {フェアフィールドの風車}・{バーロウの農場}\n→ {祭り広場}"
+    },
+    "2D6D549361457F88C9EF0309E2CE04C6": {
+      "source": "A brass plate by the door: \"{The Sunspire Bell} rings the fair closed at dusk. Kindly do not ring it yourself. — The Abbess\"",
+      "target": "扉の脇に真鍮の銘板がある。「夕暮れには{サンスパイアの鐘}が祭りの終わりを告げます。ご自分で鳴らさぬようお願いいたします。――修道院長」"
+    },
+    "2EC5FAE8F6813D9A26F2E3A1709B8CB8": {
+      "source": "Take a trout home?",
+      "target": "マスを一匹どうだい？"
+    },
+    "2F853AEA68952D8B6F97AB1DC3DB014C": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "3AC7E97509C251DA7E7924FE73C07BED": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "3B679F424AF28EC10BC6396F7168E1BF": {
+      "source": "A cosy voice: \"We can hear the Gildfall from our beds. We have not had a dry pillow since the spring.\"",
+      "target": "のんびりした声がする。「ベッドからギルドの滝の音が聞こえるのよ。おかげで春からずっと、枕が乾いたためしがないわ」"
+    },
+    "3C1E19D09B7DBE6ADFE35638DA4722AF": {
+      "source": "A bargeman's home. Somebody inside is snoring in time with the river.",
+      "target": "船頭の家だ。中で誰かが、川の流れに合わせていびきをかいている。"
+    },
+    "3CC662DE95A5B7B77EDABB25C2B0DF50": {
+      "source": "→ the {Fish Quay} · the {Piers} · the {Boathouse}\n← the {Market Square}",
+      "target": "→ {魚河岸}・{桟橋}・{舟小屋}\n← {市場広場}"
+    },
+    "3CCFABDEDCA42E99465B56FFBAB3C403": {
+      "source": "Gild Fair · Stalls, crier and the Gild Well",
+      "target": "ギルド祭・屋台と触れ役とギルドの泉"
+    },
+    "3FF07FA273B278D2E3FA8FC317D55B45": {
+      "source": "I walked in from the farms at dawn for this. My feet hurt and I would not be anywhere else.",
+      "target": "これのために、夜明けに農場から歩いてきたの。足は痛いけど、ほかのどこにもいたくないわ。"
+    },
+    "4A2C69BA92A4EBF4ED431625F07B814E": {
+      "source": "A tune for a penny! A sad one for two! A sad one about pennies for three!",
+      "target": "一曲で銅貨一枚！　悲しい歌なら二枚！　銅貨にまつわる悲しい歌なら三枚！"
+    },
+    "4ABECB3480DE34D61CBBA80EE24C8EAF": {
+      "source": "Welcome to {Gildhaven}, traveller. Gild Fair today, so the gate stands open and my patience stands closed.",
+      "target": "{ギルドヘイヴン}へようこそ、旅人。今日はギルド祭だ。門は開けてあるが、俺の我慢は店じまいだ。"
+    },
+    "4B1F9578C751D551E8DEB4881EC53526": {
+      "source": "A long shed full of hemp and twisting rope. \"Mind your fingers,\" calls a voice, \"or you become rope.\"",
+      "target": "麻と、よじられていく綱でいっぱいの細長い小屋。「指に気をつけな」と声が飛ぶ。「でないと、あんたも綱になっちまうよ」"
+    },
+    "4B3B6C871897B6B2CA7EA87B3BF6DD50": {
+      "source": "Sixty-one Gild Fairs I have seen. The players get younger every year. The juggler never gets better.",
+      "target": "ギルド祭はこれで六十一回見てきたわい。一座の連中は年々若くなるが、あの曲芸師はちっともうまくならん。"
+    },
+    "4B290B3C3D607204F906CA2465063AD0": {
+      "source": "A dummy in the window wears half a very fine coat. The other half is presumably on its way.",
+      "target": "窓辺のマネキンが、とても上等なコートを半分だけ着ている。残りの半分は、きっとこれから届くのだろう。"
+    },
+    "4B7140755F939D9DED4749547829F946": {
+      "source": "A duty roster is nailed to the door. Somebody has written \"FAIR DAY — EVERYONE\" across all of it.",
+      "target": "扉に当番表が打ちつけてある。その上一面に、誰かが「祭りの日――全員」と書きなぐっていた。"
+    },
+    "4D2E93295F0E392C4EF1579B0B1A11DE": {
+      "source": "Have you seen a small boy in a red cap? Answers to \"Bram\", and to \"cake\", and to nothing else.",
+      "target": "赤い帽子の小さな男の子を見なかった？　「ブラム」と「ケーキ」には返事するけど、それ以外には返事しないの。"
+    },
+    "4D42F10E658769D734B5EDC744307C8D": {
+      "source": "The apples come from {Pippin Orchard} up in {High Town}. The toffee comes from me. The teeth are your own business.",
+      "target": "りんごは{上町}の{ピピン果樹園}から、飴はあたしから。歯のほうは自分で面倒見ておくれ。"
+    },
+    "04E3CACB9C3FBD1FCA6E6E10A2B4CACE": {
+      "source": "Cheese. Hard cheese, soft cheese, cheese that walks to you if you leave it long enough. Taste? It is free. The second taste is not.",
+      "target": "チーズだ。硬いチーズ、柔らかいチーズ、放っておくと向こうから歩いてくるチーズ。味見か？　一口目はタダだ。二口目はタダじゃない。"
+    },
+    "5B39ADD4A42BC3336AE58A6AE7D9B6C1": {
+      "source": "Gildhaven Hall. The Lord Mayor is receiving in the court — just there, by the benches. Please do not curtsey into the flower boxes.",
+      "target": "ギルドヘイヴン市庁舎です。市長閣下は中庭でお客様をお迎えです――そこのベンチのあたりに。お辞儀の勢いで花壇に突っ込まないでくださいよ。"
+    },
+    "5B755B811F009291C8EB75C08E76091A": {
+      "source": "HEAR YE, HEAR YE! The Gild Fair is OPEN! Stalls on the square, players in {Fairfield}, and fish on the {Fish Quay}!",
+      "target": "聞けい、聞けい！　ギルド祭の始まりだ！　広場には屋台、{フェアフィールド}には一座、{魚河岸}には魚！"
+    },
+    "5B164482F157FA1D93A4A7F0ECED7F9A": {
+      "source": "The {Shrine of the Tide} keeps the names of the boats. Those that came home, and those that did not.",
+      "target": "{潮の社}は舟の名を守っています。帰ってきた舟も、帰らなかった舟も。"
+    },
+    "5BA41B68FA911BE1C014AA8AAA18E95A": {
+      "source": "Clap on the off-beat, if you please. Florin is always half a beat ahead, and somebody has to drag him back.",
+      "target": "手拍子は裏拍でお願いね。フローリンはいつも半拍先走るから、誰かが引き戻してあげないと。"
+    },
+    "5C82BBC61C5177B76E730F43E1150920": {
+      "source": "It tastes of water. Very good water, to be fair.",
+      "target": "水の味がする。祭りに免じて言えば、とてもおいしい水だ。"
+    },
+    "5D8EC8AB2D3368412BE9A15D51479B4F": {
+      "source": "What happens then?",
+      "target": "何があるの？"
+    },
+    "5DB2B9C754230E6FC4FDEE01BA00FB51": {
+      "source": "Bottles of every colour line the window. One of them is gently bubbling. You decide not to ask.",
+      "target": "色とりどりの瓶が窓辺に並んでいる。ひとつが静かに泡立っている。聞かないでおくことにした。"
+    },
+    "6A6001C404758B76D7B116DAE0BF2A7F": {
+      "source": "Blue to match the river?",
+      "target": "川に合わせて青はどう？"
+    },
+    "06AB00D312898294B6E0AC5157615864": {
+      "source": "I am not CHASING them. I am HERDING them. There is a difference and the difference is I am winning.",
+      "target": "追いかけてるんじゃないよ、「追い込んでる」んだもん！　違うんだよ。どう違うかっていうと、ぼくが勝ってるの！"
+    },
+    "6BC51C416E11FBA607B3A2A7FB70AA77": {
+      "source": "A sign in the window: \"Shoes mended. Boots mended. Hearts not mended, try the Abbey.\"",
+      "target": "窓に貼り紙。「靴、直します。ブーツ、直します。心は直せません、修道院へどうぞ」"
+    },
+    "6BD2EF5AAC3C91C3C6481C1F3F9F43ED": {
+      "source": "I build boats. Little ones for the river, bigger ones for the harbour. The biggest one is still a dream and some sawdust.",
+      "target": "あたしは舟大工。川には小さい舟、港にはもう少し大きい舟。いちばん大きいのは、まだ夢とおがくずだけ。"
+    },
+    "6C5AA87B8001C7097CC306800829AB49": {
+      "source": "↑ the {Grand Stair} · {Sunspire Abbey}\n← the {Gildfall} · → the {Harbour Stair}",
+      "target": "↑ {大階段}・{サンスパイア修道院}\n← {ギルドの滝}・→ {港の階段}"
+    },
+    "06E8995424A9FF7B09E4C595B526FCCB": {
+      "source": "Smoked trout?",
+      "target": "マスの燻製はどう？"
+    },
+    "6F4385E3B41339273BE08BDE990C0AC5": {
+      "source": "Welcome to {Gildhaven}, traveller, on the best day of our year. I am Odelia Fairgild, Lord Mayor — \"Lord\" because the charter is very old and nobody likes paperwork.",
+      "target": "一年でいちばんの日に、ようこそ{ギルドヘイヴン}へ、旅人さん。私はオデリア・フェアギルド、「市長閣下」です――勅許状がとても古いうえに、誰も書類の書き換えをしたがらないものですから。"
+    },
+    "7BFE07922109E081BAAD2511CD31FC3D": {
+      "source": "Just looking",
+      "target": "見てるだけ"
+    },
+    "7D46D38CF851B61B19061D794746AF2A": {
+      "source": "Market Day on the River Gild",
+      "target": "ギルド川に市の立つ日"
+    },
+    "7E515CF0F8CB01FB2B480DB1D7800D0F": {
+      "source": "I weave the river-blue that Signora Vell sells on the square. She sells it for three times what she pays me. I weave slower on Mondays.",
+      "target": "シニョーラ・ヴェルが広場で売ってる川青の布は、あたしが織ってるの。あの人、あたしへの支払いの三倍で売るのよ。だから月曜は、ゆっくり織ることにしてるの。"
+    },
+    "7F69AC80AED137EE5A73901E922C52C4": {
+      "source": "I'll pass",
+      "target": "やめておく"
+    },
+    "7F88B86F305B33E25D6A4167E604A119": {
+      "source": "The chandlers on {Market Street}, probably. They have everything.",
+      "target": "たぶん{市場通り}の雑貨屋だな。あそこは何でもあるから。"
+    },
+    "7F323D54EDEA406DFBA9650C92A1743F": {
+      "source": "I walked from the coast to hear the {Sunspire Bell}. Three weeks. My boots are holier than I am.",
+      "target": "{サンスパイアの鐘}を聴くために、海辺から歩いてきました。三週間です。おかげで、私の信心よりも靴の穴のほうが深くなりました。"
+    },
+    "8B00DAE9C45C7E91CB1279D71F8096D0": {
+      "source": "One goose loaf",
+      "target": "ガチョウパンをひとつ"
+    },
+    "8C09419D9D0313199C1EE88ED0953A89": {
+      "source": "Flour on the doorstep, flour on the knocker, flour on you now.",
+      "target": "戸口に粉、ノッカーに粉、そして今やあなたにも粉。"
+    },
+    "8C739855C162BD61A7DCE771EFBA1352": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "8E0BC14AD3BA0F6BEAC76C4918623A6F": {
+      "source": "Hoops and staves everywhere. A half-made barrel rocks gently, like it is thinking about rolling off.",
+      "target": "そこらじゅうに、たがと樽板。作りかけの樽がゆらゆら揺れて、転がり出そうかと考えているみたいだ。"
+    },
+    "8FBD42E51D1384EE7AD574477D9237AA": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "8FDE6248CAA5AE0D880BD88C2C92FECF": {
+      "source": "{Gildhaven} — Gild Fair today!\n↑ {High Town} · ↓ {Fairfield} and the {South Gate}\n← the {West Quarter} · → the {Gild Pool}",
+      "target": "{ギルドヘイヴン}――本日ギルド祭！\n↑ {上町}・↓ {フェアフィールド}と{南門}\n← {西地区}・→ {ギルドの淵}"
+    },
+    "9A2F298094450574CCA1B4787E25BFA7": {
+      "source": "One trout",
+      "target": "マスを一匹"
+    },
+    "9B10EEF6C6CCD54F8EDDA4C95710D051": {
+      "source": "Three days up the river from the sea, and every lock-keeper wanted a fair-day tip. My barge has gone back down without me. I stayed for the cheese.",
+      "target": "海から川を三日さかのぼってきたら、閘門番がどいつもこいつも祭りの心づけをせびりやがる。艀は俺を置いて下っていっちまった。俺はチーズのために残ったのさ。"
+    },
+    "09CD269777B4CEF054EC99329FABB17C": {
+      "source": "The players out in {Fairfield} have a fiddle. I have a pipe and a good loud hat. We are not rivals. They are simply wrong.",
+      "target": "{フェアフィールド}の一座にはフィドルがある。おいらには笛と、よく目立つ帽子がある。おいらたちは商売敵じゃない。あっちが間違ってるだけさ。"
+    },
+    "9CE71A84EF9638AE7344F3A30C9539E3": {
+      "source": "Roses climb all the way to the chimney. A voice: \"If you have come about the roses, they are not for sale. They are for showing off.\"",
+      "target": "バラが煙突まで這い上がっている。声がする。「バラのことで来たのなら、売り物じゃありませんよ。見せびらかす用です」"
+    },
+    "9D99B107CDE6EF0B7C4D5E9C93289BCD": {
+      "source": "Will you stay for the bell at dusk?",
+      "target": "夕暮れの鐘まで、残っていかれますか？"
+    },
+    "9E1C92A3285882FF6D7814F1A8CB2430": {
+      "source": "The smell of pitch and sawdust. Somebody inside is singing to a boat. The boat does not seem to mind.",
+      "target": "ピッチとおがくずの匂い。中で誰かが舟に歌を聞かせている。舟はまんざらでもなさそうだ。"
+    },
+    "9E4BE33808D39307F55EA1A55E4BAC78": {
+      "source": "Yes, please",
+      "target": "お願いします"
+    },
+    "9EC51FD6A909A8F5B86F2ABD6B48E380": {
+      "source": "\"BARLOW'S EGGS — the best in Fairfield\" is painted over the door. Underneath, smaller: \"the only in Fairfield\".",
+      "target": "扉の上に「バーロウの卵――フェアフィールドで一番」と描かれている。その下に小さく「フェアフィールドで唯一」。"
+    },
+    "9F9E895FC9EC791ADB92EAB2EAAFB6C2": {
+      "source": "\"Back in five minutes,\" says the note. It has said so since this morning.",
+      "target": "書き置きには「五分で戻ります」とある。今朝からずっとそう書いてある。"
+    },
+    "10FF8417841194101C16E5251AB31CE9": {
+      "source": "Smoked Gild trout, fresh off the fire at the end of the quay. Smoked eel for the brave.",
+      "target": "ギルドマスの燻製だよ、波止場の先っぽで燻したてさ。勇気のある人にはウナギの燻製もあるよ。"
+    },
+    "11CE565A8F56140D883D082046C23C46": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "18EE4F4954AAD9FCBE5BEFCBE876507F": {
+      "source": "Trade is the river that runs under the river, friend. And this is a very good day for it.",
+      "target": "商いとは、川の下を流れるもうひとつの川なのだよ、君。そして今日は、その流れがすこぶるいい。"
+    },
+    "19BC56E7A6AAC0D02A594EC3D3C6A58B": {
+      "source": "Saffron, pepper, cinnamon bark — all the way up the river by barge, all the way from the sea.",
+      "target": "サフラン、胡椒、シナモンの樹皮――はるばる海から、艀で川をさかのぼってきた品だよ。"
+    },
+    "19BE7D65C8037BEBA6A88193AEC5C136": {
+      "source": "Upturned boats inside, and a dozen oars, and a gull that very clearly lives here now.",
+      "target": "中には伏せた舟と十二本の櫂、それにどう見てもここに住みついたカモメが一羽。"
+    },
+    "20D5BA0112D1E339D203FC9E3D2235A6": {
+      "source": "Market Day on the River Gild",
+      "target": "ギルド川に市の立つ日"
+    },
+    "22E3A2E42AED13CEFF0A10580A017801": {
+      "source": "↘ {The Lookout} over the {Gild Pool}\n↙ the {Harbour Stair} down to the {North Quay}",
+      "target": "↘ {ギルドの淵}を望む{見張り台}\n↙ {港の階段}を下りて{北波止場}へ"
+    },
+    "24A20758C34A738214233FEBD85729E9": {
+      "source": "I'll stay up",
+      "target": "まだ起きてる"
+    },
+    "29F1DAD122760107987AA5D4291079AD": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "33C8BE5BE377B641E5081ADF7B4D10EE": {
+      "source": "One mug",
+      "target": "一杯もらう"
+    },
+    "35C8502AC71DAC06C7C3435A2EEF6284": {
+      "source": "Fair day means horseshoes, cart-pins and cauldron handles. Nobody buys a sword on fair day. Too much joy in the air.",
+      "target": "祭りの日といやあ、蹄鉄に荷車のピンに大鍋の取っ手だ。祭りの日に剣を買うやつはいねえ。浮かれた空気が多すぎる。"
+    },
+    "39B556053440A0448AD475B3CB7D1AC5": {
+      "source": "A posy?",
+      "target": "花束はいかが？"
+    },
+    "41EB83D23D06A802D0EE7C99D898BCA7": {
+      "source": "Quiet fair so far. One stolen purse, one lost child — found asleep in a haystack in {Fairfield} — and the goose went missing from the inn again. It will turn up.",
+      "target": "今のところ静かな祭りだ。財布の盗難が一件、迷子が一人――{フェアフィールド}の干し草の山で眠っているところを見つけた――それと、宿のガチョウがまた消えた。そのうち戻ってくる。"
+    },
+    "45C28EAA732F5DE3C8FC66464CD4EA03": {
+      "source": "The sergeant counts everyone who comes in. I count everyone who goes out. We have never once agreed.",
+      "target": "軍曹は入ってくる者を数える。私は出ていく者を数える。数が合ったことは一度もない。"
+    },
+    "46D63390EFFA41EFFFA73920A6634C62": {
+      "source": "The {Gild Pool}. The barges came up at dawn, unloaded for the fair and went straight back down to the sea for more. Now it is just us and the gulls.",
+      "target": "ここが{ギルドの淵}だ。艀は夜明けに上ってきて祭りの荷を下ろし、次の荷を取りにすぐ海へ下っていった。今いるのは私たちとカモメだけさ。"
+    },
+    "46E807C70E5CFF990A5538A7B67FD95B": {
+      "source": "Barlow's the name, eggs are the game. Brown eggs, white eggs, and one blue egg nobody can explain.",
+      "target": "名はバーロウ、商売は卵！　茶色い卵に白い卵、それに誰にも説明のつかない青い卵がひとつ。"
+    },
+    "47AD9ECA7325D866D9158C6726978657": {
+      "source": "Bread! Bread! Bread with seeds, bread without seeds, bread shaped like a goose for the fair.",
+      "target": "パン！　パンだよ！　種入りのパン、種なしのパン、それにお祭り用のガチョウの形のパン！"
+    },
+    "47AD7100E4F94E6B6226FA9EB16D5E66": {
+      "source": "Forty years I have fished the Gild. On fair day the trout hide under the barges, sulking at the noise.",
+      "target": "ギルド川で漁をして四十年になるわい。祭りの日は、マスどもが騒がしさにすねて艀の下に隠れちまう。"
+    },
+    "48DF207BC2AEC1100D8FD79F629BA240": {
+      "source": "Shh. They are biting. Or they were, until you walked down the pier like a drum.",
+      "target": "しっ。食いついてるんだ。……いや、食いついてたんだよ。あんたが太鼓みたいにドンドン桟橋を歩いてくるまではな。"
+    },
+    "50E63A73BF660610CC8F0EF3DC97CAD8": {
+      "source": "Flour dust puffs out under the door. The millstones rumble like a giant clearing its throat.",
+      "target": "扉の下から粉がふわりと舞い出る。石臼が、巨人の咳払いのようにごろごろと唸っている。"
+    },
+    "51AC0C6C5C82DF4D69341EFA7F802F8D": {
+      "source": "\"Letters written, read, and — for a small extra fee — improved.\"",
+      "target": "「手紙の代筆、代読、そして――少々の追加料金で――添削も承ります」"
+    },
+    "53F00649042AFB5E033A95F3D857B843": {
+      "source": "I think so",
+      "target": "そのつもり"
+    },
+    "54BE1FAEB7181036FE08FA1E30D0D43A": {
+      "source": "Mother {Celandine} rings the {Sunspire Bell}, the fair closes, and we light lanterns all along the river. The water turns to gold for a night. That is the real gild of {Gildhaven}.",
+      "target": "{セランディン}院長が{サンスパイアの鐘}を鳴らすと祭りは幕を閉じ、川沿いにずらりとランタンを灯すのです。ひと晩だけ、川の水が金色に変わります。それこそが{ギルドヘイヴン}の本当の金箔なのですわ。"
+    },
+    "54C6D6F35BB5E494F6E8E9D9D1F3D1DA": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "56A9C5B8B2A69AB80E7B40543417EFF3": {
+      "source": "Maybe later",
+      "target": "また今度"
+    },
+    "58DC89F8241EFBBDC110342318EF69E3": {
+      "source": "Eggs from Barlow's Farm, hens from my own yard. Those four by the stall are not for sale. They are staff.",
+      "target": "卵はバーロウの農場から、鶏はうちの庭から。屋台の脇の四羽は売り物じゃないよ。あれは従業員だ。"
+    },
+    "62D3D35F3063742FE02671E2E2090FC3": {
+      "source": "Gulls took my lunch, my bait and my hat. I am keeping the rod out of spite.",
+      "target": "カモメに昼飯と餌と帽子を持っていかれた。竿だけは意地でも渡さない。"
+    },
+    "72BB05CD5B02C81EDD01F62AC7B92F02": {
+      "source": "The {Barrelhouse}! Gild Ale, brown as the river and twice as strong. We brew it with water from the falls.",
+      "target": "{樽屋}へようこそ！　ギルドエールは川みたいに茶色くて、川の倍は強い。滝の水で仕込んでるんだ。"
+    },
+    "75CEB48FDD6750768AFC2A9FAE456DFC": {
+      "source": "One for the walk?",
+      "target": "歩きながらひとつどう？"
+    },
+    "75D47B7AEDCE1F9A62FE81548B2FEFC8": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "78F3FA83A5F900700DBA8624794BD7DC": {
+      "source": "Marigolds for the fair! You wear them to the bell at dusk, then throw them in the river for luck.",
+      "target": "お祭りのマリーゴールドだよ！　夕暮れの鐘まで身につけて、それから幸運を願って川に投げるの。"
+    },
+    "79F9EDA1D20C6CD4633AFC3BCAB2EFF1": {
+      "source": "Dozens of clocks tick inside, none of them together. It is, apparently, every time at once.",
+      "target": "中では何十もの時計が、てんでばらばらに時を刻んでいる。どうやら今は、あらゆる時刻であるらしい。"
+    },
+    "83F0F43B3E3941073CB5CFA6AB0EB553": {
+      "source": "{Pippin Orchard}\nApples for the fair: take one, leave a coin.",
+      "target": "{ピピン果樹園}\n祭りのりんご：ひとつ取ったら硬貨をひとつ。"
+    },
+    "84C4244FD153E33A6867FE6153F2C388": {
+      "source": "Just looking",
+      "target": "見てるだけ"
+    },
+    "86E7251F7EDC4D02FEEE22E7319B5E60": {
+      "source": "Me? Just browsing. Admiring. Absolutely not counting anyone's purse.",
+      "target": "おれ？　ただ見て回ってるだけさ。眺めてるだけ。誰かの財布の中身を数えてるなんて、とんでもない。"
+    },
+    "88A87F1CF01CC69B159E08C15D656811": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "90CC78A6F3454BD3DB54CCEEBB33F535": {
+      "source": "Stand on the {Mistbridge} when the sun is low — the spray glitters like the gold dust of the old stories. Free of charge, which is more than my cousin can say.",
+      "target": "日が傾いたら{霧の橋}に立ってごらん。しぶきが昔話の砂金みたいにきらめくから。お代はタダ。うちのいとこにはまねできないわね。"
+    },
+    "111AFA07C5179264FDB7AC85D426ADBB": {
+      "source": "Warm steam curls out under the door. \"Baths half price on fair day,\" says the slate. \"Soap extra. Singing free.\"",
+      "target": "扉の下から温かい湯気が漂い出ている。石板には「祭りの日は入浴半額」とある。「石けん別料金。歌はタダ」"
+    },
+    "138DEE550B52D927332E1BD1D9DA7E44": {
+      "source": "The Wandering Lark Players · Today only",
+      "target": "さすらいの雲雀一座・本日限り"
+    },
+    "178EAB369FD62E4022A8B3FA641DC354": {
+      "source": "One ribbon",
+      "target": "リボンをひとつ"
+    },
+    "225A780518B91A54F7761CA0A63748C0": {
+      "source": "Peace on your fair day. I am the Abbess of {Sunspire Abbey}. At dusk I ring the bell, and the whole town stops to listen.",
+      "target": "祭りの日に安らぎがありますように。私は{サンスパイア修道院}の院長です。夕暮れに私が鐘を鳴らすと、町じゅうが手を止めて耳を澄ますのですよ。"
+    },
+    "264C212DCD9E0DBBDDD371CA97F37525": {
+      "source": "A wheel leans by the door, waiting for its cart. It looks like it has been waiting a while.",
+      "target": "扉の脇に車輪がひとつ立てかけてあり、自分の荷車を待っている。もうずいぶん待っているようだ。"
+    },
+    "322D38F0E8F25C2E8EF635585EC1B879": {
+      "source": "Rest until morning",
+      "target": "朝まで休む"
+    },
+    "450BA8F7D7A5606140BAAD67739CE176": {
+      "source": "Tired already? Rest now and you'll miss the bell at dusk.",
+      "target": "もう疲れちゃった？　今休んだら、夕暮れの鐘を聞き逃すわよ。"
+    },
+    "513EBEEA448B8C9E4EF07AB061BDD74D": {
+      "source": "Mind the Grand Stair behind me — three hundred years of feet have made it slippy as a wet eel.",
+      "target": "わしの後ろの大階段には気をつけな――三百年ぶんの足に踏まれて、濡れたウナギみたいにつるつるじゃ。"
+    },
+    "605A98E94B551673756DC147881A4346": {
+      "source": "My barge went back down to the sea at noon. Left me here with a pocketful of coin and no boat. I call that a holiday.",
+      "target": "うちの艀は昼に海へ下っていっちまった。ポケットいっぱいの小銭だけ持たされて、舟なしで置いてけぼりさ。こういうのを休暇って言うんだよ。"
+    },
+    "618D11CF78F4EA9D8B841A9D64545658": {
+      "source": "A length, please",
+      "target": "一着分ください"
+    },
+    "631B00BE58360E7423C9114D88BEB18D": {
+      "source": "Lanterns of every size hang in the window, waiting for dusk like children waiting for a story.",
+      "target": "大小さまざまなランタンが窓辺に下がり、お話を待つ子どもたちのように夕暮れを待っている。"
+    },
+    "633D9E6F67E7C4633FCE95388C09E4C2": {
+      "source": "I polish the candlesticks, I sweep the steps, and at dusk I am allowed to hold the rope while Mother Celandine rings the bell. It is the best job in {Gildhaven}.",
+      "target": "燭台を磨いて、石段を掃いて、夕暮れにはセランディン院長が鐘を鳴らすあいだ、綱を持たせてもらえるんです。{ギルドヘイヴン}でいちばんのお仕事です！"
+    },
+    "642A8619C301D871AED0BFDE98DCAF04": {
+      "source": "East Quarter",
+      "target": "東地区"
+    },
+    "671F92C2C7ADC7DAC01C4A78F1071941": {
+      "source": "No school today. I said so on the slate. Twice. And on the door. And to every child personally.",
+      "target": "今日は休校です。石板にそう書きました。二度も。扉にも。子どもたち一人ひとりにも直接言いました。"
+    },
+    "687BAED361ED0DC93E6A718B48CC52D7": {
+      "source": "Not now",
+      "target": "今はいい"
+    },
+    "771E39F8440EEDD65CBDFDB2BAC242C9": {
+      "source": "A footman opens the door an inch: \"The Lord Mayor is receiving in the court today, as it is fair day. And as it is sunny.\"",
+      "target": "従僕が扉をほんの少しだけ開けた。「本日は祭りの日ですので、市長閣下は中庭にてお客様をお迎えです。それに、晴れておりますので」"
+    },
+    "861F32BD2A53725DC04B04528F1E3725": {
+      "source": "Where the Gild leaves High Town",
+      "target": "ギルド川が上町を去るところ"
+    },
+    "920E72E955D0A104D67126EDDA4B90F8": {
+      "source": "The {Gilt Library}: four thousand books, three readers, and one cat who sleeps on the rarest of them.",
+      "target": "{金箔の書庫}です。蔵書は四千冊、読む者は三人、そして最も希少な一冊の上で眠る猫が一匹。"
+    },
+    "932F193F169EE10BAE32C0D0CEB41830": {
+      "source": "Blue, gold and red cloth hangs drying inside. The dyer's hands are, you suspect, all three colours.",
+      "target": "中には青、金、赤の布が干されている。染め物師の手も、きっと三色に染まっているのだろう。"
+    },
+    "940F0F7F25C3CF29DAD8DE5C7F5F1C28": {
+      "source": "\"Come in if you are a grandchild, go away if you are selling something, and wipe your feet either way.\"",
+      "target": "「孫なら入っておいで、物売りならお帰り。どっちにしても、足はちゃんと拭くんだよ」"
+    },
+    "2826B15AFD7FF9466FB74315132F640D": {
+      "source": "Lady {Odelia Fairgild}. She receives in the court of {Gildhaven Hall} on fair day — up the {Grand Stair} and west along {Crown Walk}, over the Hall Bridge.",
+      "target": "レディ・{オデリア・フェアギルド}だ。祭りの日は{ギルドヘイヴン市庁舎}の中庭でお客を迎えておられる――{大階段}を上って{王冠通り}を西へ、市庁舎橋を渡った先だ。"
+    },
+    "3373E6C5B0BBD5EC58ADD570C54F069E": {
+      "source": "I keep the Rampart lawns and the Abbey beds. Every fair, somebody sits on my marigolds. Every fair, I forgive them. Barely.",
+      "target": "城壁の芝生と修道院の花壇の手入れをしてるの。お祭りのたびに、誰かがあたしのマリーゴールドに座るのよ。そのたびに許してあげてる。……ぎりぎりでね。"
+    },
+    "3848F1CB1030AD98BBF625A44EC3AFA4": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "4083BAAE1CEDB8E496E920F99E8A99E5": {
+      "source": "Shh! I am hiding from Mum. If she says \"cake\", I have to come out. It is the rules.",
+      "target": "しーっ！　ママから隠れてるの。ママが「ケーキ」って言ったら出ていかなきゃいけないんだ。そういうルールなんだもん。"
+    },
+    "4492B9602FEF3B640140E4EB2E187885": {
+      "source": "We play the Gild Fair every year. The town pays us in pies, and the pies are worth the walk.",
+      "target": "毎年ギルド祭で演じているのさ。町からのお代はパイ払いだが、そのパイがまた、歩いてくるだけの値打ちがある。"
+    },
+    "4916F80F74705A05E26C8EECAE564759": {
+      "source": "The {Lookout}. From here I can see both piers of the {Gild Pool}, every roof in the lower town and the road all the way to the gate.",
+      "target": "ここが{見張り台}だ。{ギルドの淵}の桟橋二本も、下町の屋根という屋根も、門まで続く道も、ここから全部見える。"
+    },
+    "5957EC672B100ED071C00B15BA7AD1F9": {
+      "source": "No, thank you",
+      "target": "いえ、結構です"
+    },
+    "6036ECFE7408534AD688F48F3ECF4288": {
+      "source": "Sit down, sit down. The best view of fair day is a bench and a friend.",
+      "target": "まあ座りなさい、座りなさい。祭りの日のいちばんの眺めは、ベンチと友だちだよ。"
+    },
+    "6661FD1F620FF3E78E41EB790A59CB3F": {
+      "source": "Mind your backs! Barrels for the {Barrelhouse}, cheese for the square, and a harp for — honestly, I do not know who orders a harp.",
+      "target": "はいはい、どいたどいた！　{樽屋}に樽、広場にチーズ、それにハープを――正直、ハープなんて誰が注文したんだか。"
+    },
+    "7805F06B35CCBB837EA6842392FC2B5D": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "8328D8DD5C28653E0F470B11D954693C": {
+      "source": "Through the door: the clatter of an abacus and somebody saying \"Twelve barrels? I said TWO barrels!\"",
+      "target": "扉の向こうから、そろばんを弾く音と誰かの声。「十二樽だと？　二樽って言ったんだ、二樽！」"
+    },
+    "8617EDEB89E09587188668820E643898": {
+      "source": "Not today",
+      "target": "今日はやめておく"
+    },
+    "9196D23597E11E44D44EA58FADC3D17A": {
+      "source": "If you catch my boy {Nim} chasing the hens again, tell him supper is when the {Sunspire Bell} rings.",
+      "target": "うちの坊主の{ニム}がまた鶏を追いかけ回してたら、晩飯は{サンスパイアの鐘}が鳴ったらだって伝えてくれ。"
+    },
+    "9664E70197DF0BD7E78FC8C7EB85C547": {
+      "source": "Mending nets, dear. Every hole is a fish that got away and a story that got bigger.",
+      "target": "網を繕っとるんじゃよ、お若いの。穴のひとつひとつが、逃げた魚と、大きくなった話なんじゃ。"
+    },
+    "12604C5D699E304F12A9396B398769EB": {
+      "source": "Ah, an audience! The {Wandering Lark Players}, at your service — songs, dances, and one juggler who is mostly reliable.",
+      "target": "おお、観客だ！　我ら{さすらいの雲雀一座}、なんなりとお申しつけを――歌あり、踊りあり、それにおおむね失敗しない曲芸師がひとり！"
+    },
+    "31031B9E0EF7B2E84EB853FF93C0C05A": {
+      "source": "Sawdust drifts from the door. A half-finished rocking horse stares at you with one painted eye.",
+      "target": "扉からおがくずが漂ってくる。作りかけの揺り木馬が、描かれた片目でこちらを見つめている。"
+    },
+    "59154FC464820593E58789D5CEAE4C40": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "94362DD60A6301C3AD9CB44967B88689": {
+      "source": "You came over the {Hall Bridge}? Then you have crossed the Gild twice today — once up here as a stream, once down there as a river.",
+      "target": "{市庁舎橋}を渡ってきたの？　なら今日、ギルド川を二度渡ったことになるわね。一度はこの上で小川として、一度はあの下で大河として。"
+    },
+    "151226D67079EB35D519A95F36BE3EAF": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "235820D9AEFFBE66470556F3F488C159": {
+      "source": "I am counting pigeons. There are six. There were seven. I think one went to {High Town} to be fancy.",
+      "target": "ハトを数えてるの。六羽いるよ。さっきは七羽だったの。一羽はおしゃれしに{上町}へ行っちゃったんだと思う。"
+    },
+    "287403F2CF413E7845FFF1FFDDEE83AA": {
+      "source": "Bundles of drying herbs hang so thick inside that the room looks like a little forest.",
+      "target": "中には干した薬草の束がびっしりと吊るされていて、部屋が小さな森のようだ。"
+    },
+    "368980EE2A025D2BECA6CA04F8814EC3": {
+      "source": "River-blue cloth, dyed in the {West Quarter} and fit for a duchess. Feel it. No — gently. GENTLY.",
+      "target": "{西地区}で染めた川青の布。公爵夫人にもふさわしい品ですわ。触ってごらんなさい。いえ――そっと。そっと、ですわよ！"
+    },
+    "2647257B983331D3B005583EA3EC393E": {
+      "source": "A wheel hums inside. A pot slumps. Somebody sighs, then laughs, then starts again.",
+      "target": "中でろくろが唸る。壺がぐにゃりと崩れる。誰かがため息をつき、それから笑って、またやり直した。"
+    },
+    "3083617D224D80DBBAF7CC20A7405644": {
+      "source": "→ the {Mistbridge} to the {North Quay}\n↓ {Mill Lane} to {Market Street}",
+      "target": "→ {霧の橋}を渡って{北波止場}へ\n↓ {粉挽き小路}から{市場通り}へ"
+    },
+    "3159626B9DF1D8355F94D3D4F265ADEC": {
+      "source": "A pinch of saffron?",
+      "target": "サフランをひとつまみ、どうだい？"
+    },
+    "9428912C6F9487E9B40133515EC28058": {
+      "source": "A sign: \"ALL BARGES TO DECLARE ALL CARGO. Including cheese. ESPECIALLY cheese.\"",
+      "target": "張り紙がある。「すべての艀は、すべての積荷を申告のこと。チーズも含む。とりわけチーズは厳重に」"
+    },
+    "37207338BC5CE11D62CAA2B164447D3F": {
+      "source": "The brass knocker is shaped like a quill. Knocking with it leaves a small ink stain on your knuckles.",
+      "target": "真鍮のノッカーは羽ペンの形をしている。叩いてみると、指の関節に小さなインクの染みがついた。"
+    },
+    "03471569420C6A2C38AE9BAE838BC40A": {
+      "source": "My cousin runs the windmill out in {Fairfield}. I run the water mill under the {Gildfall}. We do not speak of whose flour is better. Mine is.",
+      "target": "いとこは{フェアフィールド}の風車をやってる。あたしは{ギルドの滝}の下の水車小屋。どっちの粉が上かって話はしないことにしてるの。あたしのよ。"
+    },
+    "81350712495CAC35322FE17376E358CE": {
+      "source": "Barrels rumble somewhere inside. A cheerful bellow: \"We are OPEN, it is FAIR DAY, and the ale is BROWN!\"",
+      "target": "中のどこかで樽がごろごろ鳴っている。陽気な大声が響いた。「営業中！　今日は祭りだ！　エールは茶色だ！」"
+    },
+    "55902458214493B1E81B2838C828CE49": {
+      "source": "The Guild Exchange sets the price of everything sold on the square today. Everything. Even the turnip the juggler drops.",
+      "target": "今日広場で売られるものの値は、すべて組合取引所が決める。すべてだ。曲芸師が落とすカブでさえな。"
+    },
+    "477381773248679587397892151A630B": {
+      "source": "Stand back from the forge, friend. Sparks do not care whose coat they land on.",
+      "target": "炉から離れてな、あんた。火花は誰の上着に落ちようがおかまいなしだ。"
+    },
+    "A0D987D6539145DF31FE7F97E3EED120": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "A1F6FD067A56B3C9FB691B62EA2516EB": {
+      "source": "A wooden soldier in the window salutes as the door creaks. Clever springs.",
+      "target": "扉がきしむと、窓辺の木の兵隊が敬礼した。よくできたばね仕掛けだ。"
+    },
+    "A3FBF9087B77A679C675B14C9140F9B8": {
+      "source": "Do you know {Kit}? Kit climbs the oak on {Bellgreen} even though there is a sign. There is a sign because of Kit.",
+      "target": "{キット}って知ってる？　キットはね、立て札があるのに{鐘ヶ原}の樫の木に登るの。立て札はキットのせいで立ったんだよ。"
+    },
+    "A5EA88BA8CE9183654D6E46283E4A26F": {
+      "source": "Press any key",
+      "target": "何かキーを押してください"
+    },
+    "A6FF400D98E9C66C0CF65C4317CAD94C": {
+      "source": "The door is warm. Behind it: saffron, butter and a very busy oven.",
+      "target": "扉がほんのり温かい。向こうにはサフランとバター、そして大忙しのかまどの気配。"
+    },
+    "A9F1056D8459055D00902A7C423C28F0": {
+      "source": "Maybe later",
+      "target": "また今度"
+    },
+    "A30B7264A0702FC239EDDD3A1B5F9A38": {
+      "source": "Laughter, a fiddle and the smell of roast apples spill out of {The Gilded Goose}.",
+      "target": "{金のガチョウ亭}から、笑い声とフィドルの音と焼きりんごの香りがあふれ出してくる。"
+    },
+    "A0931F8B4FCFADAAA4D700653DC25687": {
+      "source": "Market Square is straight up {Main Street}. Fair stalls, the players and the mill are out here in {Fairfield}.",
+      "target": "市場広場は{大通り}をまっすぐ上った先だ。祭りの屋台と一座、それに風車は、こっちの{フェアフィールド}にある。"
+    },
+    "A3726D4A560802ABF541006E550AE1F2": {
+      "source": "Toffee apples! Dipped this morning, sticky till midnight.",
+      "target": "りんご飴だよ！　今朝つけたばかり、真夜中までべたべただよ！"
+    },
+    "A14662D18B0B3C5EEFCCB84F948B074A": {
+      "source": "{Bellgreen}\nPlease do not climb the oak. (It means you, Kit.)",
+      "target": "{鐘ヶ原}\n樫の木に登らないでください。（キット、きみのことだ）"
+    },
+    "A9633939A535629FBFB4688284C92A5A": {
+      "source": "If you see a little boy with a toffee apple and no shoes, that is {Nim}. He is fine. He is always fine.",
+      "target": "りんご飴を持った裸足の男の子を見かけたら、それは{ニム}だ。心配ない。あの子はいつだって大丈夫だ。"
+    },
+    "AA2C6E3E73D0F8428A43F39826ED2B38": {
+      "source": "Fairfield",
+      "target": "フェアフィールド"
+    },
+    "AB611AC8BBFE37EBDA9FA099777C8E68": {
+      "source": "Yes, please",
+      "target": "お願いします"
+    },
+    "AC98806681778FD208D2032971E23797": {
+      "source": "The great door stands ajar. Inside, a hundred candles and one very patient choir.",
+      "target": "大扉がわずかに開いている。中には百本のろうそくと、とても辛抱強い聖歌隊がいる。"
+    },
+    "AD1D21165BB1A2A87C67F41E57D26125": {
+      "source": "Carpenter. I made half the stalls on the square, and all the benches. If one wobbles, it was the other half.",
+      "target": "大工だ。広場の屋台の半分と、ベンチは全部俺が作った。ぐらつくのがあったら、そりゃ残りの半分だ。"
+    },
+    "ADABFB5816B6F9DE6151533E97B352DD": {
+      "source": "East Pier for fishing, West Pier for gossip. Gran Tessaly mends nets down on the beach, past the smokehouse.",
+      "target": "釣りなら東桟橋、うわさ話なら西桟橋。テッサリーばあちゃんは、燻製小屋の先の浜で網を繕っている。"
+    },
+    "B1AD0E3E917568177C39760426E5C1F5": {
+      "source": "The ring of a hammer stops. \"If you want a horseshoe, wait. If you want a sword, wait longer. If you want to chat, Rurik is outside.\"",
+      "target": "槌の音がやんだ。「蹄鉄なら待ってな。剣ならもっと待ってな。おしゃべりがしたいなら、リューリクが外にいる」"
+    },
+    "B3F6FF5FF045A36FF23CFDD6834DA1AA": {
+      "source": "You should see the {Gild Pool} past the {Barge Quay} — gulls stealing everything that is not nailed down, and some things that are.",
+      "target": "{艀の波止場}の先の{ギルドの淵}も見ていきな。カモメどもが、釘で留めてねえものは何でもかっさらっていく。留めてあるものまでな。"
+    },
+    "B5FD0C8172B10C8691AD5FEB9CE7AC4A": {
+      "source": "Cups, jugs, and a teapot that pours almost entirely into the cup. Almost.",
+      "target": "カップに水差し、それにほとんど全部カップに注げるティーポット。ほとんど、ね。"
+    },
+    "B6A3FDCF7A09525F6B97ACC77DAA9483": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "B6AC83A6E665EBF4FA047E5D6F34F94E": {
+      "source": "They still came. They are at the fair now, learning arithmetic from the cheese stall.",
+      "target": "それでも来たんです。今はお祭りで、チーズの屋台から算数を習っていますよ。"
+    },
+    "B07CF32798A3F570D78B8A498F0F96FF": {
+      "source": "Just admiring",
+      "target": "見とれてただけ"
+    },
+    "B8A96F7ED0805F93575FCBAF0FB9021A": {
+      "source": "A card in the window: \"SILENCE. (This means you, the fair.)\"",
+      "target": "窓に札が貼ってある。「静粛に。（祭り、おまえのことだ）」"
+    },
+    "B08D981CFE1DA2B74652B5662D7AAE01": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "B32BB88E4F65F5E2B7645A6B4A2930AC": {
+      "source": "Shells and smooth stones line the doorstep: offerings for boats that come home, and for some that did not.",
+      "target": "戸口には貝殻と丸い石が並んでいる。帰ってきた舟への、そして帰らなかった舟への供え物だ。"
+    },
+    "B63FD403F610ECFE4A7A918E32B30664": {
+      "source": "Hob has been on that bench since the fair opened. I have been on this one. We are having a lovely day together.",
+      "target": "ホブは祭りが始まってからずっとあのベンチ、私はずっとこのベンチ。ふたりで素敵な一日を過ごしてるのよ。"
+    },
+    "B084EDA188AF0ADDBEC078DF97A7C18B": {
+      "source": "Lamplighter. Every lamp from the {South Gate} to the {Rampart Walk} — I light them all at dusk, one by one.",
+      "target": "わしは点灯夫じゃ。{南門}から{城壁の遊歩道}まで、灯りという灯りに、夕暮れになるとひとつずつ火を入れて回る。"
+    },
+    "B166A5E2EF3489F934252BF4152F2404": {
+      "source": "Not today",
+      "target": "今日はやめておく"
+    },
+    "B548B9103F2383DE58BA25E42B897DB3": {
+      "source": "A very small cottage with a very large door knocker, as if to make up for it.",
+      "target": "とても小さな家に、とても大きなドアノッカー。まるで埋め合わせでもするかのように。"
+    },
+    "B763CE00AF4661EFDA97B9F2377C5AF4": {
+      "source": "Who is the Lord Mayor?",
+      "target": "市長って誰？"
+    },
+    "B1723EEA5655D8DCD3E0B50AE982184B": {
+      "source": "Mother Celandine will ring the bell at dusk. Listen from the {Rampart Walk} — the whole town hums with it.",
+      "target": "夕暮れにはセランディン院長が鐘を鳴らします。{城壁の遊歩道}で聴いてごらんなさい――町じゅうが鐘と一緒に響くのです。"
+    },
+    "B4100E283F9FFB2C79BE123DF8E99CE1": {
+      "source": "Down in town there's an older mill, under the {Gildfall}. Runs on water, not wind. Show-off.",
+      "target": "町の下のほう、{ギルドの滝}の下にもっと古い粉挽き小屋がある。風じゃなく水で回るんだ。気取りやがって。"
+    },
+    "B5290F669882D98918D09378E3BB3408": {
+      "source": "Look up at the cliff. That is the {Lookout}, at the end of the {Rampart Walk}. Captain Hale watches the barges from there, and pretends she is not watching me.",
+      "target": "崖を見上げてごらん。{城壁の遊歩道}の端にあるのが{見張り台}じゃ。ヘイル隊長はあそこから艀を見張っとる。わしのことは見とらんふりをしてな。"
+    },
+    "B8422D9D761CFAEFED2CE759C6208063": {
+      "source": "Three hundred years that bell has rung. It cracked once, in a hard winter. We mended it with gold leaf — a little of everything in Gildhaven is.",
+      "target": "あの鐘は三百年鳴り続けてきました。厳しい冬に一度ひびが入り、金箔で繕ったのです――ギルドヘイヴンでは、何もかもが少しずつそうなのですよ。"
+    },
+    "B8475B9A405FFDF2051F69FA6FAF9B2E": {
+      "source": "At dusk the {Sunspire Bell} rings the fair closed, and the Lord Mayor lights the lanterns along the river. Bring a coat. And a sweetheart, if you have one going spare.",
+      "target": "夕暮れには{サンスパイアの鐘}が祭りの終わりを告げ、市長閣下が川沿いのランタンに火を灯す。上着を忘れずに！　それに恋人もだ、ひとり余っているならな！"
+    },
+    "BA459690A8080E7DB3CE087EBB6F3DA7": {
+      "source": "Fairfield Mill grinds for half the valley. On fair day, it grinds for the bakers, and the bakers grind me.",
+      "target": "フェアフィールドの風車は谷の半分の粉を挽いてる。祭りの日はパン屋の粉を挽いて、俺のほうはパン屋にすり減らされるのさ。"
+    },
+    "BB4A5FA9C6A1BF40AB4F6C56D3AE6E51": {
+      "source": "A clay cup",
+      "target": "素焼きのカップ"
+    },
+    "BC34FA077AE852991DEBA59535D2B0EE": {
+      "source": "Something for the kitchen?",
+      "target": "台所に何かいかが？"
+    },
+    "BDD7F6D715B30054A7D51BD1B427ED45": {
+      "source": "Above the door hangs a goose of beaten gold leaf. It has been stolen eleven times. It always comes back.",
+      "target": "扉の上には、金箔を打ちつけたガチョウが下がっている。これまでに十一回盗まれた。そして毎回、必ず戻ってきた。"
+    },
+    "BE78D0419F0B14DA14058D1331362C93": {
+      "source": "Apple-crates are stacked high by the door. A note: \"Gone to sell apples. Take one, leave a coin. — H.\"",
+      "target": "扉の脇にりんご箱が高く積まれている。書き置きがある。「りんごを売りに行ってます。ひとつ取ったら、硬貨をひとつ置いてってね。――H」"
+    },
+    "BFFB1F02FDC3A755F96877E598437147": {
+      "source": "A big family by the sound of it, all of them looking for the same left shoe.",
+      "target": "声からして大家族らしい。全員そろって、同じ左の靴を探している。"
+    },
+    "C0C24CDD91FE39370FE6713B7E1721F3": {
+      "source": "The whole town below",
+      "target": "眼下に広がる町"
+    },
+    "C16B563FE93A41EDEDD9D0C4BE78D758": {
+      "source": "The {Sun Well}. Its water is said to taste of honey on fair day.",
+      "target": "{日の泉}。祭りの日には、この水がはちみつの味になるという。"
+    },
+    "C92C36B866C3435E854107F3469F7064": {
+      "source": "Nets drying in great brown waves. It smells of the sea, and slightly of someone's lunch.",
+      "target": "茶色の網が大きな波のように干されている。海の匂いと、ほんの少し誰かの昼ごはんの匂いがする。"
+    },
+    "C97E88D551A327F535DB25041B9BC759": {
+      "source": "Nobody answers, but a parrot inside says \"Fair day! Fair day!\" with great conviction.",
+      "target": "返事はないが、中のオウムが自信たっぷりに「オマツリ！　オマツリ！」と言った。"
+    },
+    "C0567D85AD5DB2C54C57D8A2B40C8CAC": {
+      "source": "After the fair we follow the {King's Road} south. Next week, a wedding. Then a funeral. Then another wedding. Busy season.",
+      "target": "祭りが終わったら{王の街道}を南へ。来週は結婚式、その次はお葬式、そのまた次も結婚式。かき入れ時なのよ。"
+    },
+    "C841A5635592D02CE89DB1EE8CBA02D4": {
+      "source": "Lovely day. Lovely crowd. Lovely... heavy... cloth.",
+      "target": "いい日だねえ。いい人出だ。いい……重そうな……布だ。"
+    },
+    "C849C9E0EC5965813883574C1828DA9C": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "C5907E02C7A94DBC6B7F628274905FA0": {
+      "source": "A dozen",
+      "target": "1ダース"
+    },
+    "CAD1B513A305B001E87C54F619B25A8B": {
+      "source": "Came up the {King's Road} from the coast. You can smell the fair from a mile off — toffee, woodsmoke and cattle.",
+      "target": "海辺から{王の街道}を上ってきたんだ。祭りの匂いはずっと遠くからでもわかるよ――飴と、薪の煙と、牛のね。"
+    },
+    "CB99A2165EFAE90A294077F1206FEB90": {
+      "source": "The {Gild Well}. They say the first barge-folk washed gold dust out of the river here, and the town was named for it.",
+      "target": "{ギルドの泉}。最初の艀乗りたちがここで川から砂金を洗い出し、それが町の名の由来になったという。"
+    },
+    "CBD2970E50D6EDF74F6BE0A56C167D5B": {
+      "source": "Takes me till the bell has stopped ringing. By then the first ones want trimming. A lamplighter's work is never done, only dim.",
+      "target": "鐘が鳴りやむまでかかる。その頃には、最初に灯したのがもう芯切りを待っとる。点灯夫の仕事に終わりはない。消えるのは明かりだけじゃ。"
+    },
+    "CC347EB36E856D0D53EE2E28A9F4B73D": {
+      "source": "A cheerful voice: \"Come back after the bell! We are all down at the fair until then — even the kettle.\"",
+      "target": "明るい声がする。「鐘が鳴ったらまた来てね！　それまではみんなお祭りに行ってるの――やかんまでね」"
+    },
+    "CCF9A044C457528BB59A53E3F6DB4B33": {
+      "source": "If you lose something, the {Watch House} is up in {High Town}, east along {Crown Walk}. Captain Hale will be up at the {Lookout}, mind — she always is.",
+      "target": "落とし物なら、{衛兵詰所}は{上町}の{王冠通り}を東へ行った先だ。ただしヘイル隊長は{見張り台}にいるぞ――いつもそうだ。"
+    },
+    "CE921095E6B05C2E1A36FDF16AF6DA55": {
+      "source": "Saffron buns, hot from the {Saffron Bakery}! The saffron comes from Azar's stall on the square. Azar charges like a pirate, but oh, the colour.",
+      "target": "{サフランパン屋}の焼きたてサフランパンだよ！　サフランは広場のアザールの屋台から。アザールの値段は海賊並みだけど、ああ、この色ときたら！"
+    },
+    "CED78FBE6C733D8FD22579D0948227D9": {
+      "source": "One posy",
+      "target": "花束をひとつ"
+    },
+    "CF97F282C25D563292214E7491AF7082": {
+      "source": "Empty. A kettle on the hob and two mugs, both labelled \"SERGEANT\".",
+      "target": "誰もいない。かまどの上にやかんがひとつ、マグがふたつ。どちらにも「軍曹」と書いてある。"
+    },
+    "CFCC25FBA833284F53D845F314B4D400": {
+      "source": "One trout",
+      "target": "マスを一匹"
+    },
+    "D07D8352D18FC9200C8AAF459B798640": {
+      "source": "Milk! Fresh this morning from {Fairfield}! ...Sold out by noon. I am just walking the empty pails home, for the exercise.",
+      "target": "ミルクだよ！　{フェアフィールド}から今朝しぼりたて！　……お昼には売り切れちゃった。今は空のバケツを、運動がてら持って帰るとこ。"
+    },
+    "D8E4F76DD247D60F847C427F611B3BCA": {
+      "source": "Not just now",
+      "target": "今はちょっと"
+    },
+    "D033ADCAECD20AFC3530044811D5F309": {
+      "source": "Keep your purse close today. Fair days bring three things to {Gildhaven}: farmers, players and fingers.",
+      "target": "今日は財布をしっかり持っておけ。祭りの日の{ギルドヘイヴン}には三つのものがやってくる。農夫と、役者と、手癖の悪い指だ。"
+    },
+    "D41EEB9A58A5E030B03F2EB0FCF7241F": {
+      "source": "The bell rings the fair closed at dusk",
+      "target": "夕暮れの鐘が祭りの終わりを告げる"
+    },
+    "D94F8C08E26F22DCC246567670FAB5C3": {
+      "source": "A length for a cloak?",
+      "target": "外套一着分、いかが？"
+    },
+    "D214BE1CE4A384B250D5989368ED7631": {
+      "source": "Hollyhocks by the door, taller than you. They nod as if they know you.",
+      "target": "扉の脇に、背丈を超えるタチアオイ。まるで顔見知りのようにうなずいている。"
+    },
+    "D391235F2FDE0BD65969322202457D9E": {
+      "source": "Goodman Hollis says the hens are STAFF. So I am helping them do their job. Their job is running.",
+      "target": "ホリスおじさんがね、あの鶏たちは「従業員」なんだって。だから仕事を手伝ってあげてるの。鶏の仕事は走ること！"
+    },
+    "D7666543D4213090A30EF788EF06799E": {
+      "source": "Fresh this morning! Gild trout, river eels, and a pike so ugly it frightened the cat.",
+      "target": "今朝獲れたてだよ！　ギルドマスに川ウナギ、それに猫が逃げ出すほど不細工なカワカマス！"
+    },
+    "D305491260A09E0DFC9BFF8194804DB4": {
+      "source": "I have bought a hat. I did not need a hat. It is the most beautiful hat in {Gildhaven}, and therefore the world.",
+      "target": "帽子を買いましたの。帽子なんて必要ありませんでしたわ。でも{ギルドヘイヴン}でいちばん美しい帽子、つまり世界一美しい帽子ですのよ。"
+    },
+    "D46987336031B9B34A47010959D2C6D1": {
+      "source": "A mug for the fair?",
+      "target": "祭りに一杯どうだい？"
+    },
+    "DA5BD8683FC213C4B8440FC134C72C5F": {
+      "source": "Pippin Orchard. Every apple on every toffee stick at the fair grew on these trees.",
+      "target": "ここはピピン果樹園。お祭りのりんご飴のりんごは、ひとつ残らずこの木になったものよ。"
+    },
+    "DA66C80854BF3D1A81529BE7CE7695E7": {
+      "source": "A dozen eggs?",
+      "target": "卵を1ダースどうだい？"
+    },
+    "DD9A3F0AB79C03E0D92BE1D6F9AC042E": {
+      "source": "High Town",
+      "target": "上町"
+    },
+    "E0B7848F7F0BA661513CA54D759DA022": {
+      "source": "Fairfield",
+      "target": "フェアフィールド"
+    },
+    "E4A7681535D6D4814DF0C2EDA1FA0E54": {
+      "source": "I have a list. Cheese, cloth, eggs, saffron. I have bought three ribbons. The list is not going well.",
+      "target": "買い物リストがあるの。チーズ、布、卵、サフラン。で、買ったのはリボン三本。リストのほうは難航中よ。"
+    },
+    "E5B439A71DE91AB0D3C5834D58AB5959": {
+      "source": "Fair ribbons! Tie one on your wrist and the music finds you. That is the custom. Or I made it up. One of those.",
+      "target": "祭りのリボンだよ！　手首に結べば、音楽のほうから寄ってくるの。そういうしきたり。……か、あたしが考えたか。どっちかね。"
+    },
+    "E5C6BE4317053179B98F33AFA186F59F": {
+      "source": "Market Day on the River Gild",
+      "target": "ギルド川に市の立つ日"
+    },
+    "E5D4EADDCEBC56A8CEA87639D158A1FD": {
+      "source": "One wedge",
+      "target": "ひと切れ"
+    },
+    "E5F26EB6644E06595245131D8129DF77": {
+      "source": "Rope, tar, candles, nails, a stuffed pike and, for some reason, a harp. \"We have everything,\" says the sign. It may be right.",
+      "target": "縄、タール、ろうそく、釘、カワカマスの剥製、そしてなぜかハープ。看板には「何でもあります」。あながち嘘でもなさそうだ。"
+    },
+    "E9FD6AA760D444499CF99C5A5A902644": {
+      "source": "Not today",
+      "target": "今日はやめておく"
+    },
+    "E62C1FFE0114E2A3E6EFA70A03A4ACC7": {
+      "source": "Locked. Through a crack: sacks of salt piled to the rafters, and a cat asleep on the highest one.",
+      "target": "鍵がかかっている。隙間からのぞくと、梁まで積み上げられた塩袋と、そのてっぺんで眠る猫が見えた。"
+    },
+    "E95D5EA598CD674147DCFADCC4A2218F": {
+      "source": "A maid peers out. \"Lady Thornbury is not at home. Lady Thornbury is at the fair, buying a hat she does not need.\"",
+      "target": "メイドが顔をのぞかせた。「レディ・ソーンベリーはお留守です。レディ・ソーンベリーはお祭りで、要りもしない帽子をお買いになっています」"
+    },
+    "E160FB6FC4F99C2E41353511AE40E37E": {
+      "source": "A pinch",
+      "target": "ひとつまみ"
+    },
+    "E516AF004F40D0941383B23833B825A1": {
+      "source": "Customs. Every barge declares its cargo, and I write it in the book. Today I have written \"cheese\" one hundred and four times.",
+      "target": "税関です。艀はすべて積荷を申告し、私がそれを帳簿に書きつけます。今日は「チーズ」と百四回書きました。"
+    },
+    "E645ABDA9DDCB9BE2E25ADD2050DCAE5": {
+      "source": "Three apples, two knives and a turnip. The turnip is the dangerous one. Nobody expects the turnip.",
+      "target": "りんご三つ、ナイフ二本、それにカブひとつ。危ないのはカブのほうさ。カブが来るなんて誰も思わないからね。"
+    },
+    "E2852DE55E556BBADB57C2D91EFEA4F3": {
+      "source": "If you want the history of the fair, it is in chapter nine. If you want the gossip, it is in the Barrelhouse.",
+      "target": "祭りの歴史をお知りになりたいなら、第九章に。うわさ話をお望みなら、樽屋にどうぞ。"
+    },
+    "E4734AC10B63D879C442A20C224BCF56": {
+      "source": "The Abbey, the Hall and the Rampart Walk",
+      "target": "修道院、市庁舎、城壁の遊歩道"
+    },
+    "E17195E317708610142DACD98C2463BE": {
+      "source": "Closed for the fair. A slate by the door reads: \"NO SCHOOL TODAY. Yes, really. Go away. — Dame Agnes\"",
+      "target": "祭りのため休み。扉の脇の石板にはこうある。「本日休校。本当です。帰りなさい。――アグネス先生」"
+    },
+    "E41844FEE2B08370763D33F3C2D7C047": {
+      "source": "One pinch of my saffron and the bakers of {Lantern Row} fight in the street. I have seen it. I sold them tickets.",
+      "target": "うちのサフランをひとつまみ入れたら、{ランタン通り}のパン屋たちが通りでつかみ合いさ。この目で見たよ。見物券を売ったからね。"
+    },
+    "E4543866A9659E04AA81115B8E5C2558": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "EBB2C44A6648820D414D6620738067A2": {
+      "source": "A wedge of Gild Blue?",
+      "target": "ギルドブルーをひと切れどうだ？"
+    },
+    "F4ED4B64B2E4D3757A816D6631FE64D7": {
+      "source": "GILDHAVEN",
+      "target": "ギルドヘイヴン"
+    },
+    "F5F11E891C78353096663A3CCDCC0B53": {
+      "source": "The {Saltbridge} to the east, {Kingsbridge} in the middle, and the {Mistbridge} by the falls — three bridges, and I have to count the tolls on all of them.",
+      "target": "東に{塩の橋}、真ん中に{王の橋}、滝のそばに{霧の橋}――橋が三つ。その全部の通行料を、私が数えねばならんのです。"
+    },
+    "F6F05B0D59B1C5DE51A4A9E292B95C3C": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    },
+    "F08C75F717408B96AEAFEAAA187B661C": {
+      "source": "A bun for the road?",
+      "target": "道中にひとつどう？"
+    },
+    "F9D3184FB8BD8001A93F6BCCE1059472": {
+      "source": "Fairfield",
+      "target": "フェアフィールド"
+    },
+    "F9DCD922F6F881F9B84602750FA29037": {
+      "source": "Any questions?",
+      "target": "何か質問は？"
+    },
+    "F27CC242E750F0C749FB52033A9AA237": {
+      "source": "Outside the South Gate · Fair day",
+      "target": "南門の外・祭りの日"
+    },
+    "F620E0F624445B0C3AE60E43BAC63D9C": {
+      "source": "The clack of a loom. A voice counts \"...forty-one, forty-two, forty — oh, BOTHER.\"",
+      "target": "機織りのかたんという音。数える声がする。「……四十一、四十二、四じゅ――ああ、もうっ！」"
+    },
+    "F92869977E76C8465D216AF9E06F9685": {
+      "source": "Light a thought for the river, friend. It gives this town everything — even its name.",
+      "target": "友よ、川に思いをひとつ灯してください。この町のすべてを与えてくれたのは川なのです――その名さえも。"
+    },
+    "F263328470CA18C52AD9AE926CC17673": {
+      "source": "Welcome to {The Gilded Goose}! Every room is full of fair-folk, but I always keep one bed aired for a traveller.",
+      "target": "{金のガチョウ亭}へようこそ！　部屋はどこもお祭り客でいっぱいだけど、旅人さんのためにいつもベッドをひとつ空けてあるのよ。"
+    },
+    "FA8B99027D901B09665A99F8F6C702F4": {
+      "source": "Piers, gulls and the smokehouse",
+      "target": "桟橋とカモメと燻製小屋"
+    },
+    "FA87D9F052FAF93E977DF03A76CF4DEA": {
+      "source": "No, thank you",
+      "target": "いえ、結構です"
+    },
+    "FABB281725F613D53E1FE5269DFF6680": {
+      "source": "Wonderful, isn't it?",
+      "target": "いいもんじゃろう？"
+    },
+    "FC16DFC65A6289A26D14EDEABDAB3F00": {
+      "source": "A smell hits you before the door does. You decide not to knock twice.",
+      "target": "扉にたどり着くより先に、においが鼻を打った。二度ノックするのはやめておこう。"
+    },
+    "FC34E8832725DD949A2EE719254271E1": {
+      "source": "Long ago the barge-folk found gold dust in the river below the falls. There was not much, but they named the town for it, and they have been gilding everything since.",
+      "target": "昔、艀乗りたちが滝の下の川で砂金を見つけました。ほんのわずかでしたが、町はそれにちなんで名づけられ――ギルドとは「金をかぶせる」こと――以来ずっと、何にでも金箔を貼っているのです。"
+    },
+    "FE4E2E714CF7331595A20562C65C7F16": {
+      "source": "A Luminati 2.5D town · three.js",
+      "target": "Luminati 2.5D の街・three.js"
+    },
+    "FEB398FCAC91D982B218EC5A9DBBF944": {
+      "source": "Gildhaven",
+      "target": "ギルドヘイヴン"
+    }
+  }
+}

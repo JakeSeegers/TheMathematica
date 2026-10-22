@@ -1,0 +1,165 @@
+{
+  "format": "luminati-story",
+  "version": 1,
+  "vars": {
+    "visited-count": 1
+  },
+  "items": {
+    "plank": {
+      "name": "Oak Plank",
+      "text": "A sound oak plank from the stack by Millbrook's east road.",
+      "textKeys": {
+        "text": "F7A3D1C3146F349E603812120E754F74"
+      }
+    },
+    "cellar-key": {
+      "name": "Cellar Key",
+      "text": "Miller Odo's iron key to the mill cellar.",
+      "key": true,
+      "textKeys": {
+        "text": "5C18D5E4F45CCF4432E3F73B80DF81C7"
+      }
+    },
+    "ferry-chart": {
+      "name": "Ferry Chart",
+      "text": "Ilse's chart of the river. \"If the ford floods, wait it out on the quarry ledge.\"",
+      "key": true,
+      "textKeys": {
+        "text": "C15D4CD012D93DB64B12B74E6DA5E8BB"
+      }
+    },
+    "ferry-lantern": {
+      "name": "Ferry Lantern",
+      "text": "Ilse's lantern. It has not gone out since the flood.",
+      "key": true,
+      "textKeys": {
+        "text": "1AA3265E31292C56723013F58DE52682"
+      }
+    },
+    "festival-bun": {
+      "name": "Festival Bun",
+      "text": "Millbrook flour, the elder's honey.",
+      "textKeys": {
+        "text": "A317161C1CBE745521300E98FEFA3D61"
+      }
+    }
+  },
+  "quests": {
+    "find-ilse": {
+      "title": "The Missing Ferryman",
+      "text": "Ilse rowed east to the Old Quarry with the ferry lantern three nights ago and has not come back.",
+      "stages": [
+        {
+          "id": "asked",
+          "text": "Elder Wren asked me to find Ilse. The bridge on the Mill Road is out — Hollis the carpenter might help."
+        },
+        {
+          "id": "planks",
+          "text": "Hollis will mend the bridge, but the flood took his timber: he needs three oak planks from the stack by the east road."
+        },
+        {
+          "id": "bridge",
+          "text": "Hollis mended the bridge at the Wolf Ford. The Old Quarry lies beyond it."
+        },
+        {
+          "id": "found",
+          "text": "Ilse was on the quarry ledge, the lantern still burning. Time to bring her home."
+        },
+        {
+          "id": "home",
+          "text": "Ilse and the lantern are home. Millbrook has lit every window."
+        }
+      ],
+      "goals": [
+        {
+          "text": "Oak planks for Hollis (${item:plank} of 3)",
+          "done": "item:plank >= 3 or hollis-at-ford"
+        }
+      ],
+      "textKeys": {
+        "text": "890BAF0DC5C62B00C49972177495EE6C",
+        "stages": {
+          "asked": "6E2BC0A2E7E5366F5077E1A162C71B3D",
+          "planks": "6E253B000987B2E3A5A8F06340A64268",
+          "bridge": "36F9860E1264D23C92906D0BB0AACBF8",
+          "found": "376FBFE4466F4A06FB6B4941955FC509",
+          "home": "BC6C899F66F9058B6AB998B37C336BA9"
+        },
+        "goals": [
+          "6C30D6B0998C150DB196ED215DB0424B"
+        ]
+      }
+    }
+  },
+  "actors": {
+    "wren": {
+      "name": "Elder Wren",
+      "preset": "elder",
+      "portraitColor": "#c9a45c",
+      "talk": "wren"
+    },
+    "hollis": {
+      "name": "Hollis",
+      "preset": "farmer",
+      "portraitColor": "#b07b44",
+      "talk": "hollis"
+    },
+    "odo": {
+      "name": "Miller Odo",
+      "preset": "merchant",
+      "portraitColor": "#d8b453",
+      "talk": "odo"
+    },
+    "ilse": {
+      "name": "Ilse",
+      "preset": "hunter",
+      "portraitColor": "#7fd6a8",
+      "talk": "ilse"
+    }
+  },
+  "events": [
+    {
+      "id": "ford-open",
+      "on": "change",
+      "if": "bridge-mended",
+      "once": true,
+      "run": [
+        "toast The way east lies open. #line:9B0CB1A26E35865B143ECD594D36CE3D"
+      ]
+    },
+    {
+      "id": "count-places",
+      "on": "arrive",
+      "run": [
+        "var visited-count + 1"
+      ]
+    }
+  ],
+  "starts": {
+    "at-the-ford": {
+      "level": "mill-road",
+      "items": {
+        "plank": 3
+      },
+      "vars": {
+        "hollis-at-ford": 1
+      },
+      "quests": {
+        "find-ilse": "planks"
+      }
+    },
+    "chapter-two": {
+      "level": "old-quarry",
+      "vars": {
+        "hollis-at-ford": 1,
+        "bridge-mended": 1
+      },
+      "items": {
+        "cellar-key": 1
+      },
+      "quests": {
+        "find-ilse": "bridge"
+      }
+    }
+  }
+}

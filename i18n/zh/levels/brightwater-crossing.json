@@ -1,0 +1,137 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "levels/brightwater-crossing",
+  "extends": [],
+  "terms": {
+    "Brightwater Falls": "明水瀑布",
+    "Brightwater Square": "明水广场",
+    "Elda": "埃尔达",
+    "Honey Bun": "蜂蜜面包",
+    "Lily Pond": "睡莲池",
+    "Marigold": "玛丽戈尔德",
+    "Miller's Hill": "磨坊主之丘",
+    "Posy": "波西",
+    "Tamsin": "塔姆辛",
+    "Tamsin's Farm": "塔姆辛农场"
+  },
+  "units": {
+    "0D3209B803E7FE355A2B1CCD168B7BA3": {
+      "source": "↑ {Brightwater Square} · ↖ {Miller's Hill}\n← {Lily Pond} · → {Old Bridge} & {Tamsin's Farm}",
+      "target": "↑ {明水广场} · ↖ {磨坊主之丘}\n← {睡莲池} · → {老桥}与{塔姆辛农场}"
+    },
+    "3C9FE01F9840813D4E19AD69E115EB01": {
+      "source": "Where the sails turn even when the wind forgets",
+      "target": "风忘了吹，风车也照转之处"
+    },
+    "5AB72CC295E50B821D032E813D0DA85A": {
+      "source": "Brightwater Crossing",
+      "target": "明水渡"
+    },
+    "5AC5727A78A1F7003BC12331CC256025": {
+      "source": "Someone has added, in smaller letters: \"Mind the chickens. They bite.\"",
+      "target": "有人在下面用小一号的字补了一句：“当心鸡，会咬人。”"
+    },
+    "5B0555EA280BE604C18901A94E112CB4": {
+      "source": "Will you rest until morning?",
+      "target": "要休息到天亮吗？"
+    },
+    "5D4C608E9B11E3174BB747B18DB78669": {
+      "source": "Most of them stay for supper. A few stay for good.",
+      "target": "大多数人会留下来吃顿晚饭，也有几个就此住下，再也没走。"
+    },
+    "9BBD7F9867A75A7EBEDD3FEB1DD5A79D": {
+      "source": "Honey buns! Still warm from the oven, and sweet as a summer evening.",
+      "target": "蜂蜜面包哟！刚出炉还热乎着，甜得像夏日的傍晚。"
+    },
+    "9C64C16B2A9E91FD817820A7E22BA96A": {
+      "source": "Laughter and the smell of fresh bread spill out of the {Brightwater Inn}.",
+      "target": "{明水旅店}里飘出阵阵笑声和新烤面包的香气。"
+    },
+    "47D30A1A59B6D4C8078E42137A1FFFC0": {
+      "source": "A loom clacks steadily inside. A note pinned to the door reads: {Back after supper}.",
+      "target": "屋里织布机咔嗒咔嗒响个不停。门上钉着一张字条：{晚饭后回来}。"
+    },
+    "80A5492CC78AB4B4BAF13DCBB0431AEA": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "116AF332B2966622F1457B4193F64D83": {
+      "source": "The door is latched. Somewhere inside, a kettle begins to sing.",
+      "target": "门上了闩。屋里不知何处，一只水壶唱起歌来。"
+    },
+    "883F946C3EABCC59097B7422B0E16F5D": {
+      "source": "Brightwater Crossing",
+      "target": "明水渡"
+    },
+    "6762F22EDE152FCA73BDE8496B46392D": {
+      "source": "Flour dust on the doorstep and bread cooling on the sill. The miller is out chasing the wind.",
+      "target": "门阶上落着一层面粉，窗台上晾着面包。磨坊主出门追风去了。"
+    },
+    "8004B99B75010DD7842359B48FE6F7D6": {
+      "source": "Climb the stairs to {Miller's Hill} at sunset — the falls turn to gold.",
+      "target": "日落时分顺着台阶登上{磨坊主之丘}吧——瀑布会变成一片金色。"
+    },
+    "9574F833055EBF04A955839AAB853E56": {
+      "source": "If you see one wandering off toward the river, give her a gentle nudge home, would you?",
+      "target": "要是看到哪只往河边溜达，帮我轻轻把它赶回家，好吗？"
+    },
+    "9814BEEF7A5CCA7A0D2DA8DCF330044B": {
+      "source": "Brightwater Crossing",
+      "target": "明水渡"
+    },
+    "A30F3431C17B90A8624F879F1C0A80E6": {
+      "source": "Brightwater Crossing",
+      "target": "明水渡"
+    },
+    "AC9E67E595E685BC7B72A4A5E07B304C": {
+      "source": "The hens have been laying like mad since the lantern festival.",
+      "target": "自从灯会以后，母鸡们下蛋下得跟疯了似的。"
+    },
+    "B6B764BBD99044ABC795EA1622B1DD19": {
+      "source": "Welcome to the {Brightwater Inn}! Soft beds, hot stew, and the river to sing you to sleep.",
+      "target": "欢迎光临{明水旅店}！柔软的床铺、热腾腾的炖菜，还有河水为您唱摇篮曲。"
+    },
+    "B650DD1538549F8BC514A7FCE3EAFBA5": {
+      "source": "Brightwater Crossing",
+      "target": "明水渡"
+    },
+    "BCED3DC52BBA7B28AB5C1FB80C2EDB31": {
+      "source": "{Miller's Hill}. On a clear evening you can watch the falls turn gold from here.",
+      "target": "{磨坊主之丘}。晴朗的傍晚，从这里能看到瀑布被染成金色。"
+    },
+    "BF9D563289EEC7810055EE893E899903": {
+      "source": "Welcome to {Brightwater Crossing}, traveler! The river has carried folk past our door for a hundred years.",
+      "target": "欢迎来到{明水渡}，旅人！一百年来，这条河载着来来往往的人从我们门前经过。"
+    },
+    "C6F7B45786845C6BEFB8346B90ECD5E4": {
+      "source": "A Riverside Hamlet",
+      "target": "河畔小村落"
+    },
+    "C48F14BE0DC508603C0E515F702E9249": {
+      "source": "Where the river bends and the lanterns glow",
+      "target": "河水转弯、灯火闪烁之处"
+    },
+    "D1D2FA8512E14235C2B307FED23AEE96": {
+      "source": "The water is clear and cold. Far below, a copper coin glints.",
+      "target": "井水清澈冰凉。深深的井底，一枚铜币闪着微光。"
+    },
+    "E95A3F5BABA2F9EED93B5BC36B75F62E": {
+      "source": "Muddy boots by the door, and a chalk sign: {Fresh eggs — ask Tamsin}.",
+      "target": "门边放着沾满泥的靴子，还有一块粉笔写的牌子：{新鲜鸡蛋——请找塔姆辛}。"
+    },
+    "FA29C8B6012991008FA4F8738E3489EF": {
+      "source": "{Tamsin's Farm}. Fresh eggs daily.",
+      "target": "{塔姆辛农场}。每日供应新鲜鸡蛋。"
+    },
+    "FC5A04FC9EB4EF9EC84F6DF8251E0F3D": {
+      "source": "You make a small wish of your own.",
+      "target": "你也悄悄许下了一个小小的心愿。"
+    },
+    "FF3D2F445771ABF2516E5134582D7F91": {
+      "source": "Rest until morning",
+      "target": "休息到天亮"
+    }
+  }
+}

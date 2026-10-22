@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="color-scheme" content="dark" />
+  <title>Luminati Level Editor</title>
+  <meta name="description" content="Luminati Level Editor — paint terrain, place buildings, lights and villagers, and play-test 2.5D pixel-art levels." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' rx='3' fill='%231a2238'/%3E%3Cpath fill='%23304066' d='M2 11h12v3H2z'/%3E%3Cpath fill='%23c9a45c' d='M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z'/%3E%3Cpath fill='%23f59a2e' d='M7 5h2v2h1v3H9v1H7v-1H6V7h1z'/%3E%3Cpath fill='%23fff6d0' d='M7 8h2v2H7z'/%3E%3C/svg%3E" />
+  <style>html,body{background:#0b1020;height:100%;margin:0;overflow:hidden}#editor{position:fixed;inset:0}.le-boot{color:#c9a45c;letter-spacing:.28em;text-transform:uppercase;background:radial-gradient(at 50% 45%,#1a2238 0%,#0b1020 70%);place-items:center;font:600 13px/1.4 system-ui,sans-serif;display:grid;position:fixed;inset:0}.le-boot i{background:linear-gradient(90deg,#0000,#c9a45c,#0000);width:120px;height:2px;margin:14px auto 0;animation:1.2s ease-in-out infinite le-boot;display:block}@keyframes le-boot{50%{opacity:.25}}.le-boot-error{text-align:center;letter-spacing:normal;text-transform:none;max-width:560px;padding:0 24px}.le-boot-error b{color:#ec7065;margin-bottom:8px;font-size:15px;display:block}.le-boot-error span{color:#a4adc6;font-weight:400}</style>
+  <script type="module" crossorigin src="./assets/editor-BBHYhKdZ.js"></script>
+  <link rel="modulepreload" crossorigin href="./assets/LevelStorage-BIxTLbPi.js">
+  <link rel="modulepreload" crossorigin href="./assets/PartyRules-LqJYVO4Z.js">
+  <link rel="modulepreload" crossorigin href="./assets/StoryScript-D2xGDqZN.js">
+  <link rel="modulepreload" crossorigin href="./assets/StoryFormat-DX5d6ImZ.js">
+  <link rel="modulepreload" crossorigin href="./assets/CampaignStorage-DLXSzDRt.js">
+  <link rel="stylesheet" crossorigin href="./assets/editor-A9fzKf18.css">
+</head>
+<body>
+  <div id="editor"><div class="le-boot"><div>Luminati Level Editor<i></i></div></div></div>
+  <noscript>The Luminati Level Editor needs JavaScript.</noscript>
+  <script>
+    // If the editor code cannot load at all (a failed import, a syntax error), say so instead of
+    // leaving the boot splash up forever. Errors after the editor has been built are left alone.
+    (function () {
+      function fail(msg) {
+        var boot = document.querySelector('#editor .le-boot');
+        if (!boot) return;
+        boot.innerHTML = '<div class="le-boot-error"><b>The level editor could not load</b><span></span></div>';
+        boot.querySelector('span').textContent = String(msg || 'Unknown error') + ' — see the browser console for details.';
+      }
+      window.__leBootFail = fail;
+      window.addEventListener('error', function (e) { fail(e && (e.message || (e.target && e.target.src && 'Failed to load ' + e.target.src))); }, true);
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,140 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Luminati — a 2.5D pixel-art engine for three.js</title>
+  <meta name="description" content="Luminati: play its campaigns and levels, or open the level editor. An open-source engine combining pixel-art sprites with lit 3D environments, dynamic shadows and depth of field." />
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16' shape-rendering='crispEdges'%3E%3Crect width='16' height='16' rx='3' fill='%23140f17'/%3E%3Cpath fill='%23c9a45c' d='M7 2h2v1h1v2h1v2h1v4h-1v1h-1v1H6v-1H5v-1H4V7h1V5h1V3h1z'/%3E%3Cpath fill='%23f59a2e' d='M7 5h2v2h1v3H9v1H7v-1H6V7h1z'/%3E%3Cpath fill='%23fff6d0' d='M7 8h2v2H7z'/%3E%3C/svg%3E" />
+  <link rel="stylesheet" crossorigin href="./assets/launcher-3eZJCYwz.css">
+</head>
+<body>
+  <!-- The launcher: the list below is written by tools/vite-launcher.js from public/campaigns/ and
+       public/levels/ (on every request on the dev server, once in a build). No script. -->
+  <main>
+    <header class="lu-head">
+      <div class="lu-ember" aria-hidden="true"></div>
+      <h1>Luminati</h1>
+      <div class="lu-rule" aria-hidden="true"></div>
+      <p class="lu-tagline">A 2.5D pixel-art engine for three.js</p>
+      <p class="lu-intro">Pixel-art sprites in lit 3D dioramas, with dynamic shadows and depth of field.
+        Play a campaign or a level, or build your own in the level editor.</p>
+      <nav class="lu-jump" aria-label="Sections">
+        <a href="#campaigns">Campaigns</a>
+        <a href="#levels">Levels</a>
+        <a href="#editor">Level editor</a>
+      </nav>
+    </header>
+    <section class="lu-section" id="campaigns" aria-labelledby="campaigns-h">
+<h2 id="campaigns-h">Campaigns <span class="lu-count">2</span></h2>
+<p class="lu-lead">Levels joined into one story: exits between them, story flags, chapters and a saved game.</p>
+<ul class="lu-grid lu-grid--campaigns">
+<li class="lu-card lu-card--campaign">
+<h3>Emberfall — Open Doors</h3>
+<p class="lu-sub">Open Doors — every house has a room behind its door</p>
+<p class="lu-meta">11 levels</p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?campaign=emberfall-interiors">Play</a>
+</div>
+<details class="lu-files"><summary>Edit its levels</summary><ul>
+<li><a href="editor.html?open=emberfall-interiors/elder-house">Elder&#39;s Cottage</a> <code>elder-house</code></li>
+<li><a href="editor.html?open=emberfall-interiors/emberfall">Emberfall</a> <code>emberfall</code></li>
+<li><a href="editor.html?open=emberfall-interiors/riverside-house">Riverside House</a> <code>riverside-house</code></li>
+<li><a href="editor.html?open=emberfall-interiors/thatch-cottage">Thatched Cottage</a> <code>thatch-cottage</code></li>
+<li><a href="editor.html?open=emberfall-interiors/inn-upstairs">The Ember &amp; Oak</a> <code>inn-upstairs</code></li>
+<li><a href="editor.html?open=emberfall-interiors/inn">The Ember &amp; Oak</a> <code>inn</code></li>
+<li><a href="editor.html?open=emberfall-interiors/windmill-upper">The Windmill</a> <code>windmill-upper</code></li>
+<li><a href="editor.html?open=emberfall-interiors/windmill">The Windmill</a> <code>windmill</code></li>
+<li><a href="editor.html?open=emberfall-interiors/barn-loft">Tobin&#39;s Barn</a> <code>barn-loft</code></li>
+<li><a href="editor.html?open=emberfall-interiors/barn">Tobin&#39;s Barn</a> <code>barn</code></li>
+<li><a href="editor.html?open=emberfall-interiors/lodge">Woodcutter&#39;s Lodge</a> <code>lodge</code></li>
+</ul></details>
+</li>
+<li class="lu-card lu-card--campaign">
+<h3>The Ferryman&#39;s Lantern</h3>
+<p class="lu-sub">A short tale of Millbrook</p>
+<p class="lu-meta">4 levels · 2 chapters</p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?campaign=ferrymans-lantern">Play</a>
+</div>
+<details class="lu-files"><summary>Edit its levels</summary><ul>
+<li><a href="editor.html?open=ferrymans-lantern/mill-road">Mill Road</a> <code>mill-road</code></li>
+<li><a href="editor.html?open=ferrymans-lantern/millbrook-dusk">Millbrook</a> <code>millbrook-dusk</code></li>
+<li><a href="editor.html?open=ferrymans-lantern/millbrook">Millbrook</a> <code>millbrook</code></li>
+<li><a href="editor.html?open=ferrymans-lantern/mill-cellar">The Mill Cellar</a> <code>mill-cellar</code></li>
+<li><a href="editor.html?open=ferrymans-lantern/old-quarry">The Old Quarry</a> <code>old-quarry</code></li>
+</ul></details>
+</li>
+</ul>
+</section>
+<section class="lu-section" id="levels" aria-labelledby="levels-h">
+<h2 id="levels-h">Levels <span class="lu-count">6</span></h2>
+<p class="lu-lead">Every level in <code>public/levels/</code>, played on its own.</p>
+<ul class="lu-grid">
+<li class="lu-card">
+<h3>Brightwater Crossing</h3>
+<p class="lu-sub">A Riverside Hamlet</p>
+<p class="lu-desc">A little village where the river bends: a windmill on the hill, a waterfall in the woods, and lanterns that glow at dusk.</p>
+<p class="lu-meta">36 × 28 tiles <code>brightwater-crossing</code></p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?level=brightwater-crossing">Play</a>
+<a class="lu-btn" href="editor.html?open=brightwater-crossing">Edit</a>
+</div></li>
+<li class="lu-card">
+<h3>Cinderwatch Pass</h3>
+<p class="lu-sub">Where the Old Fires Wake</p>
+<p class="lu-desc">The Luminati action demo: recruit three party companions — Sister Ilse and Rook at the Waystone Camp, Sela, a warden of the watch, at the Crossroads Waystone — and climb a 96 × 120 mountain pass through the Mossy Glade, the Bramble Ruins or the Hollow Mire and the Cinder Quarry to Cinderheart&#39;s caldera: slimes, goblins, archers, shamans, bats, boars and a three-phase boss, balanced for a party of four. Generated by tools/make-cinderwatch-pass.mjs.</p>
+<p class="lu-meta">96 × 120 tiles <span class="lu-tag">Combat</span> <code>cinderwatch-pass</code></p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?level=cinderwatch-pass">Play</a>
+<a class="lu-btn" href="editor.html?open=cinderwatch-pass">Edit</a>
+</div></li>
+<li class="lu-card">
+<h3>Emberfall</h3>
+<p class="lu-sub">Riverside Village</p>
+<p class="lu-desc">The Luminati 2.5D demo village: a riverside village with an inn and a market square, a farm, Windmill Hill, Amberleaf Grove and the campfire meadow.</p>
+<p class="lu-meta">48 × 40 tiles <code>emberfall</code></p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?level=emberfall">Play</a>
+<a class="lu-btn" href="editor.html?open=emberfall">Edit</a>
+</div></li>
+<li class="lu-card">
+<h3>Gildhaven</h3>
+<p class="lu-sub">Market Day on the River Gild</p>
+<p class="lu-desc">A 128 × 128 walled river town on fair day: High Town and Sunspire Abbey on the terrace, the Gildfall, the Market Square on the river, the West and East Quarters, the Gild Pool harbour, the rows of Lantern Row and Weaver&#39;s Lane, and Fairfield outside the South Gate with the players&#39; stage and the mill. Generated by tools/make-gildhaven.mjs.</p>
+<p class="lu-meta">128 × 128 tiles <code>gildhaven</code></p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?level=gildhaven">Play</a>
+<a class="lu-btn" href="editor.html?open=gildhaven">Edit</a>
+</div></li>
+<li class="lu-card">
+<h3>Starfall Vale</h3>
+<p class="lu-sub">Where the Stars Come Home</p>
+<p class="lu-desc">The flagship Luminati showcase: a 128 × 128 vale on the night of the Starfall Festival — the market town of Hearthwick on the Silverrun, Mount Lumen with its observatory and the Three Sisters falls, Goldenfield Farms, Lake Mirrormere and its fishing hamlet, the Meadowlands, the autumn Emberwood and the Old Quarry. Generated by tools/make-starfall-vale.mjs.</p>
+<p class="lu-meta">128 × 128 tiles <code>starfall-vale</code></p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?level=starfall-vale">Play</a>
+<a class="lu-btn" href="editor.html?open=starfall-vale">Edit</a>
+</div></li>
+<li class="lu-card">
+<h3>Willowmere</h3>
+<p class="lu-sub">A Hamlet by the Pond</p>
+<p class="lu-desc">A small sample level: a green with a well, three cottages, a pond with fireflies and a raised orchard terrace.</p>
+<p class="lu-meta">28 × 22 tiles <code>sample-hamlet</code></p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="game.html?level=sample-hamlet">Play</a>
+<a class="lu-btn" href="editor.html?open=sample-hamlet">Edit</a>
+</div></li>
+</ul>
+</section>
+<section class="lu-section" id="editor" aria-labelledby="editor-h">
+<h2 id="editor-h">Level editor</h2>
+<p class="lu-lead">Paint terrain, place objects, write the story and play-test in a click; save into the project folder (dev server), in the browser or as a file.</p>
+<div class="lu-actions">
+<a class="lu-btn lu-btn--play" href="editor.html">Open the editor</a>
+<a class="lu-btn" href="editor.html?new">New level</a>
+<a class="lu-btn" href="editor.html?new=room">New room</a>
+</div></section>
+  </main>
+</body>
+</html>

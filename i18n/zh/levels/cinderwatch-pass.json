@@ -1,0 +1,495 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "levels/cinderwatch-pass",
+  "extends": [],
+  "terms": {
+    "Bram": "布拉姆",
+    "Bramble Ruins": "荆棘遗迹",
+    "Camp Waystone": "营地的路标石",
+    "Captain Maren": "玛伦队长",
+    "Cinder Quarry": "烬火采石场",
+    "Cinder Ridge": "烬火岭",
+    "Cinderheart": "烬心",
+    "Crossroads Waystone": "十字路口的路标石",
+    "Hollow Mire": "洼地沼泽",
+    "Mossy Glade": "青苔林地",
+    "Odo": "奥多",
+    "Old Ironhide": "老铁皮",
+    "Pip": "皮普",
+    "Quarry Waystone": "采石场的路标石",
+    "Rook": "鲁克",
+    "Sela": "瑟拉",
+    "Sister Ilse": "伊尔莎修女",
+    "The Caldera": "火山口",
+    "The Crossroads": "十字路口",
+    "Waystone Camp": "路标石营地"
+  },
+  "units": {
+    "1DF4ABDBB5DBBD1EC7EF795B4C627B40": {
+      "source": "Tactics…",
+      "target": "战术…"
+    },
+    "1F806047FB25286E73049FAE6271A2CB": {
+      "source": "Your company's full. Come back for me if one of them heads home.",
+      "target": "你的队伍满了。要是有谁回去了，再来找我。"
+    },
+    "1F3683521B2873C3822A4EB4AF4EF2E9": {
+      "source": "Anything with a bow is mine. Anything bigger is yours.",
+      "target": "带弓的归我。块头大的归你。"
+    },
+    "2AB96FBA461EEB513D5157F3068F8F33": {
+      "source": "Then this is where I keep watch. Come back for me if the pass gets too loud.",
+      "target": "那我就在这儿守望。要是隘口闹腾得太厉害，就回来找我。"
+    },
+    "2B14F16C27CC71A692585028FC196BF3": {
+      "source": "Want a bow at your back?",
+      "target": "要不要身后多一张弓？"
+    },
+    "2EB4740DDE5409D0E365FD3F85C0875A": {
+      "source": "Walk with me",
+      "target": "与我同行"
+    },
+    "2EE743EBABC224C0FD75B5A62FD8DF7B": {
+      "source": "Two roads up to the quarry from here, and neither of them is a stroll.",
+      "target": "从这儿上采石场有两条路，哪条都不是散步那么轻松。"
+    },
+    "2F95B3238186C92CACA5CAE98C131CDF": {
+      "source": "Then I come. Keep close, and I will keep you whole.",
+      "target": "那我便随您去。请别离我太远，我会护您周全。"
+    },
+    "03C50ED7A341FB54F16850B9761F6E3B": {
+      "source": "Goblins, archers and a shaman · Lv 7–8",
+      "target": "哥布林、弓手与萨满 · Lv 7–8"
+    },
+    "4F191E9FD2DD3CD2212C108E5189D0FA": {
+      "source": "A note is nailed under the knocker: \"Gone up the pass. Back when the fires are out. — M.\"",
+      "target": "门环下钉着一张字条：“已上隘口，火熄即归。——M”"
+    },
+    "5ACB7051082D3C634C2783C56FF6F770": {
+      "source": "Since the old fire went out, the pass has been waking one hollow at a time. Slimes in the glade, goblins in the keep, and something up in the {Caldera} that breathes like a forge.",
+      "target": "自从古火熄灭，隘口便一处山坳接一处山坳地苏醒过来。林地里有史莱姆，堡垒里有哥布林，而{火山口}上，有个东西喘起气来像座熔炉。"
+    },
+    "5B60791C083D8D25208AC32D263A18BE": {
+      "source": "Good. I was just getting my eye in.",
+      "target": "那就好。我才刚找到手感。"
+    },
+    "5C3B0FA594F6CAE966FD7C63ACD110BD": {
+      "source": "Still here. Still shooting straw.",
+      "target": "我还在这儿。还在射稻草人。"
+    },
+    "6A2F8BF42950530CDE9F158B4C782983": {
+      "source": "Keeper of the Waystones",
+      "target": "路标石守护者"
+    },
+    "6B2C07265ED982853AC786B83CAB6BBD": {
+      "source": "How do you want this spear?",
+      "target": "这杆长枪，你想让它怎么打？"
+    },
+    "6CB0BA76A75A3E90756716D894687402": {
+      "source": "About time! Keep them off me and I'll keep them off you.",
+      "target": "总算等到了！你别让它们靠近我，我就不让它们靠近你。"
+    },
+    "6D105117F878802C111FBF262781289C": {
+      "source": "Whetstones, ironbark tonic, a warding charm or two — the watch pays me in stories, so the rest of you pay in gold.",
+      "target": "磨刀石、铁木补剂，还有一两个守护护符——守望队拿故事抵账，所以其他人就得付金币啦。"
+    },
+    "6DE4979AD67B3F093F9553504EB6AD03": {
+      "source": "Part ways",
+      "target": "分道扬镳"
+    },
+    "6DEAF0C973B50D3189E68132F69C2A5E": {
+      "source": "← the {Bramble Ruins} · → the {Hollow Mire}\nBoth roads climb to the {Cinder Quarry}.\n↓ {Waystone Camp}",
+      "target": "← {荆棘遗迹} · → {洼地沼泽}\n两条路都向上通往{烬火采石场}。\n↓ {路标石营地}"
+    },
+    "07C88C46628D99FA038B203C9ADB80BC": {
+      "source": "Lead on",
+      "target": "继续前进"
+    },
+    "8ACCA028CE8535347332690C2F088B6B": {
+      "source": "The pass has grown too loud for one blade. Let me walk with you, and I will mend what it breaks.",
+      "target": "这道隘口已经喧闹得不是一把剑能应付的了。让我与您同行吧，隘口伤到的，由我来治愈。"
+    },
+    "8B26F108297E582856B903A5F2D6CE0A": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "8C46D85B94B8A1B277E2FCFC441F9F4D": {
+      "source": "A Luminati 2.5D action demo · three.js",
+      "target": "Luminati 2.5D 动作演示 · three.js"
+    },
+    "8CC94438B5BBBE413EBC1979C5D5A0AB": {
+      "source": "And the molten pools he leaves behind burn for as long as you stand in them. Step out, then step back in to swing.",
+      "target": "还有，它留下的熔岩池，你在里面站多久就烧你多久。先退出来，要出手时再踏回去。"
+    },
+    "8F4E0C5438B01DBA7565EBDCDCD2BB5F": {
+      "source": "Yes, part ways",
+      "target": "是的，就此别过"
+    },
+    "9A1C61457FC9AD06F9061A80ADF213F0": {
+      "source": "Rook joined your party · G: Tactics",
+      "target": "鲁克加入了队伍 · G：战术"
+    },
+    "9BBF3CACB61645CBD5781129AB447EE1": {
+      "source": "Lead on.",
+      "target": "请带路吧。"
+    },
+    "9E45D52A449FAD97DB0E57F5EC183B9D": {
+      "source": "CINDERWATCH PASS",
+      "target": "烬望隘口"
+    },
+    "12DBD3F4C43FB7FAE873BCB3F19C6C99": {
+      "source": "Lead on",
+      "target": "继续前进"
+    },
+    "17EC0C765E5EC25A8DAC5F96ED5BF3EA": {
+      "source": "Take me up the pass and I'll pick off whatever's shooting at you. Keep the big ones busy; I'll do the rest.",
+      "target": "带我上隘口，谁朝你放箭，我就把谁射下来。你拖住大家伙，剩下的交给我。"
+    },
+    "18CD39E9EF5BC399322696C682347560": {
+      "source": "Your lead, traveller.",
+      "target": "你带路吧，旅人。"
+    },
+    "21B5C26CAE28C414EC5A7DEAAF671231": {
+      "source": "Here? You sure?",
+      "target": "在这儿？你确定？"
+    },
+    "25DD14E81148884AEF68EE5A81C17834": {
+      "source": "Lead on",
+      "target": "继续前进"
+    },
+    "27F2F6B91FDEB37C5DFCE083549EE3E1": {
+      "source": "The stones are listening. Walk on.",
+      "target": "石头们正在聆听。请继续前行吧。"
+    },
+    "31E0CAA5FAF377DF9E8B0113C46F1F38": {
+      "source": "Shall my spear walk with you?",
+      "target": "要我这杆长枪与你同行吗？"
+    },
+    "34C8703B101F29F94B929FF65899B5D6": {
+      "source": "Warden of the Cinderwatch",
+      "target": "烬望守卫"
+    },
+    "54D918597FA484790D3D9D787C648E76": {
+      "source": "Easy, traveller. Sela, of the Cinderwatch — the watch keeps this stone, and today the watch is me.",
+      "target": "别紧张，旅人。我是烬望的瑟拉——这块石头由守望队看守，而今天，守望队就是我。"
+    },
+    "60DD1CCFD877D98F624F98A3C0CDA715": {
+      "source": "Here? You're sure?",
+      "target": "在这儿？你确定？"
+    },
+    "68EB89CAA17EB5DCAE4846C249911A20": {
+      "source": "Part ways",
+      "target": "分道扬镳"
+    },
+    "73ABFF2781242AD7E7DC27E5B025A2FD": {
+      "source": "Here? Are you certain?",
+      "target": "在这里？您确定吗？"
+    },
+    "73E613A8359C803871A988C23AD46906": {
+      "source": "Sister Ilse joined your party · G: Tactics",
+      "target": "伊尔莎修女加入了队伍 · G：战术"
+    },
+    "74ADF2248DB896AAA5BA7C0BA14647B7": {
+      "source": "Then it's the two of us. I'll keep to your heels — tell me how you want me fighting, and that's how I'll fight.",
+      "target": "那就是我们两个了。我会紧跟在你身后——告诉我你想让我怎么打，我就怎么打。"
+    },
+    "76CFA3415DB52EB2558AAE6CAF2FDCC9": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "78A40C637A79F58CB35077DD48ECEDEC": {
+      "source": "Walk with me",
+      "target": "与我同行"
+    },
+    "80BFBA37F8B042B1E98561BAD094025B": {
+      "source": "Straw dummies and a warm fire · Safe",
+      "target": "稻草假人与温暖的篝火 · 安全区"
+    },
+    "94EA0028B8100E8C7D28B17ECC49A0AB": {
+      "source": "Walk with me",
+      "target": "与我同行"
+    },
+    "148F1EF65795185F71AFA891775EC47B": {
+      "source": "No — stay with me",
+      "target": "不，留在我身边"
+    },
+    "239AB5B7EACCA3FF63F6CB9314A0C227": {
+      "source": "Bats, slimes and a shaman · Lv 6–7",
+      "target": "蝙蝠、史莱姆与萨满 · Lv 6–7"
+    },
+    "479E3369D64BB5161A9C3183897DD58E": {
+      "source": "Where the Old Fires Wake",
+      "target": "古火苏醒之地"
+    },
+    "501A5ACC04A8BF8BCA32A7D4228F5CF3": {
+      "source": "Where the Old Fires Wake",
+      "target": "古火苏醒之地"
+    },
+    "528C36CF5C27D8BE8DBA96495448C863": {
+      "source": "Then the watch marches with you. I'll keep to your heels — tell me how you want me fighting, and that's how I'll fight.",
+      "target": "那守望队就与你同行。我会紧跟在你身后——告诉我你想让我怎么打，我就怎么打。"
+    },
+    "0751A222ADC1767D11A61D1FDF4E7B2D": {
+      "source": "West, the ruins — archers on the walls, and a blade-smith's cache up on the ledge. Whoever carries that blade hits harder.",
+      "target": "往西是遗迹——城墙上有弓手，岩架上藏着铁匠的宝箱。谁拿着那把剑，谁出手就更狠。"
+    },
+    "765BB6859D2461D2DEF0EA32623E46E9": {
+      "source": "That's Cinderheart up there. You break the rock — I'll keep you standing.",
+      "target": "上面那个就是烬心。你去砸碎岩石——我保你不倒。"
+    },
+    "806E150DDC7B6C5B05EEFF0F5348CF68": {
+      "source": "Rook, scout of the Cinderwatch. The captain has me minding the camp while the whole pass goes mad.",
+      "target": "我是烬望的斥候鲁克。整条隘口都乱成一锅粥了，队长却让我在营地看家。"
+    },
+    "813CD58D47C644A953211244B2A3C3AE": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "833F290FC00ABA221D57A9F1EA6DF945": {
+      "source": "Quiver's full. Point me at something.",
+      "target": "箭囊满了。给我指个目标吧。"
+    },
+    "0835E199F2848FEDA93A30141C4A04A4": {
+      "source": "Shall I walk with you?",
+      "target": "要我与您同行吗？"
+    },
+    "05914B6673EDC076B257D0CAD2AFCAED": {
+      "source": "Fair enough. I'll watch the road from here.",
+      "target": "行吧。我就在这儿盯着路。"
+    },
+    "6905A12E2BF8CCA3D81E30D55DF6D434": {
+      "source": "Yes, part ways",
+      "target": "是的，就此别过"
+    },
+    "6919B52A9CC30FA33D99B75553A462E6": {
+      "source": "The keep's door is rusted shut. Goblin scrawl covers the timbers: a very bad drawing of a very big rock man, and an arrow pointing north.",
+      "target": "堡垒的门锈死了。木板上满是哥布林的涂鸦：一个画得奇丑无比、又大得出奇的石头人，外加一个指向北方的箭头。"
+    },
+    "07116A6A7ADCE521EA065EF4326ACAE5": {
+      "source": "Back from the road? The pass will not wait for you to heal — but I can heal you as you go.",
+      "target": "您从路上回来了？隘口可不会等您养好伤——但我可以边走边为您疗伤。"
+    },
+    "7627DF60A0EDD44A86742170DA1DF527": {
+      "source": "Every step up, the pass gets louder.",
+      "target": "每往上走一步，隘口就更喧闹一分。"
+    },
+    "09176F94FFF086AB8A0478C0D30E3FD9": {
+      "source": "Boars on the lip — they charge in straight lines. I'll stay at your shoulder.",
+      "target": "边缘有野猪——它们只会直线冲锋。我守在你身侧。"
+    },
+    "16152C6F8C5125A4AA97762D84ECC406": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "37554CEF2F7326B9BABE00323417CD17": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "49939CCA5D6EBC44D07C38A9A723C481": {
+      "source": "Your call, traveller.",
+      "target": "你说了算，旅人。"
+    },
+    "903676CD514DC9690543CE7D9521231F": {
+      "source": "No — stay with me",
+      "target": "不，留在我身边"
+    },
+    "952558C7641506B4AB60FFB4250B8EE2": {
+      "source": "Yes, part ways",
+      "target": "是的，就此别过"
+    },
+    "3200572EBE4B3D9AEE0BB27E520B2088": {
+      "source": "The lodge door is barred from inside. Someone is snoring in there — steadily, like a drum keeping time for a march.",
+      "target": "小屋的门从里面闩上了。屋里有人在打鼾——鼾声平稳，像给行军打拍子的鼓点。"
+    },
+    "4809641C8FF3C741A64392B7404BE905": {
+      "source": "The nearest stone will know where I am. Go gently.",
+      "target": "最近的那块石头会记得我在哪里。请您一路小心。"
+    },
+    "5839654DF48D5A83FBDDB41095C3E290": {
+      "source": "East, the mire — bats over the water, and something that hardens the heart out on the islet. Both roads meet again on the {quarry lip}.",
+      "target": "往东是沼泽——水面上有蝙蝠，小岛上还有能让心脏更强健的东西。两条路会在{采石场边缘}重新汇合。"
+    },
+    "6336343E6CD1CAAA0C738B90082177C1": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "8376826FF01B0B73B1FF876D3C50A33E": {
+      "source": "Three already walk at your back. Go with the stones' blessing, and come for me if one of them turns home.",
+      "target": "已经有三人跟在您身后了。带着石头的祝福上路吧。若有谁要回去，再来找我。"
+    },
+    "A5AEAD3E8E60EC0941A43384120CD8ED": {
+      "source": "↑ the {Cinder Quarry} · the {Caldera}\n↓ the {Hollow Mire} · {The Crossroads}",
+      "target": "↑ {烬火采石场} · {火山口}\n↓ {洼地沼泽} · {十字路口}"
+    },
+    "A13C34DDF782036D2BF5255590EC11DB": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "A82D0E6392F14AD7B32F252640340F24": {
+      "source": "Your company's full, traveller. If one of them heads home, the stone and I will still be here.",
+      "target": "你的队伍已经满了，旅人。要是有谁回去了，这块石头和我都还在这儿。"
+    },
+    "A41051B7A4620F91A12D428B6A488A98": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "AB679A9CB09D1A595C516F1473537C35": {
+      "source": "Should you fall, the stone you last woke calls you back to it — lighter in the purse, but whole.",
+      "target": "倘若您倒下了，您最后唤醒的那块石头会把您召回它身边——钱袋会轻一些，人却安然无恙。"
+    },
+    "ABA9A4704A2302335B933DBE540116A1": {
+      "source": "Lead on, then.",
+      "target": "那就走吧，你带路。"
+    },
+    "AD0B93B1D38819D9148BB5B4278AB1E8": {
+      "source": "How shall I serve?",
+      "target": "我该如何效劳？"
+    },
+    "AD737096AAC8A67FE3884848C3280506": {
+      "source": "Archers on the walls. The ones with bows are mine.",
+      "target": "墙上有弓手。拿弓的都归我。"
+    },
+    "ADB0B7840B9ED517F107470406C3246F": {
+      "source": "Lead on.",
+      "target": "走吧。"
+    },
+    "B875CFF344AC05F7736228F519AF5F9A": {
+      "source": "When he smashes the ground, rings of fire roll out. Don't run from them. Roll through them — toward him.",
+      "target": "它砸向地面时，会荡开一圈圈火环。别跑。翻滚穿过去——朝着它滚。"
+    },
+    "B4690431AA00A6B361FF605A172C1B2A": {
+      "source": "Tactics…",
+      "target": "战术…"
+    },
+    "BB53CE50E961BEF626C50940E3EED6F1": {
+      "source": "Ironhide boars and archers · Lv 8",
+      "target": "铁皮野猪与弓手 · Lv 8"
+    },
+    "BBD4D81E2999A620A80AE33D8A5B3454": {
+      "source": "The waystones remember the last traveller who came near. Walk close, and the crystal will know you.",
+      "target": "路标石会记住最后一位靠近它的旅人。走近些，水晶便会认得您。"
+    },
+    "BFEE313B0F7FC3EA0DCBD2A0586957C0": {
+      "source": "What's the plan?",
+      "target": "接下来怎么打算？"
+    },
+    "C5A3480B339D06B1101BD0D4197447B1": {
+      "source": "Cinderheart… Stay within my reach, and I will keep you whole.",
+      "target": "烬心……请待在我够得着的地方，我会护您周全。"
+    },
+    "C53E49744D06BFE7AD83B46F73EA98D2": {
+      "source": "Press any key",
+      "target": "按任意键开始"
+    },
+    "C874C41F20BEEB3F1785B0ED0D868FEC": {
+      "source": "Suit yourself. I'll be here, shooting straw.",
+      "target": "随你吧。我就在这儿射稻草人。"
+    },
+    "C40694E163258BD89E13EB65CBA1C128": {
+      "source": "The stones will keep me. Come back when you need mending.",
+      "target": "石头们会守护我。需要疗伤时，再回来吧。"
+    },
+    "D0F07D90B7A22ED883300464C6D275FC": {
+      "source": "Back again. The {Caldera} hasn't come any closer.",
+      "target": "又回来了。{火山口}可没有自己挪近一步。"
+    },
+    "D4495716787AB1CDDC383EA4CAA60283": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "DAD1F3620027AB99A77311A1F5567B13": {
+      "source": "A stone can keep itself. If you mean to climb to the {Caldera}, I'd rather be climbing with you.",
+      "target": "这块石头自己守得住。你若要登上{火山口}，我宁愿陪你一道去。"
+    },
+    "DB7EC5B2B1E4FCCEE1B58962D34CC64D": {
+      "source": "↑ the {Mossy Glade} · {The Crossroads}\nBeyond: the {Cinder Quarry} and the {Caldera}.",
+      "target": "↑ {青苔林地} · {十字路口}\n再往前：{烬火采石场}与{火山口}。"
+    },
+    "DDDA8166397B7FC9B99346F7D64335F6": {
+      "source": "I am with you, traveller.",
+      "target": "我与您同在，旅人。"
+    },
+    "E0A4A9813095DD85A7D188678D7E3919": {
+      "source": "Part ways",
+      "target": "分道扬镳"
+    },
+    "E6B551CC8A46019FD72CAE1F3B0273A1": {
+      "source": "Sela joined your party · G: Tactics",
+      "target": "瑟拉加入了队伍 · G：战术"
+    },
+    "E7D613D4B57621AFC48EE3CA9AA96E7E": {
+      "source": "The watch keeps its last stores up here — draughts, whetstones, tonic. Coin for the cause, and they are yours.",
+      "target": "守望队最后的存货都放在这儿——治疗药水、磨刀石、补剂。为大义出点钱，东西就归你。"
+    },
+    "E347C036F0CEB68F8A4366AE82D9E52E": {
+      "source": "Cinderheart's awake in the {Caldera}. When he lowers his head and paws the stone, get a brazier between you — bait the charge into it and he'll stagger long enough for a proper beating.",
+      "target": "烬心在{火山口}醒了。它一低头、开始刨地，就把火盆挡在你们中间——引它一头撞上去，它会踉跄好一阵，够你狠狠揍它一顿。"
+    },
+    "E860F1D99214C8930069DC6E3FBA24E2": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "EB3312FE867710DFD66D58C2B4CF914B": {
+      "source": "Slimes and goblins · Lv 2",
+      "target": "史莱姆与哥布林 · Lv 2"
+    },
+    "EDA227F6F891C0B444139D5BB49A672F": {
+      "source": "Bruised? Stay where my light can reach you.",
+      "target": "受伤了吗？请待在我的光能照到的地方。"
+    },
+    "EF9F263B8A2753D32224C152DAC0E679": {
+      "source": "Still on your feet? Good.",
+      "target": "还站得住？很好。"
+    },
+    "F0EB49DB71AD989F2698ABFEFC07B978": {
+      "source": "Good. I'd have followed you anyway.",
+      "target": "那就好。反正我本来也会跟着你。"
+    },
+    "F43B4158E7AB475A27CE88E9D0DCF251": {
+      "source": "No — stay with me",
+      "target": "不，留在我身边"
+    },
+    "F46A8BB2503C801625CA9F4AF88C2CF3": {
+      "source": "Then I'll keep the stone warm. You know where to find me.",
+      "target": "那我就替你把这块石头焐着。你知道去哪儿找我。"
+    },
+    "F05259E38F4E18D71F68B3C8D771CBE9": {
+      "source": "Cinderwatch Pass",
+      "target": "烬望隘口"
+    },
+    "F054678FFA77C3E533BB8AC5C96975F4": {
+      "source": "Tactics…",
+      "target": "战术…"
+    },
+    "F403445709004892BEB78F13C0A7C838": {
+      "source": "Where the Old Fires Wake",
+      "target": "古火苏醒之地"
+    },
+    "FA1C6A7EE4448CDA9E129D197A8E6232": {
+      "source": "Healing Draughts! Glade honey, cold spring water and something I promised my grandmother never to name.",
+      "target": "治疗药水哟！林地蜂蜜、冰凉的泉水，再加上一样我答应过奶奶、永远不说出名字的东西。"
+    },
+    "FBA45B69E587F4EA3CB1EE56F934E849": {
+      "source": "Scout of the Cinderwatch",
+      "target": "烬望斥候"
+    },
+    "FD6CB96117B742410E45A922C9576567": {
+      "source": "↑ {The Caldera}. Cinderheart sleeps within.\nBait his charge into a brazier; roll through his fire rings, toward him; step out of the magma.",
+      "target": "↑ {火山口}。烬心沉睡其中。\n诱它冲撞火盆；迎着它翻滚穿过火环；离开熔岩。"
+    },
+    "FE00689C4289C44EAF9EAE88AC2624FA": {
+      "source": "Rest at a stone and your wounds close. The creatures of the pass return to their haunts as well, mind. Nothing is free up here — not even sleep.",
+      "target": "在石旁歇息，伤口便会愈合。不过请留意，隘口的怪物也会回到各自的巢穴。在这山上，没有什么是白来的——连睡眠也不例外。"
+    },
+    "FE580912FF46BD2513D7302B84A6499B": {
+      "source": "Goblins on the ruin walls, bats over the mire, archers on every ledge — and me down here, shooting straw.",
+      "target": "遗迹墙上有哥布林，沼泽上空有蝙蝠，每块岩台上都有弓手——而我却在这儿射稻草人。"
+    },
+    "FF094CD2FD5115F8510DE66EB7929682": {
+      "source": "Then I stay.",
+      "target": "那我就留下。"
+    }
+  }
+}

@@ -1,0 +1,378 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "zh",
+  "source": "common",
+  "extends": [],
+  "terms": {
+    "Brightwater Crossing": "明水渡",
+    "Cinderwatch Pass": "烬望隘口",
+    "Emberfall": "烬落村",
+    "Gildhaven": "鎏金港",
+    "Signpost": "指示牌",
+    "Starfall Vale": "星落谷",
+    "Untitled": "未命名",
+    "Untitled campaign": "未命名冒险",
+    "Villager": "村民",
+    "Waystone": "路标石",
+    "Willowmere": "柳湖村"
+  },
+  "units": {
+    "dlg.action.music-ask": {
+      "source": "Another song, or a little quiet?",
+      "target": "再来一曲，还是安静一会儿？"
+    },
+    "dlg.action.music-quiet": {
+      "source": "Some quiet",
+      "target": "安静一会儿"
+    },
+    "dlg.action.music-toast": {
+      "source": "♪ Music",
+      "target": "♪ 音乐"
+    },
+    "dlg.action.obtained": {
+      "source": "Obtained: ${item}",
+      "target": "获得：${item}"
+    },
+    "dlg.action.obtained-count": {
+      "source": "Obtained: ${item} ×${count}",
+      "target": "获得：${item} ×${count}"
+    },
+    "dlg.action.shop-ask": {
+      "source": "Would you like the ${item}?",
+      "target": "要${item}吗？"
+    },
+    "dlg.action.shop-ask-price": {
+      "source": "Would you like the ${item}? (${price} gold)",
+      "target": "要${item}吗？（${price} 金币）"
+    },
+    "dlg.action.shop-yes": {
+      "source": "Yes, please",
+      "target": "好的，谢谢"
+    },
+    "dlg.bard.another-verse": {
+      "source": "Another verse, or shall I rest my fingers by the fire?",
+      "target": "再来一段，还是让我在火边歇歇手指？"
+    },
+    "dlg.bard.another-verse-yes": {
+      "source": "Then another verse it is! This part is my favourite — the river joins in.",
+      "target": "那就再来一段！这部分我最喜欢——河水也会跟着唱。"
+    },
+    "dlg.bard.from-the-top": {
+      "source": "Quiet suits a fire, but a song suits it better. Here — from the top.",
+      "target": "安静和炉火很配，但歌声更配。来——从头开始。"
+    },
+    "dlg.bard.listener": {
+      "source": "A listener! Sit, sit. The fire is warm and my lute is — mostly — in tune.",
+      "target": "有听众！坐，快坐。炉火正暖，我的鲁特琴也——基本上——调准了。"
+    },
+    "dlg.bard.no-offence": {
+      "source": "No offence taken. Even a bard's fingers need a rest by the fire.",
+      "target": "没事，我不介意。吟游诗人的手指也得在火边歇一歇。"
+    },
+    "dlg.bard.rest-a-while": {
+      "source": "Rest a while",
+      "target": "歇一会儿吧"
+    },
+    "dlg.bard.song-intro": {
+      "source": "This one is called {Emberfall Evening}. I wrote it on that very bench, the night the falls turned gold.",
+      "target": "这首曲子叫《{烬落之暮}》。是我在那张长椅上写的，就在瀑布变成金色的那个夜晚。"
+    },
+    "dlg.bard.song-intro-playing": {
+      "source": "You have been hearing me since the square, I expect. This one is called {Emberfall Evening}. I wrote it on that very bench, the night the falls turned gold.",
+      "target": "我猜你从广场那边就听见我在弹了。这首曲子叫《{烬落之暮}》。是我在那张长椅上写的，就在瀑布变成金色的那个夜晚。"
+    },
+    "dlg.bard.song-toast": {
+      "source": "♪ Emberfall Evening",
+      "target": "♪《烬落之暮》"
+    },
+    "dlg.child.duchess": {
+      "source": "Shh! I'm sneaking up on {Duchess}. She's the plump one. She's also the fastest, which is not fair at all.",
+      "target": "嘘！我正在悄悄靠近{公爵夫人}。就是那只胖乎乎的。它也是跑得最快的，一点都不公平。"
+    },
+    "dlg.child.eggs": {
+      "source": "Grandpa says if I catch her, I get to name the next batch of eggs!",
+      "target": "爷爷说，要是我抓住它，下一窝蛋就由我来起名字！"
+    },
+    "dlg.child.fence": {
+      "source": "...Hey, you're tall. Could you be a fence? You just have to stand really, really still.",
+      "target": "……喂，你好高呀。能当一下篱笆吗？只要站着一动、一动都不动就行。"
+    },
+    "dlg.drillmaster.boss-felled": {
+      "source": "You felled {Cinderheart}. I watched the glow go out of the caldera from the palisade — the whole camp cheered loud enough to wake the dummies.",
+      "target": "你击倒了{烬心}。我在栅栏上看着火山口的光熄灭——整个营地欢呼声震天，连假人都快被吵醒了。"
+    },
+    "dlg.drillmaster.dice.keys": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {J (or the left mouse button)} and it loses its first turn.",
+      "target": "每一击都是d20加上你的力量，与敌人的护甲比较。趁敌人没察觉时用{J（或鼠标左键）}先下手，它会失去第一个回合。"
+    },
+    "dlg.drillmaster.dice.pad": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {X} and it loses its first turn.",
+      "target": "每一击都是d20加上你的力量，与敌人的护甲比较。趁敌人没察觉时用{X}先下手，它会失去第一个回合。"
+    },
+    "dlg.drillmaster.first-watch": {
+      "source": "The pass has not been this quiet since my grandmother held this post. Rest by the fire tonight, soldier. You have earned the first watch off.",
+      "target": "自从我祖母驻守这里以来，隘口还从没这么安静过。今晚就在火边好好休息吧，士兵。头一班岗你不用站了，这是你应得的。"
+    },
+    "dlg.drillmaster.glade-warning": {
+      "source": "The glade beyond the gate is crawling with slimes. Mind the goblins — they circle before they strike.",
+      "target": "大门外的林地里到处都是史莱姆。小心哥布林——它们会先绕着你转，再动手。"
+    },
+    "dlg.drillmaster.good-swing": {
+      "source": "There is a sword arm! Remember: the dice favour the bold, and the careful even more.",
+      "target": "好身手！记住：骰子眷顾勇敢的人，更眷顾谨慎的人。"
+    },
+    "dlg.drillmaster.hold-there": {
+      "source": "Hold there, traveler. Nobody leaves this camp with a sword they cannot swing. I am {Captain Maren}, and the dummies are my recruits.",
+      "target": "站住，旅人。挥不动剑的人，谁也别想离开这座营地。我是{玛伦队长}，这些假人是我的新兵。"
+    },
+    "dlg.drillmaster.obtained-draughts": {
+      "source": "Obtained: Healing Draught ×${count}",
+      "target": "获得：治疗药水 ×${count}"
+    },
+    "dlg.drillmaster.remember-turns": {
+      "source": "Remember: let the dice decide, but choose your fights. And rest at a {waystone} before you take on anything with a crown of fire.",
+      "target": "记住：胜负交给骰子，但对手要自己挑。还有，在挑战头顶火冠的家伙之前，先在{路石}休息。"
+    },
+    "dlg.drillmaster.reward": {
+      "source": "Take these {Healing Draughts}. In a fight, drink one from the menu on your turn. Bram sells more at the stall.",
+      "target": "拿着这些{治疗药水}。战斗中，在你的回合从菜单里喝一瓶。布拉姆的摊位还有更多。"
+    },
+    "dlg.drillmaster.satchel-full": {
+      "source": "I had draughts for you, but your satchel is full. Bram sells more at the stall when you need them.",
+      "target": "本来有药水给你，可你的挎包满了。需要的时候，布拉姆的摊子上有卖。"
+    },
+    "dlg.drillmaster.try-dummy": {
+      "source": "Go on: take a swing at a dummy. Then come back to me.",
+      "target": "去吧，对稻草人挥一下。然后回来找我。"
+    },
+    "dlg.drillmaster.turns": {
+      "source": "Out past the gate, a fight goes by turns. When foes spot you, everyone rolls for initiative and acts in order. On your turn, pick {Attack}, {Move}, a {Maneuver} or a spell from the menu.",
+      "target": "出了大门，战斗是轮流进行的。一旦被敌人发现，所有人掷先攻，依次行动。轮到你时，从菜单中选择{攻击}、{移动}、{战技}或法术。"
+    },
+    "dlg.drillmaster.wait-swing": {
+      "source": "Still waiting on one honest swing at a dummy. The dummies are patient. I am less so.",
+      "target": "我还在等你对稻草人好好挥一下。稻草人很有耐心，我可没那么有耐心。"
+    },
+    "dlg.elder.founders": {
+      "source": "Our founders followed this river up from the lowlands four hundred years ago. At dusk the falls catch the last of the sun and glow like embers in a hearth.",
+      "target": "四百年前，我们的先祖从低地沿着这条河一路上溯而来。黄昏时分，瀑布接住最后一缕阳光，像炉膛里的余烬一样发亮。"
+    },
+    "dlg.elder.hence-the-name": {
+      "source": "Hence the name. We are not an imaginative people, but we are an honest one.",
+      "target": "村名就是这么来的。我们这儿的人没什么想象力，但为人老实。"
+    },
+    "dlg.elder.inn-tip": {
+      "source": "If your feet are weary, the {Ember & Oak} has a bed and a bowl of stew. Rosalind keeps the hearth warm and the gossip warmer.",
+      "target": "要是走累了，{烬火橡木旅店}有床铺，也有一碗炖菜。罗莎琳德把炉火烧得暖暖的，闲话聊得更热乎。"
+    },
+    "dlg.elder.stair": {
+      "source": "Climb the stair by the inn some evening. The whole valley turns to gold up there.",
+      "target": "哪天傍晚，去爬爬旅店旁边的台阶吧。在上面看，整座山谷都会变成金色。"
+    },
+    "dlg.elder.still-here": {
+      "source": "Still here? Good. A village is only as warm as the company that lingers in it.",
+      "target": "还在呀？好。一个村子暖不暖，全看留在这里的人。"
+    },
+    "dlg.elder.welcome": {
+      "source": "Ah, a traveler. Welcome to {Emberfall}, child. Mind the cobbles — they are older than I am, and twice as stubborn.",
+      "target": "啊，是位旅人。欢迎来到{烬落村}，孩子。当心脚下的石子路——它们比我还老，脾气也比我倔一倍。"
+    },
+    "dlg.elder.well": {
+      "source": "Thirsty? The well is free to all. Its water comes down from {Windmill Hill}, and in all my years it has never once run dry.",
+      "target": "渴了吗？那口井谁都可以用。井水是从{风车丘}流下来的，我活了这么多年，它一次都没干过。"
+    },
+    "dlg.farmer.chickens": {
+      "source": "If you see my granddaughter, tell her the chickens have filed a formal complaint.",
+      "target": "要是碰见我孙女，告诉她，鸡群已经正式提出投诉了。"
+    },
+    "dlg.farmer.soil": {
+      "source": "Soil's been kind this year. Rain came when we asked for it and kept away when we didn't. Can't ask fairer than that.",
+      "target": "今年的土地很厚道。想要雨的时候就下，不想要的时候就不来。再公道不过了。"
+    },
+    "dlg.farmer.turnips": {
+      "source": "Hm? Oh, don't mind me. Just asking the turnips how they are getting on.",
+      "target": "嗯？哦，别管我。我就是问问这些萝卜长得怎么样了。"
+    },
+    "dlg.guard.all-quiet": {
+      "source": "All quiet on the bridge. Just the way I like it. ...Mostly.",
+      "target": "桥上一切太平。我就喜欢这样。……大体上吧。"
+    },
+    "dlg.guard.ducks-and-gossip": {
+      "source": "Nothing has crossed this bridge in years but ducks and gossip, and I have yet to arrest either.",
+      "target": "这些年来，过这座桥的只有鸭子和闲话，两样我都还没逮着过。"
+    },
+    "dlg.guard.grove": {
+      "source": "The grove beyond turns to amber this time of year. Keep to the path after dark — the river is gentle, but she is deeper than she looks.",
+      "target": "桥那头的林子每到这个时节就会变成琥珀色。天黑后别离开小路——这条河看着温顺，可比看上去深得多。"
+    },
+    "dlg.guard.halt": {
+      "source": "Halt! State your— ah. Forgive me, traveler. Force of habit.",
+      "target": "站住！报上你的——啊。抱歉，旅人。职业习惯。"
+    },
+    "dlg.innkeeper.good-morning": {
+      "source": "Good morning, sleepyhead! Breakfast is on the table, and the rooster has been shouting about it for an hour.",
+      "target": "早上好，小懒虫！早饭已经摆上桌了，公鸡为这事都嚷嚷一个钟头了。"
+    },
+    "dlg.innkeeper.take-your-time": {
+      "source": "Take your time, dear. The fire will keep.",
+      "target": "慢慢来，不着急。炉火会一直烧着的。"
+    },
+    "dlg.innkeeper.welcome": {
+      "source": "Welcome to the {Ember & Oak}! Warm beds, hot stew, and only a modest amount of snoring from the loft.",
+      "target": "欢迎光临{烬火橡木旅店}！床铺暖和，炖菜滚烫，阁楼传来的呼噜声也只有一点点。"
+    },
+    "dlg.merchant.fine-choice": {
+      "source": "A fine choice! Crisp as a winter morning and twice as sweet. Come back tomorrow — I will have pears. Probably.",
+      "target": "好眼光！脆得像冬天的早晨，还甜上一倍。明天再来吧——我会进些梨。大概吧。"
+    },
+    "dlg.merchant.looking-is-free": {
+      "source": "Looking is free! ...For now.",
+      "target": "看看不要钱！……暂时不要。"
+    },
+    "dlg.merchant.obtained-apple": {
+      "source": "Obtained: Crisp Apple",
+      "target": "获得：脆甜苹果"
+    },
+    "dlg.merchant.obtained-apple-count": {
+      "source": "Obtained: Crisp Apple ×${count}",
+      "target": "获得：脆甜苹果 ×${count}"
+    },
+    "dlg.merchant.offer-apple": {
+      "source": "An apple, fresh from the valley orchards? For a new face in {Emberfall}, it is on the house.",
+      "target": "来个刚从山谷果园摘下的苹果吗？{烬落村}的新面孔，这个算我请客。"
+    },
+    "dlg.merchant.step-up": {
+      "source": "Step right up! The finest produce this side of the river — and the only produce this side of the river, but let us not dwell on that.",
+      "target": "快来看看！河这边最好的农产品——也是河这边唯一的农产品，不过这点咱们就别细究了。"
+    },
+    "dlg.merchant.take-apple": {
+      "source": "Take an apple",
+      "target": "拿个苹果"
+    },
+    "dlg.music.fades": {
+      "source": "The music fades…",
+      "target": "乐声渐渐消散……"
+    },
+    "dlg.music.keep-playing": {
+      "source": "Keep playing",
+      "target": "继续演奏"
+    },
+    "dlg.rest.ask": {
+      "source": "Will you rest until morning?",
+      "target": "要休息到天亮吗？"
+    },
+    "dlg.rest.not-yet": {
+      "source": "Not yet",
+      "target": "还不是时候"
+    },
+    "dlg.rest.until-morning": {
+      "source": "Rest until morning",
+      "target": "休息到天亮"
+    },
+    "dlg.scholar.golden-hour": {
+      "source": "Golden hour is my favourite. The shadows grow long and everything looks like it remembers something.",
+      "target": "我最喜欢夕照时分。影子拉得长长的，万物都像在回忆着什么。"
+    },
+    "dlg.scholar.notes-keys": {
+      "source": "And should you wish to see my working notes, {~} opens them. {H} will remind you of all this, should you forget.",
+      "target": "要是想看我的工作笔记，按{~}就能打开。万一忘了这些，{H}会提醒您。"
+    },
+    "dlg.scholar.remember": {
+      "source": "Remember: {T} for the hour, {R} for the weather, {P} for the view, {H} for help. The rest is patience.",
+      "target": "记住：{T}换时辰，{R}换天气，{P}看风景，{H}看帮助。剩下的就靠耐心了。"
+    },
+    "dlg.scholar.time-key": {
+      "source": "Press {T} and watch the day turn — dawn, noon, golden hour, dusk and night. I have documented each one. Twice.",
+      "target": "按{T}，看一天如何流转——黎明、正午、夕照、黄昏，然后是夜晚。每一个我都记录过。记了两遍。"
+    },
+    "dlg.scholar.view-keys": {
+      "source": "{P} hides everything but the view. {Q} and {E} turn the world around you, and {Z} and {X} — or the wheel — bring it closer or push it away.",
+      "target": "{P}会隐去眼前景色以外的一切。{Q}和{E}让世界绕着您旋转，{Z}和{X}——或者滚轮——能把它拉近或推远。"
+    },
+    "dlg.scholar.visitor": {
+      "source": "Oh! A visitor on the hill. I am cataloguing how the light moves over this valley. Would you believe it is different every hour?",
+      "target": "哦！山丘上来了位访客。我正在记录光线如何在这座山谷上移动。您信吗？每个小时都不一样。"
+    },
+    "dlg.scholar.weather-key": {
+      "source": "{R} summons the weather: rain, then snow, then clear skies again. Do not ask me how. Scholarship has its limits.",
+      "target": "{R}能召来天气：先是雨，然后是雪，再变回晴天。别问我原理。学问也有尽头。"
+    },
+    "dlg.shop.cannot-carry-more": {
+      "source": "You cannot carry more",
+      "target": "已经带不下了"
+    },
+    "dlg.shop.just-looking": {
+      "source": "Just looking",
+      "target": "随便看看"
+    },
+    "dlg.shop.not-enough-gold": {
+      "source": "Not enough gold",
+      "target": "金币不足"
+    },
+    "dlg.shop.not-for-sale": {
+      "source": "Not for sale",
+      "target": "非卖品"
+    },
+    "dlg.shopkeeper.bought": {
+      "source": "Obtained: ${name}",
+      "target": "获得：${name}"
+    },
+    "dlg.shopkeeper.bought-atk": {
+      "source": "Obtained: ${name} — ATK ${before} → ${after}",
+      "target": "获得：${name}——攻击 ${before} → ${after}"
+    },
+    "dlg.shopkeeper.bought-def": {
+      "source": "Obtained: ${name} — DEF ${before} → ${after}",
+      "target": "获得：${name}——防御 ${before} → ${after}"
+    },
+    "dlg.shopkeeper.bought-gain": {
+      "source": "Obtained: ${name} — ${gain}",
+      "target": "获得：${name}——${gain}"
+    },
+    "dlg.shopkeeper.bought-max-hp": {
+      "source": "Obtained: ${name} — Max HP ${before} → ${after}",
+      "target": "获得：${name}——最大HP ${before} → ${after}"
+    },
+    "dlg.shopkeeper.bought-max-mp": {
+      "source": "Obtained: ${name} — Max MP ${before} → ${after}",
+      "target": "获得：${name}——最大MP ${before} → ${after}"
+    },
+    "dlg.shopkeeper.farewell-bought": {
+      "source": "A pleasure doing business. Mind the fire up there.",
+      "target": "做您生意真愉快。山上那把火，您可当心点。"
+    },
+    "dlg.shopkeeper.farewell-none": {
+      "source": "Suit yourself. The cart is not going anywhere.",
+      "target": "随您便。我这车又跑不了。"
+    },
+    "dlg.shopkeeper.foes-near": {
+      "source": "Not with foes at your heels! Lose them first, then we can talk trade.",
+      "target": "后面还跟着敌人呢！先甩掉它们，咱们再谈买卖。"
+    },
+    "dlg.shopkeeper.menu-again": {
+      "source": "Anything else? You carry {${gold} gold} · ATK ${atk} · DEF ${def}.",
+      "target": "还要别的吗？你身上有{${gold} 金币} · 攻击 ${atk} · 防御 ${def}。"
+    },
+    "dlg.shopkeeper.menu-first": {
+      "source": "What will it be? You carry {${gold} gold} · ATK ${atk} · DEF ${def}.",
+      "target": "要点什么？你身上有{${gold} 金币} · 攻击 ${atk} · 防御 ${def}。"
+    },
+    "dlg.shopkeeper.nothing-more": {
+      "source": "Nothing more",
+      "target": "不用了"
+    },
+    "dlg.shopkeeper.tell-me-again": {
+      "source": "Tell me again",
+      "target": "再说一遍"
+    },
+    "dlg.shopkeeper.ware": {
+      "source": "${name} (${gain}) — ${price} gold",
+      "target": "${name}（${gain}）——${price} 金币"
+    },
+    "dlg.shopkeeper.ware-short": {
+      "source": "${name} (${gain}) — ${price} gold (not enough)",
+      "target": "${name}（${gain}）——${price} 金币（不够）"
+    }
+  }
+}

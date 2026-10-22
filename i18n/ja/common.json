@@ -1,0 +1,378 @@
+{
+  "format": "luminati-i18n",
+  "version": 3,
+  "lang": "ja",
+  "source": "common",
+  "extends": [],
+  "terms": {
+    "Brightwater Crossing": "ブライトウォーターの渡し",
+    "Cinderwatch Pass": "シンダーウォッチ峠",
+    "Emberfall": "エンバーフォール",
+    "Gildhaven": "ギルドヘイヴン",
+    "Signpost": "立て札",
+    "Starfall Vale": "星降りの谷",
+    "Untitled": "無題",
+    "Untitled campaign": "無題のキャンペーン",
+    "Villager": "村人",
+    "Waystone": "道標石",
+    "Willowmere": "ウィロウミア"
+  },
+  "units": {
+    "dlg.action.music-ask": {
+      "source": "Another song, or a little quiet?",
+      "target": "もう一曲いこうか？　それとも少し静かにしようか？"
+    },
+    "dlg.action.music-quiet": {
+      "source": "Some quiet",
+      "target": "少し静かに"
+    },
+    "dlg.action.music-toast": {
+      "source": "♪ Music",
+      "target": "♪ 音楽"
+    },
+    "dlg.action.obtained": {
+      "source": "Obtained: ${item}",
+      "target": "${item}を手に入れた"
+    },
+    "dlg.action.obtained-count": {
+      "source": "Obtained: ${item} ×${count}",
+      "target": "${item}×${count}を手に入れた"
+    },
+    "dlg.action.shop-ask": {
+      "source": "Would you like the ${item}?",
+      "target": "${item}はいかが？"
+    },
+    "dlg.action.shop-ask-price": {
+      "source": "Would you like the ${item}? (${price} gold)",
+      "target": "${item}はいかが？（${price}G）"
+    },
+    "dlg.action.shop-yes": {
+      "source": "Yes, please",
+      "target": "お願いします"
+    },
+    "dlg.bard.another-verse": {
+      "source": "Another verse, or shall I rest my fingers by the fire?",
+      "target": "もう一節いこうか、それとも火のそばで指を休めようか？"
+    },
+    "dlg.bard.another-verse-yes": {
+      "source": "Then another verse it is! This part is my favourite — the river joins in.",
+      "target": "じゃあ、もう一節！　ここがいちばん好きなところなんだ――川も一緒に歌いだす。"
+    },
+    "dlg.bard.from-the-top": {
+      "source": "Quiet suits a fire, but a song suits it better. Here — from the top.",
+      "target": "静けさも焚き火に似合うけど、歌のほうがもっと似合う。さあ――頭からいくよ。"
+    },
+    "dlg.bard.listener": {
+      "source": "A listener! Sit, sit. The fire is warm and my lute is — mostly — in tune.",
+      "target": "お客さんだ！　座って座って。火は暖かいし、リュートも――だいたい――調子は合ってる。"
+    },
+    "dlg.bard.no-offence": {
+      "source": "No offence taken. Even a bard's fingers need a rest by the fire.",
+      "target": "気にしてないさ。吟遊詩人の指だって、火のそばで休みたいときはある。"
+    },
+    "dlg.bard.rest-a-while": {
+      "source": "Rest a while",
+      "target": "少し休んで"
+    },
+    "dlg.bard.song-intro": {
+      "source": "This one is called {Emberfall Evening}. I wrote it on that very bench, the night the falls turned gold.",
+      "target": "この曲は『{エンバーフォールの夕べ}』。滝が金色に染まった夜、まさにあのベンチで作ったんだ。"
+    },
+    "dlg.bard.song-intro-playing": {
+      "source": "You have been hearing me since the square, I expect. This one is called {Emberfall Evening}. I wrote it on that very bench, the night the falls turned gold.",
+      "target": "広場のあたりから聞こえてたんじゃないかな。この曲は『{エンバーフォールの夕べ}』。滝が金色に染まった夜、まさにあのベンチで作ったんだ。"
+    },
+    "dlg.bard.song-toast": {
+      "source": "♪ Emberfall Evening",
+      "target": "♪『エンバーフォールの夕べ』"
+    },
+    "dlg.child.duchess": {
+      "source": "Shh! I'm sneaking up on {Duchess}. She's the plump one. She's also the fastest, which is not fair at all.",
+      "target": "しーっ！　今、{公爵夫人}にこっそり近づいてるの。あのまるまるした子だよ。いちばん足が速いのもあの子なの。ずるいよね！"
+    },
+    "dlg.child.eggs": {
+      "source": "Grandpa says if I catch her, I get to name the next batch of eggs!",
+      "target": "つかまえたら、次に生まれる卵に名前をつけていいって、おじいちゃんが言ったんだもん！"
+    },
+    "dlg.child.fence": {
+      "source": "...Hey, you're tall. Could you be a fence? You just have to stand really, really still.",
+      "target": "……ねえ、背が高いね。柵になってくれない？　じーっと、じーっと立ってるだけでいいから。"
+    },
+    "dlg.drillmaster.boss-felled": {
+      "source": "You felled {Cinderheart}. I watched the glow go out of the caldera from the palisade — the whole camp cheered loud enough to wake the dummies.",
+      "target": "{シンダーハート}を倒したか。柵の上から、カルデラの光が消えていくのを見ていた――野営地じゅうの歓声で、わら人形まで目を覚ましそうだったぞ。"
+    },
+    "dlg.drillmaster.dice.keys": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {J (or the left mouse button)} and it loses its first turn.",
+      "target": "一振りごとにd20と筋力を足して、敵の鎧と比べる。気づかれる前に{J（または左クリック）}で斬りかかれば、敵は最初の番を失う。"
+    },
+    "dlg.drillmaster.dice.pad": {
+      "source": "Every swing is a d20 plus your strength against the foe's armour. Catch a foe unaware with {X} and it loses its first turn.",
+      "target": "一振りごとにd20と筋力を足して、敵の鎧と比べる。気づかれる前に{X}で斬りかかれば、敵は最初の番を失う。"
+    },
+    "dlg.drillmaster.first-watch": {
+      "source": "The pass has not been this quiet since my grandmother held this post. Rest by the fire tonight, soldier. You have earned the first watch off.",
+      "target": "祖母がこの持ち場を守っていた頃から、峠がこれほど静かだったことはない。今夜は火のそばで休め、兵士よ。最初の見張りは免除だ。それだけの働きはした。"
+    },
+    "dlg.drillmaster.glade-warning": {
+      "source": "The glade beyond the gate is crawling with slimes. Mind the goblins — they circle before they strike.",
+      "target": "門の先の林はスライムだらけだ。ゴブリンに気をつけろ――奴らは回り込んでから仕掛けてくる。"
+    },
+    "dlg.drillmaster.good-swing": {
+      "source": "There is a sword arm! Remember: the dice favour the bold, and the careful even more.",
+      "target": "いい腕だ！覚えておけ、ダイスは勇敢な者に味方する。慎重な者には、なおさらだ。"
+    },
+    "dlg.drillmaster.hold-there": {
+      "source": "Hold there, traveler. Nobody leaves this camp with a sword they cannot swing. I am {Captain Maren}, and the dummies are my recruits.",
+      "target": "待て、旅人。振れもしない剣を下げて、この野営地を出ていく者はいない。私は{マレン隊長}。このわら人形どもは私の新兵だ。"
+    },
+    "dlg.drillmaster.obtained-draughts": {
+      "source": "Obtained: Healing Draught ×${count}",
+      "target": "回復薬×${count}を手に入れた"
+    },
+    "dlg.drillmaster.remember-turns": {
+      "source": "Remember: let the dice decide, but choose your fights. And rest at a {waystone} before you take on anything with a crown of fire.",
+      "target": "覚えておけ。勝負はダイス次第だが、戦う相手は自分で選べ。それと、炎の冠をかぶった奴に挑む前に{ウェイストーン}で休め。"
+    },
+    "dlg.drillmaster.reward": {
+      "source": "Take these {Healing Draughts}. In a fight, drink one from the menu on your turn. Bram sells more at the stall.",
+      "target": "この{回復薬}を持っていけ。戦いの最中なら、自分の番にメニューから飲める。屋台のブラムがもっと売っている。"
+    },
+    "dlg.drillmaster.satchel-full": {
+      "source": "I had draughts for you, but your satchel is full. Bram sells more at the stall when you need them.",
+      "target": "回復薬をやるつもりだったが、鞄がいっぱいだな。必要になったら、屋台でブラムが売っている。"
+    },
+    "dlg.drillmaster.try-dummy": {
+      "source": "Go on: take a swing at a dummy. Then come back to me.",
+      "target": "さあ、わら人形に一太刀浴びせてみろ。それから戻ってこい。"
+    },
+    "dlg.drillmaster.turns": {
+      "source": "Out past the gate, a fight goes by turns. When foes spot you, everyone rolls for initiative and acts in order. On your turn, pick {Attack}, {Move}, a {Maneuver} or a spell from the menu.",
+      "target": "門の外では、戦いは順番に進む。敵に見つかったら、全員がイニシアチブを振って順に動く。自分の番が来たら、メニューから{攻撃}、{移動}、{戦技}や呪文を選べ。"
+    },
+    "dlg.drillmaster.wait-swing": {
+      "source": "Still waiting on one honest swing at a dummy. The dummies are patient. I am less so.",
+      "target": "まだわら人形への一太刀を見せてもらっていないぞ。わら人形は辛抱強いが、私はそうでもない。"
+    },
+    "dlg.elder.founders": {
+      "source": "Our founders followed this river up from the lowlands four hundred years ago. At dusk the falls catch the last of the sun and glow like embers in a hearth.",
+      "target": "四百年前、わしらの祖先は低地からこの川をさかのぼってきた。夕暮れになると、滝が最後の日差しを受けて、炉の熾火のように輝くんじゃ。"
+    },
+    "dlg.elder.hence-the-name": {
+      "source": "Hence the name. We are not an imaginative people, but we are an honest one.",
+      "target": "それで「エンバーフォール」――熾火の滝、というわけじゃ。わしらは想像力に富んだ民ではないが、正直者ではあるでな。"
+    },
+    "dlg.elder.inn-tip": {
+      "source": "If your feet are weary, the {Ember & Oak} has a bed and a bowl of stew. Rosalind keeps the hearth warm and the gossip warmer.",
+      "target": "足が疲れたなら、{エンバー＆オーク亭}に寝床とシチューがある。ロザリンドが炉を温め、噂話をもっと熱くしておるよ。"
+    },
+    "dlg.elder.stair": {
+      "source": "Climb the stair by the inn some evening. The whole valley turns to gold up there.",
+      "target": "いつか夕方に、宿のそばの階段を登ってごらん。あそこからは、谷じゅうが金色に染まって見える。"
+    },
+    "dlg.elder.still-here": {
+      "source": "Still here? Good. A village is only as warm as the company that lingers in it.",
+      "target": "まだおったのかい？　よいことじゃ。村のぬくもりは、そこに留まる者たちのぬくもりで決まるでな。"
+    },
+    "dlg.elder.welcome": {
+      "source": "Ah, a traveler. Welcome to {Emberfall}, child. Mind the cobbles — they are older than I am, and twice as stubborn.",
+      "target": "おや、旅人さんかい。{エンバーフォール}へようこそ、お若いの。石畳には気をつけなされ――わしより年寄りで、わしの倍は頑固じゃからのう。"
+    },
+    "dlg.elder.well": {
+      "source": "Thirsty? The well is free to all. Its water comes down from {Windmill Hill}, and in all my years it has never once run dry.",
+      "target": "喉が渇いたかい？　井戸は誰でも使ってよい。水は{風車の丘}から下ってきておってな、わしの生きてきたあいだ、一度も涸れたことがないんじゃ。"
+    },
+    "dlg.farmer.chickens": {
+      "source": "If you see my granddaughter, tell her the chickens have filed a formal complaint.",
+      "target": "孫娘に会ったら伝えてくれんか。ニワトリたちから正式な苦情が出とるとな。"
+    },
+    "dlg.farmer.soil": {
+      "source": "Soil's been kind this year. Rain came when we asked for it and kept away when we didn't. Can't ask fairer than that.",
+      "target": "今年は土の機嫌がよくてのう。降ってほしいときに雨が降って、いらんときは降らなんだ。これ以上の望みはないわい。"
+    },
+    "dlg.farmer.turnips": {
+      "source": "Hm? Oh, don't mind me. Just asking the turnips how they are getting on.",
+      "target": "ん？　ああ、わしのことは気にせんでくれ。カブたちに調子はどうかと聞いとるだけじゃ。"
+    },
+    "dlg.guard.all-quiet": {
+      "source": "All quiet on the bridge. Just the way I like it. ...Mostly.",
+      "target": "橋は異状なし。こうでなくてはな。……まあ、だいたいは。"
+    },
+    "dlg.guard.ducks-and-gossip": {
+      "source": "Nothing has crossed this bridge in years but ducks and gossip, and I have yet to arrest either.",
+      "target": "ここ何年も、この橋を渡ったのはアヒルと噂話くらいのものだ。どちらもまだ逮捕できていない。"
+    },
+    "dlg.guard.grove": {
+      "source": "The grove beyond turns to amber this time of year. Keep to the path after dark — the river is gentle, but she is deeper than she looks.",
+      "target": "この先の木立は、今の季節には琥珀色に染まる。暗くなったら道を外れるな――川は穏やかだが、見た目より深いぞ。"
+    },
+    "dlg.guard.halt": {
+      "source": "Halt! State your— ah. Forgive me, traveler. Force of habit.",
+      "target": "止まれ！　名と用件を――ああ。失礼した、旅人殿。つい癖でな。"
+    },
+    "dlg.innkeeper.good-morning": {
+      "source": "Good morning, sleepyhead! Breakfast is on the table, and the rooster has been shouting about it for an hour.",
+      "target": "おはよう、お寝坊さん！　朝ごはんはテーブルの上よ。雄鶏が一時間も前からそう叫んでるわ。"
+    },
+    "dlg.innkeeper.take-your-time": {
+      "source": "Take your time, dear. The fire will keep.",
+      "target": "ごゆっくりね。火は消えやしないから。"
+    },
+    "dlg.innkeeper.welcome": {
+      "source": "Welcome to the {Ember & Oak}! Warm beds, hot stew, and only a modest amount of snoring from the loft.",
+      "target": "{エンバー＆オーク亭}へようこそ！　温かいベッドに熱いシチュー、屋根裏からのいびきも控えめよ。"
+    },
+    "dlg.merchant.fine-choice": {
+      "source": "A fine choice! Crisp as a winter morning and twice as sweet. Come back tomorrow — I will have pears. Probably.",
+      "target": "お目が高い！　冬の朝みたいにシャキッとして、甘さはその倍だ。明日もおいで――梨が入ってる。たぶんね。"
+    },
+    "dlg.merchant.looking-is-free": {
+      "source": "Looking is free! ...For now.",
+      "target": "見るのはタダだよ！　……今のところはね。"
+    },
+    "dlg.merchant.obtained-apple": {
+      "source": "Obtained: Crisp Apple",
+      "target": "もぎたてりんごを手に入れた"
+    },
+    "dlg.merchant.obtained-apple-count": {
+      "source": "Obtained: Crisp Apple ×${count}",
+      "target": "もぎたてりんご×${count}を手に入れた"
+    },
+    "dlg.merchant.offer-apple": {
+      "source": "An apple, fresh from the valley orchards? For a new face in {Emberfall}, it is on the house.",
+      "target": "谷の果樹園からとれたてのりんごはどうだい？　{エンバーフォール}に来たばかりの人には、タダでいいよ。"
+    },
+    "dlg.merchant.step-up": {
+      "source": "Step right up! The finest produce this side of the river — and the only produce this side of the river, but let us not dwell on that.",
+      "target": "さあさあ、寄ってらっしゃい！　川のこっち側でいちばんの青物だよ――ついでに言えば、こっち側で唯一の青物でもあるんだが、そこは気にしない気にしない。"
+    },
+    "dlg.merchant.take-apple": {
+      "source": "Take an apple",
+      "target": "りんごをもらう"
+    },
+    "dlg.music.fades": {
+      "source": "The music fades…",
+      "target": "音楽が静かにやんでいく……"
+    },
+    "dlg.music.keep-playing": {
+      "source": "Keep playing",
+      "target": "続けて"
+    },
+    "dlg.rest.ask": {
+      "source": "Will you rest until morning?",
+      "target": "朝まで休んでいきますか？"
+    },
+    "dlg.rest.not-yet": {
+      "source": "Not yet",
+      "target": "今はまだ"
+    },
+    "dlg.rest.until-morning": {
+      "source": "Rest until morning",
+      "target": "朝まで休む"
+    },
+    "dlg.scholar.golden-hour": {
+      "source": "Golden hour is my favourite. The shadows grow long and everything looks like it remembers something.",
+      "target": "夕映えの時間がいちばん好きです。影が長く伸びて、何もかもが何かを思い出しているように見えるのです。"
+    },
+    "dlg.scholar.notes-keys": {
+      "source": "And should you wish to see my working notes, {~} opens them. {H} will remind you of all this, should you forget.",
+      "target": "私の研究ノートをご覧になりたければ、{~}で開けます。忘れてしまったら、{H}でこのお話を思い出せますよ。"
+    },
+    "dlg.scholar.remember": {
+      "source": "Remember: {T} for the hour, {R} for the weather, {P} for the view, {H} for help. The rest is patience.",
+      "target": "覚えておいてくださいね。{T}で時刻、{R}で天気、{P}で景色、{H}でヘルプ。あとは辛抱です。"
+    },
+    "dlg.scholar.time-key": {
+      "source": "Press {T} and watch the day turn — dawn, noon, golden hour, dusk and night. I have documented each one. Twice.",
+      "target": "{T}を押して、一日が移ろうのをご覧なさい――夜明け、真昼、夕映え、黄昏、そして夜。どれも記録してあります。二回ずつ。"
+    },
+    "dlg.scholar.view-keys": {
+      "source": "{P} hides everything but the view. {Q} and {E} turn the world around you, and {Z} and {X} — or the wheel — bring it closer or push it away.",
+      "target": "{P}で景色以外のすべてが隠れます。{Q}と{E}で世界があなたのまわりを回り、{Z}と{X}――またはホイール――で近づけたり遠ざけたりできます。"
+    },
+    "dlg.scholar.visitor": {
+      "source": "Oh! A visitor on the hill. I am cataloguing how the light moves over this valley. Would you believe it is different every hour?",
+      "target": "あら！　丘にお客さまですね。私はこの谷の上を光がどう移ろうか、記録をとっているのです。一時間ごとに違うなんて、信じられますか？"
+    },
+    "dlg.scholar.weather-key": {
+      "source": "{R} summons the weather: rain, then snow, then clear skies again. Do not ask me how. Scholarship has its limits.",
+      "target": "{R}で天気を呼べます。雨、次に雪、そしてまた晴れ。仕組みは聞かないでくださいね。学問にも限界があるのです。"
+    },
+    "dlg.shop.cannot-carry-more": {
+      "source": "You cannot carry more",
+      "target": "これ以上は持てない"
+    },
+    "dlg.shop.just-looking": {
+      "source": "Just looking",
+      "target": "見てるだけ"
+    },
+    "dlg.shop.not-enough-gold": {
+      "source": "Not enough gold",
+      "target": "ゴールドが足りない"
+    },
+    "dlg.shop.not-for-sale": {
+      "source": "Not for sale",
+      "target": "売り物ではない"
+    },
+    "dlg.shopkeeper.bought": {
+      "source": "Obtained: ${name}",
+      "target": "${name}を手に入れた"
+    },
+    "dlg.shopkeeper.bought-atk": {
+      "source": "Obtained: ${name} — ATK ${before} → ${after}",
+      "target": "${name}を手に入れた――攻撃力 ${before} → ${after}"
+    },
+    "dlg.shopkeeper.bought-def": {
+      "source": "Obtained: ${name} — DEF ${before} → ${after}",
+      "target": "${name}を手に入れた――防御力 ${before} → ${after}"
+    },
+    "dlg.shopkeeper.bought-gain": {
+      "source": "Obtained: ${name} — ${gain}",
+      "target": "${name}を手に入れた――${gain}"
+    },
+    "dlg.shopkeeper.bought-max-hp": {
+      "source": "Obtained: ${name} — Max HP ${before} → ${after}",
+      "target": "${name}を手に入れた――最大HP ${before} → ${after}"
+    },
+    "dlg.shopkeeper.bought-max-mp": {
+      "source": "Obtained: ${name} — Max MP ${before} → ${after}",
+      "target": "${name}を手に入れた――最大MP ${before} → ${after}"
+    },
+    "dlg.shopkeeper.farewell-bought": {
+      "source": "A pleasure doing business. Mind the fire up there.",
+      "target": "毎度あり！　山の上の火には気をつけるんだよ。"
+    },
+    "dlg.shopkeeper.farewell-none": {
+      "source": "Suit yourself. The cart is not going anywhere.",
+      "target": "お好きにどうぞ。荷車はどこにも行きやしないから。"
+    },
+    "dlg.shopkeeper.foes-near": {
+      "source": "Not with foes at your heels! Lose them first, then we can talk trade.",
+      "target": "敵に追われてるのに商売どころじゃないよ！　まずは振り切ってきな。話はそれからだ。"
+    },
+    "dlg.shopkeeper.menu-again": {
+      "source": "Anything else? You carry {${gold} gold} · ATK ${atk} · DEF ${def}.",
+      "target": "ほかには？　所持金{${gold}G}・攻撃力 ${atk}・防御力 ${def}"
+    },
+    "dlg.shopkeeper.menu-first": {
+      "source": "What will it be? You carry {${gold} gold} · ATK ${atk} · DEF ${def}.",
+      "target": "何にする？　所持金{${gold}G}・攻撃力 ${atk}・防御力 ${def}"
+    },
+    "dlg.shopkeeper.nothing-more": {
+      "source": "Nothing more",
+      "target": "特にない"
+    },
+    "dlg.shopkeeper.tell-me-again": {
+      "source": "Tell me again",
+      "target": "もう一度聞かせて"
+    },
+    "dlg.shopkeeper.ware": {
+      "source": "${name} (${gain}) — ${price} gold",
+      "target": "${name}（${gain}）――${price}G"
+    },
+    "dlg.shopkeeper.ware-short": {
+      "source": "${name} (${gain}) — ${price} gold (not enough)",
+      "target": "${name}（${gain}）――${price}G（足りない）"
+    }
+  }
+}
