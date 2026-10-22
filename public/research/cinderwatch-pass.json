@@ -51,6 +51,13 @@
     "losses": { "injury": 100, "death": 2000 },
     "countStep": 5
   },
+  "variation": {
+    "comment": "Every foe outside the study (not a boss) varies per run: offsets drawn from these [value, probability] pairs and added to its stat block's attack bonus and HP. A family can have its own entry under families.",
+    "default": { "attackBonus": [[-1, 0.25], [0, 0.5], [1, 0.25]], "hp": [[-2, 0.25], [0, 0.5], [2, 0.25]] },
+    "families": {
+      "boar": { "attackBonus": [[-1, 0.25], [0, 0.5], [1, 0.25]], "hp": [[-5, 0.25], [0, 0.5], [5, 0.25]] }
+    }
+  },
   "groupCounts": { "glade_goblins": 4, "mire_goblins": 4 },
   "missions": [
     {

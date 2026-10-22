@@ -32,6 +32,7 @@ import { Kingdom, validateKingdom, truthSource, evidenceSource } from '../src/ga
 import { validateReport, evidenceFor } from '../src/game/research/report.js';
 import { debrief } from '../src/game/research/debrief.js';
 import { MissionProgress, firstDamage } from '../src/game/research/missions.js';
+import { monsterStats } from '../src/game/glaive/bestiary.js';
 import {
   mean, median, percentile, fiveNumber, sd, frequencyTable, histogram, proportion,
   invNorm, normCdf, invT, tCdf, proportionInterval, meanInterval, sampleSizeForProportion,
@@ -700,6 +701,66 @@ sec('missions');
   const walk2 = (o, keys) => { if (o && typeof o === 'object') for (const [k, v] of Object.entries(o)) { keys.add(k); walk2(v, keys); } return keys; };
   const preKeys = walk2({ dataset: saved.dataset, missions: saved.missions }, new Set());
   ok(!HIDDEN_KEYS.some((k) => preKeys.has(k)), 'the saved data and mission progress hold no hidden key (the truth sits only in the debrief result)');
+}
+
+sec('runs');
+{
+  const host = { now: () => 8, armor: () => 'light' };
+  const a = new ResearchMode(CONFIG, host, { run: { seed: 42, permadeath: false, ended: null } });
+  const a2 = new ResearchMode(CONFIG, host, { run: { seed: 42, permadeath: false, ended: null } });
+  const b2 = new ResearchMode(CONFIG, host, { run: { seed: 43, permadeath: false, ended: null } });
+  const roster = (rm) => [0, 1, 2, 3, 4, 5].map((i) => { const x = rm.individualFor('mire_goblins', i); return `${x?.stats.atk}/${x?.info.weapon}`; }).join();
+  ok(a.config.worldSeed === 42 && a.population.config.worldSeed === 42, 'the run seed is the world seed');
+  ok(roster(a) === roster(a2) && roster(a) !== roster(b2), 'the same run seed gives the same goblins, another seed others');
+  ok(CONFIG.worldSeed === 20261021, 'the config itself is left as it was');
+  // variation of the other foes
+  const slime = monsterStats('slime', 2);
+  const v1 = a.variantFor('slime', 'glade_slimes_n', 0, slime);
+  ok(!!v1 && JSON.stringify(v1) === JSON.stringify(a2.variantFor('slime', 'glade_slimes_n', 0, slime)), 'a foe\'s variation is seeded (the same run, the same foe)');
+  ok(a.variantFor('golem', 'cinderheart', 0, monsterStats('golem', 6)) === null && a.variantFor('dummy', 'dummies', 0, monsterStats('dummy', 1)) === null, 'the boss and the dummy never vary');
+  ok(a.variantFor('goblin', 'glade_goblins', 0, monsterStats('goblin', 2)) === null, 'a studied group takes its individuals instead');
+  /** @type {Record<string, number>} */
+  const offs = {};
+  for (let i = 0; i < 4000; i++) { const v = /** @type {any} */ (a.variantFor('slime', `g${i}`, 0, slime)); const k = `${v.atk - slime.atk}/${v.hpMax - slime.hpMax}`; offs[k] = (offs[k] ?? 0) + 1; }
+  ok(Math.abs((offs['0/0'] ?? 0) / 4000 - 0.25) < 0.04 && Object.keys(offs).every((k) => /^(-1|0|1)\/(-2|0|2)$/.test(k)), 'offsets follow the default variation (attack ±1, HP ±2)', offs);
+  const boar = /** @type {any} */ (a.variantFor('boar', 'quarry_boar_w', 0, monsterStats('boar', 8)));
+  ok([-5, 0, 5].includes(boar.hpMax - monsterStats('boar', 8).hpMax), 'a family can have its own variation (boar HP ±5)');
+  a.startExpedition();
+  ok(JSON.stringify(a.variantFor('slime', 'glade_slimes_n', 0, slime)) !== JSON.stringify(v1) || JSON.stringify(a.variantFor('slime', 'glade_slimes_n', 1, slime)) !== JSON.stringify(a2.variantFor('slime', 'glade_slimes_n', 1, slime)), 'a rest redraws the variations too');
+  // permadeath
+  ok(a.heroFell() === false && a.run.ended === null, 'without permadeath a fall does not end the run');
+  let heroCalls = 0;
+  const p = new ResearchMode(CONFIG, { ...host, hero: () => { heroCalls++; return { level: 3, chosen: true, checkpoint: 'spawn' }; } }, { run: { seed: 7, permadeath: true, ended: null } });
+  ok(p.toJSON().hero?.level === 3 && heroCalls > 0, 'the save holds the hero the host gives');
+  ok(p.heroFell() === true && p.run.ended === 'slain' && p.toJSON().hero === null, 'with permadeath a fall ends the run and drops the hero');
+
+  // the page: seeds, continuing, new runs (fetch and storage stubbed)
+  /** @type {Map<string, string>} */
+  const store = new Map();
+  const g = /** @type {any} */ (globalThis);
+  const oldFetch = g.fetch, oldStore = g.localStorage;
+  g.fetch = async () => ({ ok: true, json: async () => structuredClone(CONFIG) });
+  g.localStorage = { getItem: (k) => store.get(k) ?? null, setItem: (k, v) => { store.set(k, String(v)); } };
+  try {
+    const heroHost = { ...host, hero: () => ({ level: 4, chosen: true, checkpoint: 'spawn' }) };
+    const r1 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(heroHost, '?research=cinderwatch-pass&seed=77'));
+    ok(r1.run.seed === 77 && !r1.run.permadeath, '&seed=77 starts run 77');
+    studiedFight(r1, 'glade_goblins', 4, 9001);
+    const n1 = r1.dataset.counts().attack;
+    const r2 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass'));
+    ok(r2.run.seed === 77 && r2.dataset.counts().attack === n1 && r2.savedHero?.level === 4, 'no seed in the address: the saved run goes on (data and hero)');
+    const r3 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass&seed=77'));
+    ok(r3.dataset.counts().attack === n1, 'the same seed also continues it');
+    const r4 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass&seed=78&permadeath=1'));
+    ok(r4.run.seed === 78 && r4.run.permadeath && r4.dataset.counts().attack === 0 && r4.savedHero === null && r4.expedition === 1, 'another seed starts a new run: empty ledger, no hero, permadeath as asked');
+    store.clear();
+    const r5 = /** @type {ResearchMode} */ (await ResearchMode.fromPage(host, '?research=cinderwatch-pass'));
+    ok(r5.run.seed >= 1 && r5.run.seed <= 999999999 && r5.run.seed !== CONFIG.worldSeed, 'no save and no seed: a random run seed', r5.run.seed);
+    ok((await ResearchMode.fromPage(host, '?level=x')) === null && (await ResearchMode.fromPage(host, '?research=../x')) === null, 'no overlay without a valid research name');
+  } finally {
+    g.fetch = oldFetch;
+    g.localStorage = oldStore;
+  }
 }
 
 // -------------------------------------------------------------------------------------------------

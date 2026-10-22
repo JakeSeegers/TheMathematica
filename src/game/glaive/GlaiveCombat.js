@@ -441,7 +441,12 @@ export class GlaiveCombat {
       .map((o) => ({ id: o.id, minX: o.minX, maxX: o.maxX, minZ: o.minZ, maxZ: o.maxZ, minY: Number.isFinite(o.minY) ? o.minY : null }));
 
     // ---- the research overlay (before the foes: studied ones get their own stat blocks) ----
-    this.research = await ResearchMode.fromPage({ now: () => this.game.lighting?.timeOfDay ?? 0, armor: () => this.sheet.armor });
+    this.research = await ResearchMode.fromPage({
+      now: () => this.game.lighting?.timeOfDay ?? 0,
+      armor: () => this.sheet.armor,
+      // the run's hero (null until the level is ready: the saved one is kept then)
+      hero: () => (this._ready && this.waystones ? { ...this.exportProgress(), checkpoint: this.waystones.checkpoint?.id ?? 'spawn' } : null),
+    });
     /** @type {LedgerPanel|null} the research overlay's field ledger (L) */
     this.ledger = this.research ? new LedgerPanel(this.ui.root, this.research, { onClose: () => { this.game.busy = false; } }) : null;
     // (research mode is English-first, decision D9)
@@ -480,6 +485,17 @@ export class GlaiveCombat {
     this.stage = new Stage(this);
     this.playerActor = new PcActor(this.player.sprite, (x, z) => this.groundAt(x, z));
     this.hooks = makeHooks(this);
+    // a run's saved hero: its sheet, and back at its last waystone
+    const hero = this.research?.savedHero;
+    if (hero) {
+      this.importProgress(hero);
+      const cp = this.waystones.byId(hero.checkpoint ?? 'spawn');
+      if (cp && cp !== this.waystones.spawnPoint && !cp.absent) {
+        this.waystones.attune(cp, { silent: true });
+        const stand = cp.stand ?? cp;
+        this.later(0.05, () => this.game.teleport(stand.x, stand.z));
+      }
+    }
     this.loadMs = Math.round(performance.now() - t0);
     this._ready = true;
   }
@@ -520,11 +536,18 @@ export class GlaiveCombat {
    */
   _applyResearch(e) {
     const r = this.research;
-    if (!r || e.isAdd || e.kind !== r.family) return;
-    const ind = r.individualFor(e.groupId, e.index);
-    if (!ind) return;
-    e.setStats(ind.stats);
-    e.studied = ind.info;
+    if (!r || e.isAdd) return;
+    // (the group's own stat block, kept for the redraws after every rest)
+    const base = /** @type {any} */ (e)._baseStats ??= e.stats;
+    const ind = e.kind === r.family ? r.individualFor(e.groupId, e.index) : null;
+    if (ind) {
+      e.setStats(ind.stats);
+      e.studied = ind.info;
+      return;
+    }
+    // every other foe of the run varies a little (seeded): no two packs quite alike
+    const v = r.variantFor(e.kind, e.groupId, e.index, base);
+    if (v) e.setStats(v);
   }
 
   /** @param {{ uid: string, group: any, index: number, kind: string, name: string, stats: any, def: any, sheet: any, home: {x:number,z:number}, arena: any, isAdd: boolean }} init */
@@ -1679,12 +1702,14 @@ export class GlaiveCombat {
     if (res.xp > 0) this.ui.combat?.hud.loot(t('glaive.loot.xp', { n: res.xp }), 'upgrade');
     this.audio.playStinger?.('victory', { duck: 0.5 });
     if (this.sheet.pendingLevels > before) this.ui.hud.toast(t('glaive.level.ready'), 2.6);
+    this.research?.save();
   }
 
   /** The party fell: the death screen, then the last waystone. */
   _defeat() {
     this.pc.alive = false;
     this.pc.deaths++;
+    this.research?.heroFell();
     this.music.death();
     this.events.emit('playerDeath');
     this.later(1.0, () => this._deathScreen());
@@ -1709,6 +1734,8 @@ export class GlaiveCombat {
       this._respawnAt(at);
       await ui.fader.fadeIn(1.0);
       ui.hud.toast(t('combat.death.risen', { place: placeName(at) }), 2.4);
+      // permadeath: the run is over — the ledger offers a new one
+      if (this.research?.run.ended) this.later(0.6, () => this.openLedger('missions'));
     } finally {
       if (gen === this._deathGen) { this._respawning = false; game.busy = false; }
     }
@@ -1856,6 +1883,7 @@ export class GlaiveCombat {
       this.chosen = true;
       for (const a of this.allies) a.syncLevel();
       this.ui.hud.toast(t('glaive.create.done', { build: t(`glaive.build.${build}`), ancestry: t(`glaive.ancestry.${ancestry}`), hp: s.hpMax, ac: s.ac }), 3.4);
+      this.research?.save();
     } finally {
       this.game.busy = false;
       this._choosing = false;

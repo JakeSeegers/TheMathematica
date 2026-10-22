@@ -660,7 +660,18 @@ armour to buy for 40 citizens.
 - **The report** has two separate parts: your estimate (with a 95% interval once mission 4 unlocks
   it) and your purchase. The kingdom then faces a season of raids, and the debrief judges your
   research, your decision and the outcome separately.
-- Progress is kept in this browser; add `&fresh=1` to the address to start over.
+- **Runs (roguelike style).** Each play-through is a *run* with a seed, shown at the top of the
+  ledger (`Run 12345`). The seed decides every goblin of the study and small differences in every
+  other foe (attack bonus, HP), so no two runs play quite alike, and the same seed gives the same
+  world: share it to compare results. Add `&seed=12345` to the address to play a given seed; a new
+  seed starts a new run, no seed continues your saved run (or starts a random one). The ledger's
+  **New run** button (press it twice) starts a fresh run with a new seed.
+- **Saving.** A run saves itself in this browser after every fight, rest, level and answer: your
+  hero (calling, level, XP, talents, silver, draughts, gear), your last waystone, the ledger and
+  the missions. Reload and you are back at your waystone with everything. `&fresh=1` wipes the
+  saved run each time it is in the address.
+- **Permadeath** (optional): start a run with `&permadeath=1` and a fallen hero ends it — the
+  ledger keeps your data and offers a new run.
 
 ## 16. Campaigns (The Ferryman's Lantern)
 

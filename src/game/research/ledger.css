@@ -73,3 +73,4 @@
 .lu-ledger__field { display: block; margin: 4px 0; }
 .lu-ledger__problems { color: #f0a080; }
 @media (max-width: 520px) { .lu-ledger { font-size: 13px; } }
+.lu-ledger__ended { margin: 8px 0; padding: 6px 10px; border: 1px solid #d0603c; background: rgba(208, 96, 60, 0.12); }

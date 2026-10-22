@@ -2,6 +2,7 @@ import './ledger.css';
 import { mean, median, sd, percentile, fiveNumber, frequencyTable } from './stats.js';
 import { evidenceFor } from './report.js';
 import { round } from './missions.js';
+import { newRunSeed } from './ResearchMode.js';
 
 /**
  * The field ledger (docs/design/RESEARCH_STATISTICS_RPG.md §6, step 4): the research overlay's one
@@ -68,6 +69,8 @@ export class LedgerPanel {
     this.feedback = {};
     /** @type {string[]} the report's problems after a refused send */
     this.problems = [];
+    /** The New run button was pressed once (it asks again before it throws the run away). */
+    this._confirmNew = false;
     this.element = el('div', { class: 'lu-ledger', tabindex: '-1', role: 'dialog', 'aria-label': 'Field ledger' });
     this.element.addEventListener('keydown', (e) => {
       // the panel keeps its keys from the game
@@ -110,7 +113,8 @@ export class LedgerPanel {
     const cur = r.missions.current;
     const head = el('div', { class: 'lu-ledger__head' }, [
       el('div', { class: 'lu-ledger__title', text: 'Field Ledger' }),
-      el('div', { class: 'lu-ledger__sub', text: `Expedition ${r.expedition}${cur ? ` · ${cur.title}` : ' · all missions done'}` }),
+      el('div', { class: 'lu-ledger__sub', text: `Run ${r.run.seed}${r.run.permadeath ? ' (permadeath)' : ''} · Expedition ${r.expedition}${cur ? ` · ${cur.title}` : ' · all missions done'}` }),
+      el('button', { class: 'lu-ledger__btn', text: this._confirmNew ? 'Sure? Start a new run' : 'New run', title: 'A new seed: new goblins, a new hero, an empty ledger', onclick: () => this._newRun() }),
       el('button', { class: 'lu-ledger__close', text: '✕', title: 'Close (Esc or L)', onclick: () => this.close() }),
     ]);
     const tabs = el('div', { class: 'lu-ledger__tabs' }, TABS.map(([id, label]) => el('button', {
@@ -120,9 +124,25 @@ export class LedgerPanel {
       onclick: () => { this.tab = id; this.render(); },
     })));
     const body = el('div', { class: 'lu-ledger__body' });
+    if (r.run.ended) body.append(el('div', { class: 'lu-ledger__ended' }, [
+      el('p', { text: 'Your hero fell. With permadeath this run is over. Your ledger is kept below; start a new run for a new world.' }),
+      el('button', { class: 'lu-ledger__btn lu-ledger__btn--main', text: 'Start a new run', onclick: () => { this._confirmNew = true; this._newRun(); } }),
+    ]));
     const view = { missions: () => this._missions(), data: () => this._data(), charts: () => this._charts(), report: () => this._report(), debrief: () => this._debrief() }[this.tab];
     body.append(...view());
     this.element.replaceChildren(head, tabs, body);
+  }
+
+  /**
+   * A new run: a new seed in the address (asked twice unless the run is over). The page reloads;
+   * a seed other than the saved run's starts a new run (ResearchMode.fromPage).
+   */
+  _newRun() {
+    if (!this._confirmNew) { this._confirmNew = true; this.render(); return; }
+    const q = new URLSearchParams(globalThis.location.search);
+    q.set('seed', String(newRunSeed()));
+    q.delete('fresh');
+    globalThis.location.search = q.toString();
   }
 
   /** The report page opens with the last mission (or after a report). */

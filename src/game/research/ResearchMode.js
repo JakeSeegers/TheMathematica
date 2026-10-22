@@ -6,6 +6,7 @@ import { Kingdom, truthSource } from './kingdom.js';
 import { MissionProgress } from './missions.js';
 import { validateReport } from './report.js';
 import { debrief } from './debrief.js';
+import { RNG } from '../../engine/utils/math.js';
 
 /**
  * ResearchMode — the research overlay of a combat level (docs/design/RESEARCH_STATISTICS_RPG.md
@@ -17,7 +18,13 @@ import { debrief } from './debrief.js';
  * - records every fight with studied foes into the player's dataset (the recorder reads the
  *   encounter's beats: no study action);
  * - tells the UI to hide what the player cannot observe (a studied foe's HP numbers and its roll
- *   bonus).
+ *   bonus);
+ * - is one **run** (roguelike style): a run seed (`&seed=<n>`; a new seed starts a new run, none
+ *   continues the saved one or starts a random one) replaces the config's world seed, so it decides
+ *   every individual; every other foe (not studied, not a boss) varies too, by the config's
+ *   `variation` (attack bonus and HP offsets, seeded the same way); the run's save holds the study
+ *   and the hero, written at rests, fight ends and answers; with `&permadeath=1` a fallen hero ends
+ *   the run.
  *
  * The population stays inside this object; player-facing code reads `dataset` only.
  */
@@ -36,7 +43,31 @@ const STORE = 'luminati.research.';
  * @typedef {object} ResearchHost
  * @property {() => number} now          in-game time (hours)
  * @property {() => string} armor        the player's armour id
+ * @property {() => any} [hero]          the hero to save (GlaiveCombat: its progress and checkpoint)
  */
+
+/**
+ * A run: its seed, its rules and its state.
+ * @typedef {{ seed: number, permadeath: boolean, ended: string|null }} Run
+ */
+
+/** A new run seed (1 … 999 999 999). */
+export function newRunSeed() {
+  try {
+    const a = new Uint32Array(1);
+    globalThis.crypto.getRandomValues(a);
+    return (a[0] % 999999999) + 1;
+  } catch {
+    return (Date.now() % 999999999) + 1;
+  }
+}
+
+/** Pick from [value, probability] pairs with one uniform draw. @param {[number, number][]} pairs @param {number} u */
+function pick(pairs, u) {
+  let acc = 0;
+  for (const [v, p] of pairs) { acc += p; if (u < acc) return v; }
+  return pairs[pairs.length - 1][0];
+}
 
 /**
  * What a studied foe shows (set on the Foe as `studied`).
@@ -47,11 +78,16 @@ export class ResearchMode {
   /**
    * @param {ResearchConfig} config
    * @param {ResearchHost} host
-   * @param {{ dataset?: Dataset, expedition?: number, missions?: any, result?: any }} [saved]
+   * @param {{ dataset?: Dataset, expedition?: number, missions?: any, result?: any, run?: Run, hero?: any }} [saved]
    * @param {string} [name] the config's name (its storage key); '' keeps nothing
    */
   constructor(config, host, saved = {}, name = '') {
-    this.config = config;
+    /** @type {Run} the run (its seed is the world seed: it decides every individual) */
+    this.run = saved.run ?? { seed: config.worldSeed, permadeath: false, ended: null };
+    this.config = { ...config, worldSeed: this.run.seed };
+    config = this.config;
+    /** The saved hero to restore (GlaiveCombat reads it once at load), or null. */
+    this.savedHero = saved.hero ?? null;
     this.name = name;
     this.population = new Population(config);
     this.kingdom = /** @type {any} */ (config).kingdom ? new Kingdom(/** @type {any} */ (config)) : null;
@@ -84,8 +120,14 @@ export class ResearchMode {
       const r = await fetch(`${base}research/${name}.json`, { cache: 'no-store' });
       if (!r.ok) throw new Error(`HTTP ${r.status}`);
       const config = await r.json();
-      const fresh = new URLSearchParams(search).has('fresh');
-      return new ResearchMode(config, host, fresh ? {} : ResearchMode.load(name), name);
+      const q = new URLSearchParams(search);
+      const saved = q.has('fresh') ? {} : ResearchMode.load(name);
+      const asked = Number.parseInt(q.get('seed') ?? '', 10);
+      const seed = Number.isInteger(asked) && asked > 0 ? asked : null;
+      // the saved run goes on unless the address asks for another seed (or a fresh start)
+      const keep = saved.run && (seed === null || seed === saved.run.seed);
+      const state = keep ? saved : { run: { seed: seed ?? newRunSeed(), permadeath: q.get('permadeath') === '1', ended: null } };
+      return new ResearchMode(config, host, state, name);
     } catch (err) {
       console.warn(`[research] could not load "${name}":`, err);
       return null;
@@ -101,7 +143,8 @@ export class ResearchMode {
       const raw = globalThis.localStorage?.getItem(STORE + name);
       if (!raw) return {};
       const j = JSON.parse(raw);
-      return { dataset: Dataset.from(j.dataset), expedition: Number(j.expedition) || 0, missions: j.missions, result: j.result ?? null };
+      const run = j.run && Number.isInteger(j.run.seed) ? { seed: j.run.seed, permadeath: !!j.run.permadeath, ended: j.run.ended ?? null } : undefined;
+      return { dataset: Dataset.from(j.dataset), expedition: Number(j.expedition) || 0, missions: j.missions, result: j.result ?? null, run, hero: j.hero ?? null };
     } catch (err) {
       console.warn('[research] the saved study could not be read:', err);
       return {};
@@ -180,6 +223,38 @@ export class ResearchMode {
   }
 
   /**
+   * The run's variation of a foe outside the study (not a boss, not passive): its attack bonus and
+   * HP shifted by draws from the config's `variation` (per family, else `default`), seeded by the
+   * run, the expedition, the group and the slot. Null when it does not vary.
+   * @param {string} kind
+   * @param {string} groupId
+   * @param {number} index
+   * @param {MonsterStats} base
+   * @returns {MonsterStats|null}
+   */
+  variantFor(kind, groupId, index, base) {
+    if (base.boss || base.moves.includes('passive') || this.studies(groupId)) return null;
+    const v = /** @type {any} */ (this.config).variation;
+    const spec = v?.families?.[kind] ?? v?.default;
+    if (!spec) return null;
+    const rng = new RNG(`${this.run.seed}|variant|e${this.expedition}|${groupId}|${index}`);
+    const atk = spec.attackBonus ? pick(spec.attackBonus, rng.next()) : 0;
+    const hp = spec.hp ? pick(spec.hp, rng.next()) : 0;
+    return { ...base, atk: base.atk + atk, hpMax: Math.max(1, base.hpMax + hp) };
+  }
+
+  /**
+   * The hero fell. With permadeath the run ends (the ledger offers a new one); without, nothing.
+   * @returns {boolean} whether the run ended
+   */
+  heroFell() {
+    if (!this.run.permadeath || this.run.ended) return false;
+    this.run.ended = 'slain';
+    this.save();
+    return true;
+  }
+
+  /**
    * A fight starts with these foes (studied or not): the recorder opens an encounter when any of
    * them is studied.
    * @param {{ id: string, studied: StudiedInfo|null }[]} foes
@@ -202,7 +277,8 @@ export class ResearchMode {
 
   /** What the save keeps. */
   toJSON() {
-    return { expedition: this.expedition, dataset: this.dataset.toJSON(), missions: this.missions.toJSON(), result: this.result };
+    const hero = this.run.ended ? null : (this.host.hero?.() ?? this.savedHero);
+    return { run: this.run, expedition: this.expedition, dataset: this.dataset.toJSON(), missions: this.missions.toJSON(), result: this.result, hero };
   }
 
   /**

@@ -509,3 +509,35 @@ game while open (`game.busy`), and **Esc** or **L** closes it.
   also opens the ledger with L, answers mission 1 by clicking (a wrong answer's feedback first),
   checks the Data and Charts pages and closes it with Esc.
 
+### 13.5 Runs, varied foes, saves (2026-10-22, toward roguelike play)
+
+Asked for by the owner: move toward seeded, roguelike play.
+
+- **A run** (`ResearchMode.run`: `{ seed, permadeath, ended }`). `&seed=<n>` picks the run; a seed
+  other than the saved run's starts a new run; no seed continues the saved run or starts a random
+  one (`newRunSeed`, from `crypto.getRandomValues`). The run seed replaces the config's
+  `worldSeed`, so it decides every individual (the config file is unchanged). The ledger shows
+  `Run <seed>` and a **New run** button (asked twice) that reloads with a new seed.
+- **Every foe varies.** `ResearchMode.variantFor` shifts the attack bonus and HP of every foe
+  outside the study (not a boss, not passive) by draws from the config's `variation` (`default`,
+  or per family under `families`: the boar's HP ±5), seeded by the run, the expedition, the group
+  and the slot; a rest redraws them with the studied goblins (`Foe._baseStats` keeps the group's
+  own block). Only the studied family is recorded.
+- **One save per run** (browser storage, `luminati.research.<config>`): the study and the hero —
+  `GlaiveCombat.exportProgress()` plus the attuned waystone, written at fight ends, rests, level
+  choices and answers; at load the hero is imported and placed at that waystone (no character
+  picker).
+- **Permadeath** (`&permadeath=1`): `heroFell()` ends the run (`ended: 'slain'`, the hero is
+  dropped from the save); after the death screen the ledger opens with a *Start a new run*
+  banner, the data kept for reading.
+- **Tests:** `npm run research:test` 212 assertions (the run seed decides the goblins, the config
+  untouched, seeded variation within its offsets and per family, never the boss or the dummy,
+  permadeath, and `fromPage` with stubbed `fetch` and storage: `&seed=77` starts a run, no seed or
+  the same seed continues it with its data and hero, another seed starts an empty one with
+  permadeath as asked, no save means a random seed). `sandbox/research.record.json` (now with
+  `&seed=20261021`) also reloads the page: the hero, the data, the expedition and the seed come
+  back, and dozens of other foes carry varied stats.
+
+**Next toward roguelike play:** seeded landscapes — run the terrain generators in the browser so
+each run gets its own region (where the habitats lie, the routes, how many goblins live where).
+

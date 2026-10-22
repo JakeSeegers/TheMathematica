@@ -64,5 +64,23 @@
   },
   {
     "eval": "const ev = new KeyboardEvent('keydown', { code: 'Escape', key: 'Escape', bubbles: true }); document.querySelector('.lu-ledger').dispatchEvent(ev); S(3); (!C().system.ledger.isOpen && !window.__game.game.busy) ? 'closed' : FAIL('Esc did not close the ledger')"
+  },
+  {
+    "eval": "window.__game.combat.system.research.save(); const st9 = C().state(); localStorage.setItem('rr.before', JSON.stringify({ xp: st9.player.xp, level: st9.player.level, build: st9.player.build, attacks: C().research().dataset.attacks.length, seed: C().system.research.run.seed, exp: C().research().expedition })); localStorage.getItem('rr.before')"
+  },
+  {
+    "goto": "game.html?level=cinderwatch-pass&autostart=1&fixedstep=1&research=cinderwatch-pass&seed=20261021"
+  },
+  {
+    "wait": 2000
+  },
+  {
+    "eval": "window.S = (n, dt = 1/30) => { for (let i = 0; i < n; i++) window.__engine.step(dt, { render: false }); window.__engine.redraw(); return n; }; window.U = async (pred, max = 3000, dt = 1/30) => { for (let i = 0; i < max; i++) { if (pred()) { window.__engine.redraw(); return i; } window.__engine.step(dt, { render: false }); if (i % 50 === 49) await new Promise((r) => setTimeout(r, 0)); } window.__engine.redraw(); return -1; }; window.C = () => window.__game.combat; window.FAIL = (m) => { setTimeout(() => { throw new Error('[research.record] ' + m); }); return 'FAIL ' + m; }; window.M = () => { const f = C().state().fight; return !!(f && f.needsInput && !f.busy && window.__game.ui.dialog.isChoosing); }; window.K = (code, frames = 2) => { window.dispatchEvent(new KeyboardEvent('keydown', { code, key: code, bubbles: true })); S(frames); window.dispatchEvent(new KeyboardEvent('keyup', { code, key: code, bubbles: true })); S(2); return code; }; 'ok'"
+  },
+  {
+    "eval": "(async () => { const r = await U(() => window.__game && C() && window.__game.state().mode === 'play', 4000); S(40); const b = JSON.parse(localStorage.getItem('rr.before')); const st = C().state(); const R = C().research(); const ok = r >= 0 && st.player.chosen && st.player.build === b.build && st.player.xp === b.xp && R.dataset.attacks.length === b.attacks && R.expedition === b.exp && C().system.research.run.seed === b.seed && !window.__game.ui.dialog.isOpen; return ok ? JSON.stringify({ restored: { xp: st.player.xp, build: st.player.build, attacks: R.dataset.attacks.length, exp: R.expedition, seed: b.seed } }) : FAIL('the run did not come back: ' + JSON.stringify({ b, now: { chosen: st.player.chosen, build: st.player.build, xp: st.player.xp, attacks: R.dataset.attacks.length, exp: R.expedition }, dialog: window.__game.ui.dialog.isOpen })); })()"
+  },
+  {
+    "eval": "const vary = C().system.enemies.filter((e) => !e.studied && !e.boss && e._baseStats && (e.stats.atk !== e._baseStats.atk || e.stats.hpMax !== e._baseStats.hpMax)).length; vary > 5 ? 'varied foes: ' + vary : FAIL('the other foes do not vary: ' + vary)"
   }
 ]
