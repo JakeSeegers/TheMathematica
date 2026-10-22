@@ -373,7 +373,7 @@ export class LedgerPanel {
     if (!res) return [el('p', { text: 'No report yet.' })];
     const d = res.debrief;
     const names = Object.fromEntries(Object.entries(this.research.config.habitats).map(([id, h]) => [id, h.name]));
-    const pol = (/** @type {{ armor: string, count: number }} */ p) => (p.armor === 'none' || !p.count ? 'buy nothing' : `${p.armor} armour for ${p.count}`);
+    const pol = (/** @type {{ armor: string, count: number }} */ p) => (p.armor === 'none' || !p.count ? 'buy nothing' : `buy ${p.armor} armour for ${p.count} citizens`);
     const flags = (/** @type {string[]} */ fs) => fs.length
       ? el('ul', {}, fs.map((f) => el('li', { text: f.startsWith('habitat-missing:') ? `No goblins from the ${names[f.split(':')[1]] ?? f.split(':')[1]} in your sample.` : FLAG_TEXT[/** @type {keyof typeof FLAG_TEXT} */ (f)] ?? f })))
       : el('p', { text: 'No problems found.' });
@@ -385,7 +385,8 @@ export class LedgerPanel {
       flags(d.research.flags),
       el('div', { class: 'lu-ledger__h', text: '2. Decision quality (judged on your evidence, not the truth)' }),
       d.decision.mine ? el('p', { text: `You chose to ${pol(d.decision.mine.policy)}. In the world your data describes, it would cost about ${Math.round(d.decision.mine.meanCost)} silver a season; the best option there (${pol(d.decision.best.policy)}) about ${Math.round(d.decision.best.meanCost)}.` }) : el('p', { text: '' }),
-      el('p', { text: d.decision.defensible ? 'Your purchase was defensible for the evidence you had.' : 'Your purchase was not the best use of your own evidence.' }),
+      d.decision.worlds ? el('p', { text: `Your evidence is a sample, so it allows many worlds. In ${Math.round(d.decision.plausible * d.decision.worlds)} of ${d.decision.worlds} plausible worlds (your data resampled), your purchase was close to the best.` }) : el('p', { text: '' }),
+      el('p', { text: d.decision.defensible ? 'Your purchase was defensible for the evidence you had.' : 'Your purchase was not a good use of your own evidence.' }),
       flags(d.decision.flags),
       el('div', { class: 'lu-ledger__h', text: '3. What happened this season' }),
       el('p', { text: `Citizens protected: ${d.outcome.protected}. Injured: ${d.outcome.injured}. Killed: ${d.outcome.dead}. Knocked out but unhurt: ${d.outcome.knockedOut}. Armour failed ${d.outcome.equipmentFailures} times. Spent ${d.outcome.spent}, left ${d.outcome.remaining}. Total cost to the kingdom: ${d.outcome.totalCost} silver.` }),

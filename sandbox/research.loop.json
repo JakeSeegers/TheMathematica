@@ -1,0 +1,68 @@
+[
+  {
+    "wait": 2000
+  },
+  {
+    "eval": "window.S = (n, dt = 1/30) => { for (let i = 0; i < n; i++) window.__engine.step(dt, { render: false }); window.__engine.redraw(); return n; }; window.U = async (pred, max = 3000, dt = 1/30) => { for (let i = 0; i < max; i++) { if (pred()) { window.__engine.redraw(); return i; } window.__engine.step(dt, { render: false }); if (i % 50 === 49) await new Promise((r) => setTimeout(r, 0)); } window.__engine.redraw(); return -1; }; window.C = () => window.__game.combat; window.FAIL = (m) => { setTimeout(() => { throw new Error('[research.loop] ' + m); }); return 'FAIL ' + m; }; window.M = () => { const f = C().state().fight; return !!(f && f.needsInput && !f.busy && window.__game.ui.dialog.isChoosing); }; window.K = (code, frames = 2) => { window.dispatchEvent(new KeyboardEvent('keydown', { code, key: code, bubbles: true })); S(frames); window.dispatchEvent(new KeyboardEvent('keyup', { code, key: code, bubbles: true })); S(2); return code; }; 'ok'"
+  },
+  {
+    "eval": "window.FG = async (group) => { for (let i = 0; i < 10 && C().system.sheet.pendingLevels > 0; i++) C().levelUp(null, null); if (window.__game.ui.dialog.isOpen && !C().state().fight) { window.__game.ui.dialog.close(); await new Promise((r) => setTimeout(r, 400)); S(3); } const f = C().foes().find((x) => x.group === group && x.alive && !x.hidden); if (!f) return 'none'; window.__game.teleport(f.x, f.z + 3); S(5); if (!C().state().fight) C().fight(group); if (!C().state().fight) return 'nofight'; C().auto(true); C().pace(10); const r = await U(() => !C().state().fight, 20000); S(20); if (r >= 0) return 'ok'; const fs = C().state().fight; window.STUCK = JSON.stringify({ group, round: fs && fs.round, current: fs && fs.current, needsInput: fs && fs.needsInput, busy: fs && fs.busy, picking: fs && fs.picking, list: fs && fs.combatants.map((c) => [c.id, c.state, c.hp, c.x, c.z]) }); return 'stuck'; }; window.EXP = async (n) => { const out = []; for (let k = 0; k < n; k++) { out.push(await FG('glade_goblins'), await FG('mire_goblins')); C().rest(); S(10); } return out.join(','); }; 'ok'"
+  },
+  {
+    "eval": "(async () => { const r = await U(() => window.__game && C() && window.__game.state().mode === 'play', 4000); if (r < 0) return FAIL('no play'); C().choose('sellsword', 'human'); C().god(true); S(5); return C().research() ? 'run ' + C().system.research.run.seed : FAIL('no research overlay'); })()"
+  },
+  {
+    "eval": "(async () => { const o = await EXP(2); const D = C().research().dataset; return o.includes('stuck') ? FAIL('a fight did not end: ' + o + ' ' + window.STUCK) : JSON.stringify({ o, enemies: D.enemies.length, eligible: D.attacks.filter((a) => a.eligible).length }); })()"
+  },
+  {
+    "eval": "(async () => { const o = await EXP(2); const D = C().research().dataset; return o.includes('stuck') ? FAIL('a fight did not end: ' + o + ' ' + window.STUCK) : JSON.stringify({ o, enemies: D.enemies.length, eligible: D.attacks.filter((a) => a.eligible).length }); })()"
+  },
+  {
+    "eval": "(async () => { const o = await EXP(2); const D = C().research().dataset; return o.includes('stuck') ? FAIL('a fight did not end: ' + o + ' ' + window.STUCK) : JSON.stringify({ o, enemies: D.enemies.length, eligible: D.attacks.filter((a) => a.eligible).length }); })()"
+  },
+  {
+    "eval": "(async () => { const o = await EXP(2); const D = C().research().dataset; return o.includes('stuck') ? FAIL('a fight did not end: ' + o + ' ' + window.STUCK) : JSON.stringify({ o, enemies: D.enemies.length, eligible: D.attacks.filter((a) => a.eligible).length }); })()"
+  },
+  {
+    "eval": "(async () => { const o = await EXP(2); const D = C().research().dataset; return o.includes('stuck') ? FAIL('a fight did not end: ' + o + ' ' + window.STUCK) : JSON.stringify({ o, enemies: D.enemies.length, eligible: D.attacks.filter((a) => a.eligible).length }); })()"
+  },
+  {
+    "eval": "(async () => { const o = await EXP(2); const D = C().research().dataset; return o.includes('stuck') ? FAIL('a fight did not end: ' + o + ' ' + window.STUCK) : JSON.stringify({ o, enemies: D.enemies.length, eligible: D.attacks.filter((a) => a.eligible).length }); })()"
+  },
+  {
+    "eval": "(() => { const R = C().system.research; const D = R.dataset; const need = (h) => D.attacks.filter((a) => a.eligible && D.enemies.find((e) => e.id === a.enemyId).habitat === h).length; const c = { road: need('road'), mire: need('mire'), all: D.attacks.filter((a) => a.eligible).length, damage: D.damageOnHit().length }; return (c.road >= 10 && c.mire >= 6 && c.all >= 30 && c.damage >= 10) ? JSON.stringify(c) : FAIL('not enough data for every mission: ' + JSON.stringify(c)); })()"
+  },
+  {
+    "eval": "(() => { C().ledger(true, 'missions'); S(2); const R = C().system.research; let steps = 0; const log = []; for (let i = 0; i < 30; i++) { const cur = R.missions.current; if (!cur || cur.tasks.some((t) => t.type === 'report')) break; const t = cur.tasks.find((x) => !R.missions.done.has(R.missions.key(cur, x))); const idx = cur.tasks.indexOf(t); const box = document.querySelectorAll('.lu-ledger__mission.is-cur .lu-ledger__task')[idx]; if (!box) { FAIL('no task box for ' + t.id); break; } if (t.type === 'choice') { const ci = t.options.findIndex((o) => o.correct); const b = box.querySelectorAll('.lu-ledger__opt')[ci]; if (!b) { FAIL('no option buttons for ' + t.id + ': ' + box.textContent.slice(0, 80)); break; } b.click(); } else { const inp = box.querySelector('input'); if (!inp) { FAIL('no number input for ' + t.id + ': ' + box.textContent.slice(0, 80)); break; } inp.value = String(Math.round(R.missions.expected(t.target, R.dataset) * 1000) / 1000); box.querySelector('button').click(); } log.push(cur.id + '.' + t.id); steps++; } const cur2 = R.missions.current; return (cur2 && cur2.id === 'advise' && R.missions.unlocked('summaries') && R.missions.unlocked('interval')) ? 'answered ' + log.join(' ') : FAIL('missions not done: ' + JSON.stringify({ cur: cur2 && cur2.id, log })); })()"
+  },
+  {
+    "shot": "01-missions-done"
+  },
+  {
+    "eval": "(() => { [...document.querySelectorAll('.lu-ledger__tab')].find((b) => b.textContent === 'Charts').click(); const txt = document.querySelector('.lu-ledger__body').textContent; return (txt.includes('Standard deviation') && txt.includes('95% interval') && !txt.includes('locked')) ? 'summaries and intervals shown' : FAIL('charts after the unlocks: ' + txt.slice(0, 200)); })()"
+  },
+  {
+    "shot": "02-charts-unlocked"
+  },
+  {
+    "eval": "(() => { [...document.querySelectorAll('.lu-ledger__tab')].find((b) => b.textContent === 'Report').click(); const D = C().system.research.dataset; const p = D.penetration(12); const est = p.x / p.n; const se = Math.sqrt(est * (1 - est) / p.n); const z = 1.959963984540054; const nums = document.querySelectorAll('.lu-ledger__body .lu-ledger__num'); const sels = document.querySelectorAll('.lu-ledger__body .lu-ledger__sel'); const set = (el, v) => { el.value = String(v); el.dispatchEvent(new Event('input', { bubbles: true })); el.dispatchEvent(new Event('change', { bubbles: true })); }; set(sels[0], 'region'); set(nums[0], est.toFixed(4)); set(nums[1], (est - z * se).toFixed(4)); set(nums[2], (est + z * se).toFixed(4)); set(sels[1], 'light'); set(nums[3], 40); set(document.querySelector('.lu-ledger__text'), 'About ' + Math.round(est * 100) + '% of attacks get through light armour; light armour for everyone is affordable.'); const costTxt = [...document.querySelectorAll('.lu-ledger__body .lu-ledger__note')].map((n) => n.textContent).find((t) => t.startsWith('Cost')); window.REP = { est, lo: est - z * se, hi: est + z * se, n: p.n }; return costTxt === 'Cost: 1000 of 2000 silver (reserve 500).' ? JSON.stringify(window.REP) : FAIL('the cost line: ' + costTxt); })()"
+  },
+  {
+    "shot": "03-report-filled"
+  },
+  {
+    "eval": "(() => { [...document.querySelectorAll('.lu-ledger__btn--main')].find((b) => b.textContent.startsWith('Send')).click(); S(2); const R = C().system.research; const txt = document.querySelector('.lu-ledger__body').textContent; const probs = [...document.querySelectorAll('.lu-ledger__problems li')].map((l) => l.textContent); return (R.result && R.missions.current === null && txt.includes('1. Research quality') && txt.includes('2. Decision quality') && txt.includes('3. What happened this season') && txt.includes('The truth')) ? JSON.stringify({ research: R.result.debrief.research.flags, defensible: R.result.debrief.decision.defensible, outcome: { dead: R.result.season.dead, injured: R.result.season.injured, cost: R.result.season.totalCost }, truth: R.result.debrief.truth.value, covers: R.result.debrief.truth.intervalCovers }) : FAIL('the report was not sent: ' + JSON.stringify({ probs, txt: txt.slice(0, 160) })); })()"
+  },
+  {
+    "shot": "04-debrief"
+  },
+  {
+    "eval": "(() => { document.querySelector('.lu-ledger__body').scrollTop = 9999; S(1); return 'scrolled'; })()"
+  },
+  {
+    "shot": "05-debrief-truth"
+  },
+  {
+    "eval": "(() => { const saved = JSON.parse(localStorage.getItem('luminati.research.cinderwatch-pass')); return (saved && saved.result && saved.result.debrief && saved.missions.done.length === 11) ? 'saved with the result' : FAIL('the result is not in the save'); })()"
+  }
+]

@@ -1,6 +1,6 @@
 # Research-Statistics RPG — design proposal
 
-Status: **steps 1–4 of 5 built** (§13). Written 2026-10-21 as the "next deliverable" of the project
+Status: **all 5 steps built** (§13); the first investigation plays end to end. Written 2026-10-21 as the "next deliverable" of the project
 direction *A Research-Statistics RPG*; the recommendations of §5 were accepted the same day. The
 research core (`src/game/research/`) is tested in Node, and the game records fights into it when
 a page is opened with `?research=cinderwatch-pass`; the field ledger (L) carries the five
@@ -332,8 +332,11 @@ Three separate parts. No single score mixes them.
 2. **Decision quality** — given the player's *own* evidence, was the purchase defensible? Built
    as: every option is replayed over many seasons in "the world as the evidence describes it"
    (each raid attack resamples one of the dataset's eligible attacks and one observed damage
-   value, pooled over the habitats the player visited); a purchase whose mean cost there is within
-   *placeholder* 5 % of the best is defensible. The truth plays no part, so a convenience sample
+   value, pooled over the habitats the player visited), and in 20 plausible worlds the evidence
+   allows (bootstrap resamples of the player's data). A purchase within *placeholder* 5 % of the
+   best option in at least *placeholder* 20 % of those worlds is defensible — reasonable for some
+   value the evidence allows. (A single evidence world proved too noisy with ~35 goblins: it
+   called light armour for all "not defensible" because one resample favoured light armour for 5.) The truth plays no part, so a convenience sample
    can lead to a defensible decision that the truth then punishes — the research part flags the
    sample, the decision part does not.
 3. **Realized outcome** — the season that happened: citizens protected, injured, killed, silver
@@ -382,7 +385,7 @@ Each step ends with passing tests and can be reviewed alone.
 | 2 ✓ | (done 2026-10-22) `recorder.js` wired to `Encounter` beats; research mode in `GlaiveCombat` (C1, C2); expedition ids at rests; new individuals on respawn. | Node: beats → rows (one enemy, three attacks → 1 enemy row, 3 attack rows, 1 eligible); flanked attacks never eligible; misses have empty damage; missing reasons. No-leak test. Browser fixed-step script: a road fight writes the expected rows; the log shows no bonus. |
 | 3 ✓ | (done 2026-10-22) `kingdom.js`, `report.js`, `debrief.js`. | Node: a season with a fixed seed is identical twice; the rules follow §10; the replay distribution; debrief parts stay separate (a good policy with a bad season is "defensible" + "bad outcome"). |
 | 4 ✓ | (done 2026-10-22, simplified: §13.4) Missions 1–5, the ledger page, the report form with number entry, the debrief page. | story tests for the mission conditions; UI sandbox shots of the ledger and the report at the three reference sizes. |
-| 5 | Full-loop browser script in fixed step: road expedition, mire expedition, report, season, debrief. Docs (this file becomes a spec), known issues. | the full script; `npm run typecheck`, all Node tests, the build. |
+| 5 ✓ | (done 2026-10-22) Full-loop browser script in fixed step: road expedition, mire expedition, report, season, debrief. Docs (this file becomes a spec), known issues. | the full script; `npm run typecheck`, all Node tests, the build. |
 
 Only after step 5 works end to end: more curriculum (two-group comparison of armour designs,
 hypothesis tests, a second family), regional allocation, and the translations (D9).
@@ -540,4 +543,33 @@ Asked for by the owner: move toward seeded, roguelike play.
 
 **Next toward roguelike play:** seeded landscapes — run the terrain generators in the browser so
 each run gets its own region (where the habitats lie, the routes, how many goblins live where).
+
+### 13.6 Step 5 results: the loop end to end
+
+`sandbox/research.loop.json` (fixed step, `&seed=20261021`, god mode) plays the whole
+investigation in the browser: twelve expeditions of road and mire fights (88 goblins met, 35 with
+an eligible attack — gang tactics make many attacks flanked, and the hero kills some goblins
+before they attack), every mission answered by clicking in the ledger (choices and the two
+hand-computed numbers), the unlocks (summaries, intervals), the report filled in and sent through
+the form (estimate 0.629, interval 0.468–0.789, light armour for 40), the debrief (no research
+flag; defensible: near the best in 5 of 20 plausible worlds; the season: 1 death, 8 injuries,
+3 800 silver; the interval covers the truth 0.588) and the result in the save.
+
+What the run found:
+- **The decision verdict was too harsh** with a small sample (above, §11): now judged over 20
+  plausible worlds.
+- **"You chose to light armour"** in the debrief: fixed wording.
+- **A test hook could start a fight while the level-up menu held the game**, which froze the fight
+  (the stage never runs while the game is held). Players cannot do this; the `fight` hook now
+  refuses while a menu holds the game.
+
+`npm run research:test`: 216 assertions (the plausible worlds: seeded; medium for 26 near the best
+in almost none; light for all defensible with 35 fair goblins).
+
+**Observation for tuning:** only ~40 % of goblins met give an eligible attack. Mission 4's 30
+goblins took about 12 expeditions in the test. Options if play-testing finds it slow: count the
+first attack even when flanked but record the mode (a later mission can then ask whether flanked
+attacks should be pooled), fewer goblins per gang, or a lower threshold.
+
+**Next:** investigation 2, from the consequences of the first (loop step 9).
 

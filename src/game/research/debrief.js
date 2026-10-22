@@ -1,5 +1,5 @@
 import { evidenceFor } from './report.js';
-import { evidenceSource, truthSource } from './kingdom.js';
+import { evidenceSource, truthSource, bootstrapSources } from './kingdom.js';
 
 /**
  * The debrief (docs/design/RESEARCH_STATISTICS_RPG.md §11): three judgements kept apart, never
@@ -8,8 +8,10 @@ import { evidenceSource, truthSource } from './kingdom.js';
  * 1. Research quality — did the sample cover the target population, was the protocol followed,
  *    do the reported numbers match the data, was uncertainty stated?
  * 2. Decision quality — given the player's own evidence, was the purchase defensible? Every
- *    option is replayed in "the world as the evidence describes it" (`evidenceSource`); a purchase
- *    whose mean cost there is within `tolerance` of the best is defensible. The truth plays no part.
+ *    option is replayed in "the world as the evidence describes it" (`evidenceSource`), and in
+ *    `worlds` plausible worlds the evidence allows (bootstrap resamples of it, `bootstrapSources`);
+ *    a purchase within `tolerance` of the best option in at least `plausibleShare` of those worlds
+ *    is defensible (reasonable for some value the evidence allows). The truth plays no part.
  * 3. Realized outcome — the season that happened.
  *
  * The replay puts the season in context: the same policy over many seasons under the truth, where
@@ -35,6 +37,11 @@ export const DEBRIEF = Object.freeze({
   /** Reported numbers within this of the data's own count as matching. */
   match: 0.01,
   seasons: 300,
+  /** Plausible worlds (bootstrap resamples of the evidence) and the seasons replayed in each. */
+  worlds: 20,
+  worldSeasons: 60,
+  /** A purchase near the best in at least this share of the plausible worlds is defensible. */
+  plausibleShare: 0.2,
 });
 
 /**
@@ -81,9 +88,20 @@ export function debrief({ report, dataset, population, kingdom, season, seed = '
     const mine = ranking.find((r) => key(r.policy) === key(report.policy)) ?? { policy: report.policy, ...kingdom.replay(report.policy, evSource, { seasons, seed: `${seed}:evidence` }) };
     const best = ranking[0];
     const regret = mine.totalCost.mean - best.totalCost.mean;
-    const defensible = mine.totalCost.mean <= best.totalCost.mean * (1 + DEBRIEF.tolerance);
+    // the plausible worlds: in how many is the purchase near the best?
+    const worlds = bootstrapSources(dataset, DEBRIEF.worlds, `${seed}:worlds`);
+    let near = 0;
+    worlds.forEach((src, w) => {
+      const r = kingdom.rank(src, { seasons: DEBRIEF.worldSeasons, seed: `${seed}:world${w}` });
+      const m = r.find((x) => key(x.policy) === key(report.policy)) ?? { totalCost: kingdom.replay(report.policy, src, { seasons: DEBRIEF.worldSeasons, seed: `${seed}:world${w}` }).totalCost };
+      if (m.totalCost.mean <= r[0].totalCost.mean * (1 + DEBRIEF.tolerance)) near++;
+    });
+    const plausible = worlds.length ? near / worlds.length : 0;
+    const defensible = plausible >= DEBRIEF.plausibleShare;
     decision = {
       defensible, regret,
+      /** the share of plausible worlds where the purchase is near the best */
+      plausible, worlds: worlds.length,
       rank: ranking.findIndex((r) => key(r.policy) === key(report.policy)) + 1,
       options: ranking.length,
       best: { policy: best.policy, meanCost: best.totalCost.mean },

@@ -258,8 +258,33 @@ export function truthSource(population) {
  * @returns {AttackSource|null}
  */
 export function evidenceSource(dataset) {
+  return sourceFrom(dataset.attacks.filter((a) => a.eligible), dataset.damageOnHit());
+}
+
+/**
+ * Plausible worlds the evidence allows: `count` bootstrap resamples of the dataset (its eligible
+ * strikes and its damage values drawn with replacement, as many as observed), each an attack source.
+ * Empty when the dataset has no eligible attack or no damage.
+ * @param {Dataset} dataset
+ * @param {number} count
+ * @param {string} seed
+ * @returns {AttackSource[]}
+ */
+export function bootstrapSources(dataset, count, seed) {
   const strikes = dataset.attacks.filter((a) => a.eligible);
   const damage = dataset.damageOnHit();
+  if (!strikes.length || !damage.length) return [];
+  const rng = new RNG(`bootstrap|${seed}`);
+  const resample = (/** @type {any[]} */ xs) => xs.map(() => xs[Math.floor(rng.next() * xs.length)]);
+  return Array.from({ length: count }, () => /** @type {AttackSource} */ (sourceFrom(resample(strikes), resample(damage))));
+}
+
+/**
+ * @param {Pick<import('./dataset.js').AttackRow, 'strikeTotal'|'critical'|'fumble'>[]} strikes
+ * @param {number[]} damage
+ * @returns {AttackSource|null}
+ */
+function sourceFrom(strikes, damage) {
   if (!strikes.length || !damage.length) return null;
   return {
     kind: 'evidence',

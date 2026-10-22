@@ -16,7 +16,7 @@ import { PICKUP_KINDS } from '../combat/Pickups.js';
  * @typedef {object} GlaiveHooks
  * @property {() => any} state                 `GlaiveCombat.state()`
  * @property {(build?: string, ancestry?: string) => any} choose  make the player's character (no menus)
- * @property {(who: string, ambush?: 'party'|'foes'|null) => boolean} fight  start a fight with a foe uid or a group id
+ * @property {(who: string, ambush?: 'party'|'foes'|null) => boolean} fight  start a fight with a foe uid or a group id (false while a menu holds the game)
  * @property {(on?: boolean) => boolean} auto  the companions' AI plays the player's turns (this fight and later)
  * @property {(k?: number) => number} pace     the stage's speed-up (1: normal)
  * @property {(on?: boolean) => boolean} god   no damage to the party (HP never drops below 1)
@@ -61,6 +61,9 @@ export function makeHooks(sys) {
       return s.toJSON();
     },
     fight(who, ambush = null) {
+      // (never while a menu holds the game — the character or level-up picker: a fight then would
+      // wait on it forever; foes only start fights in plain play too)
+      if (sys.game.busy || (sys.ui.dialog.isOpen && !sys.encounter)) return false;
       const e = sys.enemies.find((f) => f.uid === who) ?? sys.enemies.find((f) => f.groupId === who && !f.gone);
       if (!e) return false;
       if (e.boss) { /** @type {any} */ (sys)._startBoss(e); return !!sys.encounter; }

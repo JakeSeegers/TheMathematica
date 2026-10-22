@@ -260,7 +260,7 @@ reference: [GLAIVE.md §10](GLAIVE.md#10-test-hooks)):
 | `state()` | `state().combat` (§3.5) |
 | `system` | the `GlaiveCombat` itself (scripted checks read `system.enemies`, `system.defeatedGroups()` …) |
 | `choose(build = 'sellsword', ancestry = 'human')` | makes the player's character without the menus (closes the picker if it is open); the sheet as JSON |
-| `fight(uidOrGroupId, ambush = null)` | starts a fight with that foe or group (`'party'`: the foes are surprised; `'foes'`: the party saves against surprise); the boss: its arena fight |
+| `fight(uidOrGroupId, ambush = null)` | (refused while a menu — the character or level-up picker — holds the game) starts a fight with that foe or group (`'party'`: the foes are surprised; `'foes'`: the party saves against surprise); the boss: its arena fight |
 | `auto(on = true)` | the companions' AI plays the player's turns (an open turn menu closes) |
 | `pace(k = 1)` | the stage's speed-up (0.1–20) |
 | `god(on = true)` | +900 max HP for the party, full HP |
